@@ -1,0 +1,124 @@
+.nav {
+  display: flex;
+  padding: 0px 20px;
+  height: 50px;
+  align-items: center;
+  background: white;
+  justify-content: space-between;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  .searchbar {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .avatar-mobile {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .bell {
+      font-size: 24px;
+      color: #600fe7;
+      cursor: pointer;
+    }
+    .user-container {
+      display: none;
+      cursor: pointer;
+    }
+  }
+  .hamburger {
+    display: block;
+    font-size: 30px;
+    color: #600fe7;
+    cursor: pointer;
+  }
+}
+
+@media all and (min-width: 550px) {
+  .nav {
+    .hamburger {
+      display: none;
+    }
+    .logo {
+      display: block;
+      height: 40px;
+    }
+    .searchbar {
+      display: flex;
+      background-color: #f5f5f5;
+      padding: 2px 7px;
+      border-radius: 1rem;
+      border: 2px solid #600fe7;
+      align-items: center;
+      gap: 5px;
+      height: fit-content;
+      .search-icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 30px;
+        background-color: #9c9c9c;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+      }
+      & > input {
+        border: none;
+        background-color: transparent;
+        font-size: 1.1rem;
+      }
+      & > input:focus {
+        outline: none;
+      }
+    }
+    .nav-right {
+      .avatar-mobile {
+        display: none;
+      }
+      .user-container {
+        display: flex;
+        align-items: center;
+        background-color: rgba(96, 15, 231, 1);
+        padding: 4px 8px;
+        gap: 10px;
+        border-radius: 23px;
+        & > img {
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+        & > span {
+          font-weight: bold;
+          text-transform: capitalize;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1024px) {
+  .nav {
+    .hamburger {
+    }
+    .logo {
+    }
+    .searchbar {
+      .search-icon-container {
+      }
+      & > input {
+        width: 600px;
+      }
+      & > input:focus {
+      }
+    }
+  }
+}

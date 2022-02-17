@@ -1,60 +1,59 @@
 .contacts {
-    width           : 300px;
-    height          : auto;
-    border          : 1px solid black;
-    border-radius   : 30px;
-    align-items     : center;
-    // position     : relative;
+  width: 300px;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 30px;
+  align-items: center;
+  // position     : relative;
 
-    .contacts_tag {
-        background-color     : antiquewhite;
-        width                : 290px;
-        height               : 60px;
-        // border          : 1px solid black;
-        border-radius        : 20px;
-        margin               : auto;
-        margin-bottom        : 10px;
-        margin-left          : 5px;
-        display              : grid;
-        grid-template-columns: 65px 160px 30px 20px;
+  .contacts_tag {
+    background-color: antiquewhite;
+    width: 290px;
+    height: 60px;
+    // border          : 1px solid black;
+    border-radius: 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    display: grid;
+    grid-template-columns: 65px 160px 30px 20px;
 
-
-        .contacts_tag_avt {
-            width        : 50px;
-            height       : 50px;
-            border-radius: 30px;
-            border       : 0.5px solid black;
-            margin-left  : 5px;
-            margin       : auto;
-        }
-
-        p {
-            text-align : center;
-            font-size  : 18px;
-            margin-left: -10px;
-        }
-
-        .notifications {
-            width              : 22px;
-            height             : 22px;
-            background-color   : red;
-            border-radius      : 12px;
-            margin             : auto;
-            // text-align      : center;
-
-            p {
-                text-align : center;
-                margin     : auto;
-                padding-top: 2px;
-            }
-        }
-
-        .signal {
-            width           : 15px;
-            height          : 15px;
-            background-color: rgb(48, 251, 41);
-            border-radius   : 8px;
-            margin          : auto;
-        }
+    .contacts_tag_avt {
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+      border: 0.5px solid black;
+      margin-left: 5px;
+      margin: auto;
     }
+
+    p {
+      text-align: center;
+      font-size: 18px;
+      margin-left: -10px;
+    }
+
+    .notifications {
+      width: 22px;
+      height: 22px;
+      background-color: red;
+      border-radius: 12px;
+      margin: auto;
+      // text-align      : center;
+
+      p {
+        text-align: center;
+        margin: auto;
+        padding-top: 2px;
+      }
+    }
+
+    .signal {
+      width: 15px;
+      height: 15px;
+      background-color: rgb(48, 251, 41);
+      border-radius: 8px;
+      margin: auto;
+    }
+  }
 }

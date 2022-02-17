@@ -1,5 +1,27 @@
 .home {
-  h1 {
-    color: red;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  .home-maincontainer {
+    display: flex;
+    background-color: #e5e5e5;
+    .leftbar {
+      flex-grow: 1;
+    }
+    .center {
+      flex-grow: 3;
+    }
+    .rightbar {
+      flex-grow: 1;
+    }
+  }
+}
+
+@media all and (max-width: 850px) {
+  .rightbar {
+    & > * {
+      display: none;
+    }
   }
 }
