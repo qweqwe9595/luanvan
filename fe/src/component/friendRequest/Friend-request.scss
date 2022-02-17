@@ -1,0 +1,74 @@
+.friend_request {
+    width        : 300px;
+    height       : auto;
+    border       : 1px solid black;
+    border-radius: 30px;
+    align-items  : center;
+    position     : relative;
+    top          : 100px;
+    left         : 600px;
+
+    p {
+        font-size : 20px;
+        margin-top: 10px;
+    }
+
+    .friends_request_tag {
+        background-color        : antiquewhite;
+        width                   : 290px;
+        height                  : 60px;
+        // border               : 1px solid black;
+        border-radius           : 20px;
+        display                 : grid;
+        grid-template-columns   : 65px 200px;
+        margin                  : auto;
+        margin-bottom           : 10px;
+
+        .avt_friend_request {
+            width        : 50px;
+            height       : 50px;
+            border-radius: 30px;
+            border       : 0.5px solid black;
+            margin-left  : 5px;
+            margin       : auto;
+        }
+
+        .friend_request_tag_info {
+            color             : black;
+            display           : grid;
+            grid-template-rows: 10px 20px;
+
+            p {
+                font-size  : 18px;
+                margin-top : 1px;
+                margin-left: -10px;
+            }
+
+            .friend_request_tag_button {
+                font-size    : 20px;
+                margin-top   : 15px;
+                background   : #000;
+                margin-bottom: 10px;
+
+
+                .button_accept {
+                    width           : 90px;
+                    height          : 25px;
+                    border          : 0.5px solid black;
+                    border-radius   : 10px;
+                    background-color: blue;
+                    color           : white;
+                    margin-right    : 10px;
+
+                }
+
+                .button_refuse {
+                    width        : 90px;
+                    height       : 25px;
+                    border       : 0.5px solid black;
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,16 @@
+import Friend_request from "./component/friendRequest/Friend-request";
 import Home from "./pages/Home";
-
-function App() {
+import Contacts from "./component/contacts/Contacts";
+const App =() => {
   return (
-    <div className="App">
-      <Home></Home>
+    <div className="containers">
+      {/* yêu cầu kết bạn */}
+      <div>
+        <Friend_request />
+      </div>
+      <div>
+       <Contacts />
+      </div>
     </div>
   );
 }
