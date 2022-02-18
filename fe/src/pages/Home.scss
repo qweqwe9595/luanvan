@@ -3,25 +3,35 @@
   flex-direction: column;
   width: 100vw;
   min-height: 100vh;
+
   .home-maincontainer {
     display: flex;
     background-color: #e5e5e5;
-    .leftbar {
-      flex-grow: 1;
-    }
+    gap: 3rem;
     .center {
-      flex-grow: 3;
-    }
-    .rightbar {
-      flex-grow: 1;
+      flex: 1;
     }
   }
 }
 
-@media all and (max-width: 850px) {
+@media all and (max-width: 1050px) {
   .rightbar {
     & > * {
       display: none;
+    }
+  }
+  .leftbar {
+    & > * {
+      display: none;
+    }
+  }
+}
+
+@media all and (min-width: 1300px) {
+  .home-maincontainer {
+    justify-content: space-between;
+    .center {
+      max-width: 800px;
     }
   }
 }
