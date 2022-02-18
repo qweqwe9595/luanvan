@@ -5,20 +5,29 @@ import Feed from "../component/feed/Feed";
 import Share from "../component/share/Share";
 import Contacts from "../component/contacts/Contacts";
 import FriendRequest from "../component/friendRequest/FriendRequest";
+import Options from "../component/options/Options";
+import RecommendPage from "../component/recommendPage/RecommendPage";
 
 function Home() {
   return (
     <div className="home">
       <Nav></Nav>
       <div className="home-maincontainer">
-        <div className="leftbar"></div>
+        <div className="leftbar">
+          <Options></Options>
+        </div>
         <div className="center">
-          <Share></Share>
-          <Feed></Feed>
+          <div>
+            <Share></Share>
+            <Feed></Feed>
+          </div>
+          <div>
+            <RecommendPage></RecommendPage>
+          </div>
         </div>
         <div className="rightbar">
-          <Contacts></Contacts>
           <FriendRequest> </FriendRequest>
+          <Contacts></Contacts>
         </div>
       </div>
     </div>
