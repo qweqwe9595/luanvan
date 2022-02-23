@@ -13,7 +13,7 @@ function Share() {
       <div className="share-right">
         <FaPhotoVideo className="share-img"></FaPhotoVideo>
         <div className="share-btn">
-          <FaRegPaperPlane />
+          <FaRegPaperPlane />;
           <span>POST!</span>
         </div>
       </div>
