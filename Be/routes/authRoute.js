@@ -24,7 +24,7 @@ router.post("/register", async (req, res) => {
     await newUser.save();
     res.status(200).send(req.body);
   } catch (err) {
-    console.log(err.message);
+    res.status(500).send(err);
   }
 });
 //login

@@ -92,17 +92,28 @@ router.put("/accept/:id", async (req, res) => {
     const userAddQuery = await userModal.findById({ _id: req.body.userId });
     const userAcceptQuery = await userModal.findById({ _id: req.params.id });
     const userAcceptId = userAcceptQuery._doc._id;
-
+    console.log(userAddQuery._doc.friends, userAcceptId);
     if (userAddQuery._doc.friends.includes(userAcceptId)) {
       res.status(500).send("already friend");
     } else {
+      const newFriendRequest = userAcceptQuery.friendsRequest.filter(
+        (e) => e != req.body.userId
+      );
       const userAcceptUpdateQuery = await userModal.findOneAndUpdate(
         { _id: req.body.userId },
-        { $push: { friends: req.body.userId, followings: req.body.userId } }
+        {
+          $push: {
+            friends: req.params.id,
+            followings: req.params.id,
+          },
+          $set: {
+            friendsRequest: newFriendRequest,
+          },
+        }
       );
       const userAddUpdateQuery = await userModal.findOneAndUpdate(
         { _id: req.params.id },
-        { $push: { friends: req.params.id, followers: req.params.id } }
+        { $push: { friends: req.body.userId, followers: req.body.userId } }
       );
       await userAddUpdateQuery.save();
       await userAcceptUpdateQuery.save();
