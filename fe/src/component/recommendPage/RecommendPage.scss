@@ -33,11 +33,11 @@
         }
 
         .avatar {
-            width        : 80px;
-            height       : 80px;
-            border-radius: 50px;
-            margin-top   : -40px;
-            border       : 1px solid blue
+            width           : 80px;
+            height          : 80px;
+            border-radius   : 50px;
+            margin-top      : -40px;
+            // border       : 1px solid #0D47A1
         }
 
         .recommend_page_button {
@@ -49,9 +49,9 @@
             .button_like_page {
                 width           : 80px;
                 height          : 30px;
-                font-size       : 13px;
+                font-size       : 12px;
                 border-radius   : 15px;
-                background-color: blue;
+                background-color: #0D47A1;
                 color           : white;
                 margin-right    : 25px;
                 font-weight     : bold;
@@ -60,10 +60,10 @@
             .button_dislike_page {
                 width           : 80px;
                 height          : 30px;
-                font-size       : 13px;
+                font-size       : 12px;
                 border-radius   : 15px;
                 font-weight     : bold;
-                background-color: rgb(189, 152, 152);
+                background-color: #C4C4C4;
             }
         }
 

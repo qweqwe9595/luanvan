@@ -1,11 +1,11 @@
 .contacts {
-  width           : 300px;
-  height          : auto;
-  border          : 1px solid black;
-  border-radius   : 20px;
-  align-items     : center;
-  margin-right    : 10px;
-  background-color: white;
+  width              : 310px;
+  height             : auto;
+  border             : 1px solid black;
+  border-radius      : 20px;
+  align-items        : center;
+  // margin-right    : 10px;
+  background-color   : white;
 
   p {
     font-size       : 20px;
@@ -19,9 +19,9 @@
 
   .contacts_tag {
     background-color     : rgb(207, 220, 223);
-    width                : 290px;
+    width                : 300px;
     height               : 60px;
-    border-radius        : 20px;
+    border-radius        : 40px;
     margin               : auto;
     margin-bottom        : 10px;
     margin-left          : 5px;
@@ -29,12 +29,12 @@
     grid-template-columns: 65px 160px 30px 20px;
 
     .contacts_tag_avt {
-      width        : 50px;
-      height       : 50px;
-      border-radius: 30px;
-      border       : 0.5px solid black;
-      margin-left  : 5px;
-      margin       : auto;
+      width           : 50px;
+      height          : 50px;
+      border-radius   : 30px;
+      // border       : 0.5px solid black;
+      margin-left     : 5px;
+      margin          : auto;
     }
 
     span {

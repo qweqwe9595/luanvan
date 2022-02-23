@@ -1,10 +1,11 @@
 .friend_request {
-  width           : 300px;
-  border          : 1px solid black;
-  border-radius   : 20px;
-  align-items     : center;
-  margin-bottom   : 50px;
-  background-color: white;
+  width              : 310px;
+  border             : 1px solid black;
+  border-radius      : 20px;
+  align-items        : center;
+  margin-bottom      : 50px;
+  background-color   : white;
+  // margin-right    : 20px;
 
   p {
     font-size       : 20px;
@@ -16,8 +17,8 @@
   }
 
   .friends_request_tag {
-    background-color     : rgb(207, 220, 223);
-    width                : 290px;
+    background-color     : rgba(196, 196, 196, 0.47);
+    width                : 300px;
     height               : 60px;
     border-radius        : 20px;
     display              : grid;
@@ -29,38 +30,34 @@
       width        : 50px;
       height       : 50px;
       border-radius: 30px;
-      border       : 0.5px solid black;
       margin-left  : 5px;
       margin       : auto;
     }
 
     .friend_request_tag_info {
-      margin-left        : 1px;
-      display            : grid;
-      height             : 60px;
-      // background-color: antiquewhite;
+      margin-left: 1px;
+      display    : grid;
+      height     : 60px;
 
       span {
-        font-size          : 18px;
-        margin-top         : 1px;
-        margin-left        : -10px;
-        // background-color: antiquewhite;
-        font-weight        : bold;
-        text-align         : center;
-        margin-bottom      : 5px;
+        font-size    : 18px;
+        margin-top   : 1px;
+        margin-left  : -10px;
+        font-weight  : bold;
+        text-align   : center;
+        margin-bottom: 5px;
       }
 
       .friend_request_tag_button {
-        font-size          : 20px;
-        margin-bottom      : 20px;
-        // background-color: antiquewhite;
+        // font-size    : 29px;
+        margin-bottom: 20px;
 
         .button_accept {
           width           : 90px;
           height          : 25px;
           border          : 0.5px solid black;
           border-radius   : 10px;
-          background-color: blue;
+          background-color: #0D47A1;
           color           : white;
           margin-right    : 10px;
           font-weight     : bold;
@@ -71,7 +68,7 @@
           height          : 25px;
           border          : 0.5px solid black;
           border-radius   : 10px;
-          background-color: rgb(189, 152, 152);
+          background-color: #C4C4C4;
           font-weight     : bold;
         }
       }

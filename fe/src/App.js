@@ -1,4 +1,5 @@
 import Home from "./pages/Home";
+import Login from "./pages/login/Login";
 
 const App = () => {
   const getData = async () => {
@@ -15,7 +16,8 @@ const App = () => {
 
   return (
     <div className="containers">
-      <Home></Home>
+      <Login></Login>
+      {/* <Home></Home> */}
     </div>
   );
 };
