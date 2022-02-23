@@ -8,12 +8,12 @@ router.post("/register", async (req, res) => {
     const userQuery = await userModal.findOne({ email: req.body.email });
 
     if (!req.body.email.includes("@ctu.edu.vn")) {
-      res.status(500).send("Sử dụng ctu email");
+      res.status(500).json("Sử dụng ctu email");
       return;
     }
 
     if (userQuery) {
-      res.status(500).send("đã tồn tại");
+      res.status(500).json("đã tồn tại");
     }
 
     const newUser = new userModal({
@@ -38,7 +38,7 @@ router.post("/login", async (req, res) => {
     if (userQuery) {
       res.status(200).send({ userQuery });
     } else {
-      res.status(500).send("invalid");
+      res.status(200).send("invalid");
     }
   } catch (err) {
     console.log(err.message);
