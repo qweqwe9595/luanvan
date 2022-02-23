@@ -48,6 +48,7 @@ router.get("/:id", async (req, res) => {
     const { isAdmin, updatedAt, ...other } = userQuery._doc;
     res.status(200).json(other);
   } catch (err) {
+    console.log(err);
     res.status(403).send(err);
   }
 });

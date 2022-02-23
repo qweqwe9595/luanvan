@@ -95,13 +95,13 @@ router.post("/like/:id", async (req, res) => {
     } else {
       await post.updateOne({ $push: { likes: req.body.userId } });
     }
-    res.status(200).send("success");
+    // res.status(200).send("success");
   } catch (err) {
     console.log(err);
     res.status(500).send(err);
   }
 });
-//comment a post
+//create comment a post
 router.put("/comment/:id", async (req, res) => {
   try {
     const post = await postsModel.findById(req.params.id);

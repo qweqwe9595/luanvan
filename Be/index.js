@@ -2,6 +2,7 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 //components
 const authRoute = require("./routes/authRoute");
@@ -14,6 +15,11 @@ mongoose.connect(process.env.connectString, { useNewUrlParser: true }, () => {
   console.log("connect to mongoDB");
 });
 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
