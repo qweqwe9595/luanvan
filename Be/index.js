@@ -28,3 +28,4 @@ app.use("/api/posts", postsRoute);
 app.listen(5000, () => {
   console.log("running at local host 5000");
 });
+

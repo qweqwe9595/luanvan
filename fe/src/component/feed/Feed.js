@@ -1,55 +1,39 @@
 import React from "react";
 import './feed.scss';
+import { AiOutlineHeart } from "react-icons/ai";
+import {FaCommentAlt} from "react-icons/fa";
+import {FiShare2} from "react-icons/fi";
+
 
 function Feed() {
   return (
     <div className="newfeed">
-    <div className="user-post">
-      <div className="post-meta">
-        <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" />
-        <div className="user-name"><a href="">Vân</a></div>
-        <div className="post-time"><span> đã đăng 5 phút trước</span></div>
-        <div className="post-menu">
-          <div className="post-menu-dropdow">
-            <button className="dropbtn">...</button>
-          </div>                   
-        </div>
-      </div>
-      <div className="post-content">
-        <div className="post-content-text">
-          <p>Xin chào....</p>
-        </div>
-        <div className="post-content-img">
-          <img src="https://i0.wp.com/greendiary.com/wp-content/uploads/2020/01/landscape-photography-1.jpg?fit=800%2C534&ssl=1" />
-        </div>
-      </div>
-      <div className="like-comment-share">
-        <a href="" className="post-like">Thích</a>
-        <a href="" className="post-share">Chia sẻ</a>
-        <a href="" className="post-comment">Bình luận</a>
-      </div>
-      <div className="comment-list">
-        <p>Bình luận gần đây</p>
-        <div className="comment-list-content">
-          <div className="comment-list-content-items">
-            <div className="comment-item">
-              <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" />
-              <div className="user-name"><a href="">Giang</a></div>
-              <div className="post-time"><span>đã bình luận 1 phút trước</span></div>
-              <div className="comment-content"><p>Phong cảnh rất đẹp.</p></div>
+      <div className="newfeed-post">
+        <div className="newfeed-post-meta">
+            <img src="https://genk.mediacdn.vn/139269124445442048/2021/3/13/ava-1615607562651629147713.jpeg"></img>
+            <div className="newfeed-post-meta-name">
+              <p className="newfeed-post-meta-name-username">Tên</p>
+              <p className="newfeed-post-meta-name-time">12 giờ trước</p>
             </div>
-            <div className="like-comment">
-              <a href="" className="post-comment">Bình luận</a>
-              <a href="" className="post-like">Thích</a>
-            </div>
-          </div>
+            <button>...</button>
         </div>
-        <div className="comment-list-box">
-          <input type="text" placeholder="Viết bình luận..." />
-          <a href="">Post</a>
+        <div className="newfeed-post-text">
+          <p>Xin chào mọi người. Chúc một ngày tốt lành.</p>
+        </div>
+        <div className="newfeed-post-img">
+          <img src="https://www.ctu.edu.vn/images/upload/images/DHCT_khu_2-01.jpg" className="newfeed-post-img-img"></img>
+        </div>
+        <div className="newfeed-post-interaction">
+          <FiShare2 className="newfeed-post-interaction-share"></FiShare2>
+          <FaCommentAlt className="newfeed-post-interaction-comment"></FaCommentAlt>
+          <AiOutlineHeart className="newfeed-post-interaction-like"></AiOutlineHeart>
+
+        </div>
+        <div className="newfeed-comment-list">
+          <p>Các bình luận trước đó.</p>
+          <p>None</p>
         </div>
       </div>
-    </div>
   </div>
   );
 }

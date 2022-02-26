@@ -4,7 +4,7 @@ const { findById } = require("../model/usersModel");
 const userModal = require("../model/usersModel");
 
 //update user
-router.put("/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   if (req.body.userId == req.params.id) {
     try {
       const userQuery = await userModal.findByIdAndUpdate(
@@ -53,9 +53,19 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//get all users
+router.get("/", async (req, res) => {
+  try {
+    const userQuery = await userModal.find();
+    res.status(200).json(userQuery);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+
 //request add friend
 
-router.put("/add/:id", async (req, res) => {
+router.patch("/add/:id", async (req, res) => {
   if (req.params.id !== req.body.userId) {
     try {
       const userfollowingQuery = await userModal.findOneAndUpdate(
@@ -88,7 +98,7 @@ router.put("/add/:id", async (req, res) => {
 });
 
 //accept friend
-router.put("/accept/:id", async (req, res) => {
+router.patch("/accept/:id", async (req, res) => {
   try {
     const userAddQuery = await userModal.findById({ _id: req.body.userId });
     const userAcceptQuery = await userModal.findById({ _id: req.params.id });

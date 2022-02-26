@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
   userId: { type: String },
+  fromId: { type: String },
   message: { type: String, max: 300 },
   img: { type: String },
 });
