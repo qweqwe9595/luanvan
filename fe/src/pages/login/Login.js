@@ -32,53 +32,6 @@ function Login() {
 
   return (
     <div className="login_container">
-      <div className="login-mobile">
-        <div className="logo">
-          <img
-            src="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png"
-            alt="logo"
-            width={"80px"}
-          ></img>
-          <p>Log In</p>
-        </div>
-        <div className="input_email">
-          <div className="email_icon">
-            <AiOutlineMail></AiOutlineMail>
-          </div>
-          <input
-            type="email"
-            placeholder="Email or username s"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></input>
-        </div>
-        <div className="input_password">
-          <div className="password_icon">
-            <FiKey></FiKey>
-          </div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          ></input>
-        </div>
-        <div className="Remember_forget_pass">
-          <div className="Remember_pass">
-            <input type="checkbox"></input>
-            <p>Remember</p>
-          </div>
-          <div className="forget_pass">
-            <a href="#">Foget password?</a>
-          </div>
-        </div>
-        <button type="button">Sign in your account</button>
-        <a href="#">Already have an account?</a>
-      </div>
       <div className="login_box">
         <div className="join_us">
           <p>Join us</p>
@@ -126,12 +79,11 @@ function Login() {
             <img
               src="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png"
               alt="logo"
-              width={"80px"}
             ></img>
-            <p>Welcome</p>
+            <p>Đăng Nhập</p>
           </div>
-          <div className="input_email">
-            <div className="email_icon">
+          <div className="input">
+            <div className="icon">
               <AiOutlineUser></AiOutlineUser>
             </div>
             <input
@@ -143,8 +95,8 @@ function Login() {
               }}
             ></input>
           </div>
-          <div className="input_password">
-            <div className="password_icon">
+          <div className="input">
+            <div className="icon">
               <FiKey></FiKey>
             </div>
             <input

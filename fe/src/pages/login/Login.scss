@@ -1,394 +1,277 @@
 .login_container {
-    background-color: rgb(182, 147, 147);
-    width           : 100vw;
-    align-items     : center;
-    min-height      : 100vh;
-    padding-top     : 130px;
+  background-color: rgb(182, 147, 147);
+  width: 100vw;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 130px;
 
-    .login-mobile {
-        display: none;
-        width  : 370px;
-        margin : auto;
+  .login_box {
+    width: 55%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-width: 100px;
+    background-color: #ffffff;
+    flex-direction: column;
+    height: 500px;
+    margin: auto;
+    border-radius: 30px;
 
+    .join_us {
+      display: grid;
+      background-color: #0d47a1;
+      width: 100%;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+      color: #ffffff;
+      //@at-root                : 300px;
 
+      p {
+        text-align: center;
+        margin: auto;
+        margin-bottom: 20px;
+        font-size: 40px;
+        font-weight: bold;
+        padding-top: 10px;
+      }
 
-        .logo {
-            display: flex;
+      .join_us_tag {
+        margin: auto;
+        margin-bottom: 30px;
+        display: flex;
+        padding: 1px 5px;
+        align-items: center;
+        gap: 10px;
+        height: fit-content;
+        color: #ffffff;
 
-            p {
-                font-size  : 40px;
-                font-weight: bold;
-                margin     : auto;
-                margin-left: 30px;
-
-            }
+        .join_us_icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 45px;
+          width: 45px;
+          border-radius: 20%;
+          color: #ffffff;
+          cursor: pointer;
+          border: 1px solid #ffffff;
         }
+      }
 
-        .input_email {
-            margin-top      : 20px;
-            margin-bottom   : 5px;
-            display         : flex;
-            background-color: #ECECEC;
-            padding         : 1px 5px;
-            border-radius   : 2rem;
-            align-items     : center;
-            gap             : 10px;
-            height          : fit-content;
+      .join_us_smile {
+        margin: auto;
+        margin-bottom: 50px;
+        display: flex;
+        padding: 1px 5px;
+        align-items: center;
+        gap: 10px;
+        height: fit-content;
+        color: #ffffff;
 
-            .email_icon {
-                display         : flex;
-                justify-content : center;
-                align-items     : center;
-                height          : 45px;
-                width           : 45px;
-                background-color: white;
-                border-radius   : 50%;
-                color           : black;
-                cursor          : pointer;
-
-            }
-
-            &>input {
-                flex            : 1;
-                border          : none;
-                font-size       : 16px;
-                background-color: transparent;
-            }
-
-            &>input:focus {
-                outline: none;
-            }
-
+        .join_us_icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 45px;
+          width: 45px;
+          border-radius: 20%;
+          color: #ffffff;
+          cursor: pointer;
+          border: 1px solid #ffffff;
         }
-
-        .input_password {
-            margin-top      : 20px;
-            margin-bottom   : 20px;
-            display         : flex;
-            background-color: #ECECEC;
-            padding         : 1px 5px;
-            border-radius   : 2rem;
-            align-items     : center;
-            gap             : 10px;
-            height          : fit-content;
-
-            .password_icon {
-                display         : flex;
-                justify-content : center;
-                align-items     : center;
-                height          : 45px;
-                width           : 45px;
-                background-color: white;
-                border-radius   : 50%;
-                color           : black;
-                cursor          : pointer;
-            }
-
-            &>input {
-                flex            : 2;
-                border          : none;
-                font-size       : 16px;
-                background-color: transparent;
-            }
-
-            &>input:focus {
-                outline: none;
-            }
-        }
-
-        .Remember_forget_pass {
-            display              : grid;
-            grid-template-columns: 1fr 1fr;
-            margin               : 10px;
-            margin-top           : 20px;
-            margin-bottom        : 30px;
-
-            .Remember_pass {
-                display        : flex;
-                align-items    : center;
-                justify-content: left;
-
-                p {
-                    margin-left: 2px;
-                }
-            }
-
-            .forget_pass {
-                text-align: right;
-
-            }
-        }
-
-        &>button {
-            width           : 100%;
-            height          : 45px;
-            border-radius   : 30px;
-            background-color: #3399FF;
-            color           : white;
-        }
-
-        &>a {
-
-            margin-top: 10px;
-            text-align: center;
-        }
+      }
     }
 
+    .login_tag {
+      width: 80%;
+      margin: auto;
+      display: grid;
+      min-width: 300px;
 
-    .login_box {
-        width                : 55%;
-        display              : grid;
+      .logo {
+        display: flex;
+
+        & > img {
+          width: 80px;
+        }
+
+        & > p {
+          font-size: 35px;
+          font-weight: bold;
+          margin: auto;
+          margin-left: 5px;
+        }
+      }
+
+      .input {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        display: flex;
+        background-color: #ececec;
+        padding: 1px 5px;
+        border-radius: 2rem;
+        align-items: center;
+        gap: 10px;
+        height: fit-content;
+        width: 90%;
+
+        .icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 45px;
+          width: 45px;
+          background-color: #ffffff;
+          border-radius: 50%;
+          color: black;
+          cursor: pointer;
+        }
+
+        & > input {
+          border: none;
+          font-size: 15px;
+          background-color: transparent;
+        }
+
+        & > input:focus {
+          outline: none;
+        }
+
+        &:hover {
+          background-color: lightblue;
+        }
+      }
+
+      .Remember_forget_pass {
+        display: grid;
         grid-template-columns: 1fr 1fr;
-        min-width            : 100px;
-        background-color     : #FFFFFF;
-        flex-direction       : column;
-        height               : 500px;
-        margin               : auto;
-        border-radius        : 30px;
+        margin: 10px;
 
-        .join_us {
-            display                  : grid;
-            background-color         : #0D47A1;
-            width                    : 100%;
-            border-top-left-radius   : 30px;
-            border-bottom-left-radius: 30px;
-            color                    : #FFFFFF;
+        .Remember_pass {
+          display: flex;
+          align-items: center;
+          justify-content: left;
 
-
-            p {
-                text-align   : center;
-                margin       : auto;
-                margin-bottom: 20px;
-                font-size    : 40px;
-                font-weight  : bold;
-                padding-top  : 10px;
-            }
-
-            .join_us_tag {
-                margin       : auto;
-                margin-bottom: 30px;
-                display      : flex;
-                padding      : 1px 5px;
-                align-items  : center;
-                gap          : 10px;
-                height       : fit-content;
-                color        : #FFFFFF;
-
-                .join_us_icon {
-                    display        : flex;
-                    justify-content: center;
-                    align-items    : center;
-                    height         : 45px;
-                    width          : 45px;
-                    border-radius  : 20%;
-                    color          : #FFFFFF;
-                    cursor         : pointer;
-                    border         : 1px solid #FFFFFF;
-                }
-
-            }
-
-            .join_us_smile {
-                margin       : auto;
-                margin-bottom: 50px;
-                display      : flex;
-                padding      : 1px 5px;
-                align-items  : center;
-                gap          : 10px;
-                height       : fit-content;
-                color        : #FFFFFF;
-
-                .join_us_icon {
-                    display        : flex;
-                    justify-content: center;
-                    align-items    : center;
-                    height         : 45px;
-                    width          : 45px;
-                    border-radius  : 20%;
-                    color          : #FFFFFF;
-                    cursor         : pointer;
-                    border         : 1px solid #FFFFFF;
-                }
-            }
-
-
+          p {
+            margin-left: 2px;
+          }
         }
 
-        .login_tag {
-            width  : 80%;
-            margin : auto;
-            display: grid;
+        .forget_pass {
+          text-align: right;
 
+          & > a {
+            color: black;
 
-            .logo {
-                display: flex;
-
-                p {
-                    font-size  : 40px;
-                    font-weight: bold;
-                    margin     : auto;
-                    margin-left: 5px;
-                }
+            &:hover {
+              color: #0d47a1;
             }
-
-            .input_email {
-                margin-top      : 15px;
-                margin-bottom   : 5px;
-                display         : flex;
-                background-color: #ECECEC;
-                padding         : 1px 5px;
-                border-radius   : 2rem;
-                align-items     : center;
-                gap             : 10px;
-                height          : fit-content;
-
-                .email_icon {
-                    display         : flex;
-                    justify-content : center;
-                    align-items     : center;
-                    height          : 45px;
-                    width           : 45px;
-                    background-color: #FFFFFF;
-                    border-radius   : 50%;
-                    color           : black;
-                    cursor          : pointer;
-
-                }
-
-                &>input {
-                    flex            : 1;
-                    border          : none;
-                    font-size       : 15px;
-                    background-color: transparent;
-                }
-
-                &>input:focus {
-                    outline: none;
-                }
-
-            }
-
-            .input_password {
-                margin-top      : 15px;
-                margin-bottom   : 5px;
-                display         : flex;
-                background-color: #ECECEC;
-                padding         : 1px 5px;
-                border-radius   : 2rem;
-                align-items     : center;
-                gap             : 10px;
-                height          : fit-content;
-
-                .password_icon {
-                    display         : flex;
-                    justify-content : center;
-                    align-items     : center;
-                    height          : 45px;
-                    width           : 45px;
-                    background-color: #FFFFFF;
-                    border-radius   : 50%;
-                    color           : black;
-                    cursor          : pointer;
-                }
-
-                &>input {
-                    flex            : 2;
-                    border          : none;
-                    font-size       : 15px;
-                    background-color: transparent;
-                }
-
-                &>input:focus {
-                    outline: none;
-                }
-            }
-
-            .Remember_forget_pass {
-                display              : grid;
-                grid-template-columns: 1fr 1fr;
-                margin               : 10px;
-
-                .Remember_pass {
-                    display        : flex;
-                    align-items    : center;
-                    justify-content: left;
-
-                    p {
-                        margin-left: 2px;
-                    }
-                }
-
-                .forget_pass {
-                    text-align: right;
-
-                }
-            }
-
-            &>button {
-                width           : 100%;
-                height          : 45px;
-                border-radius   : 30px;
-                background-color: #3399FF;
-                color           : #FFFFFF;
-                font-size       : 15px;
-
-            }
-
-            &>a {
-
-                margin-top: 10px;
-                text-align: center;
-            }
-
-
+          }
         }
+      }
+
+      & > button {
+        width: 100%;
+        height: 45px;
+        border-radius: 30px;
+        background-color: #3399ff;
+        color: #ffffff;
+        font-size: 15px;
+        border: none;
+
+        &:hover {
+          background-color: #0d47a1;
+        }
+      }
+
+      & > a {
+        margin-top: 10px;
+        text-align: center;
+        color: black;
+
+        &:hover {
+          color: #0d47a1;
+        }
+      }
     }
-
+  }
 }
 
 @media all and (max-width: 1000px) {
-    .login_container {
-        .login_box {
-            width: 70%;
+  .login_container {
+    .login_box {
+      width: 80%;
 
-            .login_tag {
-                width: 95%;
+      .login_tag {
+        width: 100%;
 
-                .input_email {
-
-                    .email_icon {
-                        height: 40px;
-                        width : 40px;
-                    }
-                }
-
-                .input_password {
-                    .password_icon {
-                        width : 40px;
-                        height: 40px;
-                    }
-                }
-
-                &>button {
-                    height: 40px;
-                }
-
-            }
+        .input_email {
+          .email_icon {
+            height: 40px;
+            width: 40px;
+          }
         }
+
+        .input_password {
+          .password_icon {
+            width: 40px;
+            height: 40px;
+          }
+        }
+
+        & > button {
+          height: 40px;
+        }
+      }
     }
+  }
 }
 
 @media all and(max-width: 550px) {
-    .login_container {
-        width           : 550px;
-        background-color: #FFFFFF;
+  .login_container {
+    width: 100%;
+    background-color: #ffffff;
 
-        .login_box {
-            display: none;
+    .login_box {
+      display: flex;
+
+      .join_us {
+        display: none;
+      }
+
+      .login_tag {
+        width: 100%;
+        margin: auto;
+        display: grid;
+
+        margin-top: 5px;
+
+        .logo {
+          align-items: center;
+          margin-bottom: 40px;
+
+          & > img {
+            margin-left: 20px;
+            width: 80px;
+          }
+
+          & > p {
+            margin: auto;
+            margin-left: 20px;
+          }
         }
 
-        .login-mobile {
-            display: grid;
+        .input {
+          .icon {
+            height: 45px;
+            width: 45px;
+          }
         }
+
+        & > button {
+          height: 45px;
+          margin-top: 30px;
+        }
+      }
     }
+  }
 }

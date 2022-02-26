@@ -1,0 +1,417 @@
+.signup_container {
+    background-color: rgb(182, 147, 147);
+    width           : 100vw;
+    align-items     : center;
+    min-height      : 100vh;
+    padding-top     : 100px;
+
+    .signup_box {
+        width                : 55%;
+        display              : grid;
+        grid-template-columns: 1fr 1fr;
+        min-width            : 100px;
+        background-color     : #FFFFFF;
+        flex-direction       : column;
+        height               : 600px;
+        margin               : auto;
+        border-radius        : 30px;
+
+        .signup_tag {
+            width                    : 100%;
+            height                   : 100%;
+            margin                   : auto;
+            display                  : grid;
+            min-width                : 300px;
+            background-color         : #3399FF;
+            border-top-left-radius   : 30px;
+            border-bottom-left-radius: 30px;
+            padding                  : 40px;
+
+            .logo {
+                display: flex;
+
+                &>img {
+                    width: 80px;
+                }
+
+                &>p {
+                    font-size  : 35px;
+                    font-weight: bold;
+                    margin     : auto;
+                    margin-left: 5px;
+                    color      : #0D47A1;
+                }
+
+            }
+
+            .input {
+                margin-top      : 15px;
+                margin-bottom   : 5px;
+                display         : flex;
+                background-color: #ECECEC;
+                padding         : 1px 5px;
+                border-radius   : 2rem;
+                align-items     : center;
+                gap             : 10px;
+                height          : fit-content;
+
+                .icon {
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+                    height          : 40px;
+                    width           : 40px;
+                    background-color: #FFFFFF;
+                    border-radius   : 50%;
+                    color           : black;
+                    cursor          : pointer;
+                }
+
+                &>input {
+                    flex            : 1;
+                    border          : none;
+                    font-size       : 15px;
+                    background-color: transparent;
+                }
+
+                &>input:focus {
+                    outline: none;
+                }
+
+                &:hover {
+                    background-color: rgb(33, 200, 192);
+                }
+            }
+
+            .gender_major {
+                display              : grid;
+                grid-template-columns: 1fr 1fr;
+
+                .input_gender {
+                    margin-top      : 15px;
+                    margin-bottom   : 5px;
+                    margin-right    : 10px;
+                    display         : flex;
+                    background-color: #ECECEC;
+                    padding         : 1px 5px;
+                    border-radius   : 2rem;
+                    align-items     : center;
+                    gap             : 10px;
+                    height          : fit-content;
+
+                    .icon {
+                        display         : flex;
+                        justify-content : center;
+                        align-items     : center;
+                        height          : 40px;
+                        width           : 40px;
+                        background-color: #FFFFFF;
+                        border-radius   : 50%;
+                        color           : black;
+                        cursor          : pointer;
+                    }
+
+                    &>input {
+                        flex            : 1;
+                        border          : none;
+                        font-size       : 15px;
+                        background-color: transparent;
+                    }
+
+                    &>input:focus {
+                        outline: none;
+                    }
+
+                    &:hover {
+                        background-color: rgb(33, 200, 192);
+                    }
+
+                    &>select {
+                        border          : none;
+                        flex            : 1;
+                        border          : none;
+                        font-size       : 15px;
+                        background-color: transparent;
+                        cursor          : pointer;
+
+
+                    }
+                }
+
+                .input_major {
+                    margin-top      : 15px;
+                    margin-bottom   : 5px;
+                    margin-left     : 10px;
+                    display         : flex;
+                    background-color: #ECECEC;
+                    padding         : 1px 5px;
+                    border-radius   : 2rem;
+                    align-items     : center;
+                    gap             : 10px;
+                    height          : fit-content;
+
+                    .icon {
+                        display         : flex;
+                        justify-content : center;
+                        align-items     : center;
+                        height          : 40px;
+                        width           : 40px;
+                        background-color: #FFFFFF;
+                        border-radius   : 50%;
+                        color           : black;
+                        cursor          : pointer;
+                    }
+
+                    &>input {
+                        flex            : 1;
+                        border          : none;
+                        font-size       : 15px;
+                        background-color: transparent;
+                    }
+
+                    &>input:focus {
+                        outline: none;
+                    }
+
+                    &:hover {
+                        background-color: rgb(33, 200, 192);
+                    }
+
+                }
+            }
+
+            .Remember_forget_pass {
+                display              : grid;
+                grid-template-columns: 1fr 1fr;
+                margin               : 10px;
+                color                : #FFFFFF;
+
+                .Remember_pass {
+                    display        : flex;
+                    align-items    : center;
+                    justify-content: left;
+
+                    p {
+                        margin-left: 2px;
+                    }
+                }
+
+                .forget_pass {
+                    text-align: right;
+
+                    &>a {
+                        color: #FFFFFF;
+
+                        &:hover {
+                            color: #0D47A1;
+                        }
+                    }
+                }
+
+            }
+
+            &>button {
+                width           : 100%;
+                height          : 45px;
+                border-radius   : 30px;
+                background-color: #FFFFFF;
+                color           : black;
+                font-size       : 15px;
+                border          : none;
+
+                &:hover {
+                    background-color: #0D47A1;
+                    color           : #FFFFFF;
+                }
+            }
+
+
+            &>a {
+                color     : #FFFFFF;
+                margin-top: 10px;
+                text-align: center;
+
+                &:hover {
+                    color: #0D47A1;
+                }
+            }
+        }
+
+        .join_us {
+            display                   : grid;
+            width                     : 100%;
+            border-top-left-radius    : 30px;
+            border-bottom-left-radius : 30px;
+            color                     : #0D47A1;
+            //@at-root                : 300px;
+
+
+            p {
+                text-align   : center;
+                margin       : auto;
+                margin-bottom: 20px;
+                font-size    : 40px;
+                font-weight  : bold;
+                padding-top  : 10px;
+            }
+
+            .join_us_tag {
+                margin         : auto;
+                margin-bottom  : 30px;
+                display        : flex;
+                padding        : 1px 5px;
+                align-items    : center;
+                gap            : 10px;
+                height         : fit-content;
+                //color        : #FFFFFF;
+
+                .join_us_icon {
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+                    height          : 45px;
+                    width           : 45px;
+                    border-radius   : 20%;
+                    cursor          : pointer;
+                    color           : #FFFFFF;
+                    background-color: #0D47A1;
+                }
+
+            }
+
+            .join_us_smile {
+                margin         : auto;
+                margin-bottom  : 50px;
+                display        : flex;
+                padding        : 1px 5px;
+                align-items    : center;
+                gap            : 10px;
+                height         : fit-content;
+                //color        : #FFFFFF;
+
+                .join_us_icon {
+                    background-color: #0D47A1;
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+                    height          : 45px;
+                    width           : 45px;
+                    border-radius   : 20%;
+                    color           : #FFFFFF;
+                    cursor          : pointer;
+
+                }
+            }
+
+
+        }
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .signup_container {
+        .signup_box {
+            width: 80%;
+
+            .signup_tag {
+                width: 100%;
+
+                .input {
+
+                    .email {
+                        height: 40px;
+                        width : 40px;
+                    }
+                }
+
+                .input_password {
+                    .password_icon {
+                        width : 40px;
+                        height: 40px;
+                    }
+                }
+
+                &>button {
+                    height: 40px;
+                }
+
+            }
+        }
+    }
+}
+
+@media all and(max-width: 550px) {
+    .signup_container {
+        width           : 100%;
+        background-color: #FFFFFF;
+
+        .signup_box {
+            display: flex;
+
+
+            .join_us {
+                display: none;
+            }
+
+            .signup_tag {
+                width           : 100%;
+                margin          : auto;
+                display         : grid;
+                background-color: #FFFFFF;
+
+
+                .logo {
+                    align-items: center;
+
+                    &>img {
+                        margin-left: 20px;
+                        width      : 80px;
+                    }
+
+                    &>p {
+                        margin     : auto;
+                        margin-left: 20px;
+                    }
+                }
+
+                .Remember_forget_pass {
+                    color: #0D47A1;
+
+                    .forget_pass {
+                        &>a {
+                            color: #0D47A1;
+
+                            &:hover {
+                                color: #3399FF;
+                            }
+                        }
+                    }
+                }
+
+                &>button {
+                    height          : 45px;
+                    margin-top      : 30px;
+                    background-color: #0D47A1;
+                    color           : #FFFFFF;
+
+                    &:hover {
+                        color           : black;
+                        background-color: #3399FF;
+                    }
+
+                }
+
+                &>a {
+                    color     : #0D47A1;
+                    margin-top: 10px;
+                    text-align: center;
+
+                    &:hover {
+                        color: #ab8ae9
+                    }
+                }
+
+            }
+        }
+    }
+}
