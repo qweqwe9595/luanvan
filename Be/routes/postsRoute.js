@@ -11,12 +11,11 @@ router.post("/", async (req, res) => {
     const newPost = new postsModel(req.body);
     const savePost = await newPost.save();
     res.status(200).json(savePost);
-    console.log(typeof res.json());
   } catch (err) {
     res.status(500).send(err);
   }
 });
-//get all post
+//get timeline
 router.get("/", async (req, res) => {
   try {
     if (Object.keys(req.body).length == 0) {
@@ -26,14 +25,25 @@ router.get("/", async (req, res) => {
       userId: req.body.userId,
     });
     const followings = await currentUserQuery.followings;
+    await followings.push(req.body.userId);
     const posts = await Promise.all(
       followings.map((id) => {
         return postsModel.find({ userId: id });
       })
     );
-    res.status(200).json(posts[0]);
+    res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+//get all post
+router.get("/admin", async (req, res) => {
+  try {
+    const postQuery = await postsModel.find();
+    res.status(200).json(postQuery);
+  } catch (err) {
+    res.status(500).json(err.message);
   }
 });
 
@@ -58,7 +68,6 @@ router.patch("/:id", async (req, res) => {
     );
     res.status(200).json(post);
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
