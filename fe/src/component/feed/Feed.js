@@ -8,7 +8,8 @@ import {FiShare2} from "react-icons/fi";
 function Feed() {
   return (
     <div className="newfeed">
-      <div className="newfeed-post">
+      <h2>This is newnfeed</h2>
+     {/*<div className="newfeed-post">
         <div className="newfeed-post-meta">
             <img src="https://genk.mediacdn.vn/139269124445442048/2021/3/13/ava-1615607562651629147713.jpeg"></img>
             <div className="newfeed-post-meta-name">
@@ -33,7 +34,7 @@ function Feed() {
           <p>Các bình luận trước đó.</p>
           <p>None</p>
         </div>
-      </div>
+  </div>*/}
   </div>
   );
 }
