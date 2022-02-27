@@ -16,8 +16,9 @@ function SignUp() {
   const [error, setError] = useState("");
 
   const SignUp = () => {
-    if (!email.includes("@ctu.edu.vn")) {
-      setError("email phai la cua truong dh can tho");
+    if (!email.includes("ctu.edu.vn")) {
+      //setError("email phai la cua truong dh can tho");
+      alert("phải sử dụng email của trường đhct");
     }
     if (!password === passwordConfirm) {
       setError("password phai giong nhau");
@@ -125,15 +126,6 @@ function SignUp() {
               </div>
             </div>
           </div>
-          <div className="Remember_forget_pass">
-            <div className="Remember_pass">
-              <input type="checkbox"></input>
-              <p>Remember</p>
-            </div>
-            <div className="forget_pass">
-              <a href="#">Foget password?</a>
-            </div>
-          </div>
           <button
             type="button"
             onClick={() => {
@@ -142,7 +134,7 @@ function SignUp() {
           >
             Log in to your account
           </button>
-          <a href="#">Don't have a account?</a>
+          <a href="#">Have an account?</a>
         </div>
 
         <div className="join_us">
@@ -192,8 +184,8 @@ function SignUp() {
 
 const ErrorBox = ({ error }) => {
   return (
-    <div style={{ position: "absolute" }}>
-      <p style={{ color: "#FF3232" }}>{error}</p>
+    <div className="error">
+      <p >{error}</p>
     </div>
   );
 };

@@ -72,6 +72,7 @@
                     border          : none;
                     font-size       : 15px;
                     background-color: transparent;
+                    width           : 90%;
                 }
 
                 &>input:focus {
@@ -98,6 +99,7 @@
                     align-items     : center;
                     gap             : 10px;
                     height          : fit-content;
+
 
                     .icon {
                         display         : flex;
@@ -132,10 +134,15 @@
                         border          : none;
                         font-size       : 15px;
                         background-color: transparent;
-                        cursor          : pointer;
+                        height          : 40px;
+                        text-align      : center;
 
+                        &>:optional {
+                            background-color: #0D47A1;
+                        }
 
                     }
+
                 }
 
                 .input_major {
@@ -180,36 +187,6 @@
                 }
             }
 
-            .Remember_forget_pass {
-                display              : grid;
-                grid-template-columns: 1fr 1fr;
-                margin               : 10px;
-                color                : #FFFFFF;
-
-                .Remember_pass {
-                    display        : flex;
-                    align-items    : center;
-                    justify-content: left;
-
-                    p {
-                        margin-left: 2px;
-                    }
-                }
-
-                .forget_pass {
-                    text-align: right;
-
-                    &>a {
-                        color: #FFFFFF;
-
-                        &:hover {
-                            color: #0D47A1;
-                        }
-                    }
-                }
-
-            }
-
             &>button {
                 width           : 100%;
                 height          : 45px;
@@ -218,6 +195,8 @@
                 color           : black;
                 font-size       : 15px;
                 border          : none;
+                margin-top      : 30px;
+
 
                 &:hover {
                     background-color: #0D47A1;
@@ -227,9 +206,11 @@
 
 
             &>a {
-                color     : #FFFFFF;
-                margin-top: 10px;
-                text-align: center;
+                color          : #FFFFFF;
+                margin-top     : 10px;
+                text-align     : center;
+                text-decoration: none;
+
 
                 &:hover {
                     color: #0D47A1;
@@ -238,18 +219,20 @@
         }
 
         .join_us {
-            display                   : grid;
-            width                     : 100%;
-            border-top-left-radius    : 30px;
-            border-bottom-left-radius : 30px;
-            color                     : #0D47A1;
-            //@at-root                : 300px;
+            display                  : grid;
+            width                    : 100%;
+            border-top-left-radius   : 30px;
+            border-bottom-left-radius: 30px;
+            color                    : #0D47A1;
+            height                   : 70%;
+            margin-top               : 50px;
+
 
 
             p {
                 text-align   : center;
                 margin       : auto;
-                margin-bottom: 20px;
+                margin-bottom: 40px;
                 font-size    : 40px;
                 font-weight  : bold;
                 padding-top  : 10px;
@@ -306,6 +289,14 @@
 
         }
     }
+}
+
+.error {
+    width           : 50px;
+    height          : 40px;
+    background-color: #0D47A1;
+    position        : absolute;
+    color           : #ECECEC;
 }
 
 @media all and (max-width: 1000px) {
@@ -371,20 +362,6 @@
                     &>p {
                         margin     : auto;
                         margin-left: 20px;
-                    }
-                }
-
-                .Remember_forget_pass {
-                    color: #0D47A1;
-
-                    .forget_pass {
-                        &>a {
-                            color: #0D47A1;
-
-                            &:hover {
-                                color: #3399FF;
-                            }
-                        }
                     }
                 }
 
