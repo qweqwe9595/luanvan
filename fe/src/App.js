@@ -5,8 +5,8 @@ import SignUp from "./pages/signup/SignUp";
 const App = () => {
   return (
     <div className="containers">
-      <SignUp></SignUp>
-      {/* <Login></Login> */}
+      {/* <SignUp></SignUp> */}
+      <Login></Login>
       {/* <Home></Home> */}
       {/* <Login></Login> */}
       {/* <Home></Home> */}

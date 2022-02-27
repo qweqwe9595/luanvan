@@ -73,6 +73,7 @@
                     font-size       : 15px;
                     background-color: transparent;
                     width           : 90%;
+                    height          : 45px;
                 }
 
                 &>input:focus {
@@ -84,7 +85,7 @@
                 }
             }
 
-            .gender_major {
+            .gender_dateOfbirth {
                 display              : grid;
                 grid-template-columns: 1fr 1fr;
 
@@ -113,17 +114,6 @@
                         cursor          : pointer;
                     }
 
-                    &>input {
-                        flex            : 1;
-                        border          : none;
-                        font-size       : 15px;
-                        background-color: transparent;
-                    }
-
-                    &>input:focus {
-                        outline: none;
-                    }
-
                     &:hover {
                         background-color: rgb(33, 200, 192);
                     }
@@ -137,15 +127,11 @@
                         height          : 40px;
                         text-align      : center;
 
-                        &>:optional {
-                            background-color: #0D47A1;
-                        }
-
                     }
 
                 }
 
-                .input_major {
+                .input_dateOfbirth {
                     margin-top      : 15px;
                     margin-bottom   : 5px;
                     margin-left     : 10px;
@@ -174,6 +160,8 @@
                         border          : none;
                         font-size       : 15px;
                         background-color: transparent;
+                        height          : 40px;
+                        text-align      : center;
                     }
 
                     &>input:focus {
@@ -291,13 +279,6 @@
     }
 }
 
-.error {
-    width           : 50px;
-    height          : 40px;
-    background-color: #0D47A1;
-    position        : absolute;
-    color           : #ECECEC;
-}
 
 @media all and (max-width: 1000px) {
     .signup_container {

@@ -4,7 +4,6 @@ import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { FiKey, FiShare2, FiSmile, FiUser } from "react-icons/fi";
 import { BiMessage } from "react-icons/bi";
 import { BsPeople, BsGenderAmbiguous } from "react-icons/bs";
-import { VscBook } from "react-icons/vsc";
 import axios from "axios";
 
 function SignUp() {
@@ -12,38 +11,37 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState();
-  const [sex, getSex] = useState("");
-  const [error, setError] = useState("");
+  const [sex, getSex] = useState("0");
+  const [dateOfBirth, getDateOfBirth] = useState("");
 
   const SignUp = () => {
-<<<<<<< HEAD
+     if (password === "" || email==="" || username ==="") {
+      alert("vui lòng điền đầy đủ thông tin!");
+    }
     if (!email.includes("ctu.edu.vn")) {
-      //setError("email phai la cua truong dh can tho");
       alert("phải sử dụng email của trường đhct");
     }
     if (password !== passwordConfirm) {
-      setError("password phai giong nhau");
+      alert("mật khẩu chưa chính xác");
       return;
     }
+    console.log(username, email, password, sex, dateOfBirth);
     axios
       .post("http://localhost:5000/api/auth/register", {
+        username,
         email,
         password,
         sex,
+        dateOfBirth,
+
       })
       .then((res) => {})
       .catch((err) => {});
   };
 
-  const kiemtra = (e) => {
-    if (passwordConfirm !== password) {
-    }
-  };
-
   return (
     <div className="signup_container">
       <div className="signup_box">
-        {error ? <ErrorBox error={error} /> : ""}
         <div className="signup_tag">
           <div className="logo">
             <img
@@ -84,7 +82,7 @@ function SignUp() {
             </div>
             <input
               type="password"
-              placeholder="Password"
+              placeholder=" New password"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -102,12 +100,9 @@ function SignUp() {
               onChange={(e) => {
                 setPasswordConfirm(e.target.value);
               }}
-              onChange={(e) => {
-                kiemtra(e);
-              }}
             ></input>
           </div>
-          <div className="gender_major">
+          <div className="gender_dateOfbirth">
             <div className="input_gender">
               <div className="icon">
                 <BsGenderAmbiguous></BsGenderAmbiguous>
@@ -122,10 +117,13 @@ function SignUp() {
                 <option value="1">Nữ</option>
               </select>
             </div>
-            <div className="input_major">
-              <div className="icon">
-                <VscBook></VscBook>
-              </div>
+            <div className="input_dateOfbirth">
+              <input type="date"
+                value={dateOfBirth}
+                onChange={(e) => {
+                  getDateOfBirth(e.target.value);
+                }}
+              ></input>
             </div>
           </div>
           <button
@@ -183,12 +181,4 @@ function SignUp() {
     </div>
   );
 }
-
-const ErrorBox = ({ error }) => {
-  return (
-    <div className="error">
-      <p >{error}</p>
-    </div>
-  );
-};
 export default SignUp;

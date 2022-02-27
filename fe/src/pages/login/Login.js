@@ -10,19 +10,22 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const login = () => {
+    if (email === "" || password === "") {
+      alert("vui lòng nhập đầy đủ thông tin");
+    }
     axios
       .post("http://localhost:5000/api/auth/login", {
         email,
         password,
       })
       .then((res) => {
-        if (res.data === "invalid") {
-          console.log("sai tai khoan mat khau");
+        if (res.data === "sai tai khoan") {
+          alert("sai tài khoản mật khẩu!");
         } else {
           //dang nhap thanh cong chuyen huong den trang chu
           //luu du lieu vao cookies
-          console.log(res.data);
-          console.log("thanh cong");
+          // console.log(res.data);
+          // console.log("thanh cong");
         }
       })
       .catch((err) => {
@@ -39,7 +42,7 @@ function Login() {
             <div className="join_us_icon">
               <FiShare2></FiShare2>
             </div>
-            <div className="join_us_tag_right">
+            <div>
               <h3>Share your story</h3>
               <h4>At vero eos et accusamus et.</h4>
             </div>
@@ -48,7 +51,7 @@ function Login() {
             <div className="join_us_icon">
               <BiMessage></BiMessage>
             </div>
-            <div className="join_us_tag_right">
+            <div>
               <h3>Comment</h3>
               <h4>At vero eos et accusamus et.</h4>
             </div>
@@ -57,17 +60,17 @@ function Login() {
             <div className="join_us_icon">
               <BsPeople></BsPeople>
             </div>
-            <div className="join_us_tag_right">
+            <div>
               <h3>Connect</h3>
               <h4>At vero eos et accusamus et.</h4>
             </div>
           </div>
 
-          <div className="join_us_smile">
+          <div className="join_us_tag">
             <div className="join_us_icon">
               <FiSmile></FiSmile>
             </div>
-            <div className="join_us_tag_right">
+            <div>
               <h3>Be better</h3>
               <h4>At vero eos et accusamus et.</h4>
             </div>
