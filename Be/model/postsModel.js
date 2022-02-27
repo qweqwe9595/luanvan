@@ -12,8 +12,10 @@ const postsSchema = new mongoose.Schema(
     userId: {
       type: String,
     },
+
     groupId: {
       type: String,
+      max: 300,
     },
     desc: {
       type: String,

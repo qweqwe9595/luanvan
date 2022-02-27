@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { status } = require("express/lib/response");
 const userModal = require("../model/usersModel");
 
 //create user
@@ -7,24 +6,19 @@ router.post("/register", async (req, res) => {
   try {
     const userQuery = await userModal.findOne({ email: req.body.email });
 
-    if (!req.body.email.includes("@ctu.edu.vn")) {
-      res.status(500).json("Sử dụng ctu email");
-      return;
+    if (!req.body.email.includes("ctu.edu.vn")) {
+      return res.status(500).json("su dung email ctu");
     }
 
     if (userQuery) {
-      res.status(500).json("đã tồn tại");
+      return res.status(500).json("da ton tai email");
     }
 
-    const newUser = new userModal({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    });
+    const newUser = await new userModal(req.body);
     await newUser.save();
-    res.status(200).send(req.body);
+    res.status(200).json({ message: "dang ki thanh cong", newUser });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 //login
@@ -36,12 +30,14 @@ router.post("/login", async (req, res) => {
     });
 
     if (userQuery) {
-      res.status(200).send({ userQuery });
+      return res
+        .status(200)
+        .json({ message: "dang nhap thanh cong", userQuery });
     } else {
-      res.status(200).send("invalid");
+      return res.status(200).json("sai tai khoan");
     }
   } catch (err) {
-    console.log(err.message);
+    res.status(500).json(err);
   }
 });
 

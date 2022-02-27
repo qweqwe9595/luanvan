@@ -16,12 +16,14 @@ function SignUp() {
   const [error, setError] = useState("");
 
   const SignUp = () => {
+<<<<<<< HEAD
     if (!email.includes("ctu.edu.vn")) {
       //setError("email phai la cua truong dh can tho");
       alert("phải sử dụng email của trường đhct");
     }
-    if (!password === passwordConfirm) {
+    if (password !== passwordConfirm) {
       setError("password phai giong nhau");
+      return;
     }
     axios
       .post("http://localhost:5000/api/auth/register", {
