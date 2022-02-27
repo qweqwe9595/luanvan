@@ -18,9 +18,11 @@ function SignUp() {
   const SignUp = () => {
     if (!email.includes("@ctu.edu.vn")) {
       setError("email phai la cua truong dh can tho");
+      return;
     }
-    if (!password === passwordConfirm) {
+    if (password !== passwordConfirm) {
       setError("password phai giong nhau");
+      return;
     }
     axios
       .post("http://localhost:5000/api/auth/register", {

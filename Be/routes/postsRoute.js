@@ -5,21 +5,23 @@ const userModel = require("../model/usersModel");
 //create a post
 router.post("/", async (req, res) => {
   try {
-    if (Object.keys(req.body).length == 0) {
-      return res.status(500).send("can it nhat mot so thong tin");
+    if (!req.body.userId) {
+      return res.status(500).json({ message: "can user id" });
     }
     const newPost = new postsModel(req.body);
     const savePost = await newPost.save();
-    res.status(200).json(savePost);
+    res.status(200).json({ message: "dang bai viet thanh cong", newPost });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err.message);
   }
 });
 //get timeline
 router.get("/", async (req, res) => {
   try {
-    if (Object.keys(req.body).length == 0) {
-      return res.status(500).send("can id cua user dang dang nhap");
+    if (!req.body.userId) {
+      return res
+        .status(500)
+        .json({ message: "can id cua user can lay timeline" });
     }
     const currentUserQuery = await userModel.findOne({
       userId: req.body.userId,
@@ -31,7 +33,7 @@ router.get("/", async (req, res) => {
         return postsModel.find({ userId: id });
       })
     );
-    res.status(200).json(posts);
+    res.status(200).json({ message: "lay time line thanh cong", posts });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -51,14 +53,13 @@ router.get("/admin", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const post = await postsModel.findOne({ _id: req.params.id });
-    res.status(500).json(post);
+    res.status(200).json({ message: "thanh cong", post });
   } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 });
 
-//update 1 post
+//update 1 post (chinh sua)
 router.patch("/:id", async (req, res) => {
   try {
     const post = await postsModel.findOneAndUpdate(
