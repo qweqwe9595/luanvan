@@ -2,7 +2,6 @@ import React from "react";
 import { FaPhotoVideo, FaRegPaperPlane } from "react-icons/fa";
 import "./share.scss";
 import {useState} from "react";
-import Modal from 'react-modal';
 import axios from "axios";
 
 function Share() {

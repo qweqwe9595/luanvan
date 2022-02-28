@@ -1,0 +1,220 @@
+.newfeed{
+    background-color: #E5E5E5;
+    .newfeed-post{        
+        width: auto;
+        height: auto;
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        .newfeed-post-meta{
+            float: left;
+            margin: 10px;
+            display: flex;
+            .newfeed-post-meta-avatar{
+                width: max-content;
+                & > img{
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+                }                
+            }
+            .newfeed-post-meta-username{
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 5px;
+                width: max-content;
+                font-family: 'Oswald';
+                font-style: normal;
+                font-weight: bold;
+                font-size: 15px;
+            }
+            .newfeed-post-meta-timepost{
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 5px;
+                width: max-content;
+                font-family: 'Oswald';
+                font-style: normal;
+                font-weight: 200;
+                font-size: 15px;                
+                color: rgba(0, 0, 0, 0.28);
+            }         
+        }
+        .newfeed-post-options{
+            margin: 10px;
+            text-align: right;
+            #dropdown-basic-button{   
+                margin: 10px;
+                .newfeed{
+    background-color: #E5E5E5;
+    .newfeed-post{        
+        width: auto;
+        height: auto;
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        .newfeed-post-meta{
+            float: left;
+            margin: 20px;
+            display: flex;
+            .newfeed-post-meta-avatar{
+                width: max-content;
+                & > img{
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+                }                
+            }
+            .newfeed-post-meta-username{
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 5px;
+                width: max-content;
+                font-family: 'Oswald';
+                font-style: normal;
+                font-weight: bold;
+                font-size: 15px;
+            }
+            .newfeed-post-meta-timepost{
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 5px;
+                width: max-content;
+                font-family: 'Oswald';
+                font-style: normal;
+                font-weight: 200;
+                font-size: 15px;                
+                color: rgba(0, 0, 0, 0.28);
+            }         
+        }
+        .newfeed-post-options{
+            margin: 20px;
+            text-align: right;
+            #dropdown-basic-button{   
+                margin: 20px;  
+                cursor: pointer;           
+            }
+        }
+        .newfeed-post-text{
+            margin: 10px;
+            display: block;
+            & > p{
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: normal;
+                font-size: 18px;
+            }
+        }   
+        .newfeed-post-img{
+            margin: 20px;
+            text-align: center;
+            & > img{
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        }
+        .newfeed-post-interaction{
+            text-align: right;
+            & > h3{
+                margin: 20px;
+                display: inline;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+            
+        }
+        .newfeed-post-comment-list{
+            margin: 20x;
+            & > p{
+                font-family: 'Oswald';
+                font-style: normal;
+                font-weight: 200;
+                font-size: 13px;
+            }
+        }     
+    }
+}             
+            }
+        }
+        .newfeed-post-text{
+            margin: 20px;
+            display: block;
+            & > p{
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: normal;
+                font-size: 18px;
+            }
+        }   
+        .newfeed-post-img{
+            margin: 20px;
+            text-align: center;
+            & > img{
+                border-radius: 10px;
+                cursor: pointer;
+            }
+        }
+        .newfeed-post-interaction{
+            text-align: right;
+            & > h3{
+                margin: 20px;
+                display: inline;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+            
+        }
+        .newfeed-post-comment-list{
+            margin: 20px;
+            & > p{
+                font-family: 'Oswald';
+                font-style: normal;
+                font-weight: 200;
+                font-size: 18px;
+            }
+            .newfeed-post-comment-bar{
+                display: flex;            
+                .newfeed-post-comment-bar-text{
+                    margin: 10px;
+                    background-color: #EAEAEA;
+                    display         : flex;
+                    padding         : 0 12px;
+                    border-radius   : 30px;
+                    height          : 50px;
+                    width: 85%;
+                    align-items     : center;
+                    &>input {
+                        flex     : 2;
+                        border   : none;
+                        font-size: 18px;
+                        background-color: #EAEAEA;
+                      }
+                    
+                      &>input:focus {
+                        outline: none;
+                      }
+                }
+                .newfeed-post-comment-bar-btn {
+                    margin: 10px;
+                    height: 50px;
+                    width: max-content;
+                    color: white;
+                    padding: 4px 10px;
+                    background-color: #600fe7;
+                    border-radius: 5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+              
+                    & > span {
+                      font-size  : 18px;
+                      font-weight: bold;
+                    }
+              
+                    cursor: pointer;
+                } 
+            } 
+        }
+           
+    }
+}
