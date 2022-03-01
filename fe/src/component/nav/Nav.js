@@ -29,7 +29,7 @@ function Nav() {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Asd-web.jpg/441px-Asd-web.jpg"
             alt=""
           />
-          <span>name</span>
+          <span>Nguyễn Văn A</span>
         </div>
       </div>
     </div>

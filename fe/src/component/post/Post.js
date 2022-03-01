@@ -1,6 +1,6 @@
 import React from "react";
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/DropdownButton';
+// import DropdownButton from 'react-bootstrap/DropdownButton';
+// import Dropdown from 'react-bootstrap/DropdownButton';
 import './post.scss';
 import {FaHeart, FaComments, FaShare} from "react-icons/fa";
 
@@ -21,13 +21,13 @@ function Post(){
                 <p> đã đăng Timepost</p>
             </div>
           </div>  
-          <div className="newfeed-post-options">              
+          {/* <div className="newfeed-post-options">              
             <DropdownButton id="dropdown-basic-button" title="Dropdown button">
                 <Dropdown.Item href="#/action-1">Chỉnh sửa</Dropdown.Item>
                 <Dropdown.Item href="#/action-2">Xóa</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Báo cáo</Dropdown.Item>
             </DropdownButton>
-            </div>
+            </div> */}
             <br></br>
           <div className="newfeed-post-text">
             <p>Write something....</p>

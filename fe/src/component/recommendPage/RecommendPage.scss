@@ -4,7 +4,6 @@
     .Recommend_page_tag {
         width           : 230px;
         height          : 280px;
-        border          : 1px solid black;
         border-radius   : 10px;
         align-items     : center;
         text-align      : center;
@@ -55,6 +54,7 @@
                 color           : white;
                 margin-right    : 25px;
                 font-weight     : bold;
+                border          : none;
             }
 
             .button_dislike_page {
@@ -64,6 +64,7 @@
                 border-radius   : 15px;
                 font-weight     : bold;
                 background-color: #C4C4C4;
+                border          : none;
             }
         }
 

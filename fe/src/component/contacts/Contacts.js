@@ -4,7 +4,7 @@ function Contacts() {
         <div className="contacts">
             <p>Contacts</p>
             <div className="contacts_tag">
-                <img src="https://chiase24.com/wp-content/uploads/2022/01/Tong-hop-nhung-hinh-anh-Icon-dang-yeu-cute-nhat-6.png" className="contacts_tag_avt"/>               
+                <img src="https://texturegen.com/wp-content/uploads/2018/01/anh-dep-cho-facebook-271x300.jpg" className="contacts_tag_avt"/>               
                 <span>Nguyễn Trung Toàn</span>
                 <div className="notifications">
                     <span>3</span>
@@ -12,7 +12,7 @@ function Contacts() {
                 <div className="signal"></div>
             </div>
             <div className="contacts_tag">
-                <img src="https://chiase24.com/wp-content/uploads/2022/01/Tong-hop-nhung-hinh-anh-Icon-dang-yeu-cute-nhat-6.png" className="contacts_tag_avt"/>               
+                <img src="https://texturegen.com/wp-content/uploads/2018/01/anh-dep-cho-facebook-271x300.jpg" className="contacts_tag_avt"/>               
                 <span>Nguyễn Trung Toàn</span>
                 <div className="notifications">
                     <span>3</span>

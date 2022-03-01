@@ -1,7 +1,7 @@
 .contacts {
   width              : 310px;
   height             : auto;
-  border             : 1px solid black;
+  border             : 1px solid white;
   border-radius      : 20px;
   align-items        : center;
   // margin-right    : 10px;
@@ -18,15 +18,19 @@
   }
 
   .contacts_tag {
-    background-color     : rgb(207, 220, 223);
-    width                : 300px;
-    height               : 60px;
-    border-radius        : 40px;
-    margin               : auto;
-    margin-bottom        : 10px;
-    margin-left          : 5px;
-    display              : grid;
-    grid-template-columns: 65px 160px 30px 20px;
+    background-color       : rgb(207, 220, 223);
+    width                  : 280px;
+    height                 : 60px;
+    border-radius          : 40px;
+    margin                 : auto;
+    margin-bottom          : 10px;
+    //margin-left          : 5px;
+    display                : grid;
+    grid-template-columns  : 65px 160px 30px 20px;
+
+    &:hover {
+      width: 310px;
+    }
 
     .contacts_tag_avt {
       width           : 50px;

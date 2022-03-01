@@ -1,6 +1,6 @@
 .friend_request {
   width              : 310px;
-  border             : 1px solid black;
+  border             : 1px solid white;
   border-radius      : 20px;
   align-items        : center;
   margin-bottom      : 50px;
@@ -18,7 +18,7 @@
 
   .friends_request_tag {
     background-color     : rgba(196, 196, 196, 0.47);
-    width                : 300px;
+    width                : 280px;
     height               : 60px;
     border-radius        : 20px;
     display              : grid;
@@ -55,23 +55,28 @@
         .button_accept {
           width           : 90px;
           height          : 25px;
-          border          : 0.5px solid black;
+          border          : none;
           border-radius   : 10px;
           background-color: #0D47A1;
           color           : white;
           margin-right    : 10px;
           font-weight     : bold;
+
         }
 
         .button_refuse {
           width           : 90px;
           height          : 25px;
-          border          : 0.5px solid black;
+          border          : none;
           border-radius   : 10px;
           background-color: #C4C4C4;
           font-weight     : bold;
         }
       }
+    }
+
+    &:hover {
+      width: 310px;
     }
   }
 
@@ -82,6 +87,9 @@
       text-decoration: none;
       color          : black;
 
+      &:hover {
+        color: #0D47A1;
+      }
     }
   }
 }
