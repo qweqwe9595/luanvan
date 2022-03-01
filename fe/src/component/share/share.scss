@@ -1,4 +1,6 @@
 .share {
+  margin-left: auto;
+  margin-right: auto;
   background-color: white;
   display         : flex;
   padding         : 0 12px;
@@ -7,7 +9,7 @@
   height          : 50px;
   gap             : 10px;
   align-items     : center;
-  width           : 100%;
+  width           : 70%;
 
   &>img {
     height       : 35px;

@@ -1,100 +1,64 @@
-.newfeed{
-    background-color: #E5E5E5;
-    .newfeed-post{        
-        width: auto;
-        height: auto;
-        background-color: #FFFFFF;
-        border-radius: 20px;
-        .newfeed-post-meta{
+.post{
+    margin-left: auto;
+    margin-right: auto; 
+    width: 70%;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+        .post-meta{
+            margin: 15px;
+            width: 100%;
             float: left;
-            margin: 10px;
-            display: flex;
-            .newfeed-post-meta-avatar{
-                width: max-content;
+            .post-meta-avatar{
+                float: left;
+                width: 50px;
                 & > img{
-                width: 40px;
-                height: 40px;
-                border-radius: 20px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 20px;
                 }                
             }
-            .newfeed-post-meta-username{
-                margin-top: auto;
-                margin-bottom: auto;
-                margin-left: 5px;
+            .post-meta-username-timepost{
+                float: left;
                 width: max-content;
-                font-family: 'Oswald';
-                font-style: normal;
-                font-weight: bold;
-                font-size: 15px;
+                .post-meta-username{    
+                    & > p{  
+                    font-family: 'Oswald';
+                    font-size: 18px;
+                    }
+                }
+                .post-meta-timepost{
+                    & > p{    
+                        margin-top: auto;
+                        margin-bottom: auto;      
+                        font-family: 'Oswald';
+                        font-size: 15px;                
+                        color: rgba(0, 0, 0, 0.28);
+                    }      
+                }
             }
-            .newfeed-post-meta-timepost{
-                margin-top: auto;
-                margin-bottom: auto;
-                margin-left: 5px;
-                width: max-content;
-                font-family: 'Oswald';
-                font-style: normal;
-                font-weight: 200;
-                font-size: 15px;                
-                color: rgba(0, 0, 0, 0.28);
-            }         
+            .post-meta-options{ 
+                float: right;
+                width: 12%;
+                & > button{
+                    height: 40px;
+                    width: 40px;
+                    border: none;
+                    background-color: white;
+                    font-size: 20px;
+                }
+                button:hover{
+                    background-color: rgb(202, 237, 241);
+                }
+            } 
+                
         }
-        .newfeed-post-options{
-            margin: 10px;
-            text-align: right;
-            #dropdown-basic-button{   
-                margin: 10px;
-                .newfeed{
-    background-color: #E5E5E5;
-    .newfeed-post{        
-        width: auto;
-        height: auto;
-        background-color: #FFFFFF;
-        border-radius: 20px;
-        .newfeed-post-meta{
-            float: left;
-            margin: 20px;
-            display: flex;
-            .newfeed-post-meta-avatar{
-                width: max-content;
-                & > img{
-                width: 40px;
-                height: 40px;
-                border-radius: 20px;
-                }                
-            }
-            .newfeed-post-meta-username{
-                margin-top: auto;
-                margin-bottom: auto;
-                margin-left: 5px;
-                width: max-content;
-                font-family: 'Oswald';
-                font-style: normal;
-                font-weight: bold;
-                font-size: 15px;
-            }
-            .newfeed-post-meta-timepost{
-                margin-top: auto;
-                margin-bottom: auto;
-                margin-left: 5px;
-                width: max-content;
-                font-family: 'Oswald';
-                font-style: normal;
-                font-weight: 200;
-                font-size: 15px;                
-                color: rgba(0, 0, 0, 0.28);
-            }         
-        }
-        .newfeed-post-options{
-            margin: 20px;
-            text-align: right;
-            #dropdown-basic-button{   
-                margin: 20px;  
-                cursor: pointer;           
-            }
-        }
-        .newfeed-post-text{
-            margin: 10px;
+        .post-desc{
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
             display: block;
             & > p{
                 font-family: 'Roboto';
@@ -102,16 +66,23 @@
                 font-weight: normal;
                 font-size: 18px;
             }
-        }   
-        .newfeed-post-img{
-            margin: 20px;
+        }
+               
+        .post-img{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
             text-align: center;
             & > img{
+                width: 100%;
                 border-radius: 10px;
                 cursor: pointer;
             }
         }
-        .newfeed-post-interaction{
+        .post-interaction{
+            margin-top: 10px;
+            margin-bottom: 10px;
             text-align: right;
             & > h3{
                 margin: 20px;
@@ -122,71 +93,34 @@
             }
             
         }
-        .newfeed-post-comment-list{
-            margin: 20x;
-            & > p{
-                font-family: 'Oswald';
-                font-style: normal;
-                font-weight: 200;
-                font-size: 13px;
-            }
-        }     
-    }
-}             
-            }
-        }
-        .newfeed-post-text{
-            margin: 20px;
-            display: block;
-            & > p{
-                font-family: 'Roboto';
-                font-style: normal;
-                font-weight: normal;
-                font-size: 18px;
-            }
-        }   
-        .newfeed-post-img{
-            margin: 20px;
-            text-align: center;
-            & > img{
-                border-radius: 10px;
-                cursor: pointer;
-            }
-        }
-        .newfeed-post-interaction{
-            text-align: right;
-            & > h3{
-                margin: 20px;
-                display: inline;
-                width: 30px;
-                height: 30px;
-                cursor: pointer;
-            }
-            
-        }
-        .newfeed-post-comment-list{
-            margin: 20px;
+        .post-comment-list{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
             & > p{
                 font-family: 'Oswald';
                 font-style: normal;
                 font-weight: 200;
                 font-size: 18px;
             }
-            .newfeed-post-comment-bar{
+            .post-comment-bar{
+                margin-top: 10px;
+                margin-bottom: 10px;
                 display: flex;            
-                .newfeed-post-comment-bar-text{
+                .post-comment-bar-text{
                     margin: 10px;
                     background-color: #EAEAEA;
                     display         : flex;
                     padding         : 0 12px;
                     border-radius   : 30px;
-                    height          : 50px;
+                    height          : 40px;
                     width: 85%;
                     align-items     : center;
                     &>input {
                         flex     : 2;
                         border   : none;
-                        font-size: 18px;
+                        font-size: 15px;
                         background-color: #EAEAEA;
                       }
                     
@@ -194,9 +128,9 @@
                         outline: none;
                       }
                 }
-                .newfeed-post-comment-bar-btn {
+                .post-comment-bar-btn {
                     margin: 10px;
-                    height: 50px;
+                    height: 40px;
                     width: max-content;
                     color: white;
                     padding: 4px 10px;
@@ -207,14 +141,13 @@
                     gap: 8px;
               
                     & > span {
-                      font-size  : 18px;
+                      font-size  : 15px;
                       font-weight: bold;
                     }
               
                     cursor: pointer;
                 } 
             } 
-        }
            
     }
 }

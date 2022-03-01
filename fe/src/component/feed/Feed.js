@@ -3,10 +3,9 @@ import './feed.scss';
 import Post from "../post/Post";
 function Feed() {
   return (
-    <>
-      <p>This is new feed</p>
+    <div className="newfeed">
       <Post></Post>
-    </>
+    </div>
   );
 }
 
