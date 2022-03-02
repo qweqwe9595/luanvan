@@ -1,47 +1,47 @@
 .share {
   background-color: white;
-  display         : flex;
-  padding         : 0 12px;
-  border-radius   : 30px;
-  align-items     : center;
-  height          : 50px;
-  gap             : 10px;
-  align-items     : center;
-  margin-top      : 10px;
-  width           : 100%;
+  display: flex;
+  padding: 0 12px;
+  border-radius: 30px;
+  align-items: center;
+  height: 50px;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
 
-  &>img {
-    height       : 35px;
-    width        : 35px;
+  & > img {
+    height: 35px;
+    width: 35px;
     border-radius: 50%;
   }
 
-  &>input {
-    flex     : 2;
-    border   : none;
+  & > input {
+    flex: 2;
+    border: none;
     font-size: 18px;
   }
 
-  &>input:focus {
+  & > input:focus {
     outline: none;
   }
 
   .share-right {
-    display    : flex;
-    gap        : 0.5rem;
+    display: flex;
+    gap: 0.5rem;
     align-items: center;
 
     .share-btn {
-      color           : white;
-      padding         : 4px 10px;
-      background-color: #600fe7;
-      border-radius   : 5rem;
-      display         : flex;
-      align-items     : center;
-      gap             : 8px;
+      color: white;
+      padding: 4px 10px;
+      background-color: #0d47a1;
+      border-radius: 5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
 
-      &>span {
-        font-size  : 18px;
+      & > span {
+        font-size: 18px;
         font-weight: bold;
       }
 
@@ -49,38 +49,9 @@
     }
 
     .share-img {
-      color    : #600fe7;
+      color: #0d47a1;
       font-size: 24px;
-      cursor   : pointer;
-    }
-  }
-}
-
-.share-modal-post{
-  border: solid white;
-  text-align: center;
-  & > p{
-    font-size: 25px
-  }
-  & > form{
-    height: max-content;
-    display: block;
-    .share-modal-post-desc{
-      font-size: 15px;
-      height: 150px;
-      width: 350px;
-      resize: none;
-      margin: 10px;
-    }
-    .share-modal-post-btn1{
-      width: 50px;
-      height: 50px;
-      float: left;
-    }
-    .share-modal-post-btn2{
-      width: 50px;
-      height: 50px;
-      float: right;
+      cursor: pointer;
     }
   }
 }

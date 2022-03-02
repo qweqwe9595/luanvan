@@ -8,6 +8,7 @@ import axios from "axios";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = useState(true);
 
   const login = () => {
     if (email === "" || password === "") {
@@ -29,12 +30,20 @@ function Login() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
       });
   };
 
   return (
     <div className="login_container">
+      {open ? <div>MODEL</div> : ""}
+      <button
+        onClick={() => {
+          setOpen(!open);
+        }}
+      >
+        ok{" "}
+      </button>
       <div className="login_box">
         <div className="join_us">
           <p>Join us</p>
