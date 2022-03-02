@@ -16,14 +16,11 @@ function Home() {
         <div className="leftbar">
           <Options></Options>
         </div>
+
         <div className="center">
-          <div>
-            <Share></Share>
-            <Feed></Feed>
-          </div>
-          <div>
-            <RecommendPage></RecommendPage>
-          </div>
+          <Share></Share>
+          <Feed></Feed>
+          <RecommendPage></RecommendPage>
         </div>
         <div className="rightbar">
           <FriendRequest> </FriendRequest>

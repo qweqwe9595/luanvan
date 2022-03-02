@@ -1,0 +1,153 @@
+.post {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  .post-meta {
+    margin: 15px;
+    width: 100%;
+    max-width: 100%;
+    float: left;
+    .post-meta-avatar {
+      float: left;
+      width: 50px;
+      & > img {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+      }
+    }
+    .post-meta-username-timepost {
+      float: left;
+      width: max-content;
+      .post-meta-username {
+        & > p {
+          font-family: "Oswald";
+          font-size: 18px;
+        }
+      }
+      .post-meta-timepost {
+        & > p {
+          margin-top: auto;
+          margin-bottom: auto;
+          font-family: "Oswald";
+          font-size: 15px;
+          color: rgba(0, 0, 0, 0.28);
+        }
+      }
+    }
+    .post-meta-options {
+      float: right;
+      width: 12%;
+      & > button {
+        height: 40px;
+        width: 40px;
+        border: none;
+        background-color: white;
+        font-size: 20px;
+      }
+      button:hover {
+        background-color: rgb(202, 237, 241);
+      }
+    }
+  }
+  .post-desc {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: block;
+    & > p {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+    }
+  }
+
+  .post-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    & > img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  }
+  .post-interaction {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+    & > h3 {
+      margin: 20px;
+      display: inline;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+  .post-comment-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    & > p {
+      font-family: "Oswald";
+      font-style: normal;
+      font-weight: 200;
+      font-size: 18px;
+    }
+    .post-comment-bar {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      .post-comment-bar-text {
+        margin: 10px;
+        background-color: #eaeaea;
+        display: flex;
+        padding: 0 12px;
+        border-radius: 30px;
+        height: 40px;
+        width: 85%;
+        align-items: center;
+        & > input {
+          flex: 2;
+          border: none;
+          font-size: 15px;
+          background-color: #eaeaea;
+        }
+
+        & > input:focus {
+          outline: none;
+        }
+      }
+      .post-comment-bar-btn {
+        margin: 10px;
+        height: 40px;
+        width: max-content;
+        color: white;
+        padding: 4px 10px;
+        background-color: #600fe7;
+        border-radius: 5rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        & > span {
+          font-size: 15px;
+          font-weight: bold;
+        }
+
+        cursor: pointer;
+      }
+    }
+  }
+}

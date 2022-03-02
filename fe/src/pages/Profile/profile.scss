@@ -1,10 +1,14 @@
 .profile {
   width: 100vw;
+  max-width: 100%;
   .profile-main {
-    width: 100vw;
+    margin-top: 20px;
+    padding: 0 10px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 0 10px;
+    gap: 30px;
     .profile-left {
     }
     .profile-right {
@@ -17,10 +21,10 @@
     .profile-main {
       flex-direction: row;
       .profile-left {
-        flex: 1;
+        flex: 2;
       }
       .profile-right {
-        flex: 3;
+        flex: 5;
       }
     }
   }

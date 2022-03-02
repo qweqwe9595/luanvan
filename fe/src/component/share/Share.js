@@ -23,18 +23,21 @@ function Share() {
 
   return (
     <div className="share">
-      <img
-        src="https://genk.mediacdn.vn/139269124445442048/2021/3/13/ava-1615607562651629147713.jpeg"
-        alt=""
-      />
-      <input
-        type="text"
-        placeholder="Viết gì đó..."
-        value={desc}
-        onChange={(e) => {
-          setDesc(e.target.value);
-        }}
-      />
+      <div className="share-left">
+        <img
+          src="https://genk.mediacdn.vn/139269124445442048/2021/3/13/ava-1615607562651629147713.jpeg"
+          alt=""
+        />
+        <input
+          type="text"
+          placeholder="Viết gì đó..."
+          value={desc}
+          onChange={(e) => {
+            setDesc(e.target.value);
+          }}
+        />
+      </div>
+
       <div className="share-right">
         <FaPhotoVideo className="share-img"></FaPhotoVideo>
         <div
