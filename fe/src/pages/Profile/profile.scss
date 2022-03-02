@@ -20,11 +20,36 @@
   .profile {
     .profile-main {
       flex-direction: row;
+      justify-content: space-evenly;
       .profile-left {
         flex: 2;
       }
       .profile-right {
         flex: 5;
+      }
+    }
+  }
+}
+
+@media all and(min-width:1250px) {
+  .profile {
+    .profile-main {
+      padding: 0 100px;
+      .profile-left {
+      }
+      .profile-right {
+      }
+    }
+  }
+}
+
+@media all and(min-width:1400px) {
+  .profile {
+    .profile-main {
+      padding: 0 200px;
+      .profile-left {
+      }
+      .profile-right {
       }
     }
   }

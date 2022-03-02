@@ -3,24 +3,22 @@
   margin-top: 30px;
   width: 100%;
   max-width: 100%;
-  gap: 50px;
   padding: 0 20px;
-
+  justify-content: space-around;
   .center {
     margin: auto;
-    width: 100%;
-    flex-basis: 200px;
+    width: 60%;
     max-width: 600px;
-    flex: 3;
+    flex: 1;
   }
   .rightbar {
     width: 100%;
-    flex: 1;
+    flex: 5;
     display: none;
     max-width: 300px;
   }
   .leftbar {
-    flex: 1;
+    flex: 5;
     width: 100%;
     display: none;
     max-width: 300px;
@@ -35,17 +33,18 @@
       display: block;
     }
     .leftbar {
-      display: block;
     }
   }
 }
 
 @media all and (min-width: 1300px) {
   .home-maincontainer {
-    justify-content: space-between;
-
     .center {
-      max-width: 800px;
+      max-width: 600px;
+    }
+    .leftbar {
+      display: block;
+      padding: 0 50px;
     }
   }
 }

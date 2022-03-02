@@ -1,19 +1,41 @@
 import React from "react";
 import "./option.scss";
-import { FaComments } from "react-icons/fa";
+import {
+  FaComments,
+  FaHome,
+  FaUserFriends,
+  FaCalendarAlt,
+  FaUserTie,
+  FaBook,
+} from "react-icons/fa";
 
 function Options() {
   return (
     <div className="options">
       <div className="options-container">
         <div className="tag">
-          <FaComments />
-          <span>Group Chat</span>
+          <FaComments className="tag-icon" />
+          <span>Trò chuyện</span>
         </div>
+        <hr className="hr" />
         <div className="tag">
-          <FaComments />
-          <span>Group Chat</span>
-          <span>4</span>
+          <FaUserFriends className="tag-icon" />
+          <span>Bạn bè</span>
+        </div>
+        <hr className="hr" />
+        <div className="tag">
+          <FaCalendarAlt className="tag-icon" />
+          <span>Tin tức sự kiện</span>
+        </div>
+        <hr className="hr" />
+        <div className="tag">
+          <FaUserTie className="tag-icon" />
+          <span>Thực tập tuyển dụng</span>
+        </div>
+        <hr className="hr" />
+        <div className="tag">
+          <FaBook className="tag-icon" />
+          <span>Tài liệu</span>
         </div>
       </div>
     </div>
