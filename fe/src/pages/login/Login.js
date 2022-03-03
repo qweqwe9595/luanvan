@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { FiKey, FiShare2, FiSmile } from "react-icons/fi";
 import { BiMessage } from "react-icons/bi";
 import { BsPeople } from "react-icons/bs";
@@ -12,7 +12,7 @@ function Login() {
 
   const login = () => {
     if (email === "" || password === "") {
-      alert("vui lòng nhập đầy đủ thông tin");
+      return alert("vui lòng nhập đầy đủ thông tin");
     }
     axios
       .post("http://localhost:5000/api/auth/login", {
@@ -23,10 +23,10 @@ function Login() {
         if (res.data === "sai tai khoan") {
           alert("sai tài khoản mật khẩu!");
         } else {
-          //dang nhap thanh cong chuyen huong den trang chu
-          //luu du lieu vao cookies
-          // console.log(res.data);
-          // console.log("thanh cong");
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("userID", res.data.userInfo._id);
+          localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo));
+          console.log(JSON.parse(localStorage.getItem("userInfo")));
         }
       })
       .catch((err) => {

@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const userModal = require("../model/usersModel");
-
-//create user
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+//register
 router.post("/register", async (req, res) => {
   try {
     const userQuery = await userModal.findOne({ email: req.body.email });
@@ -28,11 +29,13 @@ router.post("/login", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-
+    console.log(req.body.email);
     if (userQuery) {
+      const email = req.body.email;
+      const token = jwt.sign({ email }, process.env.TOKEN_SR);
       return res
         .status(200)
-        .json({ message: "dang nhap thanh cong", userQuery });
+        .json({ message: "dang nhap thanh cong", userInfo: userQuery, token });
     } else {
       return res.status(200).json("sai tai khoan");
     }
