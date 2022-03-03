@@ -17,7 +17,7 @@ function Infos() {
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/${userId}`)
         .then((res) => {
-          console.log(res.data.email);
+          // console.log(res.data.email);
           setUserInfo(res.data);
         })
         .catch((err) => {
