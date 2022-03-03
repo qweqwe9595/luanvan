@@ -7,7 +7,7 @@ import "./app.scss";
 const App = () => {
   return (
     <div className="app">
-      <Home></Home>
+      <Profile></Profile>
     </div>
   );
 };
