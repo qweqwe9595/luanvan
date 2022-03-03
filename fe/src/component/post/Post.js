@@ -1,10 +1,31 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './post.scss';
+import axios from 'axios';
 import {FaHeart, FaComments, FaShare} from "react-icons/fa";
 
-function Post(){
-    return (
-        <div className="post">
+function Post(){  
+  const [userPost, setUserPost] = useState({});
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userID");
+    console.log(userId);
+    const getUserPost = () => {
+      axios.get('http://localhost:5000/api/posts/', {
+        userId,
+      })
+        .then((res) => {
+          console.log(res.data);
+          setUserPost(res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    };
+    getUserPost();
+  }, []);
+ 
+    return (        
+          <div className="post">
           <div className="post-meta">
             <div className="post-meta-avatar">
                 <img src="https://dep365.com/wp-content/uploads/2021/07/Post-from-imjanedeleon-rsgym6-800x470.jpg"></img>
@@ -47,10 +68,8 @@ function Post(){
                 </div>
             </div>
           </div>
-          
-          <br></br>
-
-        </div>
+        </div>   
     );
 }
+  
 export default Post;
