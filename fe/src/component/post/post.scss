@@ -1,60 +1,74 @@
 .post {
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  max-width: 100%;
   height: auto;
   background-color: #ffffff;
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0.5px 0.5px #808080;
   .post-meta {
+    display: flex;
     margin: 15px;
-    width: 100%;
-    max-width: 100%;
-    float: left;
-    .post-meta-avatar {
-      float: left;
-      width: 50px;
-      & > img {
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-      }
-    }
-    .post-meta-username-timepost {
-      float: left;
-      width: max-content;
-      .post-meta-username {
-        & > p {
-          font-family: "Oswald";
-          font-size: 18px;
+    .post-meta-left{
+      display: flex;
+      .post-meta-left-avatar {
+        width: 50px;
+        & > img {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+        }
+        :hover{
+          cursor: pointer;
         }
       }
-      .post-meta-timepost {
-        & > p {
-          margin-top: auto;
-          margin-bottom: auto;
-          font-family: "Oswald";
-          font-size: 15px;
-          color: rgba(0, 0, 0, 0.28);
+      .post-meta-left-username-timepost{
+        .post-meta-left-username {    
+          width: max-content;      
+          & > p {
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+          }
+          :hover{
+            cursor: pointer;
+          }
+        
+        }
+      .post-meta-left-timepost {
+        width: max-content;      
+          & > p {
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            color: #808080;
+          }
         }
       }
     }
-    .post-meta-options {
-      float: right;
-      width: 12%;
-      & > button {
-        height: 40px;
-        width: 40px;
-        border: none;
-        background-color: white;
-        font-size: 20px;
-      }
-      button:hover {
-        background-color: rgb(202, 237, 241);
+    .post-meta-right{
+      height: max-content;
+      width: 100%;
+        .post-meta-right-options {
+          text-align: right;
+        & > button {
+          font-weight: bold;
+          color: white;
+          width: 50px;
+          border: none;
+          background-color: #0d47a1;
+          font-size: 20px;
+          border-radius: 10px;          
+        }
+        :hover {
+          cursor: pointer;          
+          background-color: white;
+          color: black;
+        }        
       }
     }
   }
+    
+    
   .post-desc {
     width: 100%;
     margin-top: 10px;
@@ -63,9 +77,7 @@
     margin-right: 20px;
     display: block;
     & > p {
-      font-family: "Roboto";
-      font-style: normal;
-      font-weight: normal;
+      font-family: 'Roboto', sans-serif;
       font-size: 18px;
     }
   }
@@ -82,68 +94,93 @@
       cursor: pointer;
     }
   }
-  .post-interaction {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: right;
-    & > h3 {
-      margin: 20px;
-      display: inline;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-    }
-  }
+    .post-interaction{
+      border-top:#eaeaea solid 0.25px;
+      display: flex;
+      width: max-content;
+      margin-left: 10px;
+      .post-interaction-heart{
+        margin: 10px;
+        display: flex;
+        & > p{
+          margin-left: 2px;
+          font-family: 'Oswald', sans-serif;
+        }
+        :hover{
+          cursor: pointer;
+        }
+      }
+      .post-interaction-comment{
+        margin: 10px;
+        display: flex;    
+        & > p{
+          margin-left: 2px;
+          font-family: 'Oswald', sans-serif;
+        }
+        :hover{
+          cursor: pointer;
+        }    
+      }
+      .post-interaction-share{
+        margin: 10px; 
+        display: flex; 
+        & > p{
+          margin-left: 2px;
+          font-family: 'Oswald', sans-serif;
+        }
+        :hover{
+          cursor: pointer;
+        }      
+      }
+    }  
+  
   .post-comment-list {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 20px;
     margin-right: 20px;
     & > p {
-      font-family: "Oswald";
-      font-style: normal;
-      font-weight: 200;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 400;
       font-size: 18px;
     }
     .post-comment-bar {
       margin-top: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       display: flex;
       .post-comment-bar-text {
-        margin: 10px;
         background-color: #eaeaea;
         display: flex;
         padding: 0 12px;
         border-radius: 30px;
         height: 40px;
-        width: 85%;
+        width: 90%;
         align-items: center;
         & > input {
+          font-family: 'Roboto', sans-serif;
           flex: 2;
           border: none;
           font-size: 15px;
           background-color: #eaeaea;
         }
-
         & > input:focus {
           outline: none;
         }
       }
       .post-comment-bar-btn {
-        margin: 10px;
+        margin-left: 10px;
         height: 40px;
         width: max-content;
         color: white;
         padding: 4px 10px;
-        background-color: #600fe7;
+        background-color: #0d47a1;
         border-radius: 5rem;
         display: flex;
         align-items: center;
         gap: 8px;
-
         & > span {
+          font-family: 'Oswald', sans-serif;
           font-size: 15px;
-          font-weight: bold;
         }
 
         cursor: pointer;

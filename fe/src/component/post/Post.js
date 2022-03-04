@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./post.scss";
 import axios from "axios";
-import { FaHeart, FaComments, FaShare } from "react-icons/fa";
+import { FiShare2} from "react-icons/fi";
+import { GoComment} from "react-icons/go";
+import { IoMdHeartEmpty} from "react-icons/io";
+
 
 function Post() {
   const [userPost, setUserPost] = useState({});
@@ -21,42 +24,46 @@ function Post() {
     };
     getUserPost();
   }, []);
-
+  const iconStyles = {color:"#0d47a1", fontSize:"25px", };
   return (
     <div className="post">
       <div className="post-meta">
-        <div className="post-meta-avatar">
+        <div className="post-meta-left" >
+        <div className="post-meta-left-avatar">
           <img src="https://dep365.com/wp-content/uploads/2021/07/Post-from-imjanedeleon-rsgym6-800x470.jpg"></img>
         </div>
-        <div className="post-meta-username-timepost">
-          <div className="post-meta-username">
-            <p>Username</p>
-          </div>
-          <div className="post-meta-timepost">
-            <p>đã đăng Timepost</p>
-          </div>
+            <div className="post-meta-left-username-timepost">
+              <div className="post-meta-left-username">
+                <p>Nguyễn Anh Thư</p>
+              </div>
+              <div className="post-meta-left-timepost">
+                <p>12 giờ trước</p>
+            </div>
+            </div>
         </div>
-        <div className="post-meta-options">
-          <button>...</button>
+        <div className="post-meta-right">
+          <div className="post-meta-right-options">
+            <button><span>...</span></button>
+          </div>
         </div>
       </div>
       <div className="post-desc">
-        <p>Write something....</p>
+        {/* <p>{setUserPost.posts.Array(2).map(({desc}) => `${desc}`).join(' ')}</p> */}
+        <p>Hello World !!!</p>
       </div>
-
       <div className="post-img">
-        <img src="https://media.moitruongvadothi.vn/images/2022/02/21/9860-1645409694-dai-hoc-can-tho.jpg"></img>
+        {/* <img src="https://media.moitruongvadothi.vn/images/2022/02/21/9860-1645409694-dai-hoc-can-tho.jpg"></img> */}
       </div>
       <div className="post-interaction">
-        <h3>
-          <FaHeart></FaHeart> (100)
-        </h3>
-        <h3>
-          <FaComments></FaComments> (100)
-        </h3>
-        <h3>
-          <FaShare></FaShare> (100)
-        </h3>
+          <div className="post-interaction-heart">
+          <IoMdHeartEmpty style={iconStyles}></IoMdHeartEmpty><p>100</p>
+          </div>
+          <div className="post-interaction-comment">
+            <GoComment style={iconStyles}></GoComment><p>100</p>
+          </div>
+          <div className="post-interaction-share">
+          <FiShare2 style={iconStyles}></FiShare2><p>100</p>
+        </div>
       </div>
       <div className="post-comment-list">
         <p>Các bình luận trước đó</p>
@@ -66,11 +73,11 @@ function Post() {
             <input type="text" placeholder="Viết bình luận của bạn..."></input>
           </div>
           <div className="post-comment-bar-btn">
-            <span>Đăng</span>
+            <span>ĐĂNG</span>
           </div>
         </div>
       </div>
-    </div>
+    </div>   
   );
 }
 
