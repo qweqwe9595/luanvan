@@ -20,6 +20,8 @@ function Feed() {
     getUserPost();
   }, []);
 
+  console.log(userPost);
+  
   return (
     <div className="newfeed">
       {userPost.map((post) => {

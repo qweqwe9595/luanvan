@@ -6,6 +6,9 @@ import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 function Post({ postInfo }) {
+  const current = new Date();
+  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  console.log("abc: ",postInfo);
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
   return (
     <div className="post">
@@ -16,10 +19,10 @@ function Post({ postInfo }) {
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
-              {/* <p>{postInfo.userId}</p> */}
+              <p>{postInfo.userId.email}</p>
             </div>
             <div className="post-meta-left-timepost">
-              <p>12 giờ trước</p>
+              <p>{postInfo.userId.updatedAt}</p>
             </div>
           </div>
         </div>
@@ -31,16 +34,8 @@ function Post({ postInfo }) {
           </div>
         </div>
       </div>
-      <div className="post-desc">
-        {/* Test lay du lieu */}
-
-        {/* <div>{setUserPost.posts.map(item => (
-          
-          <p key={item._id}> {item.desc} </p>
-          
-        ))}</div> */}
-
-        <p>Hello World !!!</p>
+      <div className="post-desc">    
+        <p>{postInfo.desc}</p>
       </div>
       <div className="post-img">
         {/* <img src="https://media.moitruongvadothi.vn/images/2022/02/21/9860-1645409694-dai-hoc-can-tho.jpg"></img> */}
@@ -48,11 +43,11 @@ function Post({ postInfo }) {
       <div className="post-interaction">
         <div className="post-interaction-heart">
           <IoMdHeartEmpty style={iconStyles}></IoMdHeartEmpty>
-          <p>100</p>
+          <p>{postInfo.likes.length}</p>
         </div>
         <div className="post-interaction-comment">
           <GoComment style={iconStyles}></GoComment>
-          <p>100</p>
+          <p>{postInfo.comments.length}</p>
         </div>
         <div className="post-interaction-share">
           <FiShare2 style={iconStyles}></FiShare2>
