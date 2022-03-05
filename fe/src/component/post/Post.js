@@ -48,7 +48,15 @@ function Post() {
         </div>
       </div>
       <div className="post-desc">
-        {/* <p>{setUserPost.posts.Array(2).map(({desc}) => `${desc}`).join(' ')}</p> */}
+        
+        {/* Test lay du lieu */}
+
+        {/* <div>{setUserPost.posts.map(item => (
+          
+          <p key={item._id}> {item.desc} </p>
+          
+        ))}</div> */}
+
         <p>Hello World !!!</p>
       </div>
       <div className="post-img">
