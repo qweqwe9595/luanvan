@@ -6,7 +6,6 @@ import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 function Post({ postInfo }) {
-  console.log(postInfo);
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
   return (
     <div className="post">
