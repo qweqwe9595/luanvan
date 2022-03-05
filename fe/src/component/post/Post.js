@@ -6,7 +6,6 @@ import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 function Post({ postInfo }) {
-  console.log(postInfo);
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
   return (
     <div className="post">
@@ -17,7 +16,7 @@ function Post({ postInfo }) {
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
-              <p>{postInfo.userId}</p>
+              {/* <p>{postInfo.userId}</p> */}
             </div>
             <div className="post-meta-left-timepost">
               <p>12 giờ trước</p>

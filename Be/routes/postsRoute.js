@@ -60,7 +60,9 @@ router.get("/profile/:id", async (req, res) => {
     if (!postQuery || postQuery.length === 0) {
       return res.status(500).json({ message: "no User found" });
     }
-    const postQueryFilter = postQuery.filter((post, index) => index < amount);
+    const postQueryFilter = amount
+      ? postQuery.filter((post, index) => index < amount)
+      : postQuery;
     res.status(200).json({ message: "thanh cong ", posts: postQueryFilter });
   } catch (err) {
     res.status(500).json(err.message);

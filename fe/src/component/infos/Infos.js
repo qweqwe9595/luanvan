@@ -19,7 +19,6 @@ function Infos() {
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/${userId}`)
         .then((res) => {
-          console.log(res.data.email);
           setUserInfo(res.data);
         })
         .catch((err) => {
@@ -28,24 +27,23 @@ function Infos() {
     };
     getUserInfo();
   }, []);
-
   return (
     <div className="info">
       <p>Giới thiệu</p>
       <div className="info_tag">
         <FaUserAlt></FaUserAlt>
         <p>Tên</p>
-        <span>{userInfo.userName ? userInfo.userName : "không có"}</span>
+        <span>{userInfo?.userName}</span>
       </div>
       <div className="info_tag">
         <RiFileUserFill></RiFileUserFill>
         <p>MSSV </p>
-        <span>{userInfo.mssv ? userInfo.mssv : "không có"}</span>
+        <span>{userInfo?.mssv}</span>
       </div>
       <div className="info_tag">
         <FaBirthdayCake></FaBirthdayCake>
         <p>Ngày sinh </p>
-        <span>{userInfo.dateOfBirth ? userInfo.dateOfBirth : ""}</span>
+        <span>{userInfo?.dateOfBirth}</span>
       </div>
       <div className="info_tag">
         <HiUserGroup></HiUserGroup>
@@ -54,16 +52,13 @@ function Infos() {
       </div>
       <div className="info_tag">
         <GiGraduateCap></GiGraduateCap>
-        <p>Ngành </p>
-        <span> {userInfo.major ? userInfo.major : ""}</span>
+        <p>Ngành</p>
+        <span>{userInfo?.major?.majorName}</span>
       </div>
       <div className="info_tag">
         <MdWhereToVote></MdWhereToVote>
         <p>Quê quán </p>
-        <span>
-          {userInfo.address ? userInfo.address.distrist : ""},{" "}
-          {userInfo.address ? userInfo.address.city : ""}{" "}
-        </span>
+        <span>{}</span>
       </div>
       {open ? <UserIntro setOpen={setOpen}></UserIntro> : ""}
       <button

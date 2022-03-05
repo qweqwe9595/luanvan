@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./feed.scss";
 import Post from "../post/Post";
 import axios from "axios";
+
 function Feed() {
-  const [userPost, setUserPost] = useState({});
+  const [userPost, setUserPost] = useState([]);
 
   useEffect(() => {
     const userId = localStorage.getItem("userID");
     const getUserPost = () => {
       axios
-        .get(`http://localhost:5000/api/posts/timeline/${userId}`)
+        .get(`http://localhost:5000/api/posts/profile/${userId}`)
         .then((res) => {
-          console.log(res.data);
-          setUserPost(res.data.posts[res.data.posts.length - 1]);
-          console.log(userPost);
+          setUserPost(res.data.posts);
         })
         .catch((err) => {
           console.log(err.response);
@@ -21,10 +20,11 @@ function Feed() {
     };
     getUserPost();
   }, []);
+
   return (
     <div className="newfeed">
       {userPost.map((post) => {
-        return <Post postInfo={post} />;
+        return <Post key={post._id} postInfo={post} />;
       })}
     </div>
   );
