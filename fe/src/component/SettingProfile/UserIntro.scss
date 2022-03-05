@@ -1,0 +1,66 @@
+.User_Intro {
+    width           : 500px;
+    height          : auto;
+    background-color: aquamarine;
+    display         : grid;
+    padding         : 30px;
+    position        : absolute;
+    left            : 50%;
+    top             : 50%;
+    margin-top      : -100px;
+    margin-left     : -280px;
+    z-index         : 100;
+
+    &>p {
+        font-size     : 18px;
+        font-weight   : bold;
+        padding-bottom: 20px;
+    }
+
+    &>hr {
+        border       : 1px solid black;
+        margin-bottom: 10px;
+    }
+
+    .intro {
+        display: grid;
+        width  : 100%;
+
+        .userInfos {
+            display              : grid;
+            grid-template-columns: 1fr 2fr;
+            padding              : 20px;
+            font-size            : 18px;
+
+            .left {
+                display: flex;
+
+                &>span {
+                    padding-left: 10px;
+                }
+            }
+
+            &>input {
+                width        : 100%;
+                height       : 30px;
+                border-radius: 10px;
+                border       : none;
+            }
+        }
+    }
+
+    &>button {
+        width           : 50%;
+        height          : 40px;
+        text-align      : center;
+        margin          : auto;
+        border          : none;
+        border-radius   : 15px;
+        font-size       : 18px;
+        font-weight     : bold;
+        background-color: #0D47A1;
+        ;
+        color: #fff;
+
+    }
+}

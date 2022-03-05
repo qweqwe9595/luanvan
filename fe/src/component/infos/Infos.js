@@ -7,17 +7,20 @@ import { MdWhereToVote } from "react-icons/md";
 import { RiFileUserFill } from "react-icons/ri";
 import "./infos.scss";
 import Axios from "axios";
+import UserIntro from "../SettingProfile/UserIntro";
 
 function Infos() {
   const [userInfo, setUserInfo] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
+ // const [isOpen, setIsOpen] = useState(false);
+   const [open, setOpen] = useState(false);
+
 
   useEffect(() => {
     const userId = localStorage.getItem("userID");
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/${userId}`)
         .then((res) => {
-          // console.log(res.data.email);
+           console.log(res.data.address.city);
           setUserInfo(res.data);
         })
         .catch((err) => {
@@ -33,34 +36,38 @@ function Infos() {
       <div className="info_tag">
         <FaUserAlt></FaUserAlt>
         <p>Tên</p>
-        <span>{userInfo.name ? userInfo.name : "khong co"}</span>
+        <span>{userInfo.userName ? userInfo.userName : "không có"}</span>
       </div>
       <div className="info_tag">
         <RiFileUserFill></RiFileUserFill>
         <p>MSSV </p>
-        <span>B1805824</span>
+        <span>{userInfo.mssv ? userInfo.mssv :"không có"}</span>
       </div>
       <div className="info_tag">
         <FaBirthdayCake></FaBirthdayCake>
         <p>Ngày sinh </p>
-        <span>01/01/2000</span>
+        <span>{ userInfo.dateOfBirth ? userInfo.dateOfBirth : ""}</span>
       </div>
       <div className="info_tag">
         <HiUserGroup></HiUserGroup>
         <p>Lớp </p>
-        <span>DI1896A1</span>
+        <span>không có</span>
       </div>
       <div className="info_tag">
         <GiGraduateCap></GiGraduateCap>
         <p>Ngành </p>
-        <span>Kỹ thuật phần mềm K44</span>
+        <span> { userInfo.major ? userInfo.major : ""}</span>
       </div>
       <div className="info_tag">
         <MdWhereToVote></MdWhereToVote>
         <p>Quê quán </p>
-        <span>Đồng Tháp</span>
+        <span>{userInfo.address ? userInfo.address.distrist : ""}, {userInfo.address ? userInfo.address.city : ""} </span>
       </div>
-      <button>Chỉnh sửa thông tin</button>
+      {open ? <UserIntro></UserIntro> : ""}
+      <button
+        onClick={() => {
+          setOpen(!open);
+            }}>Chỉnh sửa thông tin cá nhân</button>
     </div>
   );
 }
