@@ -8,9 +8,10 @@ function Share() {
   const [desc, setDesc] = useState("");
 
   const Share = () => {
+    const userId = localStorage.getItem("userID");
     axios
       .post("http://localhost:5000/api/posts", {
-        userId: "6211d31a6c2a289b02ba35c0",
+        userId: userId,
         desc,
       })
       .then((res) => {

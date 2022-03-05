@@ -15,6 +15,9 @@ const userSchema = new mongoose.Schema(
       required: true,
       select: false,
     },
+    MSSV: {
+      type: String,
+    },
     profilePicture: {
       type: String,
     },

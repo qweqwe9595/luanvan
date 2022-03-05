@@ -16,18 +16,20 @@ router.post("/", async (req, res) => {
   }
 });
 //get timeline
-router.get("/", async (req, res) => {
+router.get("/timeline/:id", async (req, res) => {
   try {
-    if (!req.body.userId) {
+    if (!req.params.id) {
       return res
         .status(500)
         .json({ message: "can id cua user can lay timeline" });
     }
     const currentUserQuery = await userModel.findOne({
-      userId: req.body.userId,
+      _id: req.params.id,
     });
+
     const followings = await currentUserQuery.followings;
-    await followings.push(req.body.userId);
+    await followings.push(req.params.id);
+    console.log(followings);
     const posts = await Promise.all(
       followings.map((id) => {
         return postsModel.find({ userId: id });

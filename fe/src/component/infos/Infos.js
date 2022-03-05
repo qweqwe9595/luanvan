@@ -20,7 +20,11 @@ function Infos() {
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/${userId}`)
         .then((res) => {
+<<<<<<< HEAD
            console.log(res.data.address.city);
+=======
+          console.log(res.data.email);
+>>>>>>> a663baa1c42904046a3ff4a8218377b52f1944f4
           setUserInfo(res.data);
         })
         .catch((err) => {
