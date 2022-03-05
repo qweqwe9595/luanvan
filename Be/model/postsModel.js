@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
-  userId: { type: String },
-  fromId: { type: String },
+  user: { type: String, ref: "usersModal" },
+  from: { type: String, ref: "usersModal" },
   message: { type: String, max: 300 },
   img: { type: String },
 });
@@ -11,6 +11,7 @@ const postsSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
+      ref: "usersModal",
     },
 
     groupId: {
