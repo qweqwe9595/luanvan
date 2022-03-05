@@ -62,7 +62,9 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
     major: {
-      type: String,
+      class: { type: String },
+      majorName: { type: String },
+      yearKey: { type: Number },
     },
     saveEvents: {
       type: Array,

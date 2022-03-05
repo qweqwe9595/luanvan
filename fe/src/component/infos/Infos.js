@@ -11,20 +11,15 @@ import UserIntro from "../SettingProfile/UserIntro";
 
 function Infos() {
   const [userInfo, setUserInfo] = useState({});
- // const [isOpen, setIsOpen] = useState(false);
-   const [open, setOpen] = useState(false);
-
+  // const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const userId = localStorage.getItem("userID");
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/${userId}`)
         .then((res) => {
-<<<<<<< HEAD
-           console.log(res.data.address.city);
-=======
           console.log(res.data.email);
->>>>>>> a663baa1c42904046a3ff4a8218377b52f1944f4
           setUserInfo(res.data);
         })
         .catch((err) => {
@@ -45,12 +40,12 @@ function Infos() {
       <div className="info_tag">
         <RiFileUserFill></RiFileUserFill>
         <p>MSSV </p>
-        <span>{userInfo.mssv ? userInfo.mssv :"không có"}</span>
+        <span>{userInfo.mssv ? userInfo.mssv : "không có"}</span>
       </div>
       <div className="info_tag">
         <FaBirthdayCake></FaBirthdayCake>
         <p>Ngày sinh </p>
-        <span>{ userInfo.dateOfBirth ? userInfo.dateOfBirth : ""}</span>
+        <span>{userInfo.dateOfBirth ? userInfo.dateOfBirth : ""}</span>
       </div>
       <div className="info_tag">
         <HiUserGroup></HiUserGroup>
@@ -60,18 +55,24 @@ function Infos() {
       <div className="info_tag">
         <GiGraduateCap></GiGraduateCap>
         <p>Ngành </p>
-        <span> { userInfo.major ? userInfo.major : ""}</span>
+        <span> {userInfo.major ? userInfo.major : ""}</span>
       </div>
       <div className="info_tag">
         <MdWhereToVote></MdWhereToVote>
         <p>Quê quán </p>
-        <span>{userInfo.address ? userInfo.address.distrist : ""}, {userInfo.address ? userInfo.address.city : ""} </span>
+        <span>
+          {userInfo.address ? userInfo.address.distrist : ""},{" "}
+          {userInfo.address ? userInfo.address.city : ""}{" "}
+        </span>
       </div>
-      {open ? <UserIntro></UserIntro> : ""}
+      {open ? <UserIntro setOpen={setOpen}></UserIntro> : ""}
       <button
         onClick={() => {
-          setOpen(!open);
-            }}>Chỉnh sửa thông tin cá nhân</button>
+          setOpen(true);
+        }}
+      >
+        Chỉnh sửa thông tin cá nhân
+      </button>
     </div>
   );
 }
