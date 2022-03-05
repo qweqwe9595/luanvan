@@ -52,6 +52,7 @@ router.get("/admin", async (req, res) => {
 
 //get a profile posts
 router.get("/profile/:id", async (req, res) => {
+  const amount = req.query.amount;
   try {
     const postQuery = await postsModel
       .find({ userId: req.params.id })
@@ -59,7 +60,8 @@ router.get("/profile/:id", async (req, res) => {
     if (!postQuery || postQuery.length === 0) {
       return res.status(500).json({ message: "no User found" });
     }
-    res.status(200).json({ message: "thanh cong ", posts: postQuery });
+    const postQueryFilter = postQuery.filter((post, index) => index < amount);
+    res.status(200).json({ message: "thanh cong ", posts: postQueryFilter });
   } catch (err) {
     res.status(500).json(err.message);
   }
