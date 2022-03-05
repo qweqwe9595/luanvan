@@ -36,14 +36,6 @@ function Login() {
 
   return (
     <div className="login_container">
-      {open ? <div>MODEL</div> : ""}
-      <button
-        onClick={() => {
-          setOpen(!open);
-        }}
-      >
-        ok{" "}
-      </button>
       <div className="login_box">
         <div className="join_us">
           <p>Join us</p>

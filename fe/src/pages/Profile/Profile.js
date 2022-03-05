@@ -19,7 +19,7 @@ function Profile() {
         </div>
         <div className="profile-right">
           <Share />
-          <Feed />
+          {/* <Feed /> */}
         </div>
       </div>
     </div>
