@@ -26,13 +26,12 @@ router.get("/timeline/:id", async (req, res) => {
     const currentUserQuery = await userModel.findOne({
       _id: req.params.id,
     });
-
     const followings = await currentUserQuery.followings;
     await followings.push(req.params.id);
     console.log(followings);
     const posts = await Promise.all(
       followings.map((id) => {
-        return postsModel.find({ userId: id });
+        return postsModel.find({ userId: id }).populate("userId");
       })
     );
     res.status(200).json({ message: "lay time line thanh cong", posts });
@@ -44,8 +43,27 @@ router.get("/timeline/:id", async (req, res) => {
 //get all post
 router.get("/admin", async (req, res) => {
   try {
-    const postQuery = await postsModel.find();
+    const postQuery = await postsModel.find().populate("userId");
     res.status(200).json(postQuery);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+
+//get a profile posts
+router.get("/profile/:id", async (req, res) => {
+  const amount = req.query.amount;
+  try {
+    const postQuery = await postsModel
+      .find({ userId: req.params.id })
+      .populate("userId");
+    if (!postQuery || postQuery.length === 0) {
+      return res.status(500).json({ message: "no User found" });
+    }
+    const postQueryFilter = amount
+      ? postQuery.filter((post, index) => index < amount)
+      : postQuery;
+    res.status(200).json({ message: "thanh cong ", posts: postQueryFilter });
   } catch (err) {
     res.status(500).json(err.message);
   }
