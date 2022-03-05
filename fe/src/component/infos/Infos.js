@@ -19,6 +19,7 @@ function Infos() {
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/${userId}`)
         .then((res) => {
+          //console.log(res.data.email);
           setUserInfo(res.data);
         })
         .catch((err) => {
@@ -26,7 +27,8 @@ function Infos() {
         });
     };
     getUserInfo();
-  }, []);
+  }, [open]);
+
   return (
     <div className="info">
       <p>Giới thiệu</p>
@@ -37,23 +39,31 @@ function Infos() {
       </div>
       <div className="info_tag">
         <RiFileUserFill></RiFileUserFill>
-        <p>MSSV </p>
-        <span>{userInfo?.mssv}</span>
+        <p>MSSV</p>
+        <span>{userInfo.MSSV ? userInfo.MSSV : "không có"}</span>
       </div>
       <div className="info_tag">
         <FaBirthdayCake></FaBirthdayCake>
         <p>Ngày sinh </p>
-        <span>{userInfo?.dateOfBirth}</span>
+        <span>
+          {userInfo.dateOfBirth
+            ? new Date(userInfo.dateOfBirth).toLocaleDateString("en-US")
+            : ""}
+        </span>
       </div>
       <div className="info_tag">
         <HiUserGroup></HiUserGroup>
         <p>Lớp </p>
-        <span>không có</span>
+        <span>{userInfo.major ? userInfo.major.class : ""}</span>
       </div>
       <div className="info_tag">
         <GiGraduateCap></GiGraduateCap>
-        <p>Ngành</p>
-        <span>{userInfo?.major?.majorName}</span>
+        <p>Ngành </p>
+        <span>
+          {" "}
+          {userInfo.major ? userInfo.major.majorName : ""} K
+          {userInfo.major ? userInfo.major.yearKey : ""}
+        </span>
       </div>
       <div className="info_tag">
         <MdWhereToVote></MdWhereToVote>

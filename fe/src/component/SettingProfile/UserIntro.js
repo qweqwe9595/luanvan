@@ -6,14 +6,78 @@ import { HiUserGroup } from "react-icons/hi";
 import { GiGraduateCap } from "react-icons/gi";
 import { MdWhereToVote } from "react-icons/md";
 import { RiFileUserFill } from "react-icons/ri";
-import Axios from "axios";
+import axios from "axios";
 
 function UserIntro({ setOpen }) {
-  const [username, setUsername] = useState("");
+  const [userInfo,setUserInfo]= useState({})
+  const [userName, setUsername] = useState("");
+  const [MSSV, setmssv] = useState("");
+  const [dayOfBirth, setdayofbirth] = useState("");
+  const [Class, setClass] = useState("");
+  const [yearKey, setyearkey] = useState("");
+  const [majorName, setMajorname] = useState("");
+  const [city, setCity] = useState("");
+  const [distrist, setdistrist] = useState("");
+  const [updateName,setUpdateName]=useState(false)
+  const userId = localStorage.getItem("userID");
+
+  useEffect(() => {
+     const getUserInfo = () => {
+      axios.get(`http://localhost:5000/api/users/${userId}`)
+        .then((res) => {
+          console.log(res.data.email);
+          setUserInfo(res.data);
+          setUsername(res.data.userName)
+          setmssv(res.data.MSSV)
+          setdayofbirth(res.data.dateOfBirth)
+          setClass(res.data.major.class)
+          setyearkey(res.data.major.yearKey)
+          setMajorname(res.data.major.majorName)
+          setCity(res.data.address.city)
+          setdistrist(res.data.address.distrist)
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    };
+    getUserInfo();
+  }, []);
+  console.log(userInfo)
+
+
+  const UserIntro = (e) => {
+    e.preventDefault()
+    const dateFormat = new Date(dayOfBirth).getTime()
+    axios
+      .patch(`http://localhost:5000/api/users/${userId}`, {
+        userId,
+        userName,
+        MSSV,
+        major: { class:Class, majorName, yearKey },
+        dateOfBirth:dateFormat,
+        address: {city,distrist}
+      })
+      .then((res) => {
+     if (res.data === "khong the update user khac") {
+        } else {
+       console.log(res.data);
+       alert("cập nhật thành công!");
+        }
+      })
+     .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  }
 
   return (
-    <div className="User_Intro" onClick={() => setOpen(false)}>
-      <p>Chỉnh sửa thông tin cá nhân</p>
+    <form className="User_Intro">
+ 
+      <div className="headder">
+        <p>Chỉnh sửa thông tin cá nhân</p>
+        <div className="buttonExit">
+            <button onClick={() => setOpen(false)}>X</button>
+        </div>         
+      </div>
       <hr></hr>
       <div className="intro">
         <div className="userInfos">
@@ -21,47 +85,93 @@ function UserIntro({ setOpen }) {
             <FaUserAlt></FaUserAlt>
             <span>Tên</span>
           </div>
-          <input type="text"></input>
+        <input value={userName}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            type="text" required></input>  
         </div>
         <div className="userInfos">
           <div className="left">
             <RiFileUserFill></RiFileUserFill>
             <span>MSSV</span>
           </div>
-          <input type="text"></input>
+          <input value={MSSV}
+              onChange={(e) => {
+                setmssv(e.target.value);
+              } }
+            type="text" required></input>
         </div>
         <div className="userInfos">
           <div className="left">
             <FaBirthdayCake></FaBirthdayCake>
             <span>Ngày sinh</span>
           </div>
-          <input type="text"></input>
+          <input value={dayOfBirth}
+              onChange={(e) => {
+                setdayofbirth(e.target.value);
+              }}
+            type="text"></input>
         </div>
         <div className="userInfos">
           <div className="left">
             <HiUserGroup></HiUserGroup>
             <span>Lớp</span>
           </div>
-          <input type="text"></input>
+          <div className="input_yearKey">
+            <input type="text"
+              value={Class}
+              onChange={(e) => {
+                setClass(e.target.value);
+              }}
+            required></input>
+            <div className="yearkey">
+              <span>Khóa</span>
+              <input type="text"
+              value={yearKey}
+              onChange={(e) => {
+                setyearkey(e.target.value);
+              }} required></input>
+            </div>  
+          </div>
+         
         </div>
         <div className="userInfos">
           <div className="left">
             <GiGraduateCap></GiGraduateCap>
             <span>Ngành</span>
           </div>
-          <input type="text"></input>
+          <input type="text"
+          value={majorName}
+              onChange={(e) => {
+                setMajorname(e.target.value);
+              }} required></input>
         </div>
         <div className="userInfos">
           <div className="left">
             <MdWhereToVote></MdWhereToVote>
             <span>Quê quán</span>
           </div>
-          <input type="text"></input>
+          <div className="input_yearKey">
+            <input type="text" placeholder="Tỉnh/ thành phố"
+            value={city}
+              onChange={(e) => {
+                setCity(e.target.value);
+              }} required></input>
+            <div className="yearkey">
+              <input type="text" placeholder="Quận/huyện"
+              value={distrist}
+              onChange={(e) => {
+                setdistrist(e.target.value);
+              }} required></input>
+            </div>  
+          </div>
         </div>
       </div>
-
-      <button>Chỉnh sửa thông tin</button>
-    </div>
+      <button type="submit" onClick={(e) => {
+              UserIntro(e);
+            }}>Chỉnh sửa thông tin</button>
+    </form>
   );
 }
 export default UserIntro;
