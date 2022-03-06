@@ -205,11 +205,11 @@
   }
 }
 
-@media all and(max-width: 800px) {
+@media all and(max-width: 550px) {
   .login_container {
     width           : 540px;
-    margin-top      : 0;
     background-color: #ffffff;
+    padding-top     : 10px;
 
     .login_box {
       display         : flex;

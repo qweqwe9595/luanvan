@@ -18,7 +18,6 @@ function UserIntro({ setOpen }) {
   const [majorName, setMajorname] = useState("");
   const [city, setCity] = useState("");
   const [distrist, setdistrist] = useState("");
-  const [updateName,setUpdateName]=useState(false)
   const userId = localStorage.getItem("userID");
 
   useEffect(() => {
@@ -29,7 +28,7 @@ function UserIntro({ setOpen }) {
           setUserInfo(res.data);
           setUsername(res.data.userName)
           setmssv(res.data.MSSV)
-          setdayofbirth(res.data.dateOfBirth)
+          setdayofbirth(new Date(res.data.dateOfBirth).toLocaleDateString("en-US"))
           setClass(res.data.major.class)
           setyearkey(res.data.major.yearKey)
           setMajorname(res.data.major.majorName)
@@ -42,11 +41,17 @@ function UserIntro({ setOpen }) {
     };
     getUserInfo();
   }, []);
-  console.log(userInfo)
 
-
-  const UserIntro = (e) => {
-    e.preventDefault()
+  const UserIntro = () => {
+    if (userName === "" || MSSV === ""
+      || Class === "" || majorName === ""
+      || yearKey === "" || dayOfBirth === ""
+      || city === "" || distrist === "") {
+      return;
+       
+    }
+    
+  
     const dateFormat = new Date(dayOfBirth).getTime()
     axios
       .patch(`http://localhost:5000/api/users/${userId}`, {
@@ -60,8 +65,7 @@ function UserIntro({ setOpen }) {
       .then((res) => {
      if (res.data === "khong the update user khac") {
         } else {
-       console.log(res.data);
-       alert("cập nhật thành công!");
+          alert("cập nhật thành công!");
         }
       })
      .catch((err) => {
@@ -71,7 +75,6 @@ function UserIntro({ setOpen }) {
 
   return (
     <form className="User_Intro">
- 
       <div className="headder">
         <p>Chỉnh sửa thông tin cá nhân</p>
         <div className="buttonExit">
@@ -111,7 +114,7 @@ function UserIntro({ setOpen }) {
               onChange={(e) => {
                 setdayofbirth(e.target.value);
               }}
-            type="text"></input>
+            type="text "></input>
         </div>
         <div className="userInfos">
           <div className="left">

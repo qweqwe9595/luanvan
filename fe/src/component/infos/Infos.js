@@ -11,7 +11,6 @@ import UserIntro from "../SettingProfile/UserIntro";
 
 function Infos() {
   const [userInfo, setUserInfo] = useState({});
-  // const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -19,7 +18,6 @@ function Infos() {
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/${userId}`)
         .then((res) => {
-          //console.log(res.data.email);
           setUserInfo(res.data);
         })
         .catch((err) => {
@@ -40,7 +38,7 @@ function Infos() {
       <div className="info_tag">
         <RiFileUserFill></RiFileUserFill>
         <p>MSSV</p>
-        <span>{userInfo.MSSV ? userInfo.MSSV : "không có"}</span>
+        <span>{userInfo.MSSV ? userInfo.MSSV : ""}</span>
       </div>
       <div className="info_tag">
         <FaBirthdayCake></FaBirthdayCake>
@@ -68,7 +66,7 @@ function Infos() {
       <div className="info_tag">
         <MdWhereToVote></MdWhereToVote>
         <p>Quê quán </p>
-        <span>{}</span>
+        <span>{userInfo.address ? userInfo.address.city : ""}, { userInfo.address ? userInfo.address.distrist :""}</span>
       </div>
       {open ? <UserIntro setOpen={setOpen}></UserIntro> : ""}
       <button

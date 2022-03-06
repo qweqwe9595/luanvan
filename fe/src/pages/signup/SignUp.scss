@@ -1,6 +1,6 @@
 .signup_container {
     background-color: rgb(182, 147, 147);
-    width           : 100vw;
+    width           : 100%;
     align-items     : center;
     min-height      : 100vh;
     padding-top     : 100px;
@@ -9,19 +9,23 @@
         width                : 55%;
         display              : grid;
         grid-template-columns: 1fr 1fr;
-        min-width            : 100px;
+        min-width            : 600px;
         background-color     : #FFFFFF;
         flex-direction       : column;
         height               : 600px;
         margin               : auto;
         border-radius        : 30px;
+        position             : fixed;
+        top                  : 50%;
+        left                 : 50%;
+        -webkit-transform    : translate(-50%, -50%);
+        transform            : translate(-50%, -50%);
 
         .signup_tag {
             width                    : 100%;
             height                   : 100%;
             margin                   : auto;
             display                  : grid;
-            min-width                : 300px;
             background-color         : #3399FF;
             border-top-left-radius   : 30px;
             border-bottom-left-radius: 30px;
@@ -29,6 +33,7 @@
 
             .logo {
                 display: flex;
+
 
                 &>img {
                     width: 80px;
@@ -45,6 +50,7 @@
             }
 
             .input {
+                width           : 100%;
                 margin-top      : 15px;
                 margin-bottom   : 5px;
                 display         : flex;
@@ -73,7 +79,7 @@
                     font-size       : 15px;
                     background-color: transparent;
                     width           : 90%;
-                    height          : 45px;
+                    height          : 40px;
                 }
 
                 &>input:focus {
@@ -86,10 +92,10 @@
             }
 
             .gender_dateOfbirth {
-                display              : grid;
-                grid-template-columns: 1fr 1fr;
+                display: flex;
 
                 .input_gender {
+                    width           : 90%;
                     margin-top      : 15px;
                     margin-bottom   : 5px;
                     margin-right    : 10px;
@@ -100,6 +106,7 @@
                     align-items     : center;
                     gap             : 10px;
                     height          : fit-content;
+                    border          : none;
 
 
                     .icon {
@@ -121,17 +128,20 @@
                     &>select {
                         border          : none;
                         flex            : 1;
-                        border          : none;
                         font-size       : 15px;
                         background-color: transparent;
                         height          : 40px;
                         text-align      : center;
 
+                        &:focus {
+                            outline: none;
+                        }
                     }
 
                 }
 
                 .input_dateOfbirth {
+                    width           : 90%;
                     margin-top      : 15px;
                     margin-bottom   : 5px;
                     margin-left     : 10px;
@@ -213,9 +223,7 @@
             border-bottom-left-radius: 30px;
             color                    : #0D47A1;
             height                   : 70%;
-            margin-top               : 50px;
-
-
+            margin                   : auto;
 
             p {
                 text-align   : center;
@@ -280,57 +288,36 @@
 }
 
 
-@media all and (max-width: 1000px) {
-    .signup_container {
-        .signup_box {
-            width: 80%;
-
-            .signup_tag {
-                width: 100%;
-
-                .input {
-
-                    .email {
-                        height: 40px;
-                        width : 40px;
-                    }
-                }
-
-                .input_password {
-                    .password_icon {
-                        width : 40px;
-                        height: 40px;
-                    }
-                }
-
-                &>button {
-                    height: 40px;
-                }
-
-            }
-        }
-    }
-}
-
 @media all and(max-width: 550px) {
     .signup_container {
-        width           : 100%;
-        background-color: #FFFFFF;
+        width           : 540px;
+        background-color: #ffffff;
+        padding-top     : 0px;
 
         .signup_box {
-            display: flex;
-
+            background-color : #FFFFFF;
+            display          : flex;
+            width            : 75%;
+            position         : fixed;
+            top              : 50%;
+            left             : 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform        : translate(-50%, -50%);
+            min-width        : 100px;
 
             .join_us {
                 display: none;
             }
 
             .signup_tag {
-                width           : 100%;
-                margin          : auto;
-                display         : grid;
-                background-color: #FFFFFF;
-
+                padding-top              : 30px;
+                width                    : 100%;
+                margin                   : auto;
+                display                  : grid;
+                border-top-left-radius   : 0;
+                border-bottom-left-radius: 0;
+                padding                  : 0px;
+                background-color         : #ffffff;
 
                 .logo {
                     align-items: center;
