@@ -50,8 +50,6 @@ function UserIntro({ setOpen }) {
       return;
        
     }
-    
-  
     const dateFormat = new Date(dayOfBirth).getTime()
     axios
       .patch(`http://localhost:5000/api/users/${userId}`, {

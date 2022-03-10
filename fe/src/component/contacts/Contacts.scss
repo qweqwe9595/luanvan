@@ -1,73 +1,72 @@
 .contacts {
-  width: 100%;
-  height: auto;
-  border: 1px solid white;
-  border-radius: 20px;
-  align-items: center;
-  // margin-right    : 10px;
+  width           : 100%;
+  height          : auto;
+  border          : 1px solid white;
+  border-radius   : 20px;
+  align-items     : center;
   background-color: white;
 
   p {
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size       : 20px;
+    margin-top      : 10px;
+    margin-bottom   : 10px;
     // text-align   : center;
-    padding-left: 10px;
-    font-weight: bold;
+    padding-left    : 10px;
+    font-weight     : bold;
   }
 
   .contacts_tag {
     background-color: rgb(207, 220, 223);
-    width: 280px;
-    height: 60px;
-    border-radius: 40px;
-    margin: auto;
-    margin-bottom: 10px;
-    //margin-left          : 5px;
-    display: grid;
-    grid-template-columns: 65px 160px 30px 20px;
+    width           : 270px;
+    height          : 50px;
+    border-radius   : 40px;
+    margin          : auto;
+    margin-bottom   : 5px;
+    display         : flex;
 
     .contacts_tag_avt {
-      width: 50px;
-      height: 50px;
-      border-radius: 30px;
-      // border       : 0.5px solid black;
-      margin-left: 5px;
-      margin: auto;
+      width        : 45px;
+      height       : 45px;
+      border-radius: 50%;
+      margin-left  : 5px;
+      margin       : auto;
     }
 
     span {
-      text-align: center;
-      font-size: 18px;
-      text-align: center;
-      margin: auto;
+      text-align : center;
+      font-size  : 17px;
+      margin     : auto;
       font-weight: bold;
     }
 
     .notifications {
-      width: 22px;
-      height: 22px;
+      width           : 22px;
+      height          : 22px;
       background-color: red;
-      border-radius: 12px;
-      margin: auto;
-      text-align: center;
+      border-radius   : 12px;
+      margin          : auto;
+      text-align      : center;
 
       span {
-        text-align: center;
-        margin: auto;
-        font-size: 20px;
-        background-color: red;
-        border-radius: 5px;
+        text-align         : center;
+        margin             : auto;
+        font-size          : 20px;
+        background-color   : red;
+        border-radius      : 5px;
         // font-weight     : bold;
       }
     }
 
     .signal {
-      width: 15px;
-      height: 15px;
+      width           : 15px;
+      height          : 15px;
       background-color: yellow;
-      border-radius: 8px;
-      margin: auto;
+      border-radius   : 8px;
+      margin          : auto;
     }
+  }
+
+  .contacts_tag:hover {
+    width: 280px;
   }
 }
