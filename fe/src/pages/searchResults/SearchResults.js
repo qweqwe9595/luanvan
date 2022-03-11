@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../../component/nav/Nav";
-import { RiMessengerLine } from "react-icons/ri";
+import { RiMessengerLine,RiPagesLine,RiCalendarEventLine } from "react-icons/ri";
 import { HiUserAdd } from "react-icons/hi";
+import { ImNewspaper } from "react-icons/im";
+import { FaUsers } from "react-icons/fa";
+import { BiNews } from "react-icons/bi";
 import "./SearchResults.scss";
 const SearchResults = () => {
     return (
@@ -9,21 +12,37 @@ const SearchResults = () => {
         <Nav></Nav>    
         <div className="Search-Results">
           <div className="Filters">
-              <p>kết quả tìm kiếm</p>
+                    <p>Kết quả tìm kiếm</p>
+                    <span>Bộ lọc</span>
                 <div className="items">
-                   <span>Tất cả</span>
+                        <div className="icon">
+                             <ImNewspaper/>
+                        </div>
+                        <span>Tất cả</span>
                 </div>
                 <div className="items">
-                    <span>Bài viết</span>
+                        <div className="icon">
+                             <BiNews/>
+                        </div>
+                        <span>Bài viết</span>
                 </div>
                 <div className="items">
-                    <span>Mọi người</span>
+                        <div className="icon">
+                            <FaUsers/>
+                        </div>
+                        <span>Mọi người</span>
                 </div>
                 <div className="items">
-                    <span>Trang</span>
+                        <div className="icon">
+                            <RiPagesLine/>
+                        </div>
+                        <span>Trang</span>
                 </div>
                 <div className="items">
-                    <span>Thông tin việc làm</span>
+                        <div className="icon">
+                            <RiCalendarEventLine/>
+                        </div>
+                        <span>Tuyển dụng</span>
                 </div> 
             </div>
             <div className="Results">
@@ -42,8 +61,7 @@ const SearchResults = () => {
                         
                         <div className="icon">
                             <RiMessengerLine></RiMessengerLine>
-                        </div>
-                      
+                        </div>        
                     </div>
 
                     <div className="People_tag">

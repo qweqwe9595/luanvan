@@ -40,9 +40,28 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+//searching user
+router.get("/search", async (req, res) => {
+  try {
+    if (!req.query.name || req.query.name.length < 3) {
+      return res.status(500).json({ message: "need a valid query name" });
+    }
+    const userQuery = await userModal.find({
+      userName: { $regex: ".*" + req.query.name + ".*" },
+    });
+
+    if (req.query.limit) {
+      userQuery = userQuery.limit(parseInt(req.query.limit));
+    }
+
+    res.status(200).json({ message: "thanh cong", data: userQuery });
+  } catch (error) {
+    res.status(500).json(err.message);
+  }
+});
 //get a user
 
-router.get("/:id", async (req, res) => {
+router.get("/getone/:id", async (req, res) => {
   try {
     const userQuery = await userModal.findById(req.params.id);
     const { isAdmin, updatedAt, ...other } = userQuery._doc;

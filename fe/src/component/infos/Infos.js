@@ -4,7 +4,7 @@ import { FaUserAlt, FaBirthdayCake } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi";
 import { GiGraduateCap } from "react-icons/gi";
 import { MdWhereToVote } from "react-icons/md";
-import { RiFileUserFill } from "react-icons/ri";
+import { BiBarcodeReader } from "react-icons/bi";
 import "./infos.scss";
 import Axios from "axios";
 import UserIntro from "../SettingProfile/UserIntro";
@@ -36,7 +36,7 @@ function Infos() {
         <span>{userInfo?.userName}</span>
       </div>
       <div className="info_tag">
-        <RiFileUserFill></RiFileUserFill>
+        <BiBarcodeReader></BiBarcodeReader>
         <p>MSSV</p>
         <span>{userInfo.MSSV ? userInfo.MSSV : ""}</span>
       </div>
