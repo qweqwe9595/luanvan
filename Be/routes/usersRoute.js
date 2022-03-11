@@ -43,7 +43,7 @@ router.delete("/:id", async (req, res) => {
 //searching user
 router.get("/search", async (req, res) => {
   try {
-    if (!req.query.name) {
+    if (!req.query.name || req.query.name.length < 3) {
       return res.status(500).json({ message: "need a valid query name" });
     }
     if (req.query.limit) {
