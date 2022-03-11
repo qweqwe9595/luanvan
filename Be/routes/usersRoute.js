@@ -43,20 +43,26 @@ router.delete("/:id", async (req, res) => {
 //searching user
 router.get("/search", async (req, res) => {
   try {
-    if (!req.query.name || req.query.name.length < 3) {
+    if (!req.query.name) {
       return res.status(500).json({ message: "need a valid query name" });
+    }
+    if (req.query.limit) {
+      const userQuery = await userModal
+        .find({
+          userName: {
+            $regex: ".*" + req.query.name.toLocaleLowerCase() + ".*",
+          },
+        })
+        .limit(req.query.limit);
+      return res.status(200).json({ message: "thanh cong", data: userQuery });
     }
     const userQuery = await userModal.find({
       userName: { $regex: ".*" + req.query.name + ".*" },
     });
 
-    if (req.query.limit) {
-      userQuery = userQuery.limit(parseInt(req.query.limit));
-    }
-
     res.status(200).json({ message: "thanh cong", data: userQuery });
   } catch (error) {
-    res.status(500).json(err.message);
+    res.status(500).json(error.message);
   }
 });
 //get a user
