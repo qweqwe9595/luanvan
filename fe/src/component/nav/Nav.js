@@ -1,27 +1,26 @@
-
 import { FaBars, FaSearch } from "react-icons/fa";
 import { AiOutlineBell, AiFillCaretDown } from "react-icons/ai";
 import "./nav.scss";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
-function Nav() {
+function Nav({ Search }) {
+  const [SearchResult, setSearchResult] = Search;
   const [searchTerm, setSearchTerm] = useState("");
-  useEffect(() => {
-    const getSearchTerm = () => {
-      axios
-        .get(`http://localhost:5000/api/users/search`)
-        .then((res) => {
-          setSearchTerm( res.data );
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
-    };
-    getSearchTerm();
-  }, []);
-  
-  console.log(searchTerm);
 
+  const getSearchTerm = () => {
+    if (searchTerm === "") {
+      return;
+    }
+    axios
+      .get(`http://localhost:5000/api/users/search?name=${searchTerm}`)
+      .then((res) => {
+        setSearchResult(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+  //console.log(SearchResult);
   return (
     <div className="nav">
       <div className="nav-left">
@@ -35,10 +34,16 @@ function Nav() {
         <div className="search-icon-container">
           <FaSearch className="search-icon"></FaSearch>
         </div>
-        <input type="text" placeholder="Searching..."
-          onChange={event => {
-            setSearchTerm(event.target.value);
-          }} />
+        <input
+          type="text"
+          placeholder="Searching..."
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+        <button type="submit" onClick={() => getSearchTerm()}>
+          Search
+        </button>
       </div>
       <div className="nav-right">
         <AiOutlineBell className="bell"></AiOutlineBell>

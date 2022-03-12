@@ -3,6 +3,7 @@ import "./feed.scss";
 import Post from "../post/Post";
 import axios from "axios";
 
+
 function Feed() {
   const [userPost, setUserPost] = useState([]);
   useEffect(() => {
@@ -17,7 +18,7 @@ function Feed() {
           console.log(err.response);
         });
     };
-    getUserPost();
+     getUserPost();
   }, []);
 
   console.log(userPost);
