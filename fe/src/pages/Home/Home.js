@@ -19,7 +19,7 @@ function Home() {
 
         <div className="center">
           <Share></Share>
-          <Feed></Feed>
+          <Feed userPost={[]}></Feed>
           <RecommendPage></RecommendPage>
         </div>
         <div className="rightbar">

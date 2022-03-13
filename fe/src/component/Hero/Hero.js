@@ -1,8 +1,19 @@
 import React from "react";
 import "./hero.scss";
 import { AiOutlineCamera } from "react-icons/ai";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Hero() {
+  const userId = useParams().userId;
+  const userRequestId = JSON.parse(localStorage.getItem("userInfo"))._id;
+  console.log(userRequestId);
+  const addFriend = () => {
+    axios.patch(`http://localhost:5000/api/users/add/${userId}`, {
+      userId: userRequestId,
+    });
+  };
+
   return (
     <div className="hero">
       <div className="coverpicture-container">
@@ -25,7 +36,7 @@ function Hero() {
         <p className="hero-name">Name</p>
       </div>
       <div className="hero-content">
-        <div>Nhắn tin</div>
+        <div onClick={() => addFriend()}>Nhắn tin</div>
         <div>Kết bạn</div>
         <div>Dự phòng</div>
       </div>

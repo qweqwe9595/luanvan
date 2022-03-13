@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Nav from "../../component/nav/Nav";
 import {
   RiMessengerLine,
   RiPagesLine,
   RiCalendarEventLine,
 } from "react-icons/ri";
-import { HiUserAdd } from "react-icons/hi";
 import { ImNewspaper } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
 import { BiNews } from "react-icons/bi";
 import "./SearchResults.scss";
+import { SearchResultContext } from "../../context/SearchContext";
 //import axios from "axios";
 
 function SearchResults() {
-    const [SearchResult, setSearchResult] = useState([]);
-    const userId = localStorage.getItem("userID");
-
+  const [searchResult, setSearchResult] = useContext(SearchResultContext);
+  const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   return (
     <div>
-      <Nav Search={[SearchResult, setSearchResult]}></Nav>
+      <Nav></Nav>
       <div className="Search-Results">
         <div className="Filters">
           <p>Kết quả tìm kiếm</p>
@@ -53,14 +52,14 @@ function SearchResults() {
             </div>
             <span>Tuyển dụng</span>
           </div>
-              </div>
-        
+        </div>
+
         <div className="Results">
           <div className="Peoples">
             <p>Mọi người</p>
-            {SearchResult?.data?.map((people) => {
+            {searchResult?.data?.map((people) => {
               return (
-                <div className="People_tag">
+                <div key={people?._id} className="People_tag">
                   <div className="img-info">
                     <img
                       src="https://thuthuatnhanh.com/wp-content/uploads/2021/11/Hinh-nen-iMac-dep.jpg"
@@ -69,14 +68,22 @@ function SearchResults() {
                     <div className="people_info">
                       <p>{people.userName}</p>
                       <span>bạn bè</span>
-                      <span>{people.friends? people.friends.length:"0 người theo dõi"} người theo dõi</span>
+                      <span>
+                        {people.friends
+                          ? people.friends.length
+                          : "0 người theo dõi"}{" "}
+                        người theo dõi
+                      </span>
                       <span>{people.major ? people.major.majorName : ""}</span>
                     </div>
                   </div>
-
-                  <div className="icon">
-                    <RiMessengerLine></RiMessengerLine>
-                  </div>
+                  {!people.friends.includes(userIdCurrent) ? (
+                    <div className="icon">
+                      <RiMessengerLine></RiMessengerLine>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               );
             })}

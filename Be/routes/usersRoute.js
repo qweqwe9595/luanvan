@@ -3,26 +3,6 @@ const { status } = require("express/lib/response");
 const { findById } = require("../model/usersModel");
 const userModal = require("../model/usersModel");
 
-//update user
-router.patch("/:id", async (req, res) => {
-  if (req.body.userId == req.params.id) {
-    try {
-      const userQuery = await userModal.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).send(userQuery);
-    } catch (err) {
-      res.status(403).send(err);
-    }
-  } else {
-    res.status(500).send("khong the update user khac");
-  }
-});
-
 //delete user
 
 router.delete("/:id", async (req, res) => {
@@ -158,6 +138,26 @@ router.patch("/accept/:id", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(403).send(err);
+  }
+});
+
+//update user
+router.patch("/:id", async (req, res) => {
+  if (req.body.userId == req.params.id) {
+    try {
+      const userQuery = await userModal.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).send(userQuery);
+    } catch (err) {
+      res.status(403).send(err);
+    }
+  } else {
+    res.status(500).send("khong the update user khac");
   }
 });
 

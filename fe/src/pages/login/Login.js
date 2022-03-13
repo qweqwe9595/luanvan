@@ -4,11 +4,13 @@ import { AiOutlineUser } from "react-icons/ai";
 import { FiKey, FiShare2, FiSmile } from "react-icons/fi";
 import { BiMessage } from "react-icons/bi";
 import { BsPeople } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
 
   const login = () => {
     if (email === "" || password === "") {
@@ -27,6 +29,7 @@ function Login() {
           localStorage.setItem("userID", res.data.userInfo._id);
           localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo));
           console.log(JSON.parse(localStorage.getItem("userInfo")));
+          navigate("/");
         }
       })
       .catch((err) => {
@@ -129,7 +132,9 @@ function Login() {
           >
             Log in to your account
           </button>
-          <a href="#">Don't have a account?</a>
+          <Link to="/signup">
+            <p>Don't have a account?</p>
+          </Link>
         </div>
       </div>
     </div>

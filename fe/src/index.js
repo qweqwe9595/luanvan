@@ -3,10 +3,16 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.scss";
+import { BrowserRouter } from "react-router-dom";
+import { SearchResultContextProvider } from "./context/SearchContext.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <SearchResultContextProvider>
+        <App />
+      </SearchResultContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -8,20 +8,21 @@ import { BiBarcodeReader } from "react-icons/bi";
 import "./infos.scss";
 import Axios from "axios";
 import UserIntro from "../SettingProfile/UserIntro";
+import { useParams } from "react-router-dom";
 
 function Infos() {
   const [userInfo, setUserInfo] = useState({});
   const [open, setOpen] = useState(false);
-
+  const param = useParams();
   useEffect(() => {
-    const userId = localStorage.getItem("userID");
     const getUserInfo = () => {
-      Axios.get(`http://localhost:5000/api/users/${userId}`)
+      Axios.get(`http://localhost:5000/api/users/getone/${param.userId}`)
         .then((res) => {
+          console.log("");
           setUserInfo(res.data);
         })
         .catch((err) => {
-          console.log(err.response);
+          console.log(err.response.data);
         });
     };
     getUserInfo();
@@ -66,7 +67,10 @@ function Infos() {
       <div className="info_tag">
         <MdWhereToVote></MdWhereToVote>
         <p>Quê quán </p>
-        <span>{userInfo.address ? userInfo.address.city : ""}, { userInfo.address ? userInfo.address.distrist :""}</span>
+        <span>
+          {userInfo.address ? userInfo.address.city : ""},{" "}
+          {userInfo.address ? userInfo.address.distrist : ""}
+        </span>
       </div>
       {open ? <UserIntro setOpen={setOpen}></UserIntro> : ""}
       <button

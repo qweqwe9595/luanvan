@@ -7,8 +7,9 @@ import { IoMdHeartEmpty } from "react-icons/io";
 
 function Post({ postInfo }) {
   const current = new Date();
-  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-  console.log("abc: ",postInfo);
+  const date = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
   return (
     <div className="post">
@@ -34,7 +35,7 @@ function Post({ postInfo }) {
           </div>
         </div>
       </div>
-      <div className="post-desc">    
+      <div className="post-desc">
         <p>{postInfo.desc}</p>
       </div>
       <div className="post-img">

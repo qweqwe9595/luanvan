@@ -1,19 +1,22 @@
 import { FaBars, FaSearch } from "react-icons/fa";
 import { AiOutlineBell, AiFillCaretDown } from "react-icons/ai";
 import "./nav.scss";
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-function Nav({Search}) {
-  const [SearchResult, setSearchResult] = Search;
-  //const [SearchResult, setSearchResult] = useState("");
+import { SearchResultContext } from "../../context/SearchContext";
+import { useNavigate } from "react-router-dom";
+
+function Nav() {
+  let navigate = useNavigate();
+  const [searchResult, setSearchResult] = useContext(SearchResultContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [userInfo, setUserInfo] = useState({});
-  
+
   useEffect(() => {
     const userId = localStorage.getItem("userID");
-    console.log(userId);
     const getUserInfo = () => {
-      axios.get(`http://localhost:5000/api/users//getone/${userId}`)
+      axios
+        .get(`http://localhost:5000/api/users//getone/${userId}`)
         .then((res) => {
           setUserInfo(res.data);
         })
@@ -32,12 +35,12 @@ function Nav({Search}) {
       .get(`http://localhost:5000/api/users/search?name=${searchTerm}`)
       .then((res) => {
         setSearchResult(res.data);
+        navigate(`/searchresult`);
       })
       .catch((err) => {
         console.log(err.response);
       });
   };
-  console.log(SearchResult.data);
   return (
     <div className="nav">
       <div className="nav-left">
@@ -70,7 +73,7 @@ function Nav({Search}) {
             src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
             alt=""
           />
-          <span>{ userInfo.userName? userInfo.userName : ""}</span>
+          <span>{userInfo.userName ? userInfo.userName : ""}</span>
           <AiFillCaretDown className="arrow-down" />
         </div>
       </div>
