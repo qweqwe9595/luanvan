@@ -10,7 +10,7 @@ import Feed from "../../component/feed/Feed";
 function Profile() {
   return (
     <div className="profile">
-      <Nav></Nav>
+      {/* <Nav></Nav> */}
       <Hero></Hero>
       <div className="profile-main">
         <div className="profile-left">

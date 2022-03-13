@@ -13,7 +13,8 @@ import "./SearchResults.scss";
 //import axios from "axios";
 
 function SearchResults() {
-  const [SearchResult, setSearchResult] = useState([]);
+    const [SearchResult, setSearchResult] = useState([]);
+    const userId = localStorage.getItem("userID");
 
   return (
     <div>
@@ -52,7 +53,8 @@ function SearchResults() {
             </div>
             <span>Tuyển dụng</span>
           </div>
-        </div>
+              </div>
+        
         <div className="Results">
           <div className="Peoples">
             <p>Mọi người</p>
@@ -66,9 +68,9 @@ function SearchResults() {
                     ></img>
                     <div className="people_info">
                       <p>{people.userName}</p>
-                      <span>Bạn bè</span>
-                      <span>700 người theo dõi</span>
-                      <span>{people.major.majorName}</span>
+                      <span>bạn bè</span>
+                      <span>{people.friends? people.friends.length:"0 người theo dõi"} người theo dõi</span>
+                      <span>{people.major ? people.major.majorName : ""}</span>
                     </div>
                   </div>
 

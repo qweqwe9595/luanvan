@@ -1,11 +1,28 @@
 import { FaBars, FaSearch } from "react-icons/fa";
 import { AiOutlineBell, AiFillCaretDown } from "react-icons/ai";
 import "./nav.scss";
-import React, { useState} from "react";
+import React, { useState,useEffect} from "react";
 import axios from "axios";
-function Nav({ Search }) {
+function Nav({Search}) {
   const [SearchResult, setSearchResult] = Search;
+  //const [SearchResult, setSearchResult] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [userInfo, setUserInfo] = useState({});
+  
+  useEffect(() => {
+    const userId = localStorage.getItem("userID");
+    console.log(userId);
+    const getUserInfo = () => {
+      axios.get(`http://localhost:5000/api/users//getone/${userId}`)
+        .then((res) => {
+          setUserInfo(res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    };
+    getUserInfo();
+  }, []);
 
   const getSearchTerm = () => {
     if (searchTerm === "") {
@@ -20,7 +37,7 @@ function Nav({ Search }) {
         console.log(err.response);
       });
   };
-  //console.log(SearchResult);
+  console.log(SearchResult.data);
   return (
     <div className="nav">
       <div className="nav-left">
@@ -53,7 +70,7 @@ function Nav({ Search }) {
             src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
             alt=""
           />
-          <span>name</span>
+          <span>{ userInfo.userName? userInfo.userName : ""}</span>
           <AiFillCaretDown className="arrow-down" />
         </div>
       </div>

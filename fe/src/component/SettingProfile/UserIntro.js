@@ -52,7 +52,7 @@ function UserIntro({ setOpen }) {
     }
     const dateFormat = new Date(dayOfBirth).getTime()
     axios
-      .patch(`http://localhost:5000/api/users/${userId}`, {
+      .patch(`http://localhost:5000/api/users//getone/${userId}`, {
         userId,
         userName,
         MSSV,
