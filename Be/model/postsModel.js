@@ -21,6 +21,7 @@ const postsSchema = new mongoose.Schema(
     desc: {
       type: String,
       max: 350,
+      lowercase: true,
     },
     likes: {
       type: Array,

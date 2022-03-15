@@ -2,163 +2,39 @@ const router = require("express").Router();
 const { status } = require("express/lib/response");
 const { findById } = require("../model/usersModel");
 const userModal = require("../model/usersModel");
-
-//delete user
-
-router.delete("/:id", async (req, res) => {
-  if (req.body.userId == req.params.id || req.body.isAdmin) {
-    try {
-      const userQuery = await userModal.deleteOne({
-        _id: req.params.id,
-      });
-      res.status(200).send("been deleted");
-    } catch (err) {
-      res.status(403).send(err);
-    }
-  } else {
-    return res.status(403).json("U can delete only ur account");
-  }
-});
+const {
+  searchingUser,
+  getAUser,
+  getFriendRequestOfAUser,
+  getAllUser,
+  addFriend,
+  acceptFriend,
+  updateAUser,
+  deleteAUser,
+} = require("../controller/usersController");
 
 //searching user
-router.get("/search", async (req, res) => {
-  try {
-    if (!req.query.name) {
-      return res.status(500).json({ message: "need a valid query name" });
-    }
-    if (req.query.limit) {
-      const userQuery = await userModal
-        .find({
-          userName: {
-            $regex: ".*" + req.query.name.toLocaleLowerCase() + ".*",
-          },
-        })
-        .limit(req.query.limit);
-      return res.status(200).json({ message: "thanh cong", data: userQuery });
-    }
-    const userQuery = await userModal.find({
-      userName: { $regex: ".*" + req.query.name + ".*" },
-    });
-
-    res.status(200).json({ message: "thanh cong", data: userQuery });
-  } catch (error) {
-    res.status(500).json(error.message);
-  }
-});
+router.get("/search", searchingUser);
 //get a user
+router.get("/getone/:id", getAUser);
 
-router.get("/getone/:id", async (req, res) => {
-  try {
-    const userQuery = await userModal.findById(req.params.id);
-    const { isAdmin, updatedAt, ...other } = userQuery._doc;
-    res.status(200).json(other);
-  } catch (err) {
-    console.log(err);
-    res.status(403).send(err);
-  }
-});
+//get friends request of a user
+router.get("/requests/:id", getFriendRequestOfAUser);
 
 //get all users
-router.get("/", async (req, res) => {
-  try {
-    const userQuery = await userModal.find();
-    res.status(200).json(userQuery);
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-});
+router.get("/", getAllUser);
 
 //request add friend
 
-router.patch("/add/:id", async (req, res) => {
-  if (req.params.id !== req.body.userId) {
-    try {
-      const userfollowingQuery = await userModal.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $push: {
-            friendsRequest: req.body.userId,
-            followers: req.body.userId,
-          },
-        },
-        { new: true }
-      );
-      const userfollowerQuery = await userModal.findOneAndUpdate(
-        { _id: req.body.userId },
-        {
-          $push: { followings: req.params.id },
-        },
-        { new: true }
-      );
-      await userfollowingQuery.save();
-
-      await userfollowerQuery.save();
-      res.status(200).json("da gui yeu cau ket ban");
-    } catch (err) {
-      res.status(500).send(err);
-    }
-  } else {
-    res.status(500).send("can't add friend ur self");
-  }
-});
+router.patch("/add/:id", addFriend);
 
 //accept friend
-router.patch("/accept/:id", async (req, res) => {
-  try {
-    const userAddQuery = await userModal.findById({ _id: req.body.userId });
-    const userAcceptQuery = await userModal.findById({ _id: req.params.id });
-    const userAcceptId = userAcceptQuery._doc._id;
-    console.log(userAddQuery._doc.friends, userAcceptId);
-    if (userAddQuery._doc.friends.includes(userAcceptId)) {
-      res.status(500).send("already friend");
-    } else {
-      const newFriendRequest = userAcceptQuery.friendsRequest.filter(
-        (e) => e != req.body.userId
-      );
-      const userAcceptUpdateQuery = await userModal.findOneAndUpdate(
-        { _id: req.body.userId },
-        {
-          $push: {
-            friends: req.params.id,
-            followings: req.params.id,
-          },
-          $set: {
-            friendsRequest: newFriendRequest,
-          },
-        }
-      );
-      const userAddUpdateQuery = await userModal.findOneAndUpdate(
-        { _id: req.params.id },
-        { $push: { friends: req.body.userId, followers: req.body.userId } }
-      );
-      await userAddUpdateQuery.save();
-      await userAcceptUpdateQuery.save();
-      res.status(200).send({ userAddUpdateQuery, userAcceptUpdateQuery });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(403).send(err);
-  }
-});
+router.patch("/accept/:id", acceptFriend);
 
 //update user
-router.patch("/:id", async (req, res) => {
-  if (req.body.userId == req.params.id) {
-    try {
-      const userQuery = await userModal.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).send(userQuery);
-    } catch (err) {
-      res.status(403).send(err);
-    }
-  } else {
-    res.status(500).send("khong the update user khac");
-  }
-});
+router.patch("/:id", updateAUser);
+
+//delete user
+router.delete("/:id", deleteAUser);
 
 module.exports = router;

@@ -4,11 +4,13 @@ const userSchema = new mongoose.Schema(
   {
     userName: {
       type: String,
+      lowercase: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
     },
     password: {
       type: String,
@@ -17,6 +19,7 @@ const userSchema = new mongoose.Schema(
     },
     MSSV: {
       type: String,
+      lowercase: true,
     },
     profilePicture: {
       type: String,
@@ -48,8 +51,8 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
     address: {
-      city: { type: String },
-      distrist: { type: String },
+      city: { type: String, lowercase: true },
+      distrist: { type: String, lowercase: true },
     },
     sex: {
       type: Boolean,
@@ -60,11 +63,12 @@ const userSchema = new mongoose.Schema(
     about: {
       type: String,
       default: "",
+      lowercase: true,
     },
     major: {
-      class: { type: String },
-      majorName: { type: String },
-      yearKey: { type: Number },
+      class: { type: String, lowercase: true },
+      majorName: { type: String, lowercase: true },
+      yearKey: { type: Number, lowercase: true },
     },
     saveEvents: {
       type: Array,
