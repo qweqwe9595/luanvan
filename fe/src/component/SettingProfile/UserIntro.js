@@ -22,7 +22,7 @@ function UserIntro({ setOpen }) {
 
   useEffect(() => {
      const getUserInfo = () => {
-      axios.get(`http://localhost:5000/api/users/${userId}`)
+      axios.get(`http://localhost:5000/api/users/getone/${userId}`)
         .then((res) => {
           console.log(res.data.email);
           setUserInfo(res.data);
@@ -52,7 +52,7 @@ function UserIntro({ setOpen }) {
     }
     const dateFormat = new Date(dayOfBirth).getTime()
     axios
-      .patch(`http://localhost:5000/api/users//getone/${userId}`, {
+      .patch(`http://localhost:5000/api/users/${userId}`, {
         userId,
         userName,
         MSSV,

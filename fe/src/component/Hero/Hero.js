@@ -7,11 +7,16 @@ import { useParams } from "react-router-dom";
 function Hero() {
   const userId = useParams().userId;
   const userRequestId = JSON.parse(localStorage.getItem("userInfo"))._id;
-  console.log(userRequestId);
   const addFriend = () => {
-    axios.patch(`http://localhost:5000/api/users/add/${userId}`, {
-      userId: userRequestId,
-    });
+    axios.patch(`http://localhost:5000/api/users/add/${userRequestId}`, {
+      userId: userId,
+    })
+    .then((res) => {
+     console.log(res.data);
+       })
+      .catch((err) => {
+         console.log(err.response.data.message);
+       });
   };
 
   return (
@@ -36,8 +41,14 @@ function Hero() {
         <p className="hero-name">Name</p>
       </div>
       <div className="hero-content">
-        <div onClick={() => addFriend()}>Nhắn tin</div>
-        <div>Kết bạn</div>
+        <div>Nhắn tin</div>
+        {!userId.includes(userRequestId) ? (
+        <div className="icon">
+          <div onClick={() => addFriend()}>Kết bạn</div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
         <div>Dự phòng</div>
       </div>
     </div>
