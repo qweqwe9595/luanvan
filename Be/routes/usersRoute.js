@@ -11,6 +11,7 @@ const {
   acceptFriend,
   updateAUser,
   deleteAUser,
+  unFriend,
 } = require("../controller/usersController");
 
 //searching user
@@ -33,6 +34,9 @@ router.patch("/accept/:id", acceptFriend);
 
 //update user
 router.patch("/:id", updateAUser);
+
+//unfriend
+router.patch("/unfriend/:id", unFriend);
 
 //delete user
 router.delete("/:id", deleteAUser);
