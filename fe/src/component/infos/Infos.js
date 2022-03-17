@@ -18,7 +18,6 @@ function Infos() {
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users/getone/${param.userId}`)
         .then((res) => {
-          console.log("");
           setUserInfo(res.data);
         })
         .catch((err) => {
