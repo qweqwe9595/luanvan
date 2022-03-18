@@ -219,6 +219,26 @@ const unFriend = async (req, res) => {
   }
 };
 
+const refuseFriendRequest = async (req, res) => {
+  if (!req.params.id) return res.status(500).json({ message: "no param id" });
+  try {
+    const userQuery = await userModal.findById(req.body.userId);
+    const newFriends = await userQuery.friendsRequest.filter(
+      (item) => item != req.params.id
+    );
+    const updateUser = await userModal.findByIdAndUpdate(
+      req.body.userId,
+      {
+        $set: { friendsRequest: newFriends },
+      },
+      { new: true }
+    );
+    res.status(200).json({ message: "thanh cong", updateUser });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
 module.exports = {
   searchingUser,
   getAUser,
@@ -229,4 +249,5 @@ module.exports = {
   updateAUser,
   deleteAUser,
   unFriend,
+  refuseFriendRequest,
 };
