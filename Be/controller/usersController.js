@@ -31,7 +31,7 @@ const getAUser = async (req, res) => {
     const { isAdmin, updatedAt, ...other } = userQuery._doc;
     res.status(200).json(other);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).json(err);
   }
 };
 
@@ -89,10 +89,10 @@ const addFriend = async (req, res) => {
       await userfollowerQuery.save();
       res.status(200).json("da gui yeu cau ket ban");
     } catch (err) {
-      res.status(500).send(err);
+      res.status(500).json(err);
     }
   } else {
-    res.status(500).send("can't add friend ur self");
+    res.status(500).json({ message: "can't add friend ur self" });
   }
 };
 
@@ -126,11 +126,11 @@ const acceptFriend = async (req, res) => {
       );
       await userAddUpdateQuery.save();
       await userAcceptUpdateQuery.save();
-      res.status(200).send({ userAddUpdateQuery, userAcceptUpdateQuery });
+      res.status(200).json({ message: "chap nhanh thanh cong" });
     }
   } catch (err) {
     console.log(err);
-    res.status(403).send(err);
+    res.status(403).json(err);
   }
 };
 
@@ -168,6 +168,77 @@ const deleteAUser = async (req, res) => {
   }
 };
 
+const unFriend = async (req, res) => {
+  if (req.body.userId == req.params.id)
+    return res.status(500).json({ message: "cant unfriend ur self" });
+
+  try {
+    const userGotQuery = await userModal.findById(req.params.id);
+    const userQuery = await userModal.findById(req.body.userId);
+    console.log(userQuery, userGotQuery);
+    if (!userGotQuery.friends.includes(req.body.userId))
+      return res.status(500).json({ message: "not friend yet" });
+    const unfriendGotQuery = await userModal.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+          friends: userGotQuery.friends.filter(
+            (friend) => friend != req.body.userId
+          ),
+          followers: userGotQuery.followers.filter(
+            (friend) => friend != req.body.userId
+          ),
+          followings: userGotQuery.followings.filter(
+            (friend) => friend != req.body.userId
+          ),
+        },
+      },
+      { new: true }
+    );
+    const unfriendQuery = await userModal.findOneAndUpdate(
+      { _id: req.body.userId },
+      {
+        $set: {
+          friends: userQuery.friends.filter(
+            (friend) => friend != req.params.id
+          ),
+          followers: userQuery.followers.filter(
+            (friend) => friend != req.params.id
+          ),
+          followings: userQuery.followings.filter(
+            (friend) => friend != req.params.id
+          ),
+        },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ unfriendQuery, unfriendGotQuery });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+const refuseFriendRequest = async (req, res) => {
+  if (!req.params.id) return res.status(500).json({ message: "no param id" });
+  try {
+    const userQuery = await userModal.findById(req.body.userId);
+    const newFriends = await userQuery.friendsRequest.filter(
+      (item) => item != req.params.id
+    );
+    const updateUser = await userModal.findByIdAndUpdate(
+      req.body.userId,
+      {
+        $set: { friendsRequest: newFriends },
+      },
+      { new: true }
+    );
+    res.status(200).json({ message: "thanh cong", updateUser });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
 module.exports = {
   searchingUser,
   getAUser,
@@ -177,4 +248,6 @@ module.exports = {
   acceptFriend,
   updateAUser,
   deleteAUser,
+  unFriend,
+  refuseFriendRequest,
 };

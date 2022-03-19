@@ -62,6 +62,7 @@ function UserIntro({ setOpen }) {
     axios
       .patch(`http://localhost:5000/api/users/${param.userId}`, {
         userId:param.userId,
+
         userName,
         MSSV,
         major: { class: Class, majorName, yearKey },

@@ -4,13 +4,29 @@ import axios from "axios";
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
+import { useParams } from "react-router-dom";
 
 function Post({ postInfo }) {
+  const userId = useParams().userId;
+  const postId = postInfo._id;
   const current = new Date();
   const date = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
+  const addLike = () => {
+    axios. post(`http://localhost:5000/api/posts/like/${postId}`, {
+          userId: userId,
+        })
+        .then((res) => {
+          console.log(res.data);
+          console.log("đã like");
+        })
+       .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    }
+
   return (
     <div className="post">
       <div className="post-meta">
@@ -20,10 +36,10 @@ function Post({ postInfo }) {
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
-              <p>{postInfo.userId.email}</p>
+              <p>{postInfo.userId.userName}</p>
             </div>
             <div className="post-meta-left-timepost">
-              <p>{postInfo.userId.updatedAt}</p>
+              <p>{date}</p>
             </div>
           </div>
         </div>
@@ -42,7 +58,7 @@ function Post({ postInfo }) {
         {/* <img src="https://media.moitruongvadothi.vn/images/2022/02/21/9860-1645409694-dai-hoc-can-tho.jpg"></img> */}
       </div>
       <div className="post-interaction">
-        <div className="post-interaction-heart">
+        <div className="post-interaction-heart" onClick={() => addLike()}>
           <IoMdHeartEmpty style={iconStyles}></IoMdHeartEmpty>
           <p>{postInfo.likes.length}</p>
         </div>
