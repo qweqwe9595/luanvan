@@ -4,6 +4,7 @@ import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { FiKey, FiShare2, FiSmile, FiUser } from "react-icons/fi";
 import { BiMessage } from "react-icons/bi";
 import { BsPeople, BsGenderAmbiguous } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SignUp() {
@@ -28,7 +29,7 @@ function SignUp() {
     console.log(username, email, password, sex, dateOfBirth);
     axios
       .post("http://localhost:5000/api/auth/register", {
-        username,
+        userName:username,
         email,
         password,
         sex,
@@ -134,7 +135,9 @@ function SignUp() {
           >
             Log in to your account
           </button>
-          <a href="#">Have an account?</a>
+          <Link to="/login">
+            <p>Have an account?</p>
+          </Link>
         </div>
 
         <div className="join_us">

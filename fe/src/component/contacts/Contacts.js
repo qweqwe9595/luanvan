@@ -2,7 +2,7 @@ import './Contacts.scss';
 function Contacts() {
     return (
         <div className="contacts">
-            <p>Contacts</p>
+            <p>Bạn bè</p>
             <div className="contacts_tag">
                 <img src="https://texturegen.com/wp-content/uploads/2018/01/anh-dep-cho-facebook-271x300.jpg" className="contacts_tag_avt"/>               
                 <span>Nguyễn Trung Toàn</span>

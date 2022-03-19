@@ -5,6 +5,7 @@ import Profile from "./pages/Profile/Profile";
 import "./app.scss";
 import { Routes, Route } from "react-router-dom";
 import SearchResults from "./pages/searchResults/SearchResults";
+import Friend from "./pages/friends/Friend";
 const App = () => {
   return (
     <div className="app">
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/profile/:userId" element={<Profile />}></Route>
         <Route path="/searchresult" element={<SearchResults />}></Route>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/Friend" element ={<Friend />}></Route>
       </Routes>
     </div>
   );

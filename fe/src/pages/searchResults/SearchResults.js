@@ -1,20 +1,17 @@
 import React, { useContext } from "react";
 import Nav from "../../component/nav/Nav";
-import {
-  RiMessengerLine,
-  RiPagesLine,
-  RiCalendarEventLine,
-} from "react-icons/ri";
+import { RiPagesLine, RiCalendarEventLine,RiMessengerLine } from "react-icons/ri";
 import { ImNewspaper } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
 import { BiNews } from "react-icons/bi";
 import "./SearchResults.scss";
 import { SearchResultContext } from "../../context/SearchContext";
-//import axios from "axios";
+import SearchResultTag from "../../component/button/btnSendRequest";
 
 function SearchResults() {
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
+  let usertest;
   return (
     <div>
       <Nav></Nav>
@@ -59,7 +56,7 @@ function SearchResults() {
             <p>Mọi người</p>
             {searchResult?.data?.map((people) => {
               return (
-                <div key={people?._id} className="People_tag">
+                <div className="People_tag" key={people._id}>
                   <div className="img-info">
                     <img
                       src="https://thuthuatnhanh.com/wp-content/uploads/2021/11/Hinh-nen-iMac-dep.jpg"
@@ -67,7 +64,11 @@ function SearchResults() {
                     ></img>
                     <div className="people_info">
                       <p>{people.userName}</p>
-                      <span>bạn bè</span>
+                      {people.friends.includes(userIdCurrent) ? (
+                        <span>bạn bè</span>
+                      ) : (
+                        ""
+                      )}
                       <span>
                         {people.friends
                           ? people.friends.length
@@ -75,29 +76,40 @@ function SearchResults() {
                         người theo dõi
                       </span>
                       <span>{people.major ? people.major.majorName : ""}</span>
+                      <span> {people.address ? people.address.city : ""}</span>
                     </div>
                   </div>
-                  {!people.friends.includes(userIdCurrent) ? (
-                    <div className="icon">
-                      <RiMessengerLine></RiMessengerLine>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+                  {
+                    (usertest =
+                      people._id === userIdCurrent ? (
+                        ""
+                      ) : people.friends.includes(userIdCurrent) ? (
+                        <button className="icon">
+                          <RiMessengerLine></RiMessengerLine>
+                        </button>
+                      ) :
+                        people.friendsRequest.includes(userIdCurrent) ? (
+                         "đã gửi yêu cầu"
+                      ) : (
+                        <SearchResultTag id = {people._id}></SearchResultTag>
+                      ))
+                  }
                 </div>
               );
             })}
-
             <button>Xem tất cả</button>
           </div>
+
           <div className="Post">
             <p>Bài viết</p>
             <button>Xem tất cả</button>
           </div>
+
           <div className="Page">
             <p>Trang</p>
             <button>Xem tất cả</button>
           </div>
+
           <div className="Event">
             <p>Thông tin việc làm</p>
             <button>Xem tất cả</button>

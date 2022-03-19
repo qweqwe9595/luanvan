@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 
 function Profile() {
   const param = useParams();
-  console.log(param.userId);
   const [userPost, setUserPost] = useState([]);
   useEffect(() => {
     const getUserPost = () => {
@@ -31,7 +30,7 @@ function Profile() {
   }, []);
   return (
     <div className="profile">
-      {/* <Nav></Nav> */}
+      <Nav></Nav>
       <Hero></Hero>
       <div className="profile-main">
         <div className="profile-left">

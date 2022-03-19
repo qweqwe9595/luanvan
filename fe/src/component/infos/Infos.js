@@ -16,9 +16,8 @@ function Infos() {
   const param = useParams();
   useEffect(() => {
     const getUserInfo = () => {
-      Axios.get(`http://localhost:5000/api/users/getone/${param.userId}`)
+      Axios.get(`http://localhost:5000/api/users//getone/${param.userId}`)
         .then((res) => {
-          console.log("");
           setUserInfo(res.data);
         })
         .catch((err) => {
@@ -27,14 +26,13 @@ function Infos() {
     };
     getUserInfo();
   }, [open]);
-
   return (
     <div className="info">
       <p>Giới thiệu</p>
       <div className="info_tag">
         <FaUserAlt></FaUserAlt>
         <p>Tên</p>
-        <span>{userInfo?.userName}</span>
+        <span>{userInfo.userName?userInfo.userName :""}</span>
       </div>
       <div className="info_tag">
         <BiBarcodeReader></BiBarcodeReader>

@@ -1,87 +1,18 @@
 .friend_request {
-  width              : 100%;
-  border             : 1px solid white;
-  border-radius      : 20px;
-  align-items        : center;
-  margin-bottom      : 50px;
-  background-color   : white;
-  // margin-right    : 20px;
+  width           : 100%;
+  border          : 1px solid white;
+  border-radius   : 20px;
+  align-items     : center;
+  margin-bottom   : 50px;
+  background-color: white;
+  padding         : 10px;
 
   p {
-    font-size       : 20px;
-    margin-top      : 10px;
-    margin-bottom   : 10px;
-    // text-align   : center;
-    padding-left    : 10px;
-    font-weight     : bold;
-  }
-
-  .friends_request_tag {
-    background-color     : rgba(196, 196, 196, 0.47);
-    width                : 270px;
-    height               : 60px;
-    border-radius        : 20px;
-    display              : flex;
-    grid-template-columns: 65px 200px;
-    margin               : auto;
-    margin-bottom        : 5px;
-    align-items          : center;
-
-    .avt_friend_request {
-      width        : 50px;
-      height       : 50px;
-      border-radius: 50%;
-      margin-left  : 10px;
-      margin-right : 10px;
-    }
-
-    .friend_request_tag_info {
-      height : 50px;
-      display: grid;
-
-      span {
-        font-size    : 17px;
-        margin-top   : 1px;
-        //margin-left: -10px;
-        font-weight  : bold;
-        text-align   : center;
-        margin       : auto;
-      }
-
-      .friend_request_tag_button {
-
-        margin-bottom: 5px;
-        margin-top   : 5px;
-        margin       : auto;
-
-        .button_accept {
-          width           : 80px;
-          height          : 25px;
-          border          : none;
-          border-radius   : 10px;
-          background-color: #0d47a1;
-          color           : white;
-          margin-right    : 10px;
-          font-weight     : bold;
-          font-size       : 13px;
-        }
-
-        .button_refuse {
-          width           : 80px;
-          height          : 25px;
-          border          : none;
-          border-radius   : 10px;
-          background-color: #c4c4c4;
-          font-weight     : bold;
-          font-size       : 13px;
-          margin-left     : 7px;
-        }
-      }
-    }
-  }
-
-  .friends_request_tag:hover {
-    width: 280px;
+    font-size    : 20px;
+    margin-top   : 10px;
+    margin-bottom: 10px;
+    padding-left : 10px;
+    font-weight  : bold;
   }
 
   .link {

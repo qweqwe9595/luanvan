@@ -5,7 +5,7 @@
   padding        : 0px 20px;
   height         : 50px;
   align-items    : center;
-  background     : #0d47a1;
+  background     : #0d47a1 !important;
   justify-content: space-between;
   box-shadow     : 0px 4px 10px rgba(0, 0, 0, 0.1);
 
@@ -96,7 +96,7 @@
         align-items    : center;
         margin         : 3px 0;
         border-radius  : 50%;
-        color          : #0d47a1;
+        color          : #0d47a1 !important;
         cursor         : pointer;
       }
 
@@ -109,7 +109,7 @@
       &>button {
         width                     : 70px;
         background-color          : #b9bec5;
-        color                     : #0d47a1;
+        color                     : #0d47a1 !important;
         padding                   : 5px;
         border-bottom-right-radius: 1rem;
         border-top-right-radius   : 1rem;
@@ -174,7 +174,7 @@
       &>button {
         width           : 70px;
         background-color: #b9bec5;
-        color           : #0d47a1;
+        color           : #0d47a1 !important;
         font-size       : 16px;
       }
 
