@@ -89,17 +89,17 @@
       }
 
       .input {
-        margin          : auto;
-        margin-top      : 15px;
-        margin-bottom   : 0;
-        display         : flex;
-        background-color: #ececec;
-        padding         : 1px 5px;
-        border-radius   : 2rem;
-        align-items     : center;
-        gap             : 10px;
-        height          : fit-content;
-        width           : 80%;
+        margin            : auto;
+        margin-top        : 15px;
+        margin-bottom     : 0;
+        display           : flex;
+        background-color  : #ececec;
+        padding           : 1px 5px;
+        border-radius     : 2rem;
+        align-items       : center;
+        //gap             : 10px;
+        height            : fit-content;
+        width             : 80%;
 
         .icon {
           display         : flex;
@@ -111,20 +111,32 @@
           border-radius   : 50%;
           color           : black;
           cursor          : pointer;
-        }
-
-        &>input {
-          border          : none;
-          font-size       : 15px;
-          background-color: transparent;
-        }
-
-        &>input:focus {
-          outline: none;
+          margin-left     : -1%;
+          padding         : 10px;
         }
 
         &:hover {
           background-color: lightblue;
+        }
+
+        &>input {
+          border                    : none;
+          font-size                 : 15px;
+          height                    : 45px;
+          width                     : 100%;
+          border-top-right-radius   : 2rem;
+          border-bottom-right-radius: 2rem;
+          padding                   : 10px;
+          margin-right              : -1%;
+          background-color          : #ececec;
+
+          &:hover {
+            background-color: lightblue;
+          }
+
+          &:focus {
+            outline: none;
+          }
         }
       }
 
