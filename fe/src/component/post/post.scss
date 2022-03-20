@@ -133,6 +133,14 @@
           cursor: pointer;
         }      
       }
+    }
+    .post-interaction-name{
+      margin: 0 20px;
+      margin-bottom: 10px;
+      & > p{
+        font-size: 15px;
+        font-family: 'Osward', sans-serif;
+      }
     }  
   
   .post-comment-list {

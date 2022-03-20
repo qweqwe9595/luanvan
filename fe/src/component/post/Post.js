@@ -4,16 +4,22 @@ import axios from "axios";
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 
 function Post({ postInfo }) {
   const userId = useParams().userId;
   const postId = postInfo._id;
-  const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  const [open, setOpen] = useState(false);
+  // const current = new Date();
+  // const date = `${current.getDate()}/${
+  //   current.getMonth() + 1
+  // }/${current.getFullYear()}`;
+  const a = new Date();
+  const b = new Date(postInfo.createdAt);
+  const postDate = (a - b)/1000;
+
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
+
   const addLike = () => {
     axios. post(`http://localhost:5000/api/posts/like/${postId}`, {
           userId: userId,
@@ -25,8 +31,8 @@ function Post({ postInfo }) {
        .catch((err) => {
           console.log(err.response.data.message);
         });
-    }
-
+    };
+  
   return (
     <div className="post">
       <div className="post-meta">
@@ -39,7 +45,22 @@ function Post({ postInfo }) {
               <p>{postInfo.userId.userName}</p>
             </div>
             <div className="post-meta-left-timepost">
-              <p>{date}</p>
+            {(() => {
+              switch (true) {
+                case (postDate < 60):
+                  return (<p>{postDate} giây trước</p>)
+                case (postDate >= 60 && postDate < (60*60) ):
+                  return (<p>{postDate/60} phút trước</p>)
+                case (postDate >= (60*60) && postDate < (60*60*24) ):
+                  return (<p>{postDate/60*60} giờ trước</p>)
+                case (postDate >= (60*60*24) && postDate < ( 60*60*24*7 )):
+                  return (<p>{postDate/(60*60*24)} ngày trước</p>)
+                case (postDate >= (60*60*24*7) && postDate < (60*60*24*7*4) ):
+                  return (<p>{postDate/(60*60*24*7)} tuần trước</p>)
+                default:
+                  return (<p>{postDate/(60*60*24*7*4)} tháng trước</p>)
+            }}
+            )()}
             </div>
           </div>
         </div>
@@ -59,19 +80,26 @@ function Post({ postInfo }) {
       </div>
       <div className="post-interaction">
         <div className="post-interaction-heart" onClick={() => addLike()}>
-          <IoMdHeartEmpty style={iconStyles}></IoMdHeartEmpty>
-          <p>{postInfo.likes.length}</p>
+            <IoMdHeartEmpty style={iconStyles}></IoMdHeartEmpty>
+         <p>{postInfo.likes.length}</p>
         </div>
         <div className="post-interaction-comment">
-          <GoComment style={iconStyles}></GoComment>
-          <p>{postInfo.comments.length}</p>
+          <span onClick={() => {setOpen(true);}}>
+            <GoComment style={iconStyles}></GoComment>
+          </span>
+          <p>{postInfo.comments.length}</p>          
         </div>
         <div className="post-interaction-share">
           <FiShare2 style={iconStyles}></FiShare2>
           <p>100</p>
-        </div>
+        </div>        
       </div>
-      <div className="post-comment-list">
+      {(postInfo.likes.length > 0) ? 
+      <div className="post-interaction-name">
+        <p>{postInfo.likes} đã like</p>
+      </div> : ""}
+      
+      {open ? <div className="post-comment-list">        
         <p>Các bình luận trước đó</p>
         <div className="post-comment-list-item"></div>
         <div className="post-comment-bar">
@@ -82,7 +110,8 @@ function Post({ postInfo }) {
             <span>ĐĂNG</span>
           </div>
         </div>
-      </div>
+    </div> : ""}
+
     </div>
   );
 }
