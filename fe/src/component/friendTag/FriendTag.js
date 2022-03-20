@@ -19,14 +19,16 @@ function FriendTag({ friend }) {
   const userId = localStorage.getItem("userID");
   const unfriend = () => {
     axios
-        .patch(`http://localhost:5000/api/users/unfriend/${userId}`,
-            friend)
+      .patch(`http://localhost:5000/api/users/unfriend/${friend}`, {
+        userId
+      })
       .then((res) => {
         alert("xóa thành công");
       })
       .catch((err) => {});
   };
-  console.log();
+  console.log(userId);
+  console.log(friend);
   return (
     <div className="friend_tag">
       <img
