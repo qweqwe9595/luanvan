@@ -8,6 +8,7 @@ const cors = require("cors");
 const authRoute = require("./routes/authRoute");
 const usersRoute = require("./routes/usersRoute");
 const postsRoute = require("./routes/postsRoute");
+const commentsRoute = require("./routes/commentsRoute");
 
 require("dotenv").config();
 
@@ -24,8 +25,8 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
+app.use("/api/comments", commentsRoute);
 
 app.listen(5000, () => {
   console.log("running at local host 5000");
 });
-

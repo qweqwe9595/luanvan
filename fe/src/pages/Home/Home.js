@@ -1,4 +1,3 @@
-
 import "./Home.scss";
 import Nav from "../../component/nav/Nav";
 import Feed from "../../component/feed/Feed";
@@ -7,7 +6,7 @@ import Contacts from "../../component/contacts/Contacts";
 import FriendRequest from "../../component/friendRequest/FriendRequest";
 import Options from "../../component/options/Options";
 import RecommendPage from "../../component/recommendPage/RecommendPage";
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 function Home() {
   return (

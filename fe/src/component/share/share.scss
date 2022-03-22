@@ -17,6 +17,7 @@
       height: 35px;
       width: 35px;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     & > input {
@@ -44,8 +45,11 @@
       gap: 8px;
 
       & > span {
+        font-family: "Oswald";
+        font-style: normal;
+        font-weight: 400;
         font-size: 18px;
-        font-weight: bold;
+        line-height: 27px;
       }
 
       cursor: pointer;

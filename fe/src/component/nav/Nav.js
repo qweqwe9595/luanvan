@@ -1,19 +1,21 @@
 import { FaBars, FaSearch } from "react-icons/fa";
 import { AiOutlineBell, AiFillCaretDown } from "react-icons/ai";
 import "./nav.scss";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import { SearchResultContext } from "../../context/SearchContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Nav() {
   let navigate = useNavigate();
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [userInfo, setUserInfo] = useState({});
+  const currentUserId = localStorage.getItem("userID");
 
   useEffect(() => {
     const userId = localStorage.getItem("userID");
+
     const getUserInfo = () => {
       axios
         .get(`http://localhost:5000/api/users//getone/${userId}`)
@@ -50,9 +52,19 @@ function Nav() {
         </div>
       </div>
 
-      <div className="searchbar">
+      <div
+        onKeyPress={(e) => {
+          if (e.key === "Enter") return getSearchTerm();
+        }}
+        className="searchbar"
+      >
         <div className="search-icon-container">
-          <FaSearch className="search-icon"></FaSearch>
+          <FaSearch
+            className="search-icon"
+            onClick={() => {
+              getSearchTerm();
+            }}
+          ></FaSearch>
         </div>
         <input
           type="text"
@@ -61,21 +73,21 @@ function Nav() {
             setSearchTerm(e.target.value);
           }}
         />
-        <button type="submit" onClick={() => getSearchTerm()}>
-          Search
-        </button>
       </div>
       <div className="nav-right">
         <AiOutlineBell className="bell"></AiOutlineBell>
         <FaBars className="hamburger"></FaBars>
-        <div className="user-container">
-          <img
-            src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
-            alt=""
-          />
-          <span>{userInfo.userName ? userInfo.userName : ""}</span>
-          <AiFillCaretDown className="arrow-down" />
-        </div>
+
+        <Link to={`/profile/${currentUserId}`}>
+          <div className="user-container">
+            <img
+              src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
+              alt=""
+            />
+            <span>{userInfo.userName ? userInfo.userName : ""}</span>
+            <AiFillCaretDown className="arrow-down" />
+          </div>
+        </Link>
       </div>
     </div>
   );

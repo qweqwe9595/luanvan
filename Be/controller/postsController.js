@@ -1,5 +1,6 @@
 const postsModel = require("../model/postsModel");
 const userModel = require("../model/usersModel");
+const mongoose = require("mongoose");
 
 //create a post
 const createAPost = async (req, res) => {
@@ -27,22 +28,27 @@ const getTimeLine = async (req, res) => {
     });
     const followings = await currentUserQuery.followings;
     await followings.push(req.params.id);
-    console.log(followings);
     const posts = await Promise.all(
       followings.map((id) => {
-        return postsModel.find({ userId: id }).populate("userId");
+        return postsModel
+          .find({ userId: id })
+          .populate("userId")
+          .populate("likes");
       })
     );
     res.status(200).json({ message: "lay time line thanh cong", posts });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err.message);
   }
 };
 
 //get all post
 const getAllPost = async (req, res) => {
   try {
-    const postQuery = await postsModel.find().populate("userId");
+    const postQuery = await postsModel
+      .find()
+      .populate("userId")
+      .populate("likes");
     res.status(200).json(postQuery);
   } catch (err) {
     res.status(500).json(err.message);
@@ -55,7 +61,8 @@ const getAProfilePosts = async (req, res) => {
   try {
     const postQuery = await postsModel
       .find({ userId: req.params.id })
-      .populate("userId");
+      .populate("userId")
+      .populate("likes");
     if (!postQuery || postQuery.length === 0) {
       return res.status(500).json({ message: "no User found" });
     }
@@ -71,7 +78,7 @@ const getAProfilePosts = async (req, res) => {
 //get a post
 const getAPost = async (req, res) => {
   try {
-    const post = await postsModel.findOne({ _id: req.params.id });
+    const post = await postsModel.findById(req.params.id).populate("likes");
     res.status(200).json({ message: "thanh cong", post });
   } catch (err) {
     res.status(500).json(err);
@@ -97,17 +104,19 @@ const deleteAPost = async (req, res) => {
   try {
     const post = await postsModel.findById(req.params.id);
     const user = await userModel.findById(req.body.userId);
+
     if (!req.body.userId) {
-      return res.status(500).send("login");
+      return res.status(500).json({ message: "need userId in body" });
     }
+    if (!user) return res.status(500).json({ message: "khong tim thay user" });
     if (req.body.userId == post.userId || user.isAdmin) {
       await post.deleteOne();
-      res.status(200).send("delete thanh cong");
+      res.status(200).json({ message: "delete thanh cong" });
     } else {
-      res.status(500).send("ko thanh cong");
+      res.status(500).json({ message: "chi có thể delete bài post của bạn" });
     }
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).send(err.message);
   }
 };
 
@@ -129,20 +138,6 @@ const likeAPost = async (req, res) => {
     res.status(500).send(err);
   }
 };
-//create comment a post
-const commentAPost = async (req, res) => {
-  try {
-    const post = await postsModel.findById(req.params.id);
-    console.log(req.body);
-    if (!req.body.userId || !req.body) {
-      res.status(500).send("need info");
-    }
-    await post.updateOne({ $push: { comments: req.body } });
-    res.status(200).json("updated");
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
 
 module.exports = {
   createAPost,
@@ -153,5 +148,4 @@ module.exports = {
   updateAPost,
   deleteAPost,
   likeAPost,
-  commentAPost,
 };

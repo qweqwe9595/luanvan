@@ -10,7 +10,6 @@ const {
   updateAPost,
   deleteAPost,
   likeAPost,
-  commentAPost,
 } = require("../controller/postsController");
 
 //create a post
@@ -35,7 +34,5 @@ router.delete("/:id", deleteAPost);
 
 //like a post
 router.post("/like/:id", likeAPost);
-//create comment a post
-router.put("/comment/:id", commentAPost);
 
 module.exports = router;

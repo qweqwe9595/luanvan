@@ -172,6 +172,7 @@ const unFriend = async (req, res) => {
   if (req.body.userId == req.params.id)
     return res.status(500).json({ message: "cant unfriend ur self" });
 
+  
   try {
     const userGotQuery = await userModal.findById(req.params.id);
     const userQuery = await userModal.findById(req.body.userId);
