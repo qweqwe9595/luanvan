@@ -5,6 +5,7 @@ import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { useParams } from "react-router-dom";
+import CommentV1 from "../comment/CommentV1";
 
 function Post({ postInfo }) {
   const userId = useParams().userId;
@@ -12,19 +13,41 @@ function Post({ postInfo }) {
   const postId = postInfo._id;
   const [open, setOpen] = useState();
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
+  // const [commentsCount, setCommentsCount] = useState(postInfo.comment.length);
   const [isLike, setIsLike] = useState(false);
-  console.log(postInfo.likes);
+  // const [isComment, setIsComment] = useState(false);
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
 
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
+  const [comment, setComment] = useState([]);
+  const commentNumber = comment.length + comment?.commentLv2?.length;
 
   useEffect(() => {
     if (postInfo.likes.includes(loginUser)) {
       setIsLike(true);
     }
+    const getComment = () => {
+      axios
+        .get(
+          `http://localhost:5000/api/comments/post/${postId}`
+        )
+        .then((res) => {
+          setComment(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    };
+    getComment();    
   }, []);
+  //Lay tat ca comment
+  
+
+  // console.log("commentlv2", comment.comment.commentLv2);
+
+  //Like bai viet
 
   const addLike = () => {
     axios
@@ -33,10 +56,28 @@ function Post({ postInfo }) {
       })
       .then((res) => {
         console.log(res.data);
-        console.log("đã like");
+        alert("đã like");
       })
       .catch((err) => {
         console.log(err.response.data.message);
+      });
+  };
+
+  const [cmtV1, setCmtV1] = useState("");
+
+  const writeCommentV1 = () => {
+    axios
+      .post("http://localhost:5000/api/comments/commentlv1/", {
+        postId: postId,
+        message: cmtV1,
+        userId: userId,
+      })
+      .then((res) => {
+        console.log("Thanh cong", res.data);
+        alert("Binh luan thanh cong!");
+      })
+      .catch((err) => {
+        console.log("Loi roi", err.response.data.message);
       });
   };
 
@@ -59,7 +100,7 @@ function Post({ postInfo }) {
                   case postDate >= 60 && postDate < 60 * 60:
                     return <p>{Math.round(postDate / 60)} phút trước</p>;
                   case postDate >= 60 * 60 && postDate < 60 * 60 * 24:
-                    return <p>{Math.round((postDate / 60) * 60)} giờ trước</p>;
+                    return <p>{Math.round(postDate / (60 * 60))} giờ trước</p>;
                   case postDate >= 60 * 60 * 24 && postDate < 60 * 60 * 24 * 7:
                     return (
                       <p>{Math.round(postDate / (60 * 60 * 24))} ngày trước</p>
@@ -126,33 +167,41 @@ function Post({ postInfo }) {
           >
             <GoComment style={iconStyles}></GoComment>
           </span>
-          <p>{postInfo?.comments?.length}</p>
+          <p>{commentNumber}</p>
         </div>
         <div className="post-interaction-share">
           <FiShare2 style={iconStyles}></FiShare2>
           <p>100</p>
         </div>
       </div>
-      {postInfo.likes.length > 0 ? (
+      {/* {postInfo.likes.length > 0 ? (
         <div className="post-interaction-name">
-          <p>{postInfo.likes} đã like</p>
+          <p>{postInfo.likes.length} đã like</p>
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       {open ? (
         <div className="post-comment-list">
           <p>Các bình luận trước đó</p>
-          <div className="post-comment-list-item"></div>
+          <div className="post-comment-list-item">
+              {comment?.map((comment) => {
+                return <CommentV1 key={comment._id} commentV1={{comment}}/>;
+              })}
+          </div>
           <div className="post-comment-bar">
             <div className="post-comment-bar-text">
               <input
                 type="text"
                 placeholder="Viết bình luận của bạn..."
+                value={cmtV1}
+                onChange={(e) => {
+                  setCmtV1(e.target.value);
+                }}
               ></input>
             </div>
-            <div className="post-comment-bar-btn">
+            <div className="post-comment-bar-btn" onClick={() => {writeCommentV1();}}>
               <span>ĐĂNG</span>
             </div>
           </div>
