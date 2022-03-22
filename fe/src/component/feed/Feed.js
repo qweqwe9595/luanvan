@@ -6,6 +6,7 @@ function Feed({ userPost }) {
   return (
     <div className="newfeed">
       {userPost.map((post) => {
+        console.log(post);
         return <Post key={post._id} postInfo={post} />;
       })}
     </div>

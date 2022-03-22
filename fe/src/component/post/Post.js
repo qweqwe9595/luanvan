@@ -15,7 +15,10 @@ function Post({ postInfo }) {
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
   // const [commentsCount, setCommentsCount] = useState(postInfo.comment.length);
   const [isLike, setIsLike] = useState(false);
+<<<<<<< HEAD
   // const [isComment, setIsComment] = useState(false);
+=======
+>>>>>>> 3edfc801214931304df7af85bc385843437c3dca
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
@@ -135,9 +138,7 @@ function Post({ postInfo }) {
       <div className="post-desc">
         <p>{postInfo.desc}</p>
       </div>
-      <div className="post-img">
-        {/* <img src="https://media.moitruongvadothi.vn/images/2022/02/21/9860-1645409694-dai-hoc-can-tho.jpg"></img> */}
-      </div>
+      <div className="post-img"></div>
       <div className="post-interaction">
         <div className="post-interaction-heart" onClick={() => addLike()}>
           {isLike ? (

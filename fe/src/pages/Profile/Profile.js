@@ -19,7 +19,6 @@ function Profile() {
           `http://localhost:5000/api/posts/profile/${param.userId}?amount=10`
         )
         .then((res) => {
-          console.log(res.data);
           setUserPost(res.data.posts);
         })
         .catch((err) => {
