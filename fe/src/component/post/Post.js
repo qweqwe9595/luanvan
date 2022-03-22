@@ -13,7 +13,6 @@ function Post({ postInfo }) {
   const [open, setOpen] = useState();
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
   const [isLike, setIsLike] = useState(false);
-  console.log(postInfo.likes);
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
@@ -94,9 +93,7 @@ function Post({ postInfo }) {
       <div className="post-desc">
         <p>{postInfo.desc}</p>
       </div>
-      <div className="post-img">
-        {/* <img src="https://media.moitruongvadothi.vn/images/2022/02/21/9860-1645409694-dai-hoc-can-tho.jpg"></img> */}
-      </div>
+      <div className="post-img"></div>
       <div className="post-interaction">
         <div className="post-interaction-heart" onClick={() => addLike()}>
           {isLike ? (
@@ -135,7 +132,7 @@ function Post({ postInfo }) {
       </div>
       {postInfo.likes.length > 0 ? (
         <div className="post-interaction-name">
-          <p>{postInfo.likes} đã like</p>
+          <p>{postInfo.likes.length} đã like</p>
         </div>
       ) : (
         ""
