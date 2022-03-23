@@ -8,24 +8,22 @@ import { useParams } from "react-router-dom";
 import CommentV1 from "../comment/CommentV1";
 
 function Post({ postInfo }) {
+  const [open, setOpen] = useState(false);
   const userId = useParams().userId;
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
-  const [open, setOpen] = useState();
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
   // const [commentsCount, setCommentsCount] = useState(postInfo.comment.length);
   const [isLike, setIsLike] = useState(false);
-<<<<<<< HEAD
   // const [isComment, setIsComment] = useState(false);
-=======
->>>>>>> 3edfc801214931304df7af85bc385843437c3dca
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
 
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
   const [comment, setComment] = useState([]);
-  const commentNumber = comment.length + comment?.commentLv2?.length;
+  const commentNumber = comment.length;
+
 
   useEffect(() => {
     if (postInfo.likes.includes(loginUser)) {
