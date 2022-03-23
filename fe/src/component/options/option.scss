@@ -1,14 +1,15 @@
 .options {
   width: 100%;
   background-color: white;
-  border-radius: 6px;
+  border-radius: 12px;
   min-width: 250px;
+  font-family: "oswald";
 
   .options-container {
     width: 100%;
     padding-bottom: 5px;
     .tag {
-      padding: 15px 20px 5px 20px;
+      padding: 25px 40px 10px 40px;
       display: flex;
       gap: 10px;
       align-items: center;
@@ -25,7 +26,8 @@
       }
     }
     hr {
-      width: 80%;
+      height: 0;
+      width: 70%;
       margin: auto;
       border: 1px solid rgba(0, 0, 0, 0.3);
     }

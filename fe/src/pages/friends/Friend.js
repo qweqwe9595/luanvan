@@ -1,4 +1,3 @@
-
 import Nav from "../../component/nav/Nav";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -24,7 +23,6 @@ function Friend() {
     };
     getFRequests();
   }, []);
-  console.log(friendId);
   return (
     <div>
       <Nav></Nav>
@@ -60,9 +58,9 @@ function Friend() {
           </div> */}
           <div className="f_request">
             <p>Danh sách bạn bè</p>
-            {friendId?.map((friend, indexs)=>{
-              return <FriendTag friend={friend} key={indexs}></FriendTag>
-          })}
+            {friendId?.map((friend, indexs) => {
+              return <FriendTag friend={friend} key={indexs}></FriendTag>;
+            })}
             <button>Xem tất cả</button>
           </div>
         </div>

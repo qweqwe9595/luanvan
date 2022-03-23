@@ -1,7 +1,8 @@
 .nav {
   display        : flex;
   width          : 100%;
-  /* added */
+  display        : flex;
+  max-width      : 100%;
   padding        : 0px 20px;
   height         : 50px;
   align-items    : center;
@@ -11,10 +12,10 @@
   position       : fixed;
   z-index        : 100;
   top            : 0;
+  font-family    : "Oswald", sans-serif;
 
   .searchbar {
     display: none;
-
   }
 
   .logo {
@@ -56,6 +57,8 @@
       display: none;
       cursor : pointer;
     }
+
+
   }
 
   .hamburger {
@@ -95,10 +98,10 @@
       }
 
       .infouser {
-        margin-left: 10px;
-        height     : 50px;
-        align-items: center;
-        padding-top: 5px;
+        margin-left   : 10px;
+        height        : 50px;
+        align-items   : center;
+        // padding-top: 5px;
 
         &>span {
           text-transform: capitalize;
@@ -151,6 +154,21 @@
   }
 }
 
+@media all and (max-width: 750px) {
+  .nav {
+    .nav-right {
+      &>button {
+        display: none;
+
+        .arrow-down {
+          display: none;
+        }
+      }
+    }
+  }
+
+}
+
 @media all and (min-width: 750px) {
   .nav {
     .hamburger {
@@ -179,34 +197,15 @@
       gap               : 5px;
       height            : fit-content;
       margin-right      : 40px;
-
-      .search-icon-container {
-        display        : flex;
-        justify-content: center;
-        align-items    : center;
-        margin         : 3px 0;
-        border-radius  : 50%;
-        color          : #0d47a1 !important;
-        cursor         : pointer;
-      }
+      border-radius     : 1rem;
+      align-items       : center;
+      gap               : 5px;
+      height            : fit-content;
 
       &>input {
         border          : none;
         background-color: transparent;
         font-size       : 1.1rem;
-      }
-
-      &>button {
-        // width                     : 100px;
-        background-color          : #b9bec5;
-        color                     : #0d47a1 !important;
-        padding                   : 5px;
-        border-bottom-right-radius: 1rem;
-        border-top-right-radius   : 1rem;
-        border                    : none;
-        font-size                 : 16px;
-        display                   : flex;
-
       }
 
       &>input:focus {
@@ -220,22 +219,23 @@
       }
 
       .user-container {
-        display            : flex;
-        align-items        : center;
-        background-color   : white;
-        padding            : 4px 8px;
-        gap                : 5px;
-        border-radius      : 23px;
-        z-index            : 1;
-        position           : absolute;
-        // top             : 0;
-        right              : 0;
+        display         : flex;
+        align-items     : center;
+        background-color: white;
+        padding         : 4px 8px;
+        gap             : 5px;
+        border-radius   : 23px;
+        z-index         : 1;
+        position        : absolute;
+        top             : 6px;
+        right           : 70px;
 
         &>img {
           height       : 30px;
           width        : 30px;
           border-radius: 50%;
           cursor       : pointer;
+          object-fit   : cover;
         }
 
         &>span {
@@ -244,21 +244,32 @@
           color         : #0d47a1;
 
         }
+      }
 
-        &>button {
-          height          : 30px;
-          background-color: #ffffff;
-          border          : none;
+      &>button {
+        width           : 38px;
+        height          : 38px;
+        background-color: #ffffff;
+        border          : none;
+        border-radius   : 50%;
 
-          &>.arrow-down {
-            color      : #0d47a1;
-            font-size  : 20px;
-            align-items: center;
-            border     : none;
-            text-align : center;
-          }
+        &>.arrow-down {
+
+          color      : #0d47a1;
+          font-size  : 30px;
+          align-items: center;
+          border     : none;
+          text-align : center;
+          margin     : auto;
+          margin-top : 5px;
+          align-items: center;
         }
 
+      }
+
+      &>.arrow-down {
+        color    : #0d47a1;
+        font-size: 20px;
       }
     }
   }
@@ -266,7 +277,6 @@
 
 @media all and (min-width: 1024px) {
   .nav {
-
     .searchbar {
       width: 55%;
 
@@ -274,13 +284,9 @@
         width: 100%;
       }
 
-      &>button {
-        width           : fit-content;
-        background-color: #b9bec5;
-        color           : #0d47a1 !important;
-        font-size       : 16px;
-        padding-left    : 10px;
-        padding-right   : 10px;
+      &>input {
+        width: 600px;
+
       }
     }
   }

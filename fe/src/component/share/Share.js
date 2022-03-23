@@ -48,7 +48,7 @@ function Share() {
           }}
         >
           <FaRegPaperPlane />
-          <span>POST!</span>
+          <span>ĐĂNG!</span>
         </div>
       </div>
     </div>

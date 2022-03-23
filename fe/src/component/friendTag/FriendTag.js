@@ -19,16 +19,16 @@ function FriendTag({ friend }) {
   }, []);
   const userId = localStorage.getItem("userID");
   const unfriend = () => {
+    window.location.reload();
     axios
       .patch(`http://localhost:5000/api/users/unfriend/${friend}`, {
-        userId
+        userId,
       })
       .then((res) => {
         alert("xóa thành công");
       })
       .catch((err) => {});
   };
-
   const sendRequest = () => {
     axios
       .patch(`http://localhost:5000/api/users/add/${friend}`, {
