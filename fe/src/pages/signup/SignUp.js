@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SignUp.scss";
-import { AiOutlineMail, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai";
 import { FiKey, FiShare2, FiSmile, FiUser } from "react-icons/fi";
 import { BiMessage } from "react-icons/bi";
 import { BsPeople, BsGenderAmbiguous } from "react-icons/bs";

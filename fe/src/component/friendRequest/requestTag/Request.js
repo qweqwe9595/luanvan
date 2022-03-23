@@ -19,10 +19,11 @@ function Request({ user }) {
     };
     getUserInfo();
   }, []);
+
   const RequesAccept = () => {
     axios
       .patch(`http://localhost:5000/api/users/accept/${user}`, {
-        userId,
+        userId
       })
       .then((res) => {
         alert("đã đồng ý");

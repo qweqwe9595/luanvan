@@ -10,6 +10,25 @@ import RecommendPage from "../../component/recommendPage/RecommendPage";
 import React, {  useEffect, useState } from "react";
 import axios from "axios";
 function Home() {
+  const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
+  const [userPosts, setUserPosts] = useState([]);
+  useEffect(() => {
+    const getUserPost = () => {
+      axios
+        .get(
+          `http://localhost:5000/api/posts/timeline/${ userIdCurrent}`
+        )
+        .then((res) => {
+          setUserPosts(res.data.posts);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    };
+    getUserPost();
+  }, []);
+  console.log(userPosts);
+
   return (
     <div className="home">
       <Nav></Nav>
@@ -20,9 +39,15 @@ function Home() {
 
         <div className="center">
           <Share></Share>
-          <Feed userPost={[]}></Feed>
-          <RecommendPage></RecommendPage>
+           <RecommendPage></RecommendPage>
+          {userPosts.map((userPost, index) => {
+            return (
+              <Feed userPost={userPost} key={index}></Feed>
+            )  
+          })}
+         
         </div>
+        
         <div className="rightbar">
           <FriendRequest></FriendRequest>
           <Contacts></Contacts>

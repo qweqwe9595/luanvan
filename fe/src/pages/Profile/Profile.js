@@ -11,15 +11,15 @@ import { useParams } from "react-router-dom";
 
 function Profile() {
   const param = useParams();
-  const [userPost, setUserPost] = useState([]);
+  const [userPosts, setUserPost] = useState([]);
   useEffect(() => {
     const getUserPost = () => {
       axios
         .get(
-          `http://localhost:5000/api/posts/profile/${param.userId}?amount=10`
+          `http://localhost:5000/api/posts/timeline/${param.userId}?amount=10`
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setUserPost(res.data.posts);
         })
         .catch((err) => {
@@ -28,6 +28,7 @@ function Profile() {
     };
     getUserPost();
   }, []);
+  console.log(userPosts);
   return (
     <div className="profile">
       <Nav></Nav>
@@ -39,7 +40,10 @@ function Profile() {
         </div>
         <div className="profile-right">
           <Share />
-          <Feed userPost={userPost} />
+          {userPosts?.map((userPost, index) => {
+            return(
+            <Feed userPost={userPost} key={index} />)
+          })}
         </div>
       </div>
     </div>

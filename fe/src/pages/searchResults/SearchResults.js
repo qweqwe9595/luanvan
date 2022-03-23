@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
 import Nav from "../../component/nav/Nav";
-import { RiPagesLine, RiCalendarEventLine,RiMessengerLine } from "react-icons/ri";
+import {
+  RiPagesLine,
+  RiCalendarEventLine,
+  RiMessengerLine,
+} from "react-icons/ri";
 import { ImNewspaper } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
 import { BiNews } from "react-icons/bi";
 import "./SearchResults.scss";
 import { SearchResultContext } from "../../context/SearchContext";
-import SearchResultTag from "../../component/button/btnSendRequest";
+import SearchResultTag from "./button/btnSendRequest";
 
 function SearchResults() {
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
@@ -87,11 +92,12 @@ function SearchResults() {
                         <button className="icon">
                           <RiMessengerLine></RiMessengerLine>
                         </button>
-                      ) :
-                        people.friendsRequest.includes(userIdCurrent) ? (
-                         "đã gửi yêu cầu"
+                      ) : people.friendsRequest.includes(userIdCurrent) ? (
+                        <button type="button" className="icon2">
+                          <FaUserPlus />
+                        </button>
                       ) : (
-                        <SearchResultTag id = {people._id}></SearchResultTag>
+                        <SearchResultTag id={people._id}></SearchResultTag>
                       ))
                   }
                 </div>

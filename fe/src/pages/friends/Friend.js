@@ -2,7 +2,6 @@
 import Nav from "../../component/nav/Nav";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// iport Request from "../../component/request/requestTag/Request";
 import RequestBox from "../../component/friendRequest/requestBox/RequestBox";
 import "./Friend.scss";
 import FriendTag from "../../component/friendTag/FriendTag";
@@ -55,10 +54,10 @@ function Friend() {
             })}
             <button>Xem tất cả</button>
           </div>
-          <div className="f_request">
+          {/* <div className="f_request">
             <p>Những người bạn có thể biết</p>
             <button>Xem tất cả</button>
-          </div>
+          </div> */}
           <div className="f_request">
             <p>Danh sách bạn bè</p>
             {friendId?.map((friend, indexs)=>{

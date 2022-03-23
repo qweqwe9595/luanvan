@@ -1,4 +1,5 @@
 .Search-Results {
+    padding-top     : 100px;
     width           : 100%;
     height          : auto;
     background-color: #E5E5E5;
@@ -109,6 +110,7 @@
                 .img-info {
                     display: flex;
 
+
                     .avt {
                         width        : 60px;
                         height       : 60px;
@@ -119,6 +121,7 @@
                         width      : 90%;
                         margin-left: 10px;
                         display    : grid;
+
 
                         &>p {
                             text-transform: capitalize;
@@ -146,10 +149,28 @@
                     margin          : auto;
                     padding         : 8px;
                     border          : none;
+                    margin-top      : 10px;
 
                     &:hover {
                         background-color: rgb(14, 238, 238);
                     }
+                }
+
+                .icon2 {
+                    display         : flex;
+                    justify-content : center;
+                    align-items     : center;
+                    height          : 40px;
+                    width           : 40px;
+                    font-size       : 30px;
+                    border-radius   : 50%;
+                    background-color: #0d47a1 !important;
+                    margin-left     : 70%;
+                    margin          : auto;
+                    padding         : 8px;
+                    border          : none;
+                    margin-top      : 10px;
+
                 }
 
             }
@@ -272,8 +293,9 @@
 
 @media all and(max-width: 700px) {
     .Search-Results {
-        width  : 100%;
-        display: grid;
+        width      : 100%;
+        display    : grid;
+        padding-top: 50px;
 
         .Filters {
             display      : flex;
@@ -334,6 +356,10 @@
                 padding-left    : 30px;
                 padding-right   : 30px;
 
+                &>button {
+                    display: none;
+                }
+
                 .People_tag {
                     height    : 70px;
                     box-shadow: 5px 5px 5px lightblue;
@@ -365,6 +391,8 @@
                             }
                         }
                     }
+
+
                 }
 
             }
@@ -378,6 +406,9 @@
                 padding-left    : 30px;
                 padding-right   : 30px;
 
+                &>button {
+                    display: none;
+                }
             }
 
             .Page {
@@ -389,6 +420,9 @@
                 padding-left    : 30px;
                 padding-right   : 30px;
 
+                &>button {
+                    display: none;
+                }
             }
 
             .Event {
@@ -400,6 +434,9 @@
                 padding-left    : 30px;
                 padding-right   : 30px;
 
+                &>button {
+                    display: none;
+                }
             }
         }
 

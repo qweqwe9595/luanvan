@@ -3,6 +3,7 @@ import "./FriendTag.scss";
 import axios from "axios";
 function FriendTag({ friend }) {
   const [friendInfo, setFriendInfo] = useState([]);
+  const [notFriend, setNotFriend] = useState(false);
   useEffect(() => {
     const getFRequests = () => {
       axios
@@ -27,8 +28,19 @@ function FriendTag({ friend }) {
       })
       .catch((err) => {});
   };
-  console.log(userId);
-  console.log(friend);
+
+  const sendRequest = () => {
+    axios
+      .patch(`http://localhost:5000/api/users/add/${friend}`, {
+        userId
+      })
+      .then((res) => {
+        //alert("đã gửi yêu cầu thành công");
+      })
+      .catch((err) => {
+        
+      });
+  }; 
   return (
     <div className="friend_tag">
       <img
@@ -41,14 +53,22 @@ function FriendTag({ friend }) {
       </div>
 
       <div className="friend_button">
-        <button
+        {notFriend?(
+            <button type="button"
+              onClick={() => {
+                sendRequest();
+            }}>Kết bạn</button>
+        ):(<button
           type="button"
           onClick={() => {
             unfriend();
+            setNotFriend(true);
           }}
         >
           Xóa bạn
-        </button>
+        </button>) 
+        }
+        
       </div>
     </div>
   );

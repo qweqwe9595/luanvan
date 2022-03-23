@@ -1,5 +1,6 @@
 import { FaBars, FaSearch } from "react-icons/fa";
 import { AiOutlineBell, AiFillCaretDown } from "react-icons/ai";
+import { GoSignOut } from "react-icons/go";
 import "./nav.scss";
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
@@ -7,13 +8,14 @@ import { SearchResultContext } from "../../context/SearchContext";
 import { useNavigate } from "react-router-dom";
 
 function Nav() {
+  const [open, setOpen] = useState(false);
   let navigate = useNavigate();
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [userInfo, setUserInfo] = useState({});
-
   useEffect(() => {
     const userId = localStorage.getItem("userID");
+   
     const getUserInfo = () => {
       axios
         .get(`http://localhost:5000/api/users//getone/${userId}`)
@@ -74,9 +76,34 @@ function Nav() {
             alt=""
           />
           <span>{userInfo.userName ? userInfo.userName : ""}</span>
-          <AiFillCaretDown className="arrow-down" />
+          <button onClick={() => {
+            setOpen(!open);
+          }}>
+            <AiFillCaretDown  className="arrow-down"/>
+          </button>
+        
         </div>
       </div>
+      {open?(<div className="account">
+        <div className="user">
+          <img
+            src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
+            alt=""
+          />
+          <div className="infouser">
+            <span>{userInfo.userName ? userInfo.userName : ""}</span>
+            <h4>Xem trang cá nhân của bạn </h4>
+          </div>
+         
+        </div>
+        <hr></hr>
+        <div className="signout">
+          <div className="icon-signout">
+            <GoSignOut></GoSignOut>
+          </div>
+          <span>Đăng xuất</span></div>
+        </div>):""}
+       
     </div>
   );
 }

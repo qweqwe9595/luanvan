@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 function Hero() {
   const userId = useParams().userId;
   const userRequestId = JSON.parse(localStorage.getItem("userInfo"))._id;
+
   const addFriend = () => {
     axios.patch(`http://localhost:5000/api/users/add/${userRequestId}`, {
       userId: userId,

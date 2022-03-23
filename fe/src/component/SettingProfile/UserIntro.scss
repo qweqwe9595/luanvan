@@ -69,19 +69,21 @@
                 }
             }
 
+
             .input_yearKey {
                 display              : grid;
                 grid-template-columns: 1fr 1fr;
                 align-items          : center;
 
                 &>input {
-                    width        : 90%;
-                    height       : 35px;
-                    border-radius: 10px;
-                    border       : none;
-                    box-shadow   : 10px 10px 10px lightblue;
-                    padding-left : 20px;
-                    font-size    : 15px;
+                    width         : 90%;
+                    height        : 35px;
+                    border-radius : 10px;
+                    border        : none;
+                    box-shadow    : 10px 10px 10px lightblue;
+                    padding-left  : 20px;
+                    font-size     : 15px;
+                    text-transform: capitalize;
 
                     &:focus {
                         outline: none;
@@ -98,13 +100,14 @@
                     }
 
                     &>input {
-                        width        : 100%;
-                        height       : 35px;
-                        border-radius: 10px;
-                        border       : none;
-                        box-shadow   : 10px 10px 10px lightblue;
-                        padding-left : 20px;
-                        font-size    : 15px;
+                        width         : 100%;
+                        height        : 35px;
+                        border-radius : 10px;
+                        border        : none;
+                        box-shadow    : 10px 10px 10px lightblue;
+                        padding-left  : 20px;
+                        font-size     : 15px;
+                        text-transform: capitalize;
 
                         &:focus {
                             outline: none;
@@ -115,13 +118,14 @@
             }
 
             &>input {
-                width        : 100%;
-                height       : 35px;
-                border-radius: 10px;
-                border       : none;
-                box-shadow   : 10px 10px 10px lightblue;
-                padding-left : 20px;
-                font-size    : 16px;
+                width         : 100%;
+                height        : 35px;
+                border-radius : 10px;
+                border        : none;
+                box-shadow    : 10px 10px 10px lightblue;
+                padding-left  : 20px;
+                font-size     : 16px;
+                text-transform: capitalize;
 
                 &:focus {
                     outline: none;
