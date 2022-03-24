@@ -15,7 +15,7 @@ function Home() {
     const getUserPost = () => {
       axios
         .get(
-          `http://localhost:5000/api/posts/timeline/${ userIdCurrent}`
+          `http://localhost:5000/api/posts/timeline/${userIdCurrent}`
         )
         .then((res) => {
           setUserPosts(res.data.posts);

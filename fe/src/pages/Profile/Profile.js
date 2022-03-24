@@ -27,8 +27,8 @@ function Profile() {
         });
     };
     getUserPost();
-  }, []);
-  console.log(userPosts);
+  }, [param.userId]);
+  //console.log(userPosts);
   return (
     <div className="profile">
       <Nav></Nav>

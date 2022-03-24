@@ -14,6 +14,7 @@ function Infos() {
   const [userInfo, setUserInfo] = useState({});
   const [open, setOpen] = useState(false);
   const param = useParams();
+  const currentUserId = localStorage.getItem("userID");
   useEffect(() => {
     const getUserInfo = () => {
       Axios.get(`http://localhost:5000/api/users//getone/${param.userId}`)
@@ -25,7 +26,8 @@ function Infos() {
         });
     };
     getUserInfo();
-  }, [open]);
+  }, [param.userId, open]);
+  
   return (
     <div className="info">
       <p>Giới thiệu</p>
@@ -56,28 +58,30 @@ function Infos() {
       <div className="info_tag">
         <GiGraduateCap></GiGraduateCap>
         <p>Ngành </p>
-        <span>
-          {" "}
-          {userInfo.major ? userInfo.major.majorName : ""} K
-          {userInfo.major ? userInfo.major.yearKey : ""}
+          <span>
+            {userInfo.major ? userInfo.major.majorName : ""} K
+            {userInfo.major ? userInfo.major.yearKey : ""}
         </span>
       </div>
       <div className="info_tag">
         <MdWhereToVote></MdWhereToVote>
         <p>Quê quán </p>
-        <span>
-          {userInfo.address ? userInfo.address.city : ""},{" "}
-          {userInfo.address ? userInfo.address.distrist : ""}
+          <span>
+            {userInfo.address ? userInfo.address.city : ""},{" "}
+            {userInfo.address ? userInfo.address.distrist : ""}
         </span>
+       
+       
       </div>
       {open ? <UserIntro setOpen={setOpen}></UserIntro> : ""}
-      <button
+       {currentUserId===param.userId?(<button
         onClick={() => {
           setOpen(true);
         }}
       >
         Chỉnh sửa thông tin cá nhân
-      </button>
+      </button>):""}
+      
     </div>
   );
 }

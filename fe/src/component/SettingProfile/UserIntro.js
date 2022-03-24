@@ -20,6 +20,8 @@ function UserIntro({ setOpen }) {
   const [city, setCity] = useState("");
   const [distrist, setdistrist] = useState("");
   const param = useParams();
+
+
   useEffect(() => {
     const getUserInfo = () => {
       axios
@@ -61,7 +63,7 @@ function UserIntro({ setOpen }) {
     const dateFormat = new Date(dayOfBirth).getTime();
     axios
       .patch(`http://localhost:5000/api/users/${param.userId}`, {
-        userId:param.userId,
+        userId: param.userId,
         userName,
         MSSV,
         major: { class: Class, majorName, yearKey },

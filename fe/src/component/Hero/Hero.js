@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./hero.scss";
 import { AiOutlineCamera } from "react-icons/ai";
 import axios from "axios";
@@ -7,6 +7,21 @@ import { useParams } from "react-router-dom";
 function Hero() {
   const userId = useParams().userId;
   const userRequestId = JSON.parse(localStorage.getItem("userInfo"))._id;
+  const [userinfos, setUserInfos] = useState("");
+    useEffect(() => {
+    const getUserInfo = () => {
+      axios
+        .get(`http://localhost:5000/api/users//getone/${userId}`)
+        .then((res) => {
+          setUserInfos(res.data);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    };
+    getUserInfo();
+    }, [userId]);
+  console.log(userinfos);
 
   const addFriend = () => {
     axios.patch(`http://localhost:5000/api/users/add/${userRequestId}`, {
@@ -39,13 +54,13 @@ function Hero() {
           />
           <AiOutlineCamera className="camera" />
         </div>
-        <p className="hero-name">Name</p>
+        <p className="hero-name">{userinfos.userName?userinfos.userName:"" }</p>
       </div>
       <div className="hero-content">
         <div>Nhắn tin</div>
         {!userId.includes(userRequestId) ? (
-        <div className="icon">
-          <div onClick={() => addFriend()}>Kết bạn</div>
+        <div className="icon-request">
+          <div  onClick={() => addFriend()}>Kết bạn</div>
                     </div>
                   ) : (
                     ""

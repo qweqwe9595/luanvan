@@ -14,6 +14,7 @@ function Nav() {
   const [searchTerm, setSearchTerm] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const currentUserId = localStorage.getItem("userID");
+ 
 
   useEffect(() => {
     const userId = localStorage.getItem("userID");
@@ -77,7 +78,13 @@ function Nav() {
       </div>
       <div className="nav-right">
         <AiOutlineBell className="bell"></AiOutlineBell>
-        <FaBars className="hamburger"></FaBars>
+
+        <FaBars
+          className="hamburger"
+          onClick={() => {
+            setOpen(!open);
+          }}
+        ></FaBars>
 
         <Link to={`/profile/${currentUserId}`}>
           <div className="user-container">
@@ -88,33 +95,38 @@ function Nav() {
             <span>{userInfo.userName ? userInfo.userName : ""}</span>
           </div>
         </Link>
-        <button onClick={() => {
+        <button
+          onClick={() => {
             setOpen(!open);
-          }}>
-            <AiFillCaretDown  className="arrow-down"/>
-          </button>
+          }}
+        >
+          <AiFillCaretDown className="arrow-down" />
+        </button>
       </div>
 
-      {open?(<div className="account">
-        <div className="user">
-          <img
-            src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
-            alt=""
-          />
-          <div className="infouser">
-            <span>{userInfo.userName ? userInfo.userName : ""}</span>
-            <h4>Xem trang cá nhân của bạn </h4>
+      {open ? (
+        <div className="account">
+          <div className="user">
+            <img
+              src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
+              alt=""
+            />
+            <div className="infouser">
+              <span>{userInfo.userName ? userInfo.userName : ""}</span>
+              <h4>Xem trang cá nhân của bạn </h4>
+            </div>
           </div>
-         
+          <hr></hr>
+          <div className="signout">
+            <div className="icon-signout">
+              <GoSignOut></GoSignOut>
+            </div>
+            <span>Đăng xuất</span>
+          </div>
         </div>
-        <hr></hr>
-        <div className="signout">
-          <div className="icon-signout">
-            <GoSignOut></GoSignOut>
-          </div>
-          <span>Đăng xuất</span></div>
-        </div>):""}
-       
+      ) : (
+        ""
+      )}
     </div>
   );
 }
