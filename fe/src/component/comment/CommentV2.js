@@ -119,7 +119,7 @@ function CommentV2({ commentV2, commentLv1 }) {
           }}
         >
           <GoComment style={iconStyles} />
-          <p> {commentV2.length}</p>
+          <p> {commentV2?.length}</p>
         </div>
       </div>
       {open ? (
