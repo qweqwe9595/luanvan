@@ -27,7 +27,9 @@ const searchingUser = async (req, res) => {
 
 const getAUser = async (req, res) => {
   try {
-    const userQuery = await userModal.findById(req.params.id);
+    const userQuery = await userModal
+      .findById(req.params.id)
+      .populate("friends");
     const { isAdmin, updatedAt, ...other } = userQuery._doc;
     res.status(200).json(other);
   } catch (err) {
@@ -172,7 +174,6 @@ const unFriend = async (req, res) => {
   if (req.body.userId == req.params.id)
     return res.status(500).json({ message: "cant unfriend ur self" });
 
-  
   try {
     const userGotQuery = await userModal.findById(req.params.id);
     const userQuery = await userModal.findById(req.body.userId);

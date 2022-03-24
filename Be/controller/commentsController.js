@@ -64,7 +64,10 @@ const updatecommentLv2 = async (req, res) => {
 };
 const getAllComment = async (req, res) => {
   try {
-    const commentsQuery = await commentLv1Model.find();
+    const commentsQuery = await commentLv1Model
+      .find()
+      .populate("like")
+      .populate("userId");
     res.status(200).json({ message: "thanh cong", commentsQuery });
   } catch (error) {
     res.status(500).json(error.message);
@@ -75,7 +78,9 @@ const getAllCommentOfAPost = async (req, res) => {
   try {
     const commentsQuery = await commentLv1Model
       .find({ postId: req.params.id })
-      .populate("commentLv2");
+      .populate({ path: "commentLv2", populate: { path: "userId" } })
+      .populate("like")
+      .populate("userId");
     res.status(200).json({ message: "thanh cong", data: commentsQuery });
   } catch (error) {
     res.status(500).json(error.message);
@@ -106,6 +111,48 @@ const deleteCommentLv2 = async (req, res) => {
   }
 };
 
+const likeLv1Comment = async (req, res) => {
+  try {
+    const cmtQuery = await commentLv2Model.findById(req.params.id);
+    if (cmtQuery.like.includes(req.body.userId)) {
+      const updateQuery = await commentLv1Model.findByIdAndUpdate(
+        req.params.id,
+        {
+          $pull: { like: req.body.userId },
+        },
+        { new: true }
+      );
+      return res.status(200).json({ updateQuery });
+    }
+    const updateQuery = await commentLv1Model.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: { like: req.body.userId },
+      },
+      { new: true }
+    );
+    res.status(200).json({ updateQuery });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error.message);
+  }
+};
+
+const likeLv2Comment = async (req, res) => {
+  try {
+    const updateQuery = await commentLv2Model.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: { like: req.body.userId },
+      },
+      { new: true }
+    );
+    res.status(200).json({ updateQuery });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   commentLv1,
   commentLv2,
@@ -115,4 +162,6 @@ module.exports = {
   updatecommentLv2,
   deleteCommentLv1,
   deleteCommentLv2,
+  likeLv1Comment,
+  likeLv2Comment,
 };

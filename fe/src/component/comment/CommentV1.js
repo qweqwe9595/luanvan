@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./comment.scss";
 import CommentV2 from "../comment/CommentV2";
 import { useParams } from "react-router-dom";
@@ -6,7 +6,9 @@ import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import axios from "axios";
 
-function CommentV1({commentV1}) {
+function CommentV1({ commentV1 }) {
+  const [liking, setLiking] = useState(false);
+  const [likes, setLikes] = useState(commentV1.comment.like.length);
   const [open, setOpen] = useState(false);
   const commentV2 = commentV1.comment.commentLv2;
   const commentId = commentV1.comment._id;
@@ -18,8 +20,12 @@ function CommentV1({commentV1}) {
   const iconStyles = { color: "#0d47a1", fontSize: "20px" };
 
   const [cmtV2, setCmtV2] = useState("");
+  useEffect(() => {
+    const Id = localStorage.getItem("userID");
+    if (commentV1.comment.like.includes(Id)) return setLiking(true);
+  }, [commentV1]);
 
-  const writeCommentV2= () => {
+  const writeCommentV2 = () => {
     axios
       .post("http://localhost:5000/api/comments/commentlv2", {
         commentLv1: commentId,
@@ -36,79 +42,137 @@ function CommentV1({commentV1}) {
       });
   };
 
+  const like = () => {
+    const Id = localStorage.getItem("userID");
+    setLiking(true);
+    setLikes(likes + 1);
+    axios.patch(
+      `http://localhost:5000/api/comments/like/commentlv1/${commentV1.comment._id}`,
+      {
+        userId: Id,
+      }
+    );
+  };
+
+  const disLike = () => {
+    setLiking(false);
+    setLikes(likes - 1);
+    setLiking();
+    const Id = localStorage.getItem("userID");
+    axios.patch(
+      `http://localhost:5000/api/comments/like/commentlv1/${commentV1.comment._id}`,
+      {
+        userId: Id,
+      }
+    );
+  };
+
   return (
     <div>
-       <div className="comment">
+      <div className="comment">
         <div className="comment-tag">
-         <div className="avatar">
-           <img src="https://dep365.com/wp-content/uploads/2021/07/Post-from-imjanedeleon-rsgym6-800x470.jpg"></img>
-         </div>
+          <div className="avatar">
+            <img src="https://dep365.com/wp-content/uploads/2021/07/Post-from-imjanedeleon-rsgym6-800x470.jpg"></img>
+          </div>
           <div className="comment-tag-username">
-          <p>{commentV1.comment.userId}</p>
-         </div>
-        <div className="comment-tag-timepost">
-              {(() => {
-                switch (true) {
-                  case commentDate < 60:
-                    return <p>{Math.round(commentDate)} giây trước</p>;
-                  case commentDate >= 60 && commentDate < (60 * 60):
-                    return <p>{Math.round(commentDate / 60)} phút trước</p>;
-                  case commentDate >= (60 * 60) && commentDate < (60 * 60 * 24):
-                    return <p>{Math.round(commentDate / (60 * 60))} giờ trước</p>;
-                  case commentDate >= (60 * 60 * 24) && commentDate < (60 * 60 * 24 * 7):
-                    return <p>{Math.round(commentDate / (60 * 60 * 24))} ngày trước</p>;
-                  case commentDate >= (60 * 60 * 24 * 7) && commentDate < (60 * 60 * 24 * 7 * 4) :
-                    return <p>{Math.round(commentDate / (60 * 60 * 24 * 7))} tuần trước</p>;
-                  default:
-                    return <p>{Math.round(commentDate / (60 * 60 * 24 * 7 * 4))} tháng trước</p>;
-                }
-              })()}
-            </div>
+            <p>{commentV1.comment.userId?.userName}</p>
+          </div>
+          <div className="comment-tag-timepost">
+            {(() => {
+              switch (true) {
+                case commentDate < 60:
+                  return <p>{Math.round(commentDate)} giây trước</p>;
+                case commentDate >= 60 && commentDate < 60 * 60:
+                  return <p>{Math.round(commentDate / 60)} phút trước</p>;
+                case commentDate >= 60 * 60 && commentDate < 60 * 60 * 24:
+                  return <p>{Math.round(commentDate / (60 * 60))} giờ trước</p>;
+                case commentDate >= 60 * 60 * 24 &&
+                  commentDate < 60 * 60 * 24 * 7:
+                  return (
+                    <p>{Math.round(commentDate / (60 * 60 * 24))} ngày trước</p>
+                  );
+                case commentDate >= 60 * 60 * 24 * 7 &&
+                  commentDate < 60 * 60 * 24 * 7 * 4:
+                  return (
+                    <p>
+                      {Math.round(commentDate / (60 * 60 * 24 * 7))} tuần trước
+                    </p>
+                  );
+                default:
+                  return (
+                    <p>
+                      {Math.round(commentDate / (60 * 60 * 24 * 7 * 4))} tháng
+                      trước
+                    </p>
+                  );
+              }
+            })()}
+          </div>
+        </div>
+        <div className="comment-tag-message">
+          <p>{commentV1.comment.message}</p>
+        </div>
       </div>
-      <div className="comment-tag-message">
-          <p>{commentV1.comment.message}</p>      
-      </div>      
-    </div>
-    <div className="post-interaction-2">
+      <div className="post-interaction-2">
         <div className="post-interaction-heart">
-            <IoMdHeart style={iconStyles}/>
-            <p>...</p>
+          {liking ? (
+            <IoMdHeart style={iconStyles} onClick={() => disLike()} />
+          ) : (
+            <IoMdHeartEmpty style={iconStyles} onClick={() => like()} />
+          )}
+          <p>{likes}</p>
         </div>
-        <div className="post-interaction-comment" onClick={() => {setOpen(true);}}>
-            <GoComment style={iconStyles}/>
-            <p> {commentV2.length}</p>
-        </div>
-      </div>
-    {open ? (
-      <div className="post-comment-bar">
-      <div className="post-comment-bar-text">
-        <input
-          type="text"
-          placeholder="Viết bình luận của bạn..."
-          value={cmtV2}
-          onChange={(e) => {
-            setCmtV2(e.target.value);
+        <div
+          className="post-interaction-comment"
+          onClick={() => {
+            setOpen(true);
           }}
-        ></input>
-      </div>
-      <div className="post-comment-bar-btn" onClick={() => {writeCommentV2();}}>
-        <span>ĐĂNG</span>
-      </div>
-    </div>
-    ): ""
-    }
-      {commentV2 ? 
-        <div>
-        {commentV2.map((comment) => {
-              return <CommentV2 key={comment._id} commentV2={comment}/>;
-            })}
+        >
+          <GoComment style={iconStyles} />
+          <p>{commentV2.length}</p>
         </div>
-        :""
-        }
-            </div>
-
-    );
-   
+      </div>
+      {open ? (
+        <div className="post-comment-bar">
+          <div className="post-comment-bar-text">
+            <input
+              type="text"
+              placeholder="Viết bình luận của bạn..."
+              value={cmtV2}
+              onChange={(e) => {
+                setCmtV2(e.target.value);
+              }}
+            ></input>
+          </div>
+          <div
+            className="post-comment-bar-btn"
+            onClick={() => {
+              writeCommentV2();
+            }}
+          >
+            <span>ĐĂNG</span>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+      {commentV2 ? (
+        <div>
+          {commentV2.map((comment) => {
+            return (
+              <CommentV2
+                key={comment._id}
+                commentV2={comment}
+                commentLv1={commentV1.comment}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
+  );
 }
 
 export default CommentV1;

@@ -8,7 +8,7 @@ function Hero() {
   const userId = useParams().userId;
   const userRequestId = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userinfos, setUserInfos] = useState("");
-    useEffect(() => {
+  useEffect(() => {
     const getUserInfo = () => {
       axios
         .get(`http://localhost:5000/api/users//getone/${userId}`)
@@ -20,19 +20,19 @@ function Hero() {
         });
     };
     getUserInfo();
-    }, [userId]);
-  console.log(userinfos);
+  }, [userId]);
 
   const addFriend = () => {
-    axios.patch(`http://localhost:5000/api/users/add/${userRequestId}`, {
-      userId: userId,
-    })
-    .then((res) => {
-     console.log(res.data);
-       })
+    axios
+      .patch(`http://localhost:5000/api/users/add/${userRequestId}`, {
+        userId: userId,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
       .catch((err) => {
-         console.log(err.response.data.message);
-       });
+        console.log(err.response.data.message);
+      });
   };
 
   return (
@@ -54,17 +54,19 @@ function Hero() {
           />
           <AiOutlineCamera className="camera" />
         </div>
-        <p className="hero-name">{userinfos.userName?userinfos.userName:"" }</p>
+        <p className="hero-name">
+          {userinfos.userName ? userinfos.userName : ""}
+        </p>
       </div>
       <div className="hero-content">
         <div>Nhắn tin</div>
         {!userId.includes(userRequestId) ? (
-        <div className="icon-request">
-          <div  onClick={() => addFriend()}>Kết bạn</div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+          <div className="icon-request">
+            <div onClick={() => addFriend()}>Kết bạn</div>
+          </div>
+        ) : (
+          ""
+        )}
         <div>Dự phòng</div>
       </div>
     </div>

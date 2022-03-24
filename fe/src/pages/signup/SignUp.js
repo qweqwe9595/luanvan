@@ -14,9 +14,9 @@ function SignUp() {
   const [passwordConfirm, setPasswordConfirm] = useState();
   const [sex, getSex] = useState("0");
   const [dateOfBirth, getDateOfBirth] = useState("");
-
+  let navigate = useNavigate();
   const SignUp = () => {
-     if (password === "" || email==="" || username ==="") {
+    if (password === "" || email === "" || username === "") {
       alert("vui lòng điền đầy đủ thông tin!");
     }
     if (!email.includes("ctu.edu.vn")) {
@@ -29,14 +29,15 @@ function SignUp() {
     console.log(username, email, password, sex, dateOfBirth);
     axios
       .post("http://localhost:5000/api/auth/register", {
-        userName:username,
+        userName: username,
         email,
         password,
         sex,
         dateOfBirth,
-
       })
-      .then((res) => {})
+      .then((res) => {
+        navigate("/login");
+      })
       .catch((err) => {});
   };
 
@@ -119,7 +120,8 @@ function SignUp() {
               </select>
             </div>
             <div className="input_dateOfbirth">
-              <input type="date"
+              <input
+                type="date"
                 value={dateOfBirth}
                 onChange={(e) => {
                   getDateOfBirth(e.target.value);

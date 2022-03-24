@@ -84,22 +84,19 @@ function SearchResults() {
                       <span> {people.address ? people.address.city : ""}</span>
                     </div>
                   </div>
-                  {
-                    (usertest =
-                      people._id === userIdCurrent ? (
-                        ""
-                      ) : people.friends.includes(userIdCurrent) ? (
-                        <button className="icon">
-                          <RiMessengerLine></RiMessengerLine>
-                        </button>
-                      ) : people.friendsRequest.includes(userIdCurrent) ? (
-                        <button type="button" className="icon2">
-                          <FaUserPlus />
-                        </button>
-                      ) : (
-                        <SearchResultTag id={people._id}></SearchResultTag>
-                      ))
-                  }
+                  {people._id === userIdCurrent ? (
+                    ""
+                  ) : people.friends.includes(userIdCurrent) ? (
+                    <button className="icon">
+                      <RiMessengerLine></RiMessengerLine>
+                    </button>
+                  ) : people.friendsRequest.includes(userIdCurrent) ? (
+                    <button type="button" className="icon2">
+                      <FaUserPlus />
+                    </button>
+                  ) : (
+                    <SearchResultTag id={people._id}></SearchResultTag>
+                  )}
                 </div>
               );
             })}

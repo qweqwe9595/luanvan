@@ -12,7 +12,7 @@ function Friend() {
   useEffect(() => {
     const getFRequests = () => {
       axios
-        .get(`http://localhost:5000/api/users//getone/${userIdCurrent}`)
+        .get(`http://localhost:5000/api/users/getone/${userIdCurrent}`)
         .then((res) => {
           setFRequests(res.data.friendsRequest);
           setFriendId(res.data.friends);

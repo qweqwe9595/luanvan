@@ -4,10 +4,11 @@ import axios from "axios";
 function FriendTag({ friend }) {
   const [friendInfo, setFriendInfo] = useState([]);
   const [notFriend, setNotFriend] = useState(false);
+  console.log(friend);
   useEffect(() => {
     const getFRequests = () => {
       axios
-        .get(`http://localhost:5000/api/users/getone/${friend}`)
+        .get(`http://localhost:5000/api/users/getone/${friend._id}`)
         .then((res) => {
           setFriendInfo(res.data);
         })
@@ -21,7 +22,7 @@ function FriendTag({ friend }) {
   const unfriend = () => {
     window.location.reload();
     axios
-      .patch(`http://localhost:5000/api/users/unfriend/${friend}`, {
+      .patch(`http://localhost:5000/api/users/unfriend/${friend._id}`, {
         userId,
       })
       .then((res) => {
@@ -31,16 +32,14 @@ function FriendTag({ friend }) {
   };
   const sendRequest = () => {
     axios
-      .patch(`http://localhost:5000/api/users/add/${friend}`, {
-        userId
+      .patch(`http://localhost:5000/api/users/add/${friend._id}`, {
+        userId,
       })
       .then((res) => {
         //alert("đã gửi yêu cầu thành công");
       })
-      .catch((err) => {
-        
-      });
-  }; 
+      .catch((err) => {});
+  };
   return (
     <div className="friend_tag">
       <img
@@ -53,22 +52,26 @@ function FriendTag({ friend }) {
       </div>
 
       <div className="friend_button">
-        {notFriend?(
-            <button type="button"
-              onClick={() => {
-                sendRequest();
-            }}>Kết bạn</button>
-        ):(<button
-          type="button"
-          onClick={() => {
-            unfriend();
-            setNotFriend(true);
-          }}
-        >
-          Xóa bạn
-        </button>) 
-        }
-        
+        {notFriend ? (
+          <button
+            type="button"
+            onClick={() => {
+              sendRequest();
+            }}
+          >
+            Kết bạn
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => {
+              unfriend();
+              setNotFriend(true);
+            }}
+          >
+            Xóa bạn
+          </button>
+        )}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import axios from "axios";
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import CommentV1 from "../comment/CommentV1";
 
 function Post({ postInfo }) {
@@ -24,16 +24,13 @@ function Post({ postInfo }) {
   const [comment, setComment] = useState([]);
   const commentNumber = comment.length;
 
-
   useEffect(() => {
     if (postInfo.likes.includes(loginUser)) {
       setIsLike(true);
     }
     const getComment = () => {
       axios
-        .get(
-          `http://localhost:5000/api/comments/post/${postId}`
-        )
+        .get(`http://localhost:5000/api/comments/post/${postId}`)
         .then((res) => {
           setComment(res.data.data);
         })
@@ -41,10 +38,9 @@ function Post({ postInfo }) {
           console.log(err.response);
         });
     };
-    getComment();    
+    getComment();
   }, []);
   //Lay tat ca comment
-  
 
   // console.log("commentlv2", comment.comment.commentLv2);
 
@@ -91,7 +87,9 @@ function Post({ postInfo }) {
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
-              <p>{postInfo.userId.userName}</p>
+              <Link to={`/profile/${postInfo.userId._id}`}>
+                <p>{postInfo.userId.userName}</p>
+              </Link>
             </div>
             <div className="post-meta-left-timepost">
               {(() => {
@@ -185,9 +183,9 @@ function Post({ postInfo }) {
         <div className="post-comment-list">
           <p>Các bình luận trước đó</p>
           <div className="post-comment-list-item">
-              {comment?.map((comment) => {
-                return <CommentV1 key={comment._id} commentV1={{comment}}/>;
-              })}
+            {comment?.map((comment) => {
+              return <CommentV1 key={comment._id} commentV1={{ comment }} />;
+            })}
           </div>
           <div className="post-comment-bar">
             <div className="post-comment-bar-text">
@@ -200,7 +198,12 @@ function Post({ postInfo }) {
                 }}
               ></input>
             </div>
-            <div className="post-comment-bar-btn" onClick={() => {writeCommentV1();}}>
+            <div
+              className="post-comment-bar-btn"
+              onClick={() => {
+                writeCommentV1();
+              }}
+            >
               <span>ĐĂNG</span>
             </div>
           </div>

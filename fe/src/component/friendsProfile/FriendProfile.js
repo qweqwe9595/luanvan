@@ -1,77 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./friendsprofile.scss";
+import { Link } from "react-router-dom";
 
-const dummy = [
-  {
-    name: "testassasdasdasdasdssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-  {
-    name: "testassssd",
-    img:
-      "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1295,h_720/w_80,x_15,y_15,g_south_west,l_klook_water/activities/t9ur9cc1khkup1dmcbzd/C%C3%B4ngVi%C3%AAnGi%E1%BA%A3iTr%C3%ADIMGWorldsofAdventure.webp",
-  },
-];
-
-function FriendProfile() {
-  const newDummy = dummy.filter((item, index) => {
+function FriendProfile({ userData }) {
+  const newDummy = userData?.friends?.filter((item, index) => {
     return index < 9;
   });
   return (
     <div className="friendprofile">
-      <h1>Bạn bè</h1>
+      <h1>
+        <Link to={"/friend"}>Bạn bè</Link>
+      </h1>
+
       <div className="friendprofile-container">
-        {newDummy.map((item, i) => {
+        {newDummy?.map((item, i) => {
           return (
-            <div key={i} className="friendprofile-item">
-              <img src={item.img} alt="" />
+            <Link
+              to={`/profile/${item._id}`}
+              key={i}
+              className="friendprofile-item"
+            >
+              <img
+                src={
+                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                }
+                alt=""
+              />
               <p>
-                {item.name.length > 15
-                  ? item.name.substring(0, 15) + "..."
-                  : item.name}
+                {item.userName.length > 17
+                  ? item.userName.substring(0, 15) + "..."
+                  : item.userName}
               </p>
-            </div>
+            </Link>
           );
         })}
       </div>

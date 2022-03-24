@@ -14,9 +14,7 @@ function Home() {
   useEffect(() => {
     const getUserPost = () => {
       axios
-        .get(
-          `http://localhost:5000/api/posts/timeline/${userIdCurrent}`
-        )
+        .get(`http://localhost:5000/api/posts/timeline/${userIdCurrent}`)
         .then((res) => {
           setUserPosts(res.data.posts);
         })
@@ -26,7 +24,6 @@ function Home() {
     };
     getUserPost();
   }, []);
-  console.log(userPosts);
 
   return (
     <div className="home">
@@ -38,15 +35,12 @@ function Home() {
 
         <div className="center">
           <Share></Share>
-           <RecommendPage></RecommendPage>
+          <RecommendPage></RecommendPage>
           {userPosts.map((userPost, index) => {
-            return (
-              <Feed userPost={userPost} key={index}></Feed>
-            )  
+            return <Feed userPost={userPost} key={index}></Feed>;
           })}
-         
         </div>
-        
+
         <div className="rightbar">
           <FriendRequest></FriendRequest>
           <Contacts></Contacts>

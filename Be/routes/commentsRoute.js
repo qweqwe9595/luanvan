@@ -8,6 +8,8 @@ const {
   updatecommentLv2,
   deleteCommentLv1,
   deleteCommentLv2,
+  likeLv1Comment,
+  likeLv2Comment,
 } = require("../controller/commentsController");
 //get all cmt
 router.get("/all", getAllComment);
@@ -19,6 +21,10 @@ router.post("/commentlv1", commentLv1);
 router.patch("/update/commentlv1/:id", updatecommentLv1);
 //update lv2 cmt
 router.patch("/update/commentlv2/:id", updatecommentLv2);
+//like lv1 cmt
+router.patch("/like/commentlv1/:id", likeLv1Comment);
+//update lv2 cmt
+router.patch("/like/commentlv2/:id", likeLv2Comment);
 //post a cmt lv2
 router.post("/commentlv2", commentLv2);
 //delete a lv1 cmt

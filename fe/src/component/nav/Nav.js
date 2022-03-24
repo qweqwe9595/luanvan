@@ -14,7 +14,6 @@ function Nav() {
   const [searchTerm, setSearchTerm] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const currentUserId = localStorage.getItem("userID");
- 
 
   useEffect(() => {
     const userId = localStorage.getItem("userID");
@@ -45,10 +44,18 @@ function Nav() {
         console.log(err.response);
       });
   };
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
   return (
     <div className="nav">
       <div className="nav-left">
-        <img className="logo" src="./stocks/img/logo/ctu.png" alt="" />
+        <Link to={"/"}>
+          <img className="logo" src="/stocks/img/logo/ctu.png" alt="" />
+        </Link>
+
         <div className="search-icon-container">
           <FaSearch className="search-icon"></FaSearch>
         </div>
@@ -117,7 +124,12 @@ function Nav() {
             </div>
           </div>
           <hr></hr>
-          <div className="signout">
+          <div
+            className="signout"
+            onClick={() => {
+              logOut();
+            }}
+          >
             <div className="icon-signout">
               <GoSignOut></GoSignOut>
             </div>

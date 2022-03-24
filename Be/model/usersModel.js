@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema(
     friends: {
       type: Array,
       default: [],
+      ref: "usersModal",
     },
     friendsRequest: {
       type: Array,
