@@ -3,6 +3,7 @@ import "./post.scss";
 import axios from "axios";
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
+import {BsThreeDots} from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { useParams, Link } from "react-router-dom";
 import CommentV1 from "../comment/CommentV1";
@@ -13,9 +14,7 @@ function Post({ postInfo }) {
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
-  // const [commentsCount, setCommentsCount] = useState(postInfo.comment.length);
   const [isLike, setIsLike] = useState(false);
-  // const [isComment, setIsComment] = useState(false);
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
@@ -42,7 +41,6 @@ function Post({ postInfo }) {
   }, []);
   //Lay tat ca comment
 
-  // console.log("commentlv2", comment.comment.commentLv2);
 
   //Like bai viet
 
@@ -125,9 +123,9 @@ function Post({ postInfo }) {
         </div>
         <div className="post-meta-right">
           <div className="post-meta-right-options">
-            <button>
-              <span>...</span>
-            </button>
+            <div className="post-meta-right-options-buttons">
+              <span><BsThreeDots></BsThreeDots></span>
+            </div>
           </div>
         </div>
       </div>

@@ -4,9 +4,10 @@
     max-width: 500px;
     min-height: 50px;
     height: max-content;
-    border: 1px solid blue;
+    border: 1px solid #EAEAEA;
+    background-color: #EAEAEA;
     margin: 10px 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     .comment-tag{
         display: flex;
         .avatar{
@@ -46,69 +47,50 @@
             font-family: 'Roboto',sans-serif;
         }
     }
+    .post-interaction-2{
+      border-top: white solid 1px;
+      display: flex;
+      width: max-content;
+      margin: 0px 20px;
+      .post-interaction-heart-2{
+        border: 1px solid wthite;
+        margin: 5px 0;
+        font-size: 17px;    
+        display: flex;
+        & > p{
+          margin: -3px 5px;
+          font-family: 'Oswald', sans-serif;
+        }
+        :hover{
+          cursor: pointer;
+        }
+      }
+      .post-interaction-comment-2{
+        border: 2px solid #EAEAEA;
+        margin: 5px 10px;
+        font-size: 17px;    
+        display: flex;    
+        & > p{
+          height: fit-content;
+          margin: -5px 5px;
+          font-family: 'Oswald', sans-serif;
+        }
+        :hover{
+          cursor: pointer;
+        }    
+      }
+    }      
 }
-.post-interaction-2{
-    border-top:#eaeaea solid 0.25px;
-    display: flex;
-    width: max-content;
-    margin-left: 20px;
-    .post-interaction-heart{
-      margin-right: 10px;
-      display: flex;
-      & > p{
-        margin-left: 2px;
-        font-family: 'Oswald', sans-serif;
-      }
-      :hover{
-        cursor: pointer;
-      }
-    }
-    .post-interaction-comment{
-      display: flex;    
-      & > p{
-        margin-left: 2px;
-        font-family: 'Oswald', sans-serif;
-      }
-      :hover{
-        cursor: pointer;
-      }    
-    }
-  }
 
-  .post-interaction-3{
-    border-top:#eaeaea solid 0.25px;
-    display: flex;
-    width: max-content;
-    margin-left: 55px;
-    .post-interaction-heart{
-      margin-right: 10px;
-      display: flex;
-      & > p{
-        margin-left: 2px;
-        font-family: 'Oswald', sans-serif;
-      }
-      :hover{
-        cursor: pointer;
-      }
-    }
-    .post-interaction-comment{
-      display: flex;    
-      & > p{
-        margin-left: 2px;
-        font-family: 'Oswald', sans-serif;
-      }
-      :hover{
-        cursor: pointer;
-      }    
-    }
-  }
+
 .comment-2{
     min-width: 250px;
-    width: max-content;
+    width: fit-content;
     max-width: 500px;
     min-height: 50px;
     height: max-content;
-    border: 1px solid green;
+    border: 1px solid #EAEAEA;
+    background-color: #EAEAEA;
     margin: 10px 60px;
     border-radius: 10px;
     .comment-tag{
@@ -142,58 +124,137 @@
         }      
     }
     .comment-tag-message{
-        width: max-content;
-        margin: 0 20px;
-        margin-bottom: 10px;
-        & > p{
-            font-size: 16px;
-            font-family: 'Roboto',sans-serif;
-        }
+      width: max-content;
+      margin: 0 20px;
+      margin-bottom: 10px;
+      & > p{
+          font-size: 16px;
+          font-family: 'Roboto',sans-serif;
+      }
     }
-   
-    
+    .post-interaction-3{
+      border-top: white solid 1px;
+      display: flex;
+      width: max-content;
+      margin: 0px 20px;
+      .post-interaction-heart-3{
+        border: 1px solid wthite;
+        margin: 5px 0;
+        font-size: 17px;    
+        display: flex;
+        & > p{
+          margin: -3px 5px;
+          font-family: 'Oswald', sans-serif;
+        }
+        :hover{
+          cursor: pointer;
+        }
+      }
+      .post-interaction-comment-3{
+        border: 2px solid #EAEAEA;
+        margin: 5px 10px;
+        font-size: 17px;    
+        display: flex;    
+        & > p{
+          height: fit-content;
+          margin: -5px 5px;
+          font-family: 'Oswald', sans-serif;
+        }
+        :hover{
+          cursor: pointer;
+        }    
+      }
+    }  
 }
 
-.post-comment-bar {
-    margin-top: 10px;
-    margin-bottom: 20px;
+.post-comment-bar-2 {
+    margin: 10px 20px;
     display: flex;
-    .post-comment-bar-text {
+    width: 80%;
+    .post-comment-bar-text-2 {
       background-color: #eaeaea;
       display: flex;
       padding: 0 12px;
       border-radius: 30px;
       height: 35px;
-      width: 50%;
-      margin: auto;
-      align-items: center;
+      width: 100%;
       & > input {
         font-family: 'Roboto', sans-serif;
         flex: 2;
         border: none;
-        font-size: 12px;
+        font-size: 14px;
         background-color: #eaeaea;
       }
       & > input:focus {
         outline: none;
       }
     }
-    .post-comment-bar-btn {      
+    .post-comment-bar-btn-2{ 
       height: 35px;
       width: max-content;
       color: white;
       padding: 4px 10px;
       background-color: #0d47a1;
+      border: 1px solid #0d47a1;
       border-radius: 5rem;
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin: auto;
+      margin: 0 20px;
       & > span {
         font-family: 'Oswald', sans-serif;
-        font-size: 12px;
+        font-size: 14px;
+      }
+      
+    }
+    :hover{
+      cursor: pointer;
+      color: #0d47a1;
+      background-color: #fff;
+    }
+  }
+  .post-comment-bar-3 {
+    margin: 10px 60px;
+    display: flex;
+    width: 80%;
+    .post-comment-bar-text-3 {
+      background-color: #eaeaea;
+      display: flex;
+      padding: 0 12px;
+      border-radius: 30px;
+      height: 35px;
+      width: 100%;
+      & > input {
+        font-family: 'Roboto', sans-serif;
+        flex: 2;
+        border: none;
+        font-size: 14px;
+        background-color: #eaeaea;
+      }
+      & > input:focus {
+        outline: none;
+      }
+    }
+    .post-comment-bar-btn-3{
+      height: 35px;
+      width: max-content;
+      color: white;
+      padding: 4px 10px;
+      background-color: #0d47a1;
+      border: 1px solid #0d47a1;
+      border-radius: 5rem;
+      display: flex;
+      align-items: center;
+      margin: 0 20px;
+      & > span {
+        font-family: 'Oswald', sans-serif;
+        font-size: 14px;
       }
       cursor: pointer;
+    }
+    :hover{
+      cursor: pointer;
+      color: #0d47a1;
+      background-color: #fff;
     }
   }
 

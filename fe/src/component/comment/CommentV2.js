@@ -102,9 +102,8 @@ function CommentV2({ commentV2, commentLv1 }) {
         <div className="comment-tag-message">
           <p>{commentV2.message}</p>
         </div>
-      </div>
-      <div className="post-interaction-3">
-        <div className="post-interaction-heart">
+        <div className="post-interaction-3">
+        <div className="post-interaction-heart-3">
           {liking ? (
             <IoMdHeart style={iconStyles} onClick={() => disLike()} />
           ) : (
@@ -113,18 +112,19 @@ function CommentV2({ commentV2, commentLv1 }) {
           <p>{likes}</p>
         </div>
         <div
-          className="post-interaction-comment"
+          className="post-interaction-comment-3"
           onClick={() => {
             setOpen(true);
           }}
         >
           <GoComment style={iconStyles} />
-          <p> {commentV2.length}</p>
+          <p> {commentV2?.length}</p>
         </div>
       </div>
+      </div>      
       {open ? (
-        <div className="post-comment-bar">
-          <div className="post-comment-bar-text">
+        <div className="post-comment-bar-3">
+          <div className="post-comment-bar-text-3">
             <input
               type="text"
               placeholder="Viết bình luận của bạn..."
@@ -135,7 +135,7 @@ function CommentV2({ commentV2, commentLv1 }) {
             ></input>
           </div>
           <div
-            className="post-comment-bar-btn"
+            className="post-comment-bar-btn-3"
             onClick={() => {
               writeCommentV2();
             }}
