@@ -10,7 +10,7 @@
   .post-meta {
     display: flex;
     margin: 15px;
-    .post-meta-left{
+    .post-meta-left {
       display: flex;
       .post-meta-left-avatar {
         width: 50px;
@@ -19,63 +19,66 @@
           height: 40px;
           border-radius: 20px;
         }
-        :hover{
+        :hover {
           cursor: pointer;
         }
       }
-      .post-meta-left-username-timepost{
-        .post-meta-left-username {    
-          width: max-content;      
-          & > p {
-            font-family: 'Oswald', sans-serif;
+      .post-meta-left-username-timepost {
+        .post-meta-left-username {
+          width: max-content;
+          .username {
+            text-transform: capitalize;
+            font-family: "Oswald", sans-serif;
             font-size: 20px;
-            font-weight: 500;
+            font-weight: 600;
+            :hover {
+              cursor: pointer;
+              color: #808080;
+            }
+            :hover {
+              cursor: pointer;
+              color: #808080;
+            }
           }
-          :hover{
-            cursor: pointer;
-          }
-        
         }
-      .post-meta-left-timepost {
-        width: max-content;      
+        .post-meta-left-timepost {
+          width: max-content;
           & > p {
-            font-family: 'Oswald', sans-serif;
+            font-family: "Oswald", sans-serif;
             font-size: 15px;
             color: #808080;
           }
         }
       }
     }
-    .post-meta-right{
+    .post-meta-right {
       height: max-content;
       width: 100%;
-        .post-meta-right-options {
-          float: right;
-          text-align: right;
-          display: flex;
-            margin: auto;
-          .post-meta-right-options-buttons {
-            background-color: #0d47a1;
-            font-weight: bold;
-            text-align: center;
-            height: 20px;
-            width: 30px;            
-            border-radius: 50px;
-            & > span{
-              font-size: 20px;
-              color: white;
-              cursor: pointer;              
-            }               
+      .post-meta-right-options {
+        float: right;
+        text-align: right;
+        display: flex;
+        margin: auto;
+        .post-meta-right-options-buttons {
+          background-color: #0d47a1;
+          font-weight: bold;
+          text-align: center;
+          height: 20px;
+          width: 30px;
+          border-radius: 50px;
+          & > span {
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+          }
         }
         :hover{
-          color: #0d47a1;
-          background-color: #fff;
-        }                
-      }       
+          color: red;
+        }
+      }
     }
   }
-    
-    
+
   .post-desc {
     width: 100%;
     margin-top: 10px;
@@ -84,7 +87,8 @@
     margin-right: 20px;
     display: block;
     & > p {
-      font-family: 'Roboto', sans-serif;
+      text-transform: unset;
+      font-family: "Roboto", sans-serif;
       font-size: 18px;
     }
   }
@@ -101,65 +105,65 @@
       cursor: pointer;
     }
   }
-    .post-interaction{
-      border-top:#cfcece solid 0.25px;
+  .post-interaction {
+    border-top: #cfcece solid 0.25px;
+    display: flex;
+    width: max-content;
+    margin-left: 10px;
+    .post-interaction-heart {
+      border: 1px solid white;
+      margin: 7px 2px;
       display: flex;
-      width: max-content;
-      margin-left: 10px;
-      .post-interaction-heart{
-        border: 1px solid white;
-        margin: 7px 2px;
-        display: flex;
-        & > p{
-          margin: 0px 5px;
-          font-family: 'Oswald', sans-serif;
-        }
-        :hover{
-          cursor: pointer;
-        }
+      & > p {
+        margin: 0px 5px;
+        font-family: "Oswald", sans-serif;
       }
-      .post-interaction-comment{
-        border: 3px solid white;
-        margin: 7px 2px;
-        display: flex;    
-        & > p{
-          margin: -2px 5px;
-          font-family: 'Oswald', sans-serif;
-        }
-        :hover{
-          cursor: pointer;
-        }    
-      }
-      .post-interaction-share{
-        border: 2px solid white;
-        margin: 7px 2px;
-        display: flex; 
-        & > p{
-          margin: 0px 5px;
-          font-family: 'Oswald', sans-serif;
-        }
-        :hover{
-          cursor: pointer;
-        }      
+      :hover {
+        cursor: pointer;
       }
     }
-    .post-interaction-name{
-      margin: 0 20px;
-      margin-bottom: 10px;
-      & > p{
-        font-size: 15px;
-        font-family: 'Osward', sans-serif;
+    .post-interaction-comment {
+      border: 3px solid white;
+      margin: 7px 2px;
+      display: flex;
+      & > p {
+        margin: -2px 5px;
+        font-family: "Oswald", sans-serif;
       }
-    }  
-  
+      :hover {
+        cursor: pointer;
+      }
+    }
+    .post-interaction-share {
+      border: 2px solid white;
+      margin: 7px 2px;
+      display: flex;
+      & > p {
+        margin: 0px 5px;
+        font-family: "Oswald", sans-serif;
+      }
+      :hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .post-interaction-name {
+    margin: 0 20px;
+    margin-bottom: 10px;
+    & > p {
+      font-size: 15px;
+      font-family: "Osward", sans-serif;
+    }
+  }
+
   .post-comment-list {
     // margin-top: 10px;
     // margin-bottom: 10px;
     // margin-left: 20px;
     // margin-right: 20px;
-      margin: 10px auto;
+    margin: 10px auto;
     & > p {
-      font-family: 'Oswald', sans-serif;
+      font-family: "Oswald", sans-serif;
       font-weight: 400;
       font-size: 18px;
       margin: 0 20px;
@@ -178,7 +182,7 @@
         margin: auto;
         align-items: center;
         & > input {
-          font-family: 'Roboto', sans-serif;
+          font-family: "Roboto", sans-serif;
           flex: 2;
           border: none;
           font-size: 15px;
@@ -189,7 +193,7 @@
         }
       }
       .post-comment-bar-btn {
-        border: 1px solid #0d47a1;      
+        border: 1px solid #0d47a1;
         height: 40px;
         width: max-content;
         color: white;
@@ -201,15 +205,14 @@
         gap: 8px;
         margin: auto;
         & > span {
-          font-family: 'Oswald', sans-serif;
+          font-family: "Oswald", sans-serif;
           font-size: 15px;
         }
+        :hover {
+          cursor: pointer;
+          color: #b91018;
+        }
         cursor: pointer;
-      }
-      :hover{
-        cursor: pointer;
-        color: #0d47a1;
-        background-color: #fff;
       }
     }
   }

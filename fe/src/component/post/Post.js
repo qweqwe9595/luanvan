@@ -10,14 +10,12 @@ import CommentV1 from "../comment/CommentV1";
 
 function Post({ postInfo }) {
   const [open, setOpen] = useState(false);
-  const userId = useParams().userId;
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
   const [isLike, setIsLike] = useState(
     postInfo.likes.some((item) => item._id === loginUser)
   );
-  console.log(loginUser);
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
@@ -92,12 +90,12 @@ function Post({ postInfo }) {
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
-            <img src="https://dep365.com/wp-content/uploads/2021/07/Post-from-imjanedeleon-rsgym6-800x470.jpg"></img>
+            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"></img>
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
               <Link to={`/profile/${postInfo.userId._id}`}>
-                <p>{postInfo.userId.userName}</p>
+                <p className="username">{postInfo.userId.userName}</p>
               </Link>
             </div>
             <div className="post-meta-left-timepost">

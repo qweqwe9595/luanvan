@@ -8,9 +8,9 @@ function FriendProfile({ userData }) {
   });
   return (
     <div className="friendprofile">
-      <h1>
-        <Link to={"/friend"}>Bạn bè</Link>
-      </h1>
+      <Link to={"/friend"}>
+      <p className="title">Bạn bè</p>
+      </Link>
 
       <div className="friendprofile-container">
         {newDummy?.map((item, i) => {
@@ -26,7 +26,7 @@ function FriendProfile({ userData }) {
                 }
                 alt=""
               />
-              <p>
+              <p className="username">
                 {item.userName.length > 17
                   ? item.userName.substring(0, 15) + "..."
                   : item.userName}

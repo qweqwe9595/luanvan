@@ -52,6 +52,7 @@ function Profile() {
         </div>
         <div className="profile-right">
           <Share />
+          <p>--- Bài đăng gần đây. ---</p>
           {userPosts?.map((userPost, index) => {
             return <Feed userPost={userPost} key={index} />;
           })}

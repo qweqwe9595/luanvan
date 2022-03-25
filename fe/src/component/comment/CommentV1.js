@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./comment.scss";
 import CommentV2 from "../comment/CommentV2";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import axios from "axios";
@@ -47,7 +47,6 @@ function CommentV1({ commentV1 }) {
     const Id = localStorage.getItem("userID");
     setLiking(true);
     setLikes(likes + 1);
-    // console.log(commentV1.comment._id);
     axios.patch(
       `http://localhost:5000/api/comments/like/commentlv1/${commentV1.comment._id}`,
       {
@@ -71,13 +70,15 @@ function CommentV1({ commentV1 }) {
 
   return (
     <div>
-      <div className="comment">
+      <div className="comment-1">
         <div className="comment-tag">
           <div className="avatar">
-            <img src="https://dep365.com/wp-content/uploads/2021/07/Post-from-imjanedeleon-rsgym6-800x470.jpg"></img>
+            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"></img>
           </div>
           <div className="comment-tag-username">
-            <p>{commentV1.comment.userId?.userName}</p>
+            <Link to={`/profile/${commentV1.comment.userId._id}`}>
+              <p className="username">{commentV1.comment.userId?.userName}</p>
+            </Link>
           </div>
           <div className="comment-tag-timepost">
             {(() => {
