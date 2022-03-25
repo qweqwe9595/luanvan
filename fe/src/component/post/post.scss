@@ -7,7 +7,6 @@
   overflow: hidden;
   box-shadow: 0.5px 0.5px #808080;
   margin-bottom: 20px;
-  border: 1px solid #0d47a1;
   .post-meta {
     display: flex;
     margin: 15px;
@@ -29,7 +28,7 @@
           width: max-content;      
           & > p {
             font-family: 'Oswald', sans-serif;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 500;
           }
           :hover{
@@ -51,29 +50,28 @@
       height: max-content;
       width: 100%;
         .post-meta-right-options {
+          float: right;
           text-align: right;
-          & > button {
+          display: flex;
+            margin: auto;
+          .post-meta-right-options-buttons {
             background-color: #0d47a1;
             font-weight: bold;
-            height: 25px;
-            width: 50px;
             text-align: center;
-            align-items: center;
-            border: none;
+            height: 20px;
+            width: 30px;            
             border-radius: 50px;
-            
             & > span{
-              font-size: 25px;
-              color: #ffffff;
-            } 
-                 
+              font-size: 20px;
+              color: white;
+              cursor: pointer;              
+            }               
         }
-        :hover {
-          cursor: pointer;
+        :hover{
           color: #0d47a1;
-          background-color: #ffffff; 
-        }              
-      }
+          background-color: #fff;
+        }                
+      }       
     }
   }
     
@@ -104,15 +102,16 @@
     }
   }
     .post-interaction{
-      border-top:#eaeaea solid 0.25px;
+      border-top:#cfcece solid 0.25px;
       display: flex;
       width: max-content;
       margin-left: 10px;
       .post-interaction-heart{
-        margin: 10px;
+        border: 1px solid white;
+        margin: 7px 2px;
         display: flex;
         & > p{
-          margin-left: 2px;
+          margin: 0px 5px;
           font-family: 'Oswald', sans-serif;
         }
         :hover{
@@ -120,10 +119,11 @@
         }
       }
       .post-interaction-comment{
-        margin: 10px;
+        border: 3px solid white;
+        margin: 7px 2px;
         display: flex;    
         & > p{
-          margin-left: 2px;
+          margin: -2px 5px;
           font-family: 'Oswald', sans-serif;
         }
         :hover{
@@ -131,10 +131,11 @@
         }    
       }
       .post-interaction-share{
-        margin: 10px; 
+        border: 2px solid white;
+        margin: 7px 2px;
         display: flex; 
         & > p{
-          margin-left: 2px;
+          margin: 0px 5px;
           font-family: 'Oswald', sans-serif;
         }
         :hover{
@@ -187,7 +188,8 @@
           outline: none;
         }
       }
-      .post-comment-bar-btn {      
+      .post-comment-bar-btn {
+        border: 1px solid #0d47a1;      
         height: 40px;
         width: max-content;
         color: white;
@@ -203,6 +205,11 @@
           font-size: 15px;
         }
         cursor: pointer;
+      }
+      :hover{
+        cursor: pointer;
+        color: #0d47a1;
+        background-color: #fff;
       }
     }
   }

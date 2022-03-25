@@ -14,7 +14,7 @@ function Share() {
         desc,
       })
       .then((res) => {
-        console.log("Thanh cong", res.data);
+        alert("Đăng bài viết mới thành công.");
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);

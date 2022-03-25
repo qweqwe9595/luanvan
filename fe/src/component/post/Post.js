@@ -123,9 +123,9 @@ function Post({ postInfo }) {
         </div>
         <div className="post-meta-right">
           <div className="post-meta-right-options">
-            <button>
+            <div className="post-meta-right-options-buttons">
               <span><BsThreeDots></BsThreeDots></span>
-            </button>
+            </div>
           </div>
         </div>
       </div>
