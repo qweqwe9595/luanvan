@@ -2,10 +2,11 @@ import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import "./Request.scss";
 import { FaSearchDollar } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 function Request({ user }) {
   const [userInfo, setUserInfo] = useState({});
   const userId = localStorage.getItem("userID");
+  const [open, setOpen] = useState(true);
   useEffect(() => {
     const getUserInfo = () => {
       axios
@@ -46,33 +47,43 @@ function Request({ user }) {
       });
   };
   return (
-    <div className="friends_request_tag">
+    <div>
+      {open ?
+        (
+          <div className="friends_request_tag">
       <img
         src="https://gamek.mediacdn.vn/thumb_w/600/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
         className="avt_friend_request"
       />
       <div className="friend_request_tag_info">
-        <span>{userInfo.userName ? userInfo.userName : ""}</span>
+         <Link to={`/profile/${userInfo._id}`} className="link">
+            <span>{userInfo.userName ? userInfo.userName : ""}</span>
+         </Link>
         <div className="friend_request_tag_button">
           <button
             type="button"
             className="button_accept"
             onClick={() => {
               RequesAccept();
+               setOpen(!open)
             }}
           >
             Chấp nhận
           </button>
-
           <button type="button" className="button_refuse"
             onClick={() => {
               RequestRefuse();
+              setOpen(!open);
             }}>
             Từ chối
           </button>
         </div>
       </div>
+          </div>
+      ):""}
     </div>
+    
+    
   );
 }
 export default Request;

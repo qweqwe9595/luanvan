@@ -1,9 +1,9 @@
 .Search-Results {
-    padding-top     : 100px;
-    width           : 100%;
-    height          : auto;
-    background-color: #E5E5E5;
-    display         : flex;
+    padding-top: 100px;
+    width      : 100%;
+    height     : auto;
+    display    : flex;
+    font-family: "oswald";
 
 
 
@@ -41,7 +41,7 @@
             margin-bottom   : 5px;
             display         : flex;
             align-items     : center;
-            background-color: #E5E5E5;
+            background-color: #EEF0F5;
             margin-bottom   : 20px;
 
             .icon {
@@ -56,6 +56,7 @@
                 background-color: lightgray;
                 margin-left     : 10px;
                 padding         : 10px;
+                color           : black;
             }
 
             &>span {
@@ -95,6 +96,7 @@
                 font-size    : 19px;
                 font-weight  : bold;
                 margin-bottom: 10px;
+                font-family  : "oswald";
             }
 
             .People_tag {
@@ -122,12 +124,14 @@
                         margin-left: 10px;
                         display    : grid;
 
-
-                        &>p {
-                            text-transform: capitalize;
-                            font-size     : 17px;
-                            font-weight   : bold;
+                        .link {
+                            &>p {
+                                text-transform: capitalize;
+                                font-size     : 17px;
+                                font-weight   : bold;
+                            }
                         }
+
 
                         &>span {
                             font-size     : 14px;
@@ -176,17 +180,19 @@
             }
 
             &>button {
-                width           : 100%;
-                background-color: #0d47a1;
-                height          : 40px;
-                border          : none;
-                border-radius   : 5px;
-                color           : #ffffff;
-                font-size       : 15px;
+                width        : 100%;
+                color        : black;
+                font-family  : "oswald";
+                height       : 40px;
+                border       : none;
+                border-radius: 5px;
+                background   : #EEF0F5;
+                font-size    : 18px;
 
 
                 &:hover {
-                    background-color: #3399ff;
+                    background-color: #0d47a1;
+                    color           : #ffffff;
 
                 }
             }

@@ -2,6 +2,7 @@
   position        : relative;
   background-color: transparent;
   width           : 100%;
+  font-family     : "oswald";
 
   .coverpicture-container {
     height: 200px;
@@ -49,12 +50,13 @@
     .hero-name {
       text-align    : center;
       font-weight   : bold;
-      font-size     : 25px;
+      font-size     : 20px;
       text-transform: capitalize;
       z-index       : 100;
       position      : absolute;
       left          : -70%;
       width         : 300px;
+      margin-left   : -5px;
 
     }
   }

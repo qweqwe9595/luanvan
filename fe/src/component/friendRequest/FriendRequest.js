@@ -10,7 +10,7 @@ function FriendRequest() {
     const userId = localStorage.getItem("userID");
     const getFRequests = () => {
       axios
-        .get(`http://localhost:5000/api/users//getone/${userId}`)
+        .get(`http://localhost:5000/api/users//getone/${userId} `)
         .then((res) => {
           setFRequests(res.data.friendsRequest);
         })
@@ -18,16 +18,16 @@ function FriendRequest() {
           console.log(err.response);
         });
     };
-   getFRequests();
+    getFRequests();
   }, []);
   return (
     <div className="friend_request">
       <p>Lời mời kết bạn</p>
-      {fRequests?.map((user, index) => {
-        return (
-           <Request user ={user} key={index} ></Request>  
-        )
-      })}
+      <div className="requestss">
+        {fRequests?.map((user, index) => {
+          return <Request user={user} key={index}></Request>;
+        })}
+      </div>
       <div className="link">
         <a href="#friends.js">Xem thêm</a>
       </div>

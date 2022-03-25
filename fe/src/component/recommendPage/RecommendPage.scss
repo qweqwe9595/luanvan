@@ -5,6 +5,7 @@
   border-radius   : 20px;
   padding         : 10px;
   margin-top      : 20px;
+  font-family     : "oswald";
 
   .Recommend_page_tag {
     width              : 230px;
@@ -52,25 +53,28 @@
       margin-bottom: 10px;
 
       .button_like_page {
-        width           : 80px;
-        height          : 30px;
-        font-size       : 12px;
-        border-radius   : 15px;
-        background-color: #0d47a1;
-        color           : white;
-        margin-right    : 25px;
-        font-weight     : bold;
-        border          : none;
+        width              : 80px;
+        height             : 25px;
+        font-size          : 12px;
+        border-radius      : 15px;
+        background-color   : #0d47a1;
+        color              : white;
+        margin-right       : 25px;
+        // font-weight     : bold;
+        border             : none;
+        font-family        : "oswald";
       }
 
+
       .button_dislike_page {
-        width           : 80px;
-        height          : 30px;
-        font-size       : 12px;
-        border-radius   : 15px;
-        font-weight     : bold;
-        background-color: #c4c4c4;
-        border          : none;
+        width              : 80px;
+        height             : 25px;
+        font-size          : 12px;
+        border-radius      : 15px;
+        // font-weight     : bold;
+        background-color   : #c4c4c4;
+        border             : none;
+        font-family        : "oswald";
       }
     }
   }

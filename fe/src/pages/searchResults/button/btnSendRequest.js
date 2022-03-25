@@ -11,7 +11,7 @@ function SearchResultTag({ id }) {
         userId: userIdCurrent
       })
       .then((res) => {
-        alert("đã gửi yêu cầu thành công");
+        // alert("đã gửi yêu cầu thành công");
       })
       .catch((err) => {
         

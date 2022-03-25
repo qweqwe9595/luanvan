@@ -5,6 +5,7 @@
      background-color: #ffffff;
      display         : grid;
      border-radius   : 20px;
+     font-family     : "oswald";
 
      &>p {
          font-size    : 25px;
@@ -34,14 +35,16 @@
      }
 
      &>button {
-         width           : 50%;
-         height          : 37px;
-         margin          : auto;
-         margin-top      : 20px;
-         margin-bottom   : 20px;
-         font-size       : 16px;
-         background-color: #0D47A1;
-         color           : white;
+         width               : 50%;
+         height              : 37px;
+         margin              : auto;
+         margin-top          : 20px;
+         margin-bottom       : 20px;
+         font-size           : 18px;
+         background-color    : #0D47A1;
+         color               : white;
+         font-family         : "oswald";
+         //  font-weight     : bold;
      }
 
  }

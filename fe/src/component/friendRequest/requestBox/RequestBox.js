@@ -5,6 +5,7 @@ import "./RequestBox.scss";
 function RequestBox({ user }) {
   const [userInfo, setUserInfo] = useState({});
   const userId = localStorage.getItem("userID");
+  const [click, setClick] = useState(false);
   useEffect(() => {
     const getUserInfo = () => {
       axios
@@ -24,10 +25,23 @@ function RequestBox({ user }) {
         userId,
       })
       .then((res) => {
-        alert("đã chấp nhận yêu cầu kết bạn");
+        // alert("đã chấp nhận yêu cầu kết bạn");
       })
       .catch((err) => {
         console.log(err.response);
+      });
+  };
+
+    const RequestRefuse = () => {
+    axios
+      .patch(`http://localhost:5000/api/users/refuse/${user}`, {
+        userId
+      })
+    .then((res) => {
+        // alert("đã từ chuối");
+      })
+      .catch((err) => {
+         console.log(err.response);
       });
   };
   return (
@@ -40,21 +54,28 @@ function RequestBox({ user }) {
         <p>{userInfo.userName ? userInfo.userName : ""}</p>
         <span>{userInfo.email ? userInfo.email : ""}</span>
       </div>
-
-      <div className="friend_request_tag_button">
+      {!click ? (
+        <div className="friend_request_tag_button">
         <button
           type="button"
           className="button_accept"
           onClick={() => {
             RequesAccept();
+            setClick(!click)
           }}
         >
           Chấp nhận
         </button>
-        <button type="button" className="button_refuse">
+          <button type="button" className="button_refuse"
+            onClick={() => {
+              RequestRefuse();
+              setClick(!click);
+          }}>
           Từ chối
         </button>
       </div>
+      ):""}
+      
     </div>
   );
 }

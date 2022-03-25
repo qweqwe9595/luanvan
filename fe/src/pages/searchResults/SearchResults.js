@@ -12,6 +12,7 @@ import { BiNews } from "react-icons/bi";
 import "./SearchResults.scss";
 import { SearchResultContext } from "../../context/SearchContext";
 import SearchResultTag from "./button/btnSendRequest";
+import { Link } from "react-router-dom";
 
 function SearchResults() {
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
@@ -55,7 +56,6 @@ function SearchResults() {
             <span>Tuyển dụng</span>
           </div>
         </div>
-
         <div className="Results">
           <div className="Peoples">
             <p>Mọi người</p>
@@ -68,7 +68,9 @@ function SearchResults() {
                       className="avt"
                     ></img>
                     <div className="people_info">
+                      <Link to={`/profile/${people._id}`} className="link">
                       <p>{people.userName}</p>
+                      </Link>
                       {people.friends.includes(userIdCurrent) ? (
                         <span>bạn bè</span>
                       ) : (
@@ -80,7 +82,6 @@ function SearchResults() {
                           : "0 người theo dõi"}{" "}
                         người theo dõi
                       </span>
-                      <span>{people.major ? people.major.majorName : ""}</span>
                       <span> {people.address ? people.address.city : ""}</span>
                     </div>
                   </div>
@@ -103,7 +104,7 @@ function SearchResults() {
             <button>Xem tất cả</button>
           </div>
 
-          <div className="Post">
+          {/* <div className="Post">
             <p>Bài viết</p>
             <button>Xem tất cả</button>
           </div>
@@ -116,7 +117,7 @@ function SearchResults() {
           <div className="Event">
             <p>Thông tin việc làm</p>
             <button>Xem tất cả</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

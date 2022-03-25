@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./FriendTag.scss";
 import axios from "axios";
+import { Link } from "react-router-dom";
 function FriendTag({ friend }) {
   const [friendInfo, setFriendInfo] = useState([]);
   const [notFriend, setNotFriend] = useState(false);
-  console.log(friend);
+  const [request, setRequested] = useState(false);
+
   useEffect(() => {
     const getFRequests = () => {
       axios
@@ -20,16 +22,15 @@ function FriendTag({ friend }) {
   }, []);
   const userId = localStorage.getItem("userID");
   const unfriend = () => {
-    window.location.reload();
+    // window.location.reload();
     axios
       .patch(`http://localhost:5000/api/users/unfriend/${friend._id}`, {
         userId,
       })
-      .then((res) => {
-        alert("xóa thành công");
-      })
+      .then((res) => {})
       .catch((err) => {});
   };
+
   const sendRequest = () => {
     axios
       .patch(`http://localhost:5000/api/users/add/${friend._id}`, {
@@ -47,30 +48,39 @@ function FriendTag({ friend }) {
         className="avt_friend_request"
       />
       <div className="userinfo">
-        <p>{friendInfo.userName ? friendInfo.userName : ""}</p>
+        <Link to={`/profile/${friendInfo._id}`}>
+          <p>{friendInfo.userName ? friendInfo.userName : ""}</p>
+        </Link>
+
         <span>{friendInfo.email ? friendInfo.email : ""}</span>
       </div>
 
       <div className="friend_button">
-        {notFriend ? (
-          <button
-            type="button"
-            onClick={() => {
-              sendRequest();
-            }}
-          >
-            Kết bạn
-          </button>
-        ) : (
+        {!notFriend ? (
           <button
             type="button"
             onClick={() => {
               unfriend();
-              setNotFriend(true);
+              setNotFriend(!notFriend);
             }}
           >
             Xóa bạn
           </button>
+        ) : (
+            !request ? (
+              <button
+            className="friend_button"
+            onClick={() => {
+              sendRequest();
+              setRequested(!request);
+            }}
+            >
+            {!request?"kết bạn" :"Đã kết bạn"}
+          </button>
+            ) : (
+               <p>Đã gửi yêu cầu kết bạn</p> 
+            )
+          
         )}
       </div>
     </div>

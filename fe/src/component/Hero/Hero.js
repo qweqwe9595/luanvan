@@ -24,8 +24,8 @@ function Hero() {
 
   const addFriend = () => {
     axios
-      .patch(`http://localhost:5000/api/users/add/${userRequestId}`, {
-        userId: userId,
+      .patch(`http://localhost:5000/api/users/add/${userId}`, {
+        userId: userRequestId,
       })
       .then((res) => {
         console.log(res.data);
@@ -61,8 +61,8 @@ function Hero() {
       <div className="hero-content">
         <div>Nhắn tin</div>
         {!userId.includes(userRequestId) ? (
-          <div className="icon-request">
-            <div onClick={() => addFriend()}>Kết bạn</div>
+          <div className="icon-request">       
+              <div onClick={() => addFriend()}>Kết bạn</div>
           </div>
         ) : (
           ""

@@ -11,6 +11,7 @@
     transform        : translate(-50%, -50%);
     z-index          : 100;
     font-size        : 18px;
+    font-family      : "oswald";
 
     .headder {
         display              : grid;
@@ -33,6 +34,7 @@
                 background-color: #0D47A1;
                 font-size       : 25px;
                 color           : #fff;
+
 
             }
 
@@ -59,6 +61,7 @@
             padding              : 15px;
             font-size            : 18px;
             align-items          : center;
+            font-family          : "oswald";
 
             .left {
                 display     : flex;
@@ -75,6 +78,7 @@
                 grid-template-columns: 1fr 1fr;
                 align-items          : center;
 
+
                 &>input {
                     width         : 90%;
                     height        : 35px;
@@ -84,6 +88,7 @@
                     padding-left  : 20px;
                     font-size     : 15px;
                     text-transform: capitalize;
+                    font-family   : "oswald";
 
                     &:focus {
                         outline: none;
@@ -108,6 +113,7 @@
                         padding-left  : 20px;
                         font-size     : 15px;
                         text-transform: capitalize;
+                        font-family   : "oswald";
 
                         &:focus {
                             outline: none;
@@ -126,6 +132,7 @@
                 padding-left  : 20px;
                 font-size     : 16px;
                 text-transform: capitalize;
+                font-family   : "oswald";
 
                 &:focus {
                     outline: none;
@@ -135,16 +142,17 @@
     }
 
     &>button {
-        width           : 50%;
-        height          : 40px;
-        text-align      : center;
-        margin          : auto;
-        border          : none;
-        border-radius   : 15px;
-        font-size       : 18px;
-        font-weight     : bold;
-        background-color: #0D47A1;
-        color           : #fff;
+        width              : 50%;
+        height             : 40px;
+        text-align         : center;
+        margin             : auto;
+        border             : none;
+        border-radius      : 15px;
+        font-size          : 18px;
+        // font-weight     : bold;
+        background-color   : #0D47A1;
+        color              : #fff;
+        font-family        : "oswald";
 
     }
 }
