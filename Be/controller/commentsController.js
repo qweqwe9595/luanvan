@@ -113,7 +113,7 @@ const deleteCommentLv2 = async (req, res) => {
 
 const likeLv1Comment = async (req, res) => {
   try {
-    const cmtQuery = await commentLv2Model.findById(req.params.id);
+    const cmtQuery = await commentLv1Model.findById(req.params.id);
     if (cmtQuery.like.includes(req.body.userId)) {
       const updateQuery = await commentLv1Model.findByIdAndUpdate(
         req.params.id,
@@ -131,6 +131,7 @@ const likeLv1Comment = async (req, res) => {
       },
       { new: true }
     );
+
     res.status(200).json({ updateQuery });
   } catch (error) {
     console.log(error);
@@ -140,6 +141,17 @@ const likeLv1Comment = async (req, res) => {
 
 const likeLv2Comment = async (req, res) => {
   try {
+    const cmtQuery = await commentLv2Model.findById(req.params.id);
+    if (cmtQuery.like.includes(req.body.userId)) {
+      const updateQuery = await commentLv2Model.findByIdAndUpdate(
+        req.params.id,
+        {
+          $pull: { like: req.body.userId },
+        },
+        { new: true }
+      );
+      return res.status(200).json({ updateQuery });
+    }
     const updateQuery = await commentLv2Model.findByIdAndUpdate(
       req.params.id,
       {
@@ -153,6 +165,15 @@ const likeLv2Comment = async (req, res) => {
   }
 };
 
+const getALv1Comment = async (req, res) => {
+  try {
+    const commentQuery = await commentLv1Model.findById(req.params.id);
+
+    res.status(200).json({ commentQuery });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
 module.exports = {
   commentLv1,
   commentLv2,
@@ -164,4 +185,5 @@ module.exports = {
   deleteCommentLv2,
   likeLv1Comment,
   likeLv2Comment,
+  getALv1Comment,
 };

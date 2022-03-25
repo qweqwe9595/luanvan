@@ -38,7 +38,7 @@ function CommentV2({ commentV2, commentLv1 }) {
     setLiking(true);
     setLikes(likes + 1);
     axios.patch(
-      `http://localhost:5000/api/comments/like/commentlv1/${commentV2._id}`,
+      `http://localhost:5000/api/comments/like/commentlv2/${commentV2._id}`,
       {
         userId: Id,
       }
@@ -103,25 +103,25 @@ function CommentV2({ commentV2, commentLv1 }) {
           <p>{commentV2.message}</p>
         </div>
         <div className="post-interaction-3">
-        <div className="post-interaction-heart-3">
-          {liking ? (
-            <IoMdHeart style={iconStyles} onClick={() => disLike()} />
-          ) : (
-            <IoMdHeartEmpty style={iconStyles} onClick={() => like()} />
-          )}
-          <p>{likes}</p>
-        </div>
-        <div
-          className="post-interaction-comment-3"
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          <GoComment style={iconStyles} />
-          <p> {commentV2?.length}</p>
+          <div className="post-interaction-heart-3">
+            {liking ? (
+              <IoMdHeart style={iconStyles} onClick={() => disLike()} />
+            ) : (
+              <IoMdHeartEmpty style={iconStyles} onClick={() => like()} />
+            )}
+            <p>{likes}</p>
+          </div>
+          <div
+            className="post-interaction-comment-3"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            <GoComment style={iconStyles} />
+            <p> {commentV2?.length}</p>
+          </div>
         </div>
       </div>
-      </div>      
       {open ? (
         <div className="post-comment-bar-3">
           <div className="post-comment-bar-text-3">

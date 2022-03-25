@@ -10,11 +10,14 @@ const {
   deleteCommentLv2,
   likeLv1Comment,
   likeLv2Comment,
+  getALv1Comment,
 } = require("../controller/commentsController");
 //get all cmt
 router.get("/all", getAllComment);
 //get all cmt of a post
 router.get("/post/:id", getAllCommentOfAPost);
+//get lv1 cmt
+router.get("/commentlv1/:id", getALv1Comment);
 //post a cmt lv1
 router.post("/commentlv1", commentLv1);
 //update lv1 cmt

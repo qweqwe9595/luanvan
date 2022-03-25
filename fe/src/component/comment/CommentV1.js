@@ -12,12 +12,13 @@ function CommentV1({ commentV1 }) {
   const [open, setOpen] = useState(false);
   const commentV2 = commentV1.comment.commentLv2;
   const commentId = commentV1.comment._id;
-  const userId = useParams().userId;
+  const userId = localStorage.getItem("userID");
   const postId = commentV1.postId;
   const a = new Date();
   const b = new Date(commentV1.comment.createdAt);
   const commentDate = (a - b) / 1000;
   const iconStyles = { color: "#0d47a1", fontSize: "20px" };
+  console.log(commentV1);
 
   const [cmtV2, setCmtV2] = useState("");
   useEffect(() => {
@@ -46,6 +47,7 @@ function CommentV1({ commentV1 }) {
     const Id = localStorage.getItem("userID");
     setLiking(true);
     setLikes(likes + 1);
+    // console.log(commentV1.comment._id);
     axios.patch(
       `http://localhost:5000/api/comments/like/commentlv1/${commentV1.comment._id}`,
       {
@@ -113,26 +115,26 @@ function CommentV1({ commentV1 }) {
           <p>{commentV1.comment.message}</p>
         </div>
         <div className="post-interaction-2">
-        <div className="post-interaction-heart-2">
-          {liking ? (
-            <IoMdHeart style={iconStyles} onClick={() => disLike()} />
-          ) : (
-            <IoMdHeartEmpty style={iconStyles} onClick={() => like()} />
-          )}
-          <p>{likes}</p>
-        </div>
-        <div
-          className="post-interaction-comment-2"
-          onClick={() => {
-            setOpen(true);
-          }}
-        >
-          <GoComment style={iconStyles} />
-          <p>{commentV2.length}</p>
+          <div className="post-interaction-heart-2">
+            {liking ? (
+              <IoMdHeart style={iconStyles} onClick={() => disLike()} />
+            ) : (
+              <IoMdHeartEmpty style={iconStyles} onClick={() => like()} />
+            )}
+            <p>{likes}</p>
+          </div>
+          <div
+            className="post-interaction-comment-2"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            <GoComment style={iconStyles} />
+            <p>{commentV2.length}</p>
+          </div>
         </div>
       </div>
-      </div>
-  
+
       {open ? (
         <div className="post-comment-bar-2">
           <div className="post-comment-bar-text-2">

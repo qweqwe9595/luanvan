@@ -3,7 +3,7 @@ import "./post.scss";
 import axios from "axios";
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
-import {BsThreeDots} from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { useParams, Link } from "react-router-dom";
 import CommentV1 from "../comment/CommentV1";
@@ -14,14 +14,26 @@ function Post({ postInfo }) {
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState(
+    postInfo.likes.some((item) => item._id === loginUser)
+  );
+  console.log(loginUser);
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
 
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
   const [comment, setComment] = useState([]);
-  const commentNumber = comment.length;
+  const commentNumber = countCmts(comment);
+
+  function countCmts(comment) {
+    let lv1Count = comment.length;
+    let lv2Count = comment.reduce(
+      (prev, current) => prev + current.commentLv2.length,
+      0
+    );
+    return lv1Count + lv2Count;
+  }
 
   useEffect(() => {
     if (postInfo.likes.includes(loginUser)) {
@@ -41,13 +53,12 @@ function Post({ postInfo }) {
   }, []);
   //Lay tat ca comment
 
-
   //Like bai viet
 
   const addLike = () => {
     axios
       .post(`http://localhost:5000/api/posts/like/${postId}`, {
-        userId: userId,
+        userId: loginUser,
       })
       .then((res) => {
         console.log(res.data);
@@ -65,7 +76,7 @@ function Post({ postInfo }) {
       .post("http://localhost:5000/api/comments/commentlv1/", {
         postId: postId,
         message: cmtV1,
-        userId: userId,
+        userId: loginUser,
       })
       .then((res) => {
         console.log("Thanh cong", res.data);
@@ -124,7 +135,9 @@ function Post({ postInfo }) {
         <div className="post-meta-right">
           <div className="post-meta-right-options">
             <div className="post-meta-right-options-buttons">
-              <span><BsThreeDots></BsThreeDots></span>
+              <span>
+                <BsThreeDots></BsThreeDots>
+              </span>
             </div>
           </div>
         </div>

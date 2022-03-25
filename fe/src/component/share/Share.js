@@ -15,6 +15,7 @@ function Share() {
       })
       .then((res) => {
         alert("Đăng bài viết mới thành công.");
+        window.location.reload();
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);

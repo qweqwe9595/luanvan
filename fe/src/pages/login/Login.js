@@ -29,6 +29,7 @@ function Login() {
           localStorage.setItem("userID", res.data.userInfo._id);
           localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo));
           console.log(JSON.parse(localStorage.getItem("userInfo")));
+          navigate("/");
           window.location.reload();
         }
       })

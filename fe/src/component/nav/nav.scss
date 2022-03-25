@@ -1,25 +1,25 @@
 .nav {
-  display        : flex;
-  width          : 100%;
-  padding        : 0px 20px;
-  height         : 50px;
-  align-items    : center;
-  background     : #0d47a1 !important;
+  display: flex;
+  width: 100%;
+  padding: 0px 20px;
+  height: 50px;
+  align-items: center;
+  background: #0d47a1 !important;
   justify-content: space-between;
-  box-shadow     : 0px 4px 10px rgba(0, 0, 0, 0.1);
-  position       : fixed;
-  z-index        : 100;
-  top            : 0;
-  font-family    : "Oswald", sans-serif;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  font-family: "Oswald", sans-serif;
 
   .searchbar {
     display: none;
   }
 
   .nav-left {
-    display    : flex;
+    display: flex;
     align-items: center;
-    gap        : 10px;
+    gap: 10px;
 
     .logo {
       height: 40px;
@@ -27,126 +27,121 @@
     }
 
     .search-icon-container {
-      color           : #0d47a1;
-      line-height     : 0;
-      padding         : 2px 6px;
-      border-radius   : 5px;
+      color: #0d47a1;
+      line-height: 0;
+      padding: 2px 6px;
+      border-radius: 5px;
       background-color: white;
-      cursor          : pointer;
+      cursor: pointer;
     }
   }
 
   .nav-right {
-    display    : flex;
+    display: flex;
     align-items: center;
-    gap        : 10px;
+    gap: 10px;
 
     .bell {
-      font-size       : 24px;
-      color           : #0d47a1;
-      width           : 35px;
-      border-radius   : 5px;
+      font-size: 24px;
+      color: #0d47a1;
+      width: 35px;
+      border-radius: 5px;
       background-color: #0d47a1;
-      cursor          : pointer;
+      cursor: pointer;
     }
 
     .user-container {
       display: none;
-      cursor : pointer;
+      cursor: pointer;
     }
-
-
   }
 
   .hamburger {
-    display  : block;
+    display: block;
     font-size: 30px;
-    color    : white;
-    cursor   : pointer;
+    color: white;
+    cursor: pointer;
   }
 
   .account {
-    width                     : 400px;
-    height                    : auto;
-    background-color          : #0d47a1;
-    z-index                   : 100;
-    position                  : absolute;
-    right                     : 10px;
-    top                       : 50px;
-    border-bottom-left-radius : 10px;
+    width: 400px;
+    height: auto;
+    background-color: #0d47a1;
+    z-index: 100;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding                   : 10px;
-    color                     : #ffffff;
+    padding: 10px;
+    color: #ffffff;
 
     .user {
-      display      : flex;
-      align-items  : center;
-      margin       : auto;
-      padding      : 5px;
+      display: flex;
+      align-items: center;
+      margin: auto;
+      padding: 5px;
       border-radius: 10px;
       margin-bottom: 10px;
 
-
-      &>img {
-        height       : 60px;
-        width        : 60px;
+      & > img {
+        height: 60px;
+        width: 60px;
         border-radius: 50%;
-        cursor       : pointer;
+        cursor: pointer;
       }
 
       .infouser {
-        margin-left   : 10px;
-        height        : 50px;
-        align-items   : center;
+        margin-left: 10px;
+        height: 50px;
+        align-items: center;
         // padding-top: 5px;
 
-        &>span {
+        & > span {
           text-transform: capitalize;
-          font-size     : 18px;
-          font-weight   : bold;
-
+          font-size: 18px;
+          font-weight: bold;
         }
       }
     }
 
     .user:hover {
       background-color: #ffffff;
-      color           : #0d47a1;
+      color: #0d47a1;
     }
 
     .signout {
-      height       : 40px;
-      margin-top   : 10px;
-      display      : flex;
-      align-items  : center;
-      padding      : 5px;
+      height: 40px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      padding: 5px;
       border-radius: 10px;
 
-
       .icon-signout {
-        display         : flex;
-        justify-content : center;
-        align-items     : center;
-        height          : 40px;
-        width           : 40px;
-        font-size       : 25px;
-        border-radius   : 50%;
-        border          : none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        font-size: 25px;
+        border-radius: 50%;
+        border: none;
         background-color: #ffffff;
-        color           : #0d47a1;
-        padding-left    : 5px;
-        padding-top     : 5px;
+        color: #0d47a1;
+        padding-left: 5px;
+        padding-top: 5px;
       }
 
-      &>span {
-        font-size  : 18px;
+      & > span {
+        font-size: 18px;
         margin-left: 10px;
       }
     }
 
     .signout:hover {
       background-color: #ffffff;
-      color           : #0d47a1;
+      color: #0d47a1;
     }
   }
 }
@@ -154,7 +149,7 @@
 @media all and (max-width: 750px) {
   .nav {
     .nav-right {
-      &>button {
+      & > button {
         display: none;
 
         .arrow-down {
@@ -163,7 +158,6 @@
       }
     }
   }
-
 }
 
 @media all and (min-width: 750px) {
@@ -185,27 +179,27 @@
     }
 
     .searchbar {
-      display           : flex;
-      background-color  : #f5f5f5;
-      padding-left      : 7px;
+      display: flex;
+      background-color: #f5f5f5;
+      padding-left: 7px;
       //padding-right   : 7px;
-      border-radius     : 1rem;
-      align-items       : center;
-      gap               : 5px;
-      height            : fit-content;
-      margin-right      : 40px;
-      border-radius     : 1rem;
-      align-items       : center;
-      gap               : 5px;
-      height            : fit-content;
+      border-radius: 1rem;
+      align-items: center;
+      gap: 5px;
+      height: fit-content;
+      margin-right: 40px;
+      border-radius: 1rem;
+      align-items: center;
+      gap: 5px;
+      height: fit-content;
 
-      &>input {
-        border          : none;
+      & > input {
+        border: none;
         background-color: transparent;
-        font-size       : 1.1rem;
+        font-size: 1.1rem;
       }
 
-      &>input:focus {
+      & > input:focus {
         outline: none;
       }
     }
@@ -216,56 +210,53 @@
       }
 
       .user-container {
-        display         : flex;
-        align-items     : center;
+        display: flex;
+        align-items: center;
         background-color: white;
-        padding         : 4px 8px;
-        gap             : 5px;
-        border-radius   : 23px;
-        z-index         : 1;
-        position        : absolute;
-        top             : 6px;
-        right           : 70px;
+        padding: 4px 8px;
+        gap: 5px;
+        border-radius: 23px;
+        z-index: 1;
+        position: absolute;
+        top: 6px;
+        right: 70px;
 
-        &>img {
-          height       : 30px;
-          width        : 30px;
+        & > img {
+          height: 30px;
+          width: 30px;
           border-radius: 50%;
-          cursor       : pointer;
-          object-fit   : cover;
+          cursor: pointer;
+          object-fit: cover;
         }
 
-        &>span {
-          font-weight   : bold;
+        & > span {
+          font-weight: bold;
           text-transform: capitalize;
-          color         : #0d47a1;
-
+          color: #0d47a1;
         }
       }
 
-      &>button {
-        width           : 38px;
-        height          : 38px;
+      & > button {
+        width: 38px;
+        height: 38px;
         background-color: #ffffff;
-        border          : none;
-        border-radius   : 50%;
+        border: none;
+        border-radius: 50%;
 
-        &>.arrow-down {
-
-          color      : #0d47a1;
-          font-size  : 30px;
+        & > .arrow-down {
+          color: #0d47a1;
+          font-size: 30px;
           align-items: center;
-          border     : none;
-          text-align : center;
-          margin     : auto;
-          margin-top : 5px;
+          border: none;
+          text-align: center;
+          margin: auto;
+          margin-top: 5px;
           align-items: center;
         }
-
       }
 
-      &>.arrow-down {
-        color    : #0d47a1;
+      & > .arrow-down {
+        color: #0d47a1;
         font-size: 20px;
       }
     }
@@ -277,13 +268,12 @@
     .searchbar {
       width: 55%;
 
-      &>input {
+      & > input {
         width: 100%;
       }
 
-      &>input {
+      & > input {
         width: 600px;
-
       }
     }
   }
