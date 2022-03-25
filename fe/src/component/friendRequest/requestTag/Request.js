@@ -51,10 +51,12 @@ function Request({ user }) {
       {open ?
         (
           <div className="friends_request_tag">
-      <img
-        src="https://gamek.mediacdn.vn/thumb_w/600/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
-        className="avt_friend_request"
-      />
+          <Link to={`/profile/${userInfo._id}`}>
+            <img
+              src="https://gamek.mediacdn.vn/thumb_w/600/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
+              className="avt_friend_request"
+              />
+          </Link>
       <div className="friend_request_tag_info">
          <Link to={`/profile/${userInfo._id}`} className="link">
             <span>{userInfo.userName ? userInfo.userName : ""}</span>

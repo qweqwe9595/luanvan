@@ -184,10 +184,12 @@
         font-size       : 15px;
         border          : none;
         margin-top      : 30px;
+        cursor          : pointer;
 
         &:hover {
           background-color: #0d47a1;
           color           : #ffffff;
+
         }
       }
 
