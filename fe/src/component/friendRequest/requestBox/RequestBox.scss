@@ -8,6 +8,7 @@
     align-items     : center;
     margin-bottom   : 25px;
 
+
     .avt_friend_request {
         width        : 55px;
         height       : 55px;
@@ -30,8 +31,9 @@
         }
 
         span {
-            //text-transform   : capitalize;
-            font-size        : 17px;
+            font-size        : 15px;
+            font-family      : "oswald";
+            cursor           : pointer;
             // font-weight   : bold;
             text-align       : left;
             margin           : auto;
@@ -54,6 +56,9 @@
             margin-right    : 5px;
             font-weight     : bold;
             font-size       : 13px;
+            cursor          : pointer;
+            font-family     : "oswald";
+
         }
 
         .button_refuse {
@@ -65,13 +70,15 @@
             font-weight     : bold;
             font-size       : 13px;
             margin-left     : 5px;
+            cursor          : pointer;
+            font-family     : "oswald";
 
         }
     }
 }
 
 @media all and(max-width: 600px) {
-    .friends_request_tag {
+    .friendsrequest_tag {
         background-color: #ffff;
         box-shadow      : 5px 5px 5px lightblue;
         border-radius   : 6px;

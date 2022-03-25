@@ -56,6 +56,7 @@ function SearchResults() {
             <span>Tuyển dụng</span>
           </div>
         </div>
+
         <div className="Results">
           <div className="Peoples">
             <p>Mọi người</p>
@@ -104,7 +105,7 @@ function SearchResults() {
             <button>Xem tất cả</button>
           </div>
 
-          {/* <div className="Post">
+          <div className="Post">
             <p>Bài viết</p>
             <button>Xem tất cả</button>
           </div>
@@ -117,7 +118,7 @@ function SearchResults() {
           <div className="Event">
             <p>Thông tin việc làm</p>
             <button>Xem tất cả</button>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

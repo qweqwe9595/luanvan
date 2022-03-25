@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./RequestBox.scss";
-
+import { Link } from "react-router-dom";
 function RequestBox({ user }) {
   const [userInfo, setUserInfo] = useState({});
   const userId = localStorage.getItem("userID");
@@ -50,10 +50,13 @@ function RequestBox({ user }) {
         src="https://gamek.mediacdn.vn/thumb_w/600/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
         className="avt_friend_request"
       />
-      <div className="userinfo">
+      <Link to={`/profile/${userInfo._id}`} className="userinfo">
+        <div className="userinfo">       
         <p>{userInfo.userName ? userInfo.userName : ""}</p>
         <span>{userInfo.email ? userInfo.email : ""}</span>
       </div>
+      </Link>
+      
       {!click ? (
         <div className="friend_request_tag_button">
         <button
