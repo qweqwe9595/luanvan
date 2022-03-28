@@ -1,5 +1,6 @@
 import React from "react";
 import "./option.scss";
+import { Link } from "react-router-dom";
 import {
   FaComments,
   FaHome,
@@ -18,10 +19,12 @@ function Options() {
           <span>Trò chuyện</span>
         </div>
         <hr className="hr" />
-        <div className="tag">
-          <FaUserFriends className="tag-icon" />
-          <span>Bạn bè</span>
-        </div>
+        <Link to={"/friend"}>
+          <div className="tag">
+            <FaUserFriends className="tag-icon" />
+            <span>Bạn bè</span>
+          </div>
+        </Link>
         <hr className="hr" />
         <div className="tag">
           <FaCalendarAlt className="tag-icon" />

@@ -5,6 +5,7 @@
   max-width      : 100%;
   padding        : 0 20px;
   justify-content: space-around;
+
   .center {
     margin       : auto;
     width        : 50%;
@@ -12,10 +13,11 @@
     flex         : 1;
     padding-left : 30px;
     padding-right: 30px;
-    & > p {
-      padding: 10px 0;
-      text-align: center;
-      font-size: 20px;
+
+    &>p {
+      padding    : 10px 0;
+      text-align : center;
+      font-size  : 20px;
       font-family: 'Oswald', sans-serif;
     }
   }
@@ -43,15 +45,15 @@
   .home-maincontainer {
     .center {
       margin-right: 300px;
-    } 
+    }
   }
 }
 
 @media all and (max-width: 700px) {
   .home-maincontainer {
     .center {
-      padding: 0px;
-      width: 600px;
+      padding : 5px;
+      // width: 600px;
     }
   }
 }
@@ -64,11 +66,12 @@
     }
 
     .leftbar {
-      display: block;
+      display     : block;
       padding-left: 20px;
     }
-    .rightbar{
-      display: block;
+
+    .rightbar {
+      display      : block;
       padding-right: 20px;
     }
   }

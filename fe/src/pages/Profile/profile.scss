@@ -1,6 +1,6 @@
 .profile {
-  width      : 100vw;
-  //max-width: 100%;
+  width    : 100vw;
+  max-width: 100%;
 
   .profile-main {
     margin-top    : 20px;
@@ -14,11 +14,11 @@
     .profile-left {}
 
     .profile-right {
-      &>p{
-        font-size: 20px;
-        text-align: center;
+      &>p {
+        font-size  : 20px;
+        text-align : center;
         font-family: 'Oswald', sans-serif;
-        padding: 10px 0;
+        padding    : 10px 0;
       }
     }
   }
@@ -29,7 +29,7 @@
     .profile-main {
       flex-direction : row;
       justify-content: space-evenly;
-      
+
       .profile-left {
         flex: 2;
       }
