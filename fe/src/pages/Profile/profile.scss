@@ -13,7 +13,14 @@
 
     .profile-left {}
 
-    .profile-right {}
+    .profile-right {
+      &>p{
+        font-size: 20px;
+        text-align: center;
+        font-family: 'Oswald', sans-serif;
+        padding: 10px 0;
+      }
+    }
   }
 }
 
@@ -22,7 +29,7 @@
     .profile-main {
       flex-direction : row;
       justify-content: space-evenly;
-
+      
       .profile-left {
         flex: 2;
       }

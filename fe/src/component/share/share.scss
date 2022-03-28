@@ -13,13 +13,14 @@
     display: flex;
     flex: 1;
     gap: 10px;
-    & > img {
+    .avartar {
       height: 35px;
       width: 35px;
       border-radius: 50%;
       object-fit: cover;
     }
 
+<<<<<<< HEAD
     .share-left-content {
       display: flex;
       flex-direction: column;
@@ -30,6 +31,13 @@
         font-size: 18px;
         outline: none;
       }
+=======
+    & > input {
+      width: 100%;
+      border: none;
+      font-size: 18px;
+      font-family: 'Roboto', sans-serif;
+>>>>>>> 3d2ffa348fb008fb8b59c01ed6189e394b54287a
     }
 
     & > input:focus {
@@ -55,7 +63,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-
       & > span {
         font-family: "Oswald";
         font-style: normal;
@@ -63,14 +70,17 @@
         font-size: 18px;
         line-height: 27px;
       }
-
+      
       cursor: pointer;
-    }
+    }  
 
     .share-img {
       color: #0d47a1;
       font-size: 24px;
       cursor: pointer;
+    }
+    :hover{
+      color: red;
     }
   }
 }

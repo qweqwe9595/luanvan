@@ -100,15 +100,15 @@ function Nav() {
               alt=""
             />
             <span>{userInfo.userName ? userInfo.userName : ""}</span>
-            <button
+          </div>
+        </Link>
+        <button
               onClick={() => {
                 setOpen(!open);
               }}
             >
               <AiFillCaretDown className="arrow-down" />
             </button>
-          </div>
-        </Link>
       </div>
 
       {open ? (

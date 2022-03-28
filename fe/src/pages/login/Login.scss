@@ -156,17 +156,18 @@
         }
 
         .forget_pass {
-          text-align: right;
-
-          &:hover {
-            cursor: pointer;
-          }
+          text-align: right;        
 
           &>a {
             text-decoration: none;
             color          : #0d47a1;
           }
+          &:hover {
+            cursor: pointer;
+            color: red;
+          }
         }
+        
       }
 
       &>button {
@@ -179,9 +180,12 @@
         color           : #ffffff;
         font-size       : 15px;
         border          : none;
+        cursor          : pointer;
 
         &:hover {
           background-color: #0d47a1;
+          cursor: pointer;
+          color: red;
         }
       }
 

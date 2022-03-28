@@ -35,7 +35,9 @@ function Home() {
 
         <div className="center">
           <Share></Share>
+          <p>--- Có thể bạn biết họ ! ---</p>
           <RecommendPage></RecommendPage>
+          <p>--- Hôm nay có gì mới nào ! ---</p>
           {userPosts.map((userPost, index) => {
             return <Feed userPost={userPost} key={index}></Feed>;
           })}

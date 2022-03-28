@@ -27,6 +27,8 @@ function Main() {
     socket.emit("userConnection", user);
   }, [user, socket]);
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     if (!user) return;
     socket?.on("getNotification", (data) => {

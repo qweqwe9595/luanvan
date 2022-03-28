@@ -3,20 +3,29 @@ import { FaPhotoVideo, FaRegPaperPlane } from "react-icons/fa";
 import "./share.scss";
 import { useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import PostImgUpload from "../fileUpload/PostImgUpload";
+=======
+import { Link } from "react-router-dom";
+
+>>>>>>> 3d2ffa348fb008fb8b59c01ed6189e394b54287a
 
 function Share() {
+  const userId = localStorage.getItem("userID");
   const [desc, setDesc] = useState("");
   const [img, setImg] = useState(false);
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
 
   const Share = () => {
+<<<<<<< HEAD
     const userId = localStorage.getItem("userID");
     var formData = new FormData();
     formData.append("img", fileRef);
     formData.append("userId", userId);
     formData.append("desc", desc);
+=======
+>>>>>>> 3d2ffa348fb008fb8b59c01ed6189e394b54287a
     axios
       .post("http://localhost:5000/api/posts", formData, {
         headers: {
@@ -42,6 +51,7 @@ function Share() {
         />
       )}
       <div className="share-left">
+<<<<<<< HEAD
         <img
           src="https://genk.mediacdn.vn/139269124445442048/2021/3/13/ava-1615607562651629147713.jpeg"
           alt=""
@@ -61,6 +71,20 @@ function Share() {
             </div>
           )}
         </div>
+=======
+        <Link to={`/profile/${userId}`}>
+          <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+            alt="" className="avartar"/>            
+        </Link>        
+      <input
+          type="text"
+          placeholder="Bạn muốn chia sẻ gì không?"
+          value={desc}
+          onChange={(e) => {
+            setDesc(e.target.value);
+          }}
+        />
+>>>>>>> 3d2ffa348fb008fb8b59c01ed6189e394b54287a
       </div>
 
       <div className="share-right">

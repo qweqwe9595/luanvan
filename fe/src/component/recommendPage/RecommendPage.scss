@@ -4,21 +4,17 @@
   background-color: #ffff;
   border-radius   : 20px;
   padding         : 10px;
-  margin-top      : 20px;
   font-family     : "oswald";
-
   .Recommend_page_tag {
-    width              : 230px;
-    height             : 270px;
+    height             : 230px;
     border-radius      : 10px;
     align-items        : center;
     text-align         : center;
     margin             : auto;
     margin-right       : 10px;
     // border          : 0.5px solid #b6babe;
-    padding            : 10px;
+    padding            : 10px 12px;
     background-color   : #eef0f5;
-
     p {
       font-size    : 20px;
       margin-top   : 5px;
@@ -34,15 +30,15 @@
     }
 
     .cover_photo {
-      width          : 210px;
-      height         : 110px;
+      width          : 160px;
+      height         : 80px;
       //margin-top   : 10px;
       border-radius  : 10px;
     }
 
     .avatar {
-      width           : 80px;
-      height          : 80px;
+      width           : 60px;
+      height          : 60px;
       border-radius   : 50px;
       margin-top      : -40px;
       // border       : 1px solid #0D47A1
@@ -51,23 +47,23 @@
     .recommend_page_button {
       width        : 100%;
       margin-bottom: 10px;
-
       .button_like_page {
-        width              : 80px;
+        width              : 60px;
         height             : 25px;
         font-size          : 12px;
         border-radius      : 15px;
         background-color   : #0d47a1;
         color              : white;
-        margin-right       : 25px;
+        margin-right       : 10px;
         // font-weight     : bold;
         border             : none;
         font-family        : "oswald";
       }
+      
 
 
       .button_dislike_page {
-        width              : 80px;
+        width              : 60px;
         height             : 25px;
         font-size          : 12px;
         border-radius      : 15px;
@@ -75,6 +71,10 @@
         background-color   : #c4c4c4;
         border             : none;
         font-family        : "oswald";
+      }
+      :hover{
+        color: red;
+        cursor: pointer;
       }
     }
   }

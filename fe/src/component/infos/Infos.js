@@ -63,7 +63,7 @@ function Infos() {
         <GiGraduateCap></GiGraduateCap>
         <p>Ngành </p>
           <span>
-            {userInfo.major?userInfo.major.majorName:""} 
+            {userInfo.major?userInfo.major.majorName:""} K 
             {userInfo.major?userInfo.major.yearKey :""}
         </span>
       </div>

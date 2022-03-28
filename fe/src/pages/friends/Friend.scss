@@ -94,6 +94,8 @@
                 font-weight     : bold;
                 background-color: #EEF0F5;
 
+                cursor: pointer;
+
                 &:hover {
                     background-color: #0d47a1;
                     color           : #ffffff;
@@ -157,13 +159,13 @@
 
 
             .f_request {
-                width              : 90%;
-                border-radius      : 0;
-                margin-left        : 0;
-                padding            : 20px;
-                padding-left       : 40px;
-                padding-right      : 40px;
-                // background-color: #E5E5E5;
+                width        : 100%;
+                border-radius: 0;
+                margin-left  : 0;
+                padding      : 10px;
+                padding-left : 25px;
+                padding-right: 25px;
+
 
                 &>button {
                     display: none;

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./comment.scss";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import axios from "axios";
 
 function CommentV2({ commentV2, commentLv1 }) {
+  console.log(commentLv1);
   const [liking, setLiking] = useState(false);
   const [likes, setLikes] = useState(commentV2.like.length);
   const a = new Date();
@@ -15,7 +16,7 @@ function CommentV2({ commentV2, commentLv1 }) {
   const iconStyles = { color: "#0d47a1", fontSize: "20px" };
 
   const commentId = commentV2.commentLv1;
-  const userId = useParams().userId;
+  const userId = localStorage.getItem("userID");
   const [cmtV2, setCmtV2] = useState("");
   const writeCommentV2 = () => {
     axios
@@ -62,10 +63,12 @@ function CommentV2({ commentV2, commentLv1 }) {
       <div className="comment-2">
         <div className="comment-tag">
           <div className="avatar">
-            <img src="https://dep365.com/wp-content/uploads/2021/07/Post-from-imjanedeleon-rsgym6-800x470.jpg"></img>
+            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"></img>
           </div>
           <div className="comment-tag-username">
-            <p>{commentV2.userId?.userName}</p>
+          <Link to={`/profile/${commentV2.userId?._id}`}>
+              <p className="username">{commentV2.userId?.userName}</p>
+            </Link>
           </div>
           <div className="comment-tag-timepost">
             {(() => {
@@ -100,7 +103,7 @@ function CommentV2({ commentV2, commentLv1 }) {
           </div>
         </div>
         <div className="comment-tag-message">
-          <p>{commentV2.message}</p>
+          <p><span>{commentLv1?.userId?.userName}</span> {commentV2.message}</p>
         </div>
         <div className="post-interaction-3">
           <div className="post-interaction-heart-3">

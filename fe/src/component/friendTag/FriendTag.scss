@@ -9,6 +9,7 @@
     margin-bottom   : 25px;
     font-family     : "oswald";
 
+
     .avt_friend_request {
         width        : 55px;
         height       : 55px;
@@ -28,15 +29,20 @@
             text-align    : left;
             margin        : auto;
             margin-left   : -1%;
+            font-family   : "oswald";
+            cursor        : pointer;
+
         }
 
         span {
             //text-transform   : capitalize;
-            font-size        : 17px;
+            font-size        : 15px;
             // font-weight   : bold;
             text-align       : left;
             margin           : auto;
             margin-left      : -1%;
+            font-family      : "oswald";
+            cursor           : pointer;
         }
     }
 
@@ -55,6 +61,8 @@
             margin-right    : 5px;
             font-weight     : bold;
             font-size       : 13px;
+            cursor          : pointer;
+            font-family     : "oswald";
         }
     }
 }
@@ -65,6 +73,7 @@
         box-shadow      : 5px 5px 5px lightblue;
         border-radius   : 6px;
         height          : 60px;
+
 
         .avt_friend_request {
             width : 50px;
