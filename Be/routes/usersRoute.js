@@ -2,6 +2,18 @@ const router = require("express").Router();
 const { status } = require("express/lib/response");
 const { findById } = require("../model/usersModel");
 const userModal = require("../model/usersModel");
+const multer = require("multer");
+
+//multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
 const {
   searchingUser,
   getAUser,
@@ -13,6 +25,9 @@ const {
   deleteAUser,
   unFriend,
   refuseFriendRequest,
+  uploadAvatar,
+  uploadBackground,
+  addNotification,
 } = require("../controller/usersController");
 
 //searching user
@@ -43,5 +58,15 @@ router.patch("/refuse/:id", refuseFriendRequest);
 
 //delete user
 router.delete("/:id", deleteAUser);
+
+//upload avatar
+
+router.post("/upload/avatar/:id", upload.single("avatar"), uploadAvatar);
+router.post(
+  "/upload/background/:id",
+  upload.single("avatar"),
+  uploadBackground
+);
+router.post("/notification", addNotification);
 
 module.exports = router;

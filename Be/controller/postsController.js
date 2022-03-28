@@ -9,9 +9,14 @@ const createAPost = async (req, res) => {
       return res.status(500).json({ message: "can user id" });
     }
     const newPost = new postsModel(req.body);
+    if (req.file) {
+      newPost.img = await req.file.filename;
+    }
     const savePost = await newPost.save();
+    console.log(newPost);
     res.status(200).json({ message: "dang bai viet thanh cong", newPost });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err.message);
   }
 };

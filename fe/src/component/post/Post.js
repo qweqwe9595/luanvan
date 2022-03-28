@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./post.scss";
 import axios from "axios";
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CommentV1 from "../comment/CommentV1";
+import { SocketContext } from "../../context/SocketContext";
+import { UserContext } from "../../context/userContext";
 
 function Post({ postInfo }) {
   const [open, setOpen] = useState(false);
@@ -23,6 +25,8 @@ function Post({ postInfo }) {
   const iconStyles = { color: "#0d47a1", fontSize: "25px" };
   const [comment, setComment] = useState([]);
   const commentNumber = countCmts(comment);
+  const socket = useContext(SocketContext);
+  const [user] = useContext(UserContext);
 
   function countCmts(comment) {
     let lv1Count = comment.length;
@@ -64,6 +68,20 @@ function Post({ postInfo }) {
       })
       .catch((err) => {
         console.log(err.response.data.message);
+      });
+  };
+
+  const sendNotification = (type) => {
+    axios
+      .post("http://localhost:5000/api/users/notification", {
+        userId: postInfo.userId._id,
+        message: "like",
+      })
+      .then((res) => {
+        socket?.emit("sendNotification", {
+          receiverUserId: postInfo.userId._id,
+          type,
+        });
       });
   };
 
@@ -143,7 +161,11 @@ function Post({ postInfo }) {
       <div className="post-desc">
         <p>{postInfo.desc}</p>
       </div>
-      <div className="post-img"></div>
+      <div className="post-img">
+        {postInfo.img && (
+          <img src={`http://localhost:5000/images/${postInfo.img}`} />
+        )}
+      </div>
       <div className="post-interaction">
         <div className="post-interaction-heart" onClick={() => addLike()}>
           {isLike ? (
@@ -160,6 +182,7 @@ function Post({ postInfo }) {
               onClick={() => {
                 setLikesCount(likesCount + 1);
                 setIsLike(true);
+                sendNotification("LIKE");
               }}
             />
           )}

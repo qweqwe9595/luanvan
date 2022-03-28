@@ -3,15 +3,19 @@ import "./hero.scss";
 import { AiOutlineCamera } from "react-icons/ai";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import PhotoUpload from "../fileUpload/PhotoUpload";
 
 function Hero() {
   const userId = useParams().userId;
   const userRequestId = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userinfos, setUserInfos] = useState("");
+  const [uploadAvatar, setUploadAvatar] = useState(false);
+  const [uploadBackground, setUploadBackground] = useState(false);
+
   useEffect(() => {
     const getUserInfo = () => {
       axios
-        .get(`http://localhost:5000/api/users//getone/${userId}`)
+        .get(`http://localhost:5000/api/users/getone/${userId}`)
         .then((res) => {
           setUserInfos(res.data);
         })
@@ -34,25 +38,42 @@ function Hero() {
         console.log(err.response.data.message);
       });
   };
+  console.log(userinfos);
 
   return (
     <div className="hero">
+      {uploadAvatar && <PhotoUpload open={setUploadAvatar} type={"avatar"} />}
+      {uploadBackground && (
+        <PhotoUpload open={setUploadBackground} type={"background"} />
+      )}
       <div className="coverpicture-container">
         <img
           className="coverpicture"
-          src="https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
+          src={`http://localhost:5000/images/${
+            userinfos?.photos?.background[
+              userinfos?.photos?.background?.length - 1
+            ]
+          }`}
           alt=""
         />
+        <AiOutlineCamera
+          className="camera-background"
+          onClick={() => setUploadBackground(true)}
+        />
       </div>
-
       <div className="hero-profile">
         <div className="avatar-container">
           <img
             className="avatar"
-            src="https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
+            src={`http://localhost:5000/images/${
+              userinfos?.photos?.avatar[userinfos?.photos?.avatar?.length - 1]
+            }`}
             alt=""
           />
-          <AiOutlineCamera className="camera" />
+          <AiOutlineCamera
+            className="camera"
+            onClick={() => setUploadAvatar(true)}
+          />
         </div>
         <p className="hero-name">
           {userinfos.userName ? userinfos.userName : ""}
@@ -61,8 +82,8 @@ function Hero() {
       <div className="hero-content">
         <div>Nhắn tin</div>
         {!userId.includes(userRequestId) ? (
-          <div className="icon-request">       
-              <div onClick={() => addFriend()}>Kết bạn</div>
+          <div className="icon-request">
+            <div onClick={() => addFriend()}>Kết bạn</div>
           </div>
         ) : (
           ""

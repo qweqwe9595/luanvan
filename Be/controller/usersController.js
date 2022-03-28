@@ -240,6 +240,40 @@ const refuseFriendRequest = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+const uploadAvatar = async (req, res) => {
+  try {
+    const updateUser = await userModal.findById(req.params.id);
+    await updateUser.photos.avatar.push(req.file.filename);
+    await updateUser.save();
+    res.status(200).json({ message: "thanh cong", updateUser });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err.message);
+  }
+};
+const uploadBackground = async (req, res) => {
+  try {
+    const updateUser = await userModal.findById(req.params.id);
+    await updateUser.photos.background.push(req.file.filename);
+    await updateUser.save();
+    res.status(200).json({ message: "thanh cong", updateUser });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err.message);
+  }
+};
+
+const addNotification = async (req, res) => {
+  try {
+    const updateUser = await userModal.findById(req.body.userId);
+    await updateUser.notifications.unshift(req.body);
+    await updateUser.save();
+    res.status(200).json({ message: "thanh cong", updateUser });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err.message);
+  }
+};
 
 module.exports = {
   searchingUser,
@@ -252,4 +286,7 @@ module.exports = {
   deleteAUser,
   unFriend,
   refuseFriendRequest,
+  uploadAvatar,
+  uploadBackground,
+  addNotification,
 };

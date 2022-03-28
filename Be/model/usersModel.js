@@ -91,6 +91,18 @@ const userSchema = new mongoose.Schema(
     blockDuration: {
       type: Number,
     },
+    photos: {
+      avatar: [],
+      background: [],
+      images: [],
+    },
+    notifications: [
+      {
+        userId: { type: String, ref: "usersModal" },
+        message: "",
+        link: { type: String },
+      },
+    ],
   },
   { timestamps: true }
 );
