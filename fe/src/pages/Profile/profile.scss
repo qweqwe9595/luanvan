@@ -1,23 +1,24 @@
 .profile {
-  width      : 100vw;
-  //max-width: 100%;
+  width: 100vw;
+  max-width: 100%;
 
   .profile-main {
-    margin-top    : 20px;
-    padding       : 0 10px;
-    width         : 100%;
-    display       : flex;
+    margin-top: 20px;
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    padding       : 0 10px;
-    gap           : 30px;
+    padding: 0 10px;
+    gap: 30px;
 
-    .profile-left {}
+    .profile-left {
+    }
 
     .profile-right {
-      &>p{
+      & > p {
         font-size: 20px;
         text-align: center;
-        font-family: 'Oswald', sans-serif;
+        font-family: "Oswald", sans-serif;
         padding: 10px 0;
       }
     }
@@ -27,9 +28,9 @@
 @media all and(min-width:1024px) {
   .profile {
     .profile-main {
-      flex-direction : row;
+      flex-direction: row;
       justify-content: space-evenly;
-      
+
       .profile-left {
         flex: 2;
       }
@@ -46,9 +47,11 @@
     .profile-main {
       padding: 0 100px;
 
-      .profile-left {}
+      .profile-left {
+      }
 
-      .profile-right {}
+      .profile-right {
+      }
     }
   }
 }
@@ -58,9 +61,11 @@
     .profile-main {
       padding: 0 200px;
 
-      .profile-left {}
+      .profile-left {
+      }
 
-      .profile-right {}
+      .profile-right {
+      }
     }
   }
 }
