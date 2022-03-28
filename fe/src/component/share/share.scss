@@ -5,10 +5,10 @@
   display: flex;
   padding: 0 12px;
   border-radius: 30px;
-  align-items: center;
   justify-content: space-between;
-  height: 50px;
   gap: 10px;
+  padding: 10px 0;
+
   .share-left {
     display: flex;
     flex: 1;
@@ -20,21 +20,33 @@
       object-fit: cover;
     }
 
-    & > input {
-      width: 100%;
-      border: none;
-      font-size: 18px;
+    .share-left-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      & > input {
+        width: 100%;
+        border: none;
+        font-size: 18px;
+        outline: none;
+      }
     }
 
     & > input:focus {
       outline: none;
+    }
+    .preview-container {
+      width: 100%;
+      .preview-img {
+        width: 100%;
+      }
     }
   }
 
   .share-right {
     display: flex;
     gap: 0.5rem;
-    align-items: center;
+    align-items: flex-start;
     .share-btn {
       color: white;
       padding: 4px 10px;

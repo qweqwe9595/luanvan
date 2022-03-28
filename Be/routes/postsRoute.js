@@ -12,8 +12,21 @@ const {
   likeAPost,
 } = require("../controller/postsController");
 
+const multer = require("multer");
+
+//multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
 //create a post
-router.post("/", createAPost);
+router.post("/", upload.single("img"), createAPost);
 //get timeline
 router.get("/timeline/:id", getTimeLine);
 
