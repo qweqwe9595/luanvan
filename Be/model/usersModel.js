@@ -100,7 +100,7 @@ const userSchema = new mongoose.Schema(
       {
         userId: { type: String, ref: "usersModal" },
         message: "",
-        link: { type: String },
+        post: { type: String },
       },
     ],
   },

@@ -21,7 +21,6 @@ function UserIntro({ setOpen }) {
   const [distrist, setdistrist] = useState("");
   const param = useParams();
 
-
   useEffect(() => {
     const getUserInfo = () => {
       axios
@@ -61,6 +60,7 @@ function UserIntro({ setOpen }) {
       return;
     }
     const dateFormat = new Date(dayOfBirth).getTime();
+    console.log(dateFormat);
     axios
       .patch(`http://localhost:5000/api/users/${param.userId}`, {
         userId: param.userId,
