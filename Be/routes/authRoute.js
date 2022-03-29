@@ -29,7 +29,7 @@ router.post("/login", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    console.log(req.body.email);
+    console.log(userQuery);
     if (userQuery) {
       const email = req.body.email;
       const token = jwt.sign({ email }, process.env.TOKEN_SR);
@@ -40,7 +40,7 @@ router.post("/login", async (req, res) => {
       return res.status(200).json("sai tai khoan");
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err.message);
   }
 });
 

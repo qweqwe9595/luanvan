@@ -21,7 +21,7 @@ function Infos() {
   const currentUserId = localStorage.getItem("userID");
   useEffect(() => {
     const getUserInfo = () => {
-      Axios.get(`http://localhost:5000/api/users//getone/${param.userId}`)
+      Axios.get(`http://localhost:5000/api/users/getone/${param.userId}`)
         .then((res) => {
           setUserInfo(res.data);
           setMajorClass(res.data.major.class);
@@ -83,13 +83,15 @@ function Infos() {
           <p>Ngành </p>
           <span>
             {userInfo.major ? userInfo.major.majorName : ""}
-              {yearkey ? (
+            {yearkey ? (
               <span>
                 {" "}
                 {"Khóa "}
-                {userInfo.major ? (userInfo.major.yearKey) : ""}
-                </span>
-               ):"" }
+                {userInfo.major ? userInfo.major.yearKey : ""}
+              </span>
+            ) : (
+              ""
+            )}
           </span>
         </div>
       ) : (
@@ -97,14 +99,16 @@ function Infos() {
       )}
       {city ? (
         <div className="info_tag">
-        <MdWhereToVote></MdWhereToVote>
-        <p>Quê quán </p>
-        <span>
-          {userInfo.address ? userInfo.address.city : ""}{" "}
-          {userInfo.address ? userInfo.address.distrist : ""}
-        </span>
-      </div>
-      ):""}
+          <MdWhereToVote></MdWhereToVote>
+          <p>Quê quán </p>
+          <span>
+            {userInfo.address ? userInfo.address.city : ""}{" "}
+            {userInfo.address ? userInfo.address.distrist : ""}
+          </span>
+        </div>
+      ) : (
+        ""
+      )}
       {open ? <UserIntro setOpen={setOpen}></UserIntro> : ""}
       {currentUserId === param.userId ? (
         <button

@@ -6,7 +6,7 @@ function PostImgUpload({ preview, setFileRef, open }) {
   return (
     <form className="fileupload">
       <div className="fileupload-container">
-        <h1>Chọn hình</h1>
+        <h1>Chọn một ảnh</h1>
         <button
           className="exit"
           onClick={(e) => {

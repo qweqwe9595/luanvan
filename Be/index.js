@@ -46,11 +46,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-//components
+//routes
 const authRoute = require("./routes/authRoute");
 const usersRoute = require("./routes/usersRoute");
 const postsRoute = require("./routes/postsRoute");
 const commentsRoute = require("./routes/commentsRoute");
+const eventsRoute = require("./routes/eventsRoute");
 
 require("dotenv").config();
 
@@ -69,6 +70,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
 app.use("/api/comments", commentsRoute);
+app.use("/api/events", eventsRoute);
 
 http.listen(5000, () => {
   console.log("running at local host 5000");

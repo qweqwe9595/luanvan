@@ -2,7 +2,7 @@
   display        : flex;
   width          : 100%;
   padding        : 0px 20px;
-  height         : 50px;
+  height         : 60px;
   align-items    : center;
   background     : #0d47a1 !important;
   justify-content: space-between;
@@ -188,16 +188,17 @@
       border-radius     : 1rem;
       align-items       : center;
       gap               : 5px;
-      height            : fit-content;
+      height            : 40px;
       margin-right      : 40px;
       border-radius     : 1rem;
       align-items       : center;
       gap               : 5px;
-      height            : fit-content;
 
       &>input {
         width           : 100%;
+        font-family     : 'Roboto', sans-serif;
         border          : none;
+        width           : 200px;
         background-color: transparent;
         font-size       : 1.1rem;
       }
@@ -221,7 +222,7 @@
         border-radius   : 23px;
         z-index         : 1;
         position        : absolute;
-        top             : 6px;
+        top             : 10px;
         right           : 10px;
         padding-right   : 50px;
 
@@ -248,7 +249,7 @@
         border-radius   : 50%;
         z-index         : 10;
         position        : absolute;
-        top             : 6px;
+        top             : 10px;
         right           : 10px;
         cursor          : pointer;
 

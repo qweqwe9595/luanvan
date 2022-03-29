@@ -102,13 +102,12 @@ function Post({ postInfo }) {
         console.log("Loi roi", err.response.data.message);
       });
   };
-
   return (
     <div className="post">
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
-            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"></img>
+            <img src={postInfo?.photos?.avatar[postInfo?.photos?.avatar?.length - 1]}></img>
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
