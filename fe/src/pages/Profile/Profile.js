@@ -7,6 +7,7 @@ import Infos from "../../component/infos/Infos";
 import FriendProfile from "../../component/friendsProfile/FriendProfile";
 import Share from "../../component/share/Share";
 import Feed from "../../component/feed/Feed";
+import Post from "../../component/post/Post";
 import { useParams } from "react-router-dom";
 
 function Profile() {
@@ -17,10 +18,9 @@ function Profile() {
     const getUserPost = () => {
       axios
         .get(
-          `http://localhost:5000/api/posts/timeline/${param.userId}?amount=10`
+          `http://localhost:5000/api/posts/profile/${param.userId}?amount=10`
         )
         .then((res) => {
-          // console.log(res.data);
           setUserPost(res.data.posts);
         })
         .catch((err) => {
@@ -40,7 +40,6 @@ function Profile() {
     };
     getUser();
   }, [param.userId]);
-  //console.log(userPosts);
   return (
     <div className="profile">
       <Nav></Nav>
@@ -53,8 +52,8 @@ function Profile() {
         <div className="profile-right">
           <Share />
           <p>--- Bài đăng gần đây. ---</p>
-          {userPosts?.map((userPost, index) => {
-            return <Feed userPost={userPost} key={index} />;
+           {userPosts?.map((userPost) => {
+            return <Post postInfo={userPost} key={userPost._id} />;
           })}
         </div>
       </div>

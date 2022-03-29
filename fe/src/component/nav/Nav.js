@@ -77,7 +77,7 @@ function Nav() {
         </div>
         <input
           type="text"
-          placeholder="Searching..."
+          placeholder="Tìm kiếm..."
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}
