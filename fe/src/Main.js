@@ -18,6 +18,7 @@ function Main() {
   //get user
   useEffect(() => {
     const userId = localStorage.getItem("userID");
+    const token = localStorage.getItem("token");
     axios
       .get(`http://localhost:5000/api/users/getone/${userId}`)
       .then((res) => setUser(res.data));
@@ -45,7 +46,7 @@ function Main() {
       <Route path="/" element={<Home />}></Route>
       <Route path="/friend" element={<Friend />}></Route>
       <Route path="/eventContent" element={<EventContent />}></Route>
-      <Route path="/event" element={<Event/>}></Route>
+      <Route path="/event" element={<Event />}></Route>
     </Routes>
   );
 }

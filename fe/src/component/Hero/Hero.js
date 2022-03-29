@@ -11,6 +11,21 @@ function Hero() {
   const [userinfos, setUserInfos] = useState("");
   const [uploadAvatar, setUploadAvatar] = useState(false);
   const [uploadBackground, setUploadBackground] = useState(false);
+  console.log(localStorage.getItem("token"));
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5000/api/events/all",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => console.log(res.data));
+  }, []);
 
   useEffect(() => {
     const getUserInfo = () => {

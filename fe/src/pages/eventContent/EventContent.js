@@ -9,7 +9,7 @@ function EventContent() {
       <Nav></Nav>
       <div className="event_header">
         <img
-          src="https://wecheckin.vn/wp-content/uploads/2019/12/dia-chi-chua-tam-chuc-wecheckin-1.jpg"
+          src="https://i.pinimg.com/564x/92/26/5c/92265c40c8e428122e0b32adc1994594.jpg"
           className="cover"
         ></img>
         <div className="time">
