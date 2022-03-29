@@ -38,7 +38,7 @@ function Hero() {
         console.log(err.response.data.message);
       });
   };
-  console.log(userinfos);
+  // console.log(userinfos);
 
   return (
     <div className="hero">
@@ -56,10 +56,14 @@ function Hero() {
           }`}
           alt=""
         />
-        <AiOutlineCamera
-          className="camera-background"
-          onClick={() => setUploadBackground(true)}
-        />
+        {userRequestId === userId ? (
+          <AiOutlineCamera
+            className="camera-background"
+            onClick={() => setUploadBackground(true)}
+          />
+        ) : (
+          ""
+        )}
       </div>
       <div className="hero-profile">
         <div className="avatar-container">
@@ -70,10 +74,14 @@ function Hero() {
             }`}
             alt=""
           />
-          <AiOutlineCamera
-            className="camera"
-            onClick={() => setUploadAvatar(true)}
-          />
+          {userRequestId === userId ? (
+            <AiOutlineCamera
+              className="camera"
+              onClick={() => setUploadAvatar(true)}
+            />
+          ) : (
+            ""
+          )}
         </div>
         <p className="hero-name">
           {userinfos.userName ? userinfos.userName : ""}
