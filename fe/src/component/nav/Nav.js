@@ -76,7 +76,7 @@ function Nav() {
           ></FaSearch>
         </div>
         <input
-          type="text"
+          type="search"
           placeholder="Searching..."
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -103,26 +103,29 @@ function Nav() {
           </div>
         </Link>
         <button
-              onClick={() => {
-                setOpen(!open);
-              }}
-            >
-              <AiFillCaretDown className="arrow-down" />
-            </button>
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
+          <AiFillCaretDown className="arrow-down" />
+        </button>
       </div>
 
       {open ? (
         <div className="account">
-          <div className="user">
-            <img
-              src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
-              alt=""
-            />
-            <div className="infouser">
-              <span>{userInfo.userName ? userInfo.userName : ""}</span>
-              <h4>Xem trang cá nhân của bạn </h4>
+          <Link to={`/profile/${currentUserId}`}>
+            <div className="user">
+              <img
+                src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
+                alt=""
+              />
+              <div className="infouser">
+                <span>{userInfo.userName ? userInfo.userName : ""}</span>
+                <p>Xem trang cá nhân của bạn </p>
+              </div>
             </div>
-          </div>
+          </Link>
+
           <hr></hr>
           <div
             className="signout"

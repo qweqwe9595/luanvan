@@ -26,10 +26,12 @@ function Options() {
           </div>
         </Link>
         <hr className="hr" />
-        <div className="tag">
-          <FaCalendarAlt className="tag-icon" />
-          <span>Tin tức sự kiện</span>
-        </div>
+        <Link to={"/event"}>
+          <div className="tag">
+            <FaCalendarAlt className="tag-icon" />
+            <span>Tin tức sự kiện</span>
+          </div>
+        </Link>
         <hr className="hr" />
         <div className="tag">
           <FaUserTie className="tag-icon" />
