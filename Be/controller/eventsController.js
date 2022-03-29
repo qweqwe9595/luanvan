@@ -11,6 +11,15 @@ const getAllEvents = async (req, res) => {
   }
 };
 
+const getAnEvents = async (req, res) => {
+  try {
+    const eventsQuery = await eventsModel.findById(req.params.id);
+    res.status(200).json({ eventsQuery });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 //create an event
 const createAnEvent = async (req, res) => {
   try {
@@ -64,4 +73,5 @@ module.exports = {
   deleteAnEvent,
   createAnEvent,
   updateAnEvent,
+  getAnEvents,
 };
