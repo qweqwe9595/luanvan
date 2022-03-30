@@ -7,6 +7,7 @@ import PostImgUpload from "../fileUpload/PostImgUpload";
 
 function Share() {
   const userId = localStorage.getItem("userID");
+  const userInfo = localStorage.getItem("userInfo");
   const [desc, setDesc] = useState("");
   const [img, setImg] = useState(false);
   const [fileRef, setFileRef] = useState(null);

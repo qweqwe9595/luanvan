@@ -22,7 +22,7 @@ function Post({ postInfo }) {
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
 
-  const iconStyles = { color: "#0d47a1", fontSize: "25px" };
+  const iconStyles = { color: "#0d47a1", fontSize: "20px", margin: "auto 5px" };
   const [comment, setComment] = useState([]);
   const commentNumber = countCmts(comment);
   const socket = useContext(SocketContext);
@@ -65,6 +65,7 @@ function Post({ postInfo }) {
       .then((res) => {
         console.log(res.data);
         alert("đã like");
+        console.log("like roi");
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -102,6 +103,7 @@ function Post({ postInfo }) {
         console.log("Loi roi", err.response.data.message);
       });
   };
+
   return (
     <div className="post">
       <div className="post-meta">
@@ -175,41 +177,38 @@ function Post({ postInfo }) {
           <img src={`http://localhost:5000/images/${postInfo.img}`} />
         )}
       </div>
-      <div className="post-interaction">
-        <div className="post-interaction-heart" onClick={() => addLike()}>
+      <div className="post-interaction-length">
+        <div className="post-interaction-length-heart">
+          <p>{likesCount} lượt thích</p>
+          </div>
+        <div className="post-interaction-length-comment">
+          <p>{commentNumber} bình luận</p>
+          </div>
+        <div className="post-interaction-length-share">
+        {/* <FiShare2 style={iconStyles}></FiShare2> */}
+          </div>
+      </div>
+      <div className="post-interaction">        
           {isLike ? (
-            <IoMdHeart
-              style={iconStyles}
-              onClick={() => {
-                setLikesCount(likesCount - 1);
-                setIsLike(false);
-              }}
-            />
+            <div className="post-interaction-heart" 
+                onClick={() => {addLike();setLikesCount(likesCount - 1);setIsLike(false);}}>
+            <IoMdHeart style={iconStyles}/><p>Đã thích</p>
+            </div>
           ) : (
-            <IoMdHeartEmpty
-              style={iconStyles}
-              onClick={() => {
-                setLikesCount(likesCount + 1);
-                setIsLike(true);
-                sendNotification("LIKE");
-              }}
-            />
+            <div className="post-interaction-heart" 
+            onClick={() => {addLike();setLikesCount(likesCount + 1);setIsLike(true);sendNotification("LIKE");}}>
+            <IoMdHeartEmpty style={iconStyles}/><p>Thích</p>
+            </div>
           )}
-          <p>{likesCount}</p>
-        </div>
-        <div className="post-interaction-comment">
-          <span
-            onClick={() => {
+        <div className="post-interaction-comment" onClick={() => {
               setOpen(true);
-            }}
-          >
+            }}>      
             <GoComment style={iconStyles}></GoComment>
-          </span>
-          <p>{commentNumber}</p>
+          <p>Bình luận</p>
         </div>
         <div className="post-interaction-share">
           <FiShare2 style={iconStyles}></FiShare2>
-          <p>100</p>
+          <p>Chia sẻ</p>
         </div>
       </div>
       {/* {postInfo.likes.length > 0 ? (
