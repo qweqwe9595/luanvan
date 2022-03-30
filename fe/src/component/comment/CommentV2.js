@@ -13,7 +13,7 @@ function CommentV2({ commentV2, commentLv1 }) {
   const b = new Date(commentV2.createdAt);
   const commentDate = (a - b) / 1000;
   const [open, setOpen] = useState(false);
-  const iconStyles = { color: "#0d47a1", fontSize: "20px" };
+  const iconStyles = { color: "#0d47a1", fontSize: "15px", margin: "auto 2px" };
 
   const commentId = commentV2.commentLv1;
   const userId = localStorage.getItem("userID");
@@ -105,23 +105,34 @@ function CommentV2({ commentV2, commentLv1 }) {
         <div className="comment-tag-message">
           <p><span>{commentLv1?.userId?.userName}</span> {commentV2.message}</p>
         </div>
+        <div className="post-interaction-length">
+          <p>{likes} lượt thích</p>
+        </div>
         <div className="post-interaction-3">
-          <div className="post-interaction-heart-3">
             {liking ? (
-              <IoMdHeart style={iconStyles} onClick={() => disLike()} />
+              <div className="post-interaction-heart-3" onClick={() => disLike()}>
+               <IoMdHeart style={iconStyles}/>
+              <p>Đã thích</p>
+              </div>
             ) : (
-              <IoMdHeartEmpty style={iconStyles} onClick={() => like()} />
+              <div className="post-interaction-heart-3" onClick={() => like()}>
+               <IoMdHeartEmpty style={iconStyles}/>
+                <p>Thích</p>
+              </div>
             )}
-            <p>{likes}</p>
-          </div>
+            {/* <p>{likes}</p> */}
           <div
             className="post-interaction-comment-3"
             onClick={() => {
               setOpen(true);
             }}
           >
-            <GoComment style={iconStyles} />
-            <p> {commentV2?.length}</p>
+            {/* <GoComment style={iconStyles} />
+            <p> {commentV2?.length}</p> */}
+            <p>Trả lời</p>
+          </div>
+          <div className="post-interaction-report-3">
+            <p>Báo cáo</p>
           </div>
         </div>
       </div>
@@ -130,7 +141,7 @@ function CommentV2({ commentV2, commentLv1 }) {
           <div className="post-comment-bar-text-3">
             <input
               type="text"
-              placeholder="Viết bình luận của bạn..."
+              placeholder="Viết câu trả lời của bạn..."
               value={cmtV2}
               onChange={(e) => {
                 setCmtV2(e.target.value);
@@ -141,6 +152,7 @@ function CommentV2({ commentV2, commentLv1 }) {
             className="post-comment-bar-btn-3"
             onClick={() => {
               writeCommentV2();
+              setOpen(false);
             }}
           >
             <span>ĐĂNG</span>

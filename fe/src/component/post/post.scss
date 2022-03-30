@@ -15,6 +15,7 @@
       .post-meta-left-avatar {
         width: 50px;
         & > img {
+          object-fit: cover;
           width: 40px;
           height: 40px;
           border-radius: 20px;
@@ -99,51 +100,75 @@
     margin-right: 20px;
     text-align: center;
     & > img {
+      object-fit: cover;
       width: 100%;
       border-radius: 10px;
       cursor: pointer;
     }
   }
-  .post-interaction {
-    border-top: #cfcece solid 0.25px;
+  .post-interaction-length {
     display: flex;
-    width: max-content;
-    margin-left: 10px;
-    .post-interaction-heart {
-      border: 1px solid white;
-      margin: 7px 2px;
-      display: flex;
+    margin: 10px 8px;
+    justify-content: right;
+    .post-interaction-length-heart{
       & > p {
-        margin: 0px 5px;
+        font-size: 18px;
         font-family: "Oswald", sans-serif;
       }
-      :hover {
-        cursor: pointer;
+    }
+    .post-interaction-length-comment{
+      & > p {
+        margin: 0 10px;
+        font-size: 18px;
+        font-family: "Oswald", sans-serif;
+      }
+    }
+  }
+
+  .post-interaction {
+    border-top: #cfcece solid 1px;
+    display: flex;
+    width: 95%;
+    margin: auto;
+    .post-interaction-heart {     
+      width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      border-right: 0.25px solid #cfcece;
+      & > p {
+        padding: 3px 0;
+        font-size: 18px;
+        font-family: "Oswald", sans-serif;
       }
     }
     .post-interaction-comment {
-      border: 3px solid white;
-      margin: 7px 2px;
+      margin: auto;
       display: flex;
+      width: 100%;
+      justify-content: center;
       & > p {
-        margin: -2px 5px;
+        padding: 3px 0;
+        font-size: 18px;
         font-family: "Oswald", sans-serif;
-      }
-      :hover {
-        cursor: pointer;
       }
     }
     .post-interaction-share {
-      border: 2px solid white;
-      margin: 7px 2px;
+      margin: auto;
       display: flex;
+      width: 100%;
+      justify-content: center;
+      border-left: 0.25px solid #cfcece;
       & > p {
-        margin: 0px 5px;
+        padding: 3px 0;
+        font-size: 18px;
         font-family: "Oswald", sans-serif;
       }
-      :hover {
-        cursor: pointer;
-      }
+
+    }
+    :hover{
+      background-color: #cfcece;
+      cursor: pointer;
     }
   }
   .post-interaction-name {
@@ -156,16 +181,14 @@
   }
 
   .post-comment-list {
-    // margin-top: 10px;
-    // margin-bottom: 10px;
-    // margin-left: 20px;
-    // margin-right: 20px;
-    margin: 10px auto;
+    width: 95%;
+    border-top: #cfcece solid 1px;
+    margin: auto;
     & > p {
       font-family: "Oswald", sans-serif;
       font-weight: 400;
       font-size: 18px;
-      margin: 0 20px;
+      margin: 10px 10px;
     }
     .post-comment-bar {
       margin-top: 10px;

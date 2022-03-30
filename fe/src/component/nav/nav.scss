@@ -193,7 +193,7 @@
       border-radius     : 1rem;
       align-items       : center;
       gap               : 5px;
-
+      max-width         : 500px;
       &>input {
         width           : 100%;
         font-family     : 'Roboto', sans-serif;

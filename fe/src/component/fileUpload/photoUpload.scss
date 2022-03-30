@@ -16,10 +16,13 @@
     flex-direction: column;
     gap: 10px;
     position: relative;
-    h1 {
+    & > h1 {
       margin: auto;
       font-size: 20px;
       font-weight: bold;
+    }
+    & > img{
+      object-fit: cover;
     }
     .exit {
       position: absolute;
@@ -47,6 +50,12 @@
     }
     .uploadBtn {
       cursor: pointer;
+      width: 120px;
+      height: 30px;
+      margin: auto;      
+    }
+    .uploadBtn:hover{
+      background-color: #c0c0c0;
     }
   }
 }

@@ -7,6 +7,7 @@ import PostImgUpload from "../fileUpload/PostImgUpload";
 
 function Share() {
   const userId = localStorage.getItem("userID");
+  const userInfo = localStorage.getItem("userInfo");
   const [desc, setDesc] = useState("");
   const [img, setImg] = useState(false);
   const [fileRef, setFileRef] = useState(null);
@@ -37,7 +38,11 @@ function Share() {
     <div className="share">
       <div className="share-top">        
         <div className="share-left">
-          <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"/>
+          {userInfo?.photos?(
+             <img src={`http://localhost:5000/images/${userInfo?.photos?.avatar[userInfo?.photos?.avatar?.length - 1]}`}></img>
+            ):(
+              <img src="\stocks\img\avatar\avatarDefault.jpg" alt="" />
+            )} 
           <div className="share-left-content">
             <input
               type="text"

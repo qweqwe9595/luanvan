@@ -55,8 +55,8 @@ function PhotoUpload({ open, type }) {
             uploadAvatar(e);
           }}
         >
-          Cập nhật avatar
-        </button>
+          Cập nhật
+          </button>
       </div>
     </form>
   );
