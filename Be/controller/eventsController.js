@@ -68,10 +68,37 @@ const deleteAnEvent = async (req, res) => {
   }
 };
 
+const joinEvent = async (req, res) => {
+  try {
+    const eventsJoin = await eventsModel.findById(req.body.eventId);
+    if (eventsJoin.joins.includes(req.user._id)) {
+      const eventsQuery = await eventsModel.findByIdAndUpdate(
+        req.body.eventId,
+        {
+          $pull: { joins: req.user._id },
+        },
+        { new: true }
+      );
+      return res.status(200).json({ message: "huy tham gia", eventsQuery });
+    }
+    const eventsQuery = await eventsModel.findByIdAndUpdate(
+      req.body.eventId,
+      {
+        $push: { joins: req.user._id },
+      },
+      { new: true }
+    );
+    res.status(200).json({ message: "tham gia", eventsQuery });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   getAllEvents,
   deleteAnEvent,
   createAnEvent,
   updateAnEvent,
   getAnEvents,
+  joinEvent,
 };

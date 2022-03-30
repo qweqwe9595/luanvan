@@ -6,6 +6,9 @@ const eventsSchema = new mongoose.Schema(
       type: String,
       ref: "usersModal",
     },
+    eventName: {
+      type: String,
+    },
     desc: {
       type: String,
       max: 350,
@@ -27,6 +30,10 @@ const eventsSchema = new mongoose.Schema(
     participants: {
       type: String,
       default: "Sinh viên Đại Học Cần Thơ",
+    },
+    link: {
+      type: String,
+      default: "ctu.edu.vn",
     },
   },
   { timestamps: true }
