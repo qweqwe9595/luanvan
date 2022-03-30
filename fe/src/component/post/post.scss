@@ -5,7 +5,8 @@
   background-color: #ffffff;
   border-radius   : 20px;
   overflow        : hidden;
-  box-shadow      : 0.5px 0.5px #808080;
+  box-shadow: 0px 1px 4px 0px #333e50;
+  
   margin-bottom   : 20px;
 
   .post-meta {
@@ -18,13 +19,12 @@
       .post-meta-left-avatar {
         width: 50px;
 
-        &>img {
+        .avatar {
           object-fit   : cover;
           width        : 40px;
           height       : 40px;
           border-radius: 20px;
         }
-
         :hover {
           cursor: pointer;
         }
@@ -33,22 +33,15 @@
       .post-meta-left-username-timepost {
         .post-meta-left-username {
           width: max-content;
-
           .username {
             text-transform: capitalize;
             font-family   : "Oswald", sans-serif;
             font-size     : 20px;
-            font-weight   : 600;
-
-            :hover {
-              cursor: pointer;
-              color : #808080;
-            }
-
-            :hover {
-              cursor: pointer;
-              color : #808080;
-            }
+            font-weight   : 600;            
+          }
+          :hover {
+            cursor: pointer;
+            color : #0d47a1;
           }
         }
 
@@ -65,6 +58,7 @@
     }
 
     .post-meta-right {
+      position: relative;
       height: max-content;
       width : 100%;
 
@@ -88,11 +82,33 @@
             cursor   : pointer;
           }
         }
-
-        :hover {
-          color: red;
+        .post-meta-right-options-buttons:hover {
+          background-color: #9eb0cc;
+        }        
+      }
+      .post-meta-right-show{
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 120px;
+        width: max-content;
+        padding: 3px;
+        z-index: 1;
+        right: 30px;
+        top: 12px;
+          & > ul{
+            border: 0.5px solid #0d47a1;
+            padding: 3px 3px;
+            & > li{
+              list-style-type: none;
+              padding: 10px 12px;
+            }
+            & > :hover{
+              background-color: #9eb0cc;
+              cursor: pointer;
+            }
         }
       }
+     
     }
   }
 
@@ -147,18 +163,16 @@
   }
 
   .post-interaction {
-    border-top: #cfcece solid 1px;
+    border-top: #9eb0cc solid 1px;
     display   : flex;
     width     : 95%;
     margin    : auto;
-
     .post-interaction-heart {
       width          : 100%;
       margin         : auto;
       display        : flex;
       justify-content: center;
-      border-right   : 0.25px solid #cfcece;
-
+      border-right   : 0.25px solid #9eb0cc;
       &>p {
         padding    : 3px 0;
         font-size  : 18px;
@@ -184,7 +198,7 @@
       display        : flex;
       width          : 100%;
       justify-content: center;
-      border-left    : 0.25px solid #cfcece;
+      border-left    : 0.25px solid #9eb0cc;
 
       &>p {
         padding    : 3px 0;
@@ -195,7 +209,7 @@
     }
 
     :hover {
-      background-color: #cfcece;
+      background-color: #9eb0cc;
       cursor          : pointer;
     }
   }
@@ -212,7 +226,7 @@
 
   .post-comment-list {
     width     : 95%;
-    border-top: #cfcece solid 1px;
+    border-top: #9eb0cc solid 1px;
     margin    : auto;
 
     &>p {
@@ -251,7 +265,6 @@
       }
 
       .post-comment-bar-btn {
-        border          : 1px solid #0d47a1;
         height          : 40px;
         width           : max-content;
         color           : white;
@@ -266,14 +279,12 @@
         &>span {
           font-family: "Oswald", sans-serif;
           font-size  : 15px;
-        }
-
-        :hover {
-          cursor: pointer;
-          color : #b91018;
-        }
-
+        }       
+      }
+      .post-comment-bar-btn:hover {
         cursor: pointer;
+        background-color:#9eb0cc;
+        color: #0d47a1;
       }
     }
   }

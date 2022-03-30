@@ -4,6 +4,7 @@ import "./share.scss";
 import { useState ,useEffect} from "react";
 import axios from "axios";
 import PostImgUpload from "../fileUpload/PostImgUpload";
+import { Link } from "react-router-dom";
 
 function Share() {
   const userId = localStorage.getItem("userID");
@@ -17,6 +18,10 @@ function Share() {
   const Share = () => {
     const userId = localStorage.getItem("userID");
     var formData = new FormData();
+    if(!fileRef && !desc){
+      alert("Phải có ảnh hoặc text");
+      return ;
+    };
     formData.append("img", fileRef);
     formData.append("userId", userId);
     formData.append("desc", desc);
@@ -52,14 +57,16 @@ function Share() {
     <div className="share">
       <div className="share-top">        
         <div className="share-left">
-          {avt === 0 ? (
-               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"/>
-          ):(
-             <img
-            src={`http://localhost:5000/images/${
-              userinfos?.photos?.avatar[userinfos?.photos?.avatar?.length - 1]
-            }`}/>
-          ) }
+        <Link to={`/profile/${userId}`}>
+            {avt === 0 ? (
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" className="avatar"/>
+            ):(
+              <img
+              src={`http://localhost:5000/images/${
+                userinfos?.photos?.avatar[userinfos?.photos?.avatar?.length - 1]
+              }`} className="avatar"/>
+            ) }
+          </Link>
           
           <div className="share-left-content">
             <input

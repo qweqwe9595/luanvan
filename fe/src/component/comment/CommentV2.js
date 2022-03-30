@@ -135,7 +135,7 @@ function CommentV2({ commentV2, commentLv1 }) {
           <div
             className="post-interaction-comment-3"
             onClick={() => {
-              setOpen(true);
+              {open?(setOpen(false)):(setOpen(true))}
             }}
           >
             {/* <GoComment style={iconStyles} />

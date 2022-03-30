@@ -12,6 +12,7 @@ import { UserContext } from "../../context/userContext";
 
 function Post({ postInfo }) {
   const [open, setOpen] = useState(false);
+  const [openOptions, setOpenOptions] = useState(false);
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
   const [likesCount, setLikesCount] = useState(postInfo.likes.length);
@@ -22,7 +23,10 @@ function Post({ postInfo }) {
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
 
-  const iconStyles = { color: "#0d47a1", fontSize: "20px", margin: "auto 5px" };
+  const iconStyles = { color: "#0d47a1", 
+                       fontSize: "20px",
+                       margin: "auto 5px", 
+                       width: "max-content"};
   const [comment, setComment] = useState([]);
   const commentNumber = countCmts(comment);
   const socket = useContext(SocketContext);
@@ -63,9 +67,20 @@ function Post({ postInfo }) {
         userId: loginUser,
       })
       .then((res) => {
-        console.log(res.data);
         alert("đã like");
-        console.log("like roi");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  };
+  const deletePost = () => {
+    axios
+      .delete(`http://localhost:5000/api/posts/${postId}`, {
+        userId: loginUser,
+      })
+      .then((res) => {
+        alert("Đã xóa bài viết");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -96,7 +111,6 @@ function Post({ postInfo }) {
         userId: loginUser,
       })
       .then((res) => {
-        console.log("Thanh cong", res.data);
         alert("Binh luan thanh cong!");
       })
       .catch((err) => {
@@ -109,23 +123,26 @@ function Post({ postInfo }) {
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
+          <Link to={`/profile/${postInfo.userId._id}`}>
+
             {   postInfo?.userId?.photos?.avatar?.length !== 0 ? (
               <img
                 src={`http://localhost:5000/images/${
                  postInfo?.userId?.photos?.avatar[postInfo?.userId?.photos?.avatar?.length - 1]
                 }`}
-              ></img>
+              className="avatar"></img>
             ) : (
               <img
                 src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-              />
+                className="avatar"></img>
             )}
+            </Link>
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
               <Link to={`/profile/${postInfo.userId._id}`}>
                 <p className="username">{postInfo.userId.userName}</p>
-              </Link>
+                </Link>
             </div>
             <div className="post-meta-left-timepost">
               {(() => {
@@ -161,22 +178,30 @@ function Post({ postInfo }) {
         </div>
         <div className="post-meta-right">
           <div className="post-meta-right-options">
-            <div className="post-meta-right-options-buttons">
+            <div className="post-meta-right-options-buttons" onClick={() => {openOptions?(setOpenOptions(false)):(setOpenOptions(true))}}>
               <span>
                 <BsThreeDots></BsThreeDots>
               </span>
             </div>
           </div>
+          
+          {openOptions?(<div className="post-meta-right-show">
+              <ul>
+                {postInfo.userId._id.includes(loginUser)?(<li>Chỉnh sửa</li>):""}
+                {postInfo.userId._id.includes(loginUser)?(<li onClick={() => {deletePost()}}>Xóa</li>):""}
+                <li>Báo cáo</li>
+              </ul>
+          </div>):""}
         </div>
       </div>
       <div className="post-desc">
         <p>{postInfo.desc}</p>
       </div>
-      <div className="post-img">
+      {postInfo.img != "null" ? ( <div className="post-img">
         {postInfo.img && (
           <img src={`http://localhost:5000/images/${postInfo.img}`} />
         )}
-      </div>
+      </div>): ""}     
       <div className="post-interaction-length">
         <div className="post-interaction-length-heart">
           <p>{likesCount} lượt thích</p>
@@ -201,7 +226,7 @@ function Post({ postInfo }) {
             </div>
           )}
         <div className="post-interaction-comment" onClick={() => {
-              setOpen(true);
+              {open?(setOpen(false)):(setOpen(true))}
             }}>      
             <GoComment style={iconStyles}></GoComment>
           <p>Bình luận</p>
@@ -211,13 +236,6 @@ function Post({ postInfo }) {
           <p>Chia sẻ</p>
         </div>
       </div>
-      {/* {postInfo.likes.length > 0 ? (
-        <div className="post-interaction-name">
-          <p>{postInfo.likes.length} đã like</p>
-        </div>
-      ) : (
-        ""
-      )} */}
 
       {open ? (
         <div className="post-comment-list">
