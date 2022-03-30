@@ -43,10 +43,19 @@ function FriendTag({ friend }) {
   };
   return (
     <div className="friend_tag">
-      <img
-        src="https://gamek.mediacdn.vn/thumb_w/600/2017/smile-emojis-icon-facebook-funny-emotion-women-s-premium-long-sleeve-t-shirt-1500882676711.jpg"
-        className="avt_friend_request"
-      />
+      {friendInfo?.photos?.avatar?.length !== 0 ? (
+        <img
+          src={`http://localhost:5000/images/${
+            friendInfo?.photos?.avatar[friendInfo?.photos?.avatar?.length - 1]
+          }`}
+          className="avt_friend_request"
+        ></img>
+      ) : (
+        <img
+         className="avt_friend_request"
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+        />
+      )}
       <div className="userinfo">
         <Link to={`/profile/${friendInfo._id}`}>
           <p>{friendInfo.userName ? friendInfo.userName : ""}</p>
@@ -66,21 +75,18 @@ function FriendTag({ friend }) {
           >
             Xóa bạn
           </button>
-        ) : (
-            !request ? (
-              <button
+        ) : !request ? (
+          <button
             className="friend_button"
             onClick={() => {
               sendRequest();
               setRequested(!request);
             }}
-            >
-            {!request?"kết bạn" :"Đã kết bạn"}
+          >
+            {!request ? "kết bạn" : "Đã kết bạn"}
           </button>
-            ) : (
-               <p>Đã gửi yêu cầu kết bạn</p> 
-            )
-          
+        ) : (
+          <p>Đã gửi yêu cầu kết bạn</p>
         )}
       </div>
     </div>

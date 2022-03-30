@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPhotoVideo, FaRegPaperPlane } from "react-icons/fa";
 import "./share.scss";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import axios from "axios";
 import PostImgUpload from "../fileUpload/PostImgUpload";
 
@@ -12,7 +12,8 @@ function Share() {
   const [img, setImg] = useState(false);
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
-
+  const [avt, setAvt] = useState([]);
+  const [userinfos, setUserInfos] = useState("");
   const Share = () => {
     const userId = localStorage.getItem("userID");
     var formData = new FormData();
@@ -33,16 +34,33 @@ function Share() {
         console.log("Loi roi", err.response.data.message);
       });
   };
-
+   useEffect(() => {
+    const getUserInfo = () => {
+      axios
+        .get(`http://localhost:5000/api/users/getone/${userId}`)
+        .then((res) => {
+          setUserInfos(res.data);
+          setAvt(res.data.photos.avatar.length);
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    };
+    getUserInfo();
+  }, []);
   return (
     <div className="share">
       <div className="share-top">        
         <div className="share-left">
-          {userInfo?.photos?(
-             <img src={`http://localhost:5000/images/${userInfo?.photos?.avatar[userInfo?.photos?.avatar?.length - 1]}`}></img>
-            ):(
-              <img src="\stocks\img\avatar\avatarDefault.jpg" alt="" />
-            )} 
+          {avt === 0 ? (
+               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"/>
+          ):(
+             <img
+            src={`http://localhost:5000/images/${
+              userinfos?.photos?.avatar[userinfos?.photos?.avatar?.length - 1]
+            }`}/>
+          ) }
+          
           <div className="share-left-content">
             <input
               type="text"

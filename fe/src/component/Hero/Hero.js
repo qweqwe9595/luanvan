@@ -11,21 +11,7 @@ function Hero() {
   const [userinfos, setUserInfos] = useState("");
   const [uploadAvatar, setUploadAvatar] = useState(false);
   const [uploadBackground, setUploadBackground] = useState(false);
-  console.log(localStorage.getItem("token"));
-
-  useEffect(() => {
-    axios
-      .get(
-        "http://localhost:5000/api/events/all",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) => console.log(res.data));
-  }, []);
+  const [avt, setAvt] = useState([]);
 
   useEffect(() => {
     const getUserInfo = () => {
@@ -33,6 +19,7 @@ function Hero() {
         .get(`http://localhost:5000/api/users/getone/${userId}`)
         .then((res) => {
           setUserInfos(res.data);
+          setAvt(res.data.photos.avatar.length);
         })
         .catch((err) => {
           console.log(err.response);
@@ -40,7 +27,7 @@ function Hero() {
     };
     getUserInfo();
   }, [userId]);
-
+  console.log(avt);
   const addFriend = () => {
     axios
       .patch(`http://localhost:5000/api/users/add/${userId}`, {
@@ -53,7 +40,6 @@ function Hero() {
         console.log(err.response.data.message);
       });
   };
-  // console.log(userinfos);
 
   return (
     <div className="hero">
@@ -82,13 +68,22 @@ function Hero() {
       </div>
       <div className="hero-profile">
         <div className="avatar-container">
-          <img
+          {avt === 0 ? (
+               <img
+            className="avatar"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+            alt=""
+          />
+          ):(
+             <img
             className="avatar"
             src={`http://localhost:5000/images/${
               userinfos?.photos?.avatar[userinfos?.photos?.avatar?.length - 1]
             }`}
             alt=""
           />
+          ) }
+         
           {userRequestId === userId ? (
             <AiOutlineCamera
               className="camera"

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Nav from "../../component/nav/Nav";
 import {
   RiPagesLine,
@@ -64,13 +64,24 @@ function SearchResults() {
               return (
                 <div className="People_tag" key={people._id}>
                   <div className="img-info">
-                    <img
-                      src="https://thuthuatnhanh.com/wp-content/uploads/2021/11/Hinh-nen-iMac-dep.jpg"
+                    {people?.photos?.avatar?.length !== 0? (
+                        <img
+                      src={`http://localhost:5000/images/${
+                        people?.photos?.avatar[
+                          people?.photos?.avatar?.length - 1
+                        ]
+                      }`}
                       className="avt"
                     ></img>
+                    ) : (
+                        <img
+                          className="avt"
+                          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+                    )}
+                  
                     <div className="people_info">
                       <Link to={`/profile/${people._id}`} className="link">
-                      <p>{people.userName}</p>
+                        <p>{people.userName}</p>
                       </Link>
                       {people.friends.includes(userIdCurrent) ? (
                         <span>bạn bè</span>

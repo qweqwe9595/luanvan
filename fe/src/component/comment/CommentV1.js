@@ -33,7 +33,7 @@ function CommentV1({ commentV1 }) {
         userId: userId,
       })
       .then((res) => {
-        console.log("Thanh cong", res.data);
+        //console.log("Thanh cong", res.data);
         alert("Binh luan thanh cong!");
       })
       .catch((err) => {
@@ -65,14 +65,25 @@ function CommentV1({ commentV1 }) {
       }
     );
   };
-
   return (
     <div>
       <div className="comment-1">
         <div className="comment-tag">
+          
           <div className="avatar">
-            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"></img>
+            {commentV1?.comment?.userId?.photos?.avatar?.length !== 0 ? (
+              <img
+                src={`http://localhost:5000/images/${
+                  commentV1?.comment?.userId?.photos?.avatar[
+                    commentV1?.comment?.userId?.photos?.avatar?.length - 1
+                  ]
+                }`}
+              ></img>
+            ) : (
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+            )}
           </div>
+
           <div className="comment-tag-username">
             <Link to={`/profile/${commentV1.comment.userId._id}`}>
               <p className="username">{commentV1.comment.userId?.userName}</p>

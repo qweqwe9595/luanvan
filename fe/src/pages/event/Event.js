@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Event.scss";
 import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import Nav from "../../component/nav/Nav";
-
+import { Link } from "react-router-dom";
+import axios from "axios";
 function Event() {
   const [join, setJoin] = useState(false);
+  const [eventDetails, setEventDetails] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost:5000/api/events/all",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => {
+        setEventDetails(res.data.eventsQuery);
+      })
+      .catch((err) => {});
+  }, []);
+  console.log(eventDetails);
   return (
     <div className="event_container">
       <Nav></Nav>
@@ -13,35 +32,53 @@ function Event() {
         <hr></hr>
       </div>
       <div className="center_event">
-        <div className="event_tag">
-          <img
-            src="https://i.vietgiaitri.com/2020/5/27/hon-son---dao-nho-it-nguoi-biet-o-kien-giang-b5e-4964599.jpg"
-            className="cover"
-          ></img>
-          <div className="time">
-            <span>Thứ 7, 2 Tháng 5 vào lúc 14:30</span>
-          </div>
-          <div className="title">
-            <span>hội chợ việc làm cho sinh viên đợt 1 2022</span>
-          </div>
-          <div className="button_join">
-        <button onClick={() => {
-                  setJoin(!join);          
-            }}>
-              {!join ? (
-                <div className="join">
-                  <AiOutlineStar className="icon_join" />
-                  <span>Tham gia</span>
-                              </div>
-              ) : (
-                <div className="join">
-                  <AiTwotoneStar className="icon_join" />
-                  <span>Đã tham gia</span>
-                </div>
-              )}
-            </button>
-          </div>
-        </div>
+        {eventDetails?.map((eventItem, index) => {
+          return (
+            <div className="event_tag" key={index}>
+              
+              <img
+                src={`http://localhost:5000/images/${
+                    eventItem?.img
+                  }`}
+                className="cover"
+              ></img>
+              <div className="time">
+                {eventItem?.startTime ? (
+                  <span>{eventItem.startTime}</span>
+                ):"không có"}  
+              </div>
+              <Link to={`/eventContent/${eventItem._id}`}>
+                <div className="title">
+                 {eventItem?._id ? (
+                  <span>{eventItem._id}</span>
+                ):"không có"}  
+              </div>
+            </Link>
+              
+
+              <div className="button_join">
+                <button
+                  onClick={() => {
+                    setJoin(!join);
+                  }}
+                >
+                  {!join ? (
+                    <div className="join">
+                      <AiOutlineStar className="icon_join" />
+                      <span>Tham gia</span>
+                    </div>
+                  ) : (
+                    <div className="join">
+                      <AiTwotoneStar className="icon_join" />
+                      <span>Đã tham gia</span>
+                    </div>
+                  )}
+                </button>
+              </div>
+            </div>
+          );
+        })}
+
       </div>
     </div>
   );

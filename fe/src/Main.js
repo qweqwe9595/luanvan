@@ -47,7 +47,7 @@ function Main() {
       <Route path="/searchresult" element={<SearchResults />}></Route>
       <Route path="/" element={<Home />}></Route>
       <Route path="/friend" element={<Friend />}></Route>
-      <Route path="/eventContent" element={<EventContent />}></Route>
+      <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
       <Route path="/notification" element={<Notification />}></Route>
     </Routes>
