@@ -14,7 +14,7 @@ function Nav() {
   const [searchTerm, setSearchTerm] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const currentUserId = localStorage.getItem("userID");
-
+  const [avt, setAvt] = useState([]);
   useEffect(() => {
     const userId = localStorage.getItem("userID");
     const getUserInfo = () => {
@@ -22,6 +22,7 @@ function Nav() {
         .get(`http://localhost:5000/api/users//getone/${userId}`)
         .then((res) => {
           setUserInfo(res.data);
+          setAvt(res.data.photos.avatar.length);
         })
         .catch((err) => {
           console.log(err.response);
@@ -95,10 +96,17 @@ function Nav() {
 
         <Link to={`/profile/${currentUserId}`}>
           <div className="user-container">
-            <img
-              src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
-              alt=""
-            />
+            {avt === 0 ? (
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+            ) : (
+              <img
+                src={`http://localhost:5000/images/${
+                  userInfo?.photos?.avatar[
+                    userInfo?.photos?.avatar?.length - 1
+                  ]
+                }`}
+              />
+            )}
             <span>{userInfo.userName ? userInfo.userName : ""}</span>
           </div>
         </Link>
@@ -115,10 +123,17 @@ function Nav() {
         <div className="account">
           <Link to={`/profile/${currentUserId}`}>
             <div className="user">
+              {avt === 0 ? (
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+            ) : (
               <img
-                src="https://static.tintuc.com.vn/images/ver3/2020/05/29/1590744919032-1590743807939-photo-1-15477129204692130819676.jpg"
-                alt=""
+                src={`http://localhost:5000/images/${
+                  userInfo?.photos?.avatar[
+                    userInfo?.photos?.avatar?.length - 1
+                  ]
+                }`}
               />
+            )}
               <div className="infouser">
                 <span>{userInfo.userName ? userInfo.userName : ""}</span>
                 <p>Xem trang cá nhân của bạn </p>

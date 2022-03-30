@@ -9,7 +9,7 @@ function FriendProfile({ userData }) {
   return (
     <div className="friendprofile">
       <Link to={"/friend"}>
-      <p className="title">Bạn bè</p>
+        <p className="title">Bạn bè</p>
       </Link>
 
       <div className="friendprofile-container">
@@ -20,12 +20,19 @@ function FriendProfile({ userData }) {
               key={i}
               className="friendprofile-item"
             >
-              <img
-                src={
-                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                }
-                alt=""
-              />
+              {item?.photos?.avatar?.length !== 0 ? (
+                <img
+                  src={`http://localhost:5000/images/${
+                    item?.photos?.avatar[
+                      item?.photos?.avatar?.length - 1
+                    ]
+                  }`}
+                ></img>
+              ) : (
+                <img
+                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                />
+              )}
               <p className="username">
                 {item.userName.length > 17
                   ? item.userName.substring(0, 15) + "..."

@@ -1,86 +1,104 @@
 .comment-1 {
-  min-width: 250px;
-  width: fit-content;
-  max-width: 85%;
-  min-height: 50px;
-  height: max-content;
-  border: 1px solid #eaeaea;
+  min-width       : 250px;
+  width           : fit-content;
+  max-width       : 85%;
+  min-height      : 50px;
+  height          : max-content;
+  border          : 1px solid #eaeaea;
   background-color: #eaeaea;
-  word-wrap: break-word;
-  margin: 10px 20px;
-  border-radius: 10px;
-  padding: 0 10px;
+  word-wrap       : break-word;
+  margin          : 10px 20px;
+  border-radius   : 10px;
+  padding         : 0 10px;
+
   .comment-tag {
     display: flex;
+
     .avatar {
       margin: 5px;
-      width: max-content;
-      & > img {
-        width: 30px;
-        height: 30px;
+      width : max-content;
+
+      &>img {
+        width        : 30px;
+        height       : 30px;
         border-radius: 100px;
+        object-fit   : cover;
       }
     }
+
     .comment-tag-username {
-      width: max-content;
+      width : max-content;
       margin: auto 5px;
+
       .username {
-        text-transform   : capitalize;
-        font-size: 16px;
-        font-weight: 600;
-        font-family: "Oswald", sans-serif;
+        text-transform: capitalize;
+        font-size     : 16px;
+        font-weight   : 600;
+        font-family   : "Oswald", sans-serif;
       }
-      :hover{
+
+      :hover {
         color: red;
       }
     }
+
     .comment-tag-timepost {
-      width: max-content;
+      width : max-content;
       margin: auto 5px;
-      & > p {
+
+      &>p {
         font-family: "Oswald", sans-serif;
-        font-size: 15px;
-        color: #808080;
+        font-size  : 15px;
+        color      : #808080;
       }
     }
   }
+
   .comment-tag-message {
-    max-width: 700px;
+    max-width    : 700px;
     margin-bottom: 10px;
-    padding: 0 10px;
-    & > p {
-      font-size: 15px;
+    padding      : 0 10px;
+
+    &>p {
+      font-size  : 15px;
       font-family: "Roboto", sans-serif;
     }
   }
+
   .post-interaction-2 {
     border-top: white solid 1px;
-    display: flex;
-    width: max-content;
-    padding: 0px 10px;
+    display   : flex;
+    width     : max-content;
+    padding   : 0px 10px;
+
     .post-interaction-heart-2 {
-      border: 1px solid wthite;
-      margin: 5px 0;
+      border   : 1px solid wthite;
+      margin   : 5px 0;
       font-size: 17px;
-      display: flex;
-      & > p {
-        margin: -3px 5px;
+      display  : flex;
+
+      &>p {
+        margin     : -3px 5px;
         font-family: "Oswald", sans-serif;
       }
+
       :hover {
         cursor: pointer;
       }
     }
+
     .post-interaction-comment-2 {
-      border: 2px solid #eaeaea;
-      margin: 5px 10px;
+      border   : 2px solid #eaeaea;
+      margin   : 5px 10px;
       font-size: 17px;
-      display: flex;
-      & > p {
-        height: fit-content;
-        margin: -5px 5px;
+      display  : flex;
+
+      &>p {
+        height     : fit-content;
+        margin     : -5px 5px;
         font-family: "Oswald", sans-serif;
       }
+
       :hover {
         cursor: pointer;
       }
@@ -89,97 +107,117 @@
 }
 
 .comment-2 {
-  min-width: 250px;
-  width: fit-content;
-  max-width: 85%;
-  min-height: 50px;
-  height: max-content;
-  border: 1px solid #eaeaea;
+  min-width       : 250px;
+  width           : fit-content;
+  max-width       : 85%;
+  min-height      : 50px;
+  height          : max-content;
+  border          : 1px solid #eaeaea;
   background-color: #eaeaea;
-  word-wrap: break-word;
-  margin: 10px 60px;
-  border-radius: 10px;
-  padding: 0 10px;
+  word-wrap       : break-word;
+  margin          : 10px 60px;
+  border-radius   : 10px;
+  padding         : 0 10px;
+
   .comment-tag {
     display: flex;
+
     .avatar {
       margin: 5px;
-      width: max-content;
-      & > img {
-        width: 30px;
-        height: 30px;
+      width : max-content;
+
+      &>img {
+        width        : 30px;
+        height       : 30px;
         border-radius: 100px;
+        object-fit   : cover;
       }
     }
+
     .comment-tag-username {
-      width: max-content;
+      width : max-content;
       margin: auto 5px;
+
       .username {
-        text-transform   : capitalize;
-        font-size: 16px;
-        font-weight: 600;
-        font-family: "Oswald", sans-serif;
+        text-transform: capitalize;
+        font-size     : 16px;
+        font-weight   : 600;
+        font-family   : "Oswald", sans-serif;
       }
-      :hover{
+
+      :hover {
         color: red;
       }
     }
+
     .comment-tag-timepost {
-      width: max-content;
+      width : max-content;
       margin: auto 5px;
-      & > p {
+
+      &>p {
         font-family: "Oswald", sans-serif;
-        font-size: 15px;
-        color: #808080;
+        font-size  : 15px;
+        color      : #808080;
       }
     }
   }
+
   .comment-tag-message {
-    max-width: 700px;
+    max-width    : 700px;
     margin-bottom: 10px;
-    padding: 0 10px;
-    & > p {
-      font-size: 15px;
+    padding      : 0 10px;
+
+    &>p {
+      font-size  : 15px;
       font-family: "Roboto", sans-serif;
-      & > span {
-        text-transform   : capitalize;
-        cursor: pointer;
-        font-weight: 600;
-        font-family: "Oswald", sans-serif;
+
+      &>span {
+        text-transform: capitalize;
+        cursor        : pointer;
+        font-weight   : 600;
+        font-family   : "Oswald", sans-serif;
       }
-      :hover{
+
+      :hover {
         color: red;
       }
     }
   }
+
   .post-interaction-3 {
     border-top: white solid 1px;
-    display: flex;
-    width: max-content;
-    padding: 0px 10px;
+    display   : flex;
+    width     : max-content;
+    padding   : 0px 10px;
+
     .post-interaction-heart-3 {
-      border: 1px solid wthite;
-      margin: 5px 0;
+      border   : 1px solid wthite;
+      margin   : 5px 0;
       font-size: 17px;
-      display: flex;
-      & > p {
-        margin: -3px 5px;
+      display  : flex;
+
+      &>p {
+        margin     : -3px 5px;
         font-family: "Oswald", sans-serif;
       }
+
       :hover {
         cursor: pointer;
       }
     }
+
     .post-interaction-comment-3 {
-      border: 2px solid #eaeaea;
-      margin: 5px 10px;
+      border   : 2px solid #eaeaea;
+      margin   : 5px 10px;
       font-size: 17px;
-      display: flex;
-      & > p {
-        height: fit-content;
-        margin: -5px 5px;
+      display  : flex;
+
+      &>p {
+        height     : fit-content;
+        margin     : -5px 5px;
         font-family: "Oswald", sans-serif;
       }
+
       :hover {
         cursor: pointer;
       }
@@ -188,90 +226,105 @@
 }
 
 .post-comment-bar-2 {
-  margin: 10px 20px;
+  margin : 10px 20px;
   display: flex;
-  width: 80%;
+  width  : 80%;
+
   .post-comment-bar-text-2 {
     background-color: #eaeaea;
-    display: flex;
-    padding: 0 12px;
-    border-radius: 30px;
-    height: 35px;
-    width: 100%;
-    & > input {
-      font-family: "Roboto", sans-serif;
-      flex: 2;
-      border: none;
-      font-size: 14px;
+    display         : flex;
+    padding         : 0 12px;
+    border-radius   : 30px;
+    height          : 35px;
+    width           : 100%;
+
+    &>input {
+      font-family     : "Roboto", sans-serif;
+      flex            : 2;
+      border          : none;
+      font-size       : 14px;
       background-color: #eaeaea;
     }
-    & > input:focus {
+
+    &>input:focus {
       outline: none;
     }
   }
+
   .post-comment-bar-btn-2 {
-    height: 35px;
-    width: max-content;
-    color: white;
-    padding: 4px 10px;
+    height          : 35px;
+    width           : max-content;
+    color           : white;
+    padding         : 4px 10px;
     background-color: #0d47a1;
-    border: 1px solid #0d47a1;
-    border-radius: 5rem;
-    display: flex;
-    align-items: center;
-    margin: 0 20px;
-    & > span {
+    border          : 1px solid #0d47a1;
+    border-radius   : 5rem;
+    display         : flex;
+    align-items     : center;
+    margin          : 0 20px;
+
+    &>span {
       font-family: "Oswald", sans-serif;
-      font-size: 14px;
+      font-size  : 14px;
     }
+
     cursor: pointer;
+
     :hover {
       cursor: pointer;
-      color: #b91018;
+      color : #b91018;
     }
   }
 }
+
 .post-comment-bar-3 {
-  margin: 10px 60px;
+  margin : 10px 60px;
   display: flex;
-  width: 80%;
+  width  : 80%;
+
   .post-comment-bar-text-3 {
     background-color: #eaeaea;
-    display: flex;
-    padding: 0 12px;
-    border-radius: 30px;
-    height: 35px;
-    width: 100%;
-    & > input {
-      font-family: "Roboto", sans-serif;
-      flex: 2;
-      border: none;
-      font-size: 14px;
+    display         : flex;
+    padding         : 0 12px;
+    border-radius   : 30px;
+    height          : 35px;
+    width           : 100%;
+
+    &>input {
+      font-family     : "Roboto", sans-serif;
+      flex            : 2;
+      border          : none;
+      font-size       : 14px;
       background-color: #eaeaea;
     }
-    & > input:focus {
+
+    &>input:focus {
       outline: none;
     }
   }
+
   .post-comment-bar-btn-3 {
-    height: 35px;
-    width: max-content;
-    color: white;
-    padding: 4px 10px;
+    height          : 35px;
+    width           : max-content;
+    color           : white;
+    padding         : 4px 10px;
     background-color: #0d47a1;
-    border: 1px solid #0d47a1;
-    border-radius: 5rem;
-    display: flex;
-    align-items: center;
-    margin: 0 20px;
-    & > span {
+    border          : 1px solid #0d47a1;
+    border-radius   : 5rem;
+    display         : flex;
+    align-items     : center;
+    margin          : 0 20px;
+
+    &>span {
       font-family: "Oswald", sans-serif;
-      font-size: 14px;
+      font-size  : 14px;
     }
+
     cursor: pointer;
+
     :hover {
       cursor: pointer;
-      color: #b91018;
+      color : #b91018;
     }
   }
 }

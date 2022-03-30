@@ -107,7 +107,17 @@ function Post({ postInfo }) {
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
-            <img src={postInfo?.photos?.avatar[postInfo?.photos?.avatar?.length - 1]}></img>
+            {   postInfo?.userId?.photos?.avatar?.length !== 0 ? (
+              <img
+                src={`http://localhost:5000/images/${
+                 postInfo?.userId?.photos?.avatar[postInfo?.userId?.photos?.avatar?.length - 1]
+                }`}
+              ></img>
+            ) : (
+              <img
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+              />
+            )}
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">

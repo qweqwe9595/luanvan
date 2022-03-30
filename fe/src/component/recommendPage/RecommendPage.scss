@@ -5,6 +5,7 @@
   border-radius   : 20px;
   padding         : 10px;
   font-family     : "oswald";
+
   .Recommend_page_tag {
     height             : 230px;
     border-radius      : 10px;
@@ -15,6 +16,7 @@
     // border          : 0.5px solid #b6babe;
     padding            : 10px 12px;
     background-color   : #eef0f5;
+
     p {
       font-size    : 20px;
       margin-top   : 5px;
@@ -47,6 +49,7 @@
     .recommend_page_button {
       width        : 100%;
       margin-bottom: 10px;
+
       .button_like_page {
         width              : 60px;
         height             : 25px;
@@ -59,7 +62,7 @@
         border             : none;
         font-family        : "oswald";
       }
-      
+
 
 
       .button_dislike_page {
@@ -72,8 +75,9 @@
         border             : none;
         font-family        : "oswald";
       }
-      :hover{
-        color: red;
+
+      :hover {
+        color : red;
         cursor: pointer;
       }
     }

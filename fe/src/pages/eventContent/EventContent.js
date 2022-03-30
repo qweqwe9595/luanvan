@@ -1,29 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./EventContent.scss";
 import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import { BsPeopleFill, BsSearch } from "react-icons/bs";
 import Nav from "../../component/nav/Nav";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 function EventContent() {
+  const param = useParams();
+  const [join, setJoin] = useState(false);
+  const [events, setEvents] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [result, setResult] = useState([]);
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      // setResult("");
+      return;
+    }
+    axios
+      .get(`http://localhost:5000/api/users/search?name=${searchTerm}`)
+      .then((res) => {
+        setResult(res.data.data);
+      })
+      .catch((err) => {});
+  }, [searchTerm]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:5000/api/events/getOne/${param.id} `,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => {
+        setEvents(res.data.eventsQuery);
+      })
+      .catch((err) => {});
+  }, []);
+  console.log(result);
   return (
     <div className="eventcontent">
       <Nav></Nav>
       <div className="event_header">
         <img
-          src="https://i.pinimg.com/564x/92/26/5c/92265c40c8e428122e0b32adc1994594.jpg"
+          src={`http://localhost:5000/images/${events.img}`}
           className="cover"
         ></img>
         <div className="time">
-          <span>Hôm nay vào 19:30</span>
+          {events?.startTime ? <span>{events.startTime}</span> : "không có"}
         </div>
         <div className="title">
-          <span>hội chợ việc làm cho sinh viên đợt 1 2022</span>
+          {events?._id ? <span>{events._id}</span> : "không có"}
         </div>
         <div className="button_event">
-          <button className="join_event">
-            <div className="join">
-              <AiOutlineStar />
-              <span>Tham gia</span>
-            </div>
+          <button
+            className="join_event"
+            onClick={() => {
+              setJoin(!join);
+            }}
+          >
+            {!join ? (
+              <div className="join">
+                <AiOutlineStar className="icon_join" />
+                <span>Tham gia</span>
+              </div>
+            ) : (
+              <div className="join">
+                <AiTwotoneStar className="icon_join" />
+                <span>Đã tham gia</span>
+              </div>
+            )}
           </button>
           <button className="invite">
             <span>Mời</span>
@@ -40,27 +90,34 @@ function EventContent() {
           <span> 1,1k người tham gia sự kiện</span>
         </div>
         <div className="details">
-          <span>
-            Nhằm giúp các em sinh viên có nhiều cơ hội tìm được việc làm phù
-            hợp, Trung tâm Tư vấn Hỗ trợ Khởi nghiệp sinh viên tổ chức phiên hội
-            chợ việc làm đợt 1 năm 2022:
-          </span>
+          {events?.desc ? (
+            <span>{events.desc}</span>
+          ) : (
+            <span>chưa thêm nội dung sự kiện nhe bạn</span>
+          )}
 
-          <span>-Thời gian: từ 7g30 đến 12g00 Chủ nhật, ngày 27/3/2022.</span>
-
-          <span>
-            Địa điểm: Khu vực Đoàn Thanh niên trường Đại học Cần Thơ, Khu 2,
-            Đường 3/2, Phường Xuân Khánh, Q. Ninh Kiều, TP. Cần Thơ.
-          </span>
-
-          <span>
+          {events?.startTime ? (
+            <span>{events.startTime}</span>
+          ) : (
+            <span>chưa thêm thời gian sự kiện nhe bạn ê</span>
+          )}
+          {events?.location ? <span>Địa điểm: {events.location}</span> : ""}
+          {events?.participants ? (
+            <span>
+              Đối tượng tham gia: {""}
+              {events.participants}
+            </span>
+          ) : (
+            ""
+          )}
+          {/* <span>
             Đối tượng tham gia: Sinh viên chuẩn bị tốt nghiệp và đã tốt nghiệp
             của trường Đại học Cần Thơ và các đối tượng sinh viên khác có nhu
             cầu Xem chi tiết tại:
             <a href="https://scs.ctu.edu.vn/quan-he-doanh-nghiep/hoi-cho-viec-lam/303-hoi-cho-viec-lam-truong-dai-hoc-can-tho-dot-1-nam-2022">
               https://scs.ctu.edu.vn/quan-he-doanh-nghiep/hoi-cho-viec-lam/303-hoi-cho-viec-lam-truong-dai-hoc-can-tho-dot-1-nam-2022
             </a>
-          </span>
+          </span> */}
         </div>
       </div>
 
@@ -68,17 +125,42 @@ function EventContent() {
         <span>Khách mời</span>
         <div className="search">
           <BsSearch></BsSearch>
-          <input type="search"></input>
+          <input
+            type="search"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          ></input>
         </div>
         <div className="peoples">
-          <div className="peoples_event_tag ">
-            <img
-              className="peoples_avt"
-              src="https://img.wattpad.com/b06c50cf344a91d0ec5085ecb3804265966c49a1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f2d32765553516349596e477572773d3d2d3937353033343232342e313634333533613432613935613237633438353930303737323033332e706e67?s=fit&w=720&h=720"
-            ></img>
-            <span>Nguyễn Văn A</span>
-            <button>Mời</button>
-          </div>
+          {result?.map((results, index) => {
+            return (
+              <div key={index} className="peoples_event_tag ">
+                {results?.photos?.avatar?.length === 0 ? (
+                  <img
+                    className="peoples_avt"
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                  ></img>
+                ) : (
+                  <img
+                    className="peoples_avt"
+                    src={`http://localhost:5000/images/${
+                      results?.photos?.avatar[
+                        results?.photos?.avatar?.length - 1
+                      ]
+                    }`}
+                  />
+                )}
+                <span>
+                  <Link to={`/profile/${results._id}`}>
+                    <span>{results.userName}</span>
+                  </Link>
+                </span>
+
+                <button>Mời</button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

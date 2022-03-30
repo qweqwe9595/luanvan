@@ -6,7 +6,7 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import axios from "axios";
 
 function CommentV2({ commentV2, commentLv1 }) {
-  console.log(commentLv1);
+  //console.log(commentLv1);
   const [liking, setLiking] = useState(false);
   const [likes, setLikes] = useState(commentV2.like.length);
   const a = new Date();
@@ -18,6 +18,7 @@ function CommentV2({ commentV2, commentLv1 }) {
   const commentId = commentV2.commentLv1;
   const userId = localStorage.getItem("userID");
   const [cmtV2, setCmtV2] = useState("");
+
   const writeCommentV2 = () => {
     axios
       .post("http://localhost:5000/api/comments/commentlv2", {
@@ -27,7 +28,7 @@ function CommentV2({ commentV2, commentLv1 }) {
         userId: userId,
       })
       .then((res) => {
-        console.log("Thanh cong", res.data);
+       // console.log("Thanh cong", res.data);
         alert("Binh luan thanh cong!");
       })
       .catch((err) => {
@@ -63,7 +64,17 @@ function CommentV2({ commentV2, commentLv1 }) {
       <div className="comment-2">
         <div className="comment-tag">
           <div className="avatar">
-            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"></img>
+            {commentV2?.userId?.photos?.avatar?.length !== 0 ? (
+              <img
+                src={`http://localhost:5000/images/${
+                  commentV2?.userId?.photos?.avatar[
+                    commentV2?.userId?.photos?.avatar?.length - 1
+                  ]
+                }`}
+              ></img>
+            ) : (
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+            )}
           </div>
           <div className="comment-tag-username">
           <Link to={`/profile/${commentV2.userId?._id}`}>
