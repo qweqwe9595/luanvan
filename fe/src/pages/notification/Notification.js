@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./notification.scss";
 import Nav from "../../component/nav/Nav";
 import Notifications from "../../component/notifications/Notifications";
-
-import { Link } from "react-router-dom";
 
 function Notification() {
   return (
