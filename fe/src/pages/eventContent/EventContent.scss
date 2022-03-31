@@ -246,6 +246,19 @@
           cursor          : pointer;
           color           : #ffff;
           margin-right    : 10px;
+          text-align      : center;
+        }
+
+        .joined {
+          font-size    : 25px;
+          text-align   : center;
+          width        : 150px;
+          height       : 40px;
+          border-radius: 22px;
+          border       : none;
+          cursor       : pointer;
+          color        : black;
+          margin-right : 10px;
         }
       }
     }

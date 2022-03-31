@@ -6,9 +6,12 @@ import Contacts from "../../component/contacts/Contacts";
 import FriendRequest from "../../component/friendRequest/FriendRequest";
 import Options from "../../component/options/Options";
 import RecommendPage from "../../component/recommendPage/RecommendPage";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 function Home() {
+  const [user, setUser] = useContext(UserContext);
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userPosts, setUserPosts] = useState([]);
   useEffect(() => {
