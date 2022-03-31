@@ -2,8 +2,8 @@
   width: 100%;
   max-width: 100%;
   border-radius: 30px;
-  padding: 10px 10px;
   .share-top {
+    box-shadow: 0px 1px 4px 0px #333e50;
     background-color: white;
     border-radius: 30px;
     padding: 10px 10px;     
@@ -14,7 +14,7 @@
       display: flex;
       flex: 1;
       gap: 10px;
-      & > img {
+      .avatar {
         height: 35px;
         width: 35px;
         border-radius: 50%;
@@ -42,11 +42,7 @@
       display: flex;
       gap: 0.5rem;
       align-items: flex-start;
-      margin: auto;
-      .share-img{
-        font-size: 30px;
-        margin: auto;
-      }
+      margin: auto;       
       .share-btn {
         color: white;
         padding: 4px 10px;
@@ -61,22 +57,28 @@
           font-weight: 400;
           font-size: 18px;
           line-height: 27px;
-        }
-  
-        cursor: pointer;
-      }
-  
+        }      
+      }  
       .share-img {
+        font-size: 30px;
+        margin: auto;
         color: #0d47a1;
         font-size: 24px;
         cursor: pointer;
       }
-      :hover {
-        color: red;
+      .share-img:hover{
+        color: #7f9cc9;
       }
+      .share-btn:hover {
+        background-color: #7f9cc9;
+        cursor: pointer;
+        color: #0d47a1;
+      }
+      
     }
   }
   .share-bottom{
+    box-shadow: 0px 1px 4px 0px #333e50;
     background-color: white;
     margin: 10px auto;
     width: 100%;

@@ -38,7 +38,7 @@
       }
 
       :hover {
-        color: red;
+        color: #0d47a1;
       }
     }
 
@@ -79,7 +79,7 @@
     margin : auto;
 
     .post-interaction-heart-2 {
-      border-top     : 1px solid #cfcece;
+      border-top     : 1px solid #7f9cc9;
       font-size      : 15px;
       display        : flex;
       width          : 100%;
@@ -92,8 +92,8 @@
     }
 
     .post-interaction-comment-2 {
-      border-top     : 1px solid #cfcece;
-      border-left    : 1px solid #cfcece;
+      border-top     : 1px solid #7f9cc9;
+      border-left    : 1px solid #7f9cc9;
       font-size      : 15px;
       display        : flex;
       width          : 100%;
@@ -106,8 +106,8 @@
     }
 
     .post-interaction-report-2 {
-      border-top     : 1px solid #cfcece;
-      border-left    : 1px solid #cfcece;
+      border-top     : 1px solid #7f9cc9;
+      border-left    : 1px solid #7f9cc9;
       font-size      : 15px;
       display        : flex;
       width          : 100%;
@@ -120,7 +120,7 @@
     }
 
     :hover {
-      background-color: white;
+      background-color: #9eb0cc;
       cursor          : pointer;
     }
   }
@@ -166,7 +166,7 @@
       }
 
       :hover {
-        color: red;
+        color: #0d47a1;
       }
     }
 
@@ -198,7 +198,7 @@
       }
 
       :hover {
-        color: red;
+        color: #0d47a1;
       }
     }
   }
@@ -218,7 +218,7 @@
     margin : auto;
 
     .post-interaction-heart-3 {
-      border-top     : 1px solid #cfcece;
+      border-top     : 1px solid #7f9cc9;
       font-size      : 15px;
       display        : flex;
       width          : 100%;
@@ -231,8 +231,8 @@
     }
 
     .post-interaction-comment-3 {
-      border-top     : 1px solid #cfcece;
-      border-left    : 1px solid #cfcece;
+      border-top     : 1px solid #7f9cc9;
+      border-left    : 1px solid #7f9cc9;
       font-size      : 15px;
       display        : flex;
       width          : 100%;
@@ -245,8 +245,8 @@
     }
 
     .post-interaction-report-3 {
-      border-top     : 1px solid #cfcece;
-      border-left    : 1px solid #cfcece;
+      border-top     : 1px solid #7f9cc9;
+      border-left    : 1px solid #7f9cc9;
       font-size      : 15px;
       display        : flex;
       width          : 100%;
@@ -259,7 +259,7 @@
     }
 
     :hover {
-      background-color: white;
+      background-color: #9eb0cc;;
       cursor          : pointer;
     }
   }
@@ -298,7 +298,6 @@
     color           : white;
     padding         : 4px 10px;
     background-color: #0d47a1;
-    border          : 1px solid #0d47a1;
     border-radius   : 5rem;
     display         : flex;
     align-items     : center;
@@ -307,14 +306,12 @@
     &>span {
       font-family: "Oswald", sans-serif;
       font-size  : 14px;
-    }
-
+    }   
+  }
+  .post-comment-bar-btn-2:hover {
     cursor: pointer;
-
-    :hover {
-      cursor: pointer;
-      color : #b91018;
-    }
+    background-color:#9eb0cc ;
+    color: #0d47a1;
   }
 }
 
@@ -351,7 +348,6 @@
     color           : white;
     padding         : 4px 10px;
     background-color: #0d47a1;
-    border          : 1px solid #0d47a1;
     border-radius   : 5rem;
     display         : flex;
     align-items     : center;
@@ -361,12 +357,11 @@
       font-family: "Oswald", sans-serif;
       font-size  : 14px;
     }
-
+  }
+  .post-comment-bar-btn-3:hover {
     cursor: pointer;
+    background-color:#9eb0cc ;
+    color: #0d47a1;
 
-    :hover {
-      cursor: pointer;
-      color : #b91018;
-    }
   }
 }

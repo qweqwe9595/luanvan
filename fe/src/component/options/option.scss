@@ -2,23 +2,24 @@
   width: 100%;
   background-color: white;
   border-radius: 12px;
-  min-width: 250px;
+  min-width: 200px;
   font-family: "oswald";
+  box-shadow: 0px 1px 5px 0px #333e50;
   .options-container {
     width: 100%;
-    padding-bottom: 5px;
     .tag {
-      padding: 25px 40px 10px 40px;
+      padding: 15px 40px;
       display: flex;
       gap: 10px;
       align-items: center;
       cursor: pointer;
       .tag-icon {
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 25px;
+        color: #0d47a1;
+        font-size: 20px;
       }
       &:hover {
         border-left: 2px solid #0d47a1;
+        font-size: 20.5px;
       }
       & > span {
         font-weight: bold;
@@ -26,9 +27,9 @@
     }
     hr {
       height: 0;
-      width: 70%;
+      width: 80%;
       margin: auto;
-      border: 1px solid rgba(0, 0, 0, 0.3);
+      border: 0.25px solid #0d47a1;
     }
   }
 }

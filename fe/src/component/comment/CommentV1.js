@@ -17,7 +17,7 @@ function CommentV1({ commentV1 }) {
   const a = new Date();
   const b = new Date(commentV1.comment.createdAt);
   const commentDate = (a - b) / 1000;
-  const iconStyles = { color: "#0d47a1", fontSize: "15px", margin: "auto 2px" };
+  const iconStyles = { color: "#0d47a1", fontSize: "15px", margin: "auto 2px"};
   const [cmtV2, setCmtV2] = useState("");
   useEffect(() => {
     const Id = localStorage.getItem("userID");
@@ -128,10 +128,9 @@ function CommentV1({ commentV1 }) {
           <p>{likes} lượt thích</p>
         </div>
         <div className="post-interaction-2">
-          <div className="post-interaction-heart-2">
           {liking ? (
               <div className="post-interaction-heart-2" onClick={() => disLike()}>
-               <IoMdHeart style={iconStyles}/>
+              <IoMdHeart style={iconStyles}/>
               <p>Đã thích</p>
               </div>
             ) : (
@@ -140,11 +139,10 @@ function CommentV1({ commentV1 }) {
                 <p>Thích</p>
               </div>
             )}
-          </div>
           <div
             className="post-interaction-comment-2"
             onClick={() => {
-              setOpen(true);
+              {open?(setOpen(false)):(setOpen(true))}
             }}
           >
             {/* <p>{commentV2.length}</p> */}

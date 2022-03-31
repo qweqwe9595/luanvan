@@ -12,13 +12,14 @@ import { useParams } from "react-router-dom";
 
 function Profile() {
   const param = useParams();
+  const loginUserId = localStorage.getItem("userID");
   const [userPosts, setUserPost] = useState([]);
   const [userData, setUserData] = useState({});
   useEffect(() => {
     const getUserPost = () => {
       axios
         .get(
-          `http://localhost:5000/api/posts/profile/${param.userId}?amount=10`
+          `http://localhost:5000/api/posts/profile/${param.userId}?amount=20`
         )
         .then((res) => {
           setUserPost(res.data.posts);
@@ -42,7 +43,7 @@ function Profile() {
   }, [param.userId]);
   return (
     <div className="profile">
-      <Nav></Nav>
+        <Nav></Nav>
       <Hero></Hero>
       <div className="profile-main">
         <div className="profile-left">
@@ -50,7 +51,11 @@ function Profile() {
           <FriendProfile userData={userData} />
         </div>
         <div className="profile-right">
+        {loginUserId.includes(param.userId) ? (
           <Share />
+        ) : (
+          ""
+        )}
           <p>--- Bài đăng gần đây. ---</p>
            {userPosts?.map((userPost) => {
             return <Post postInfo={userPost} key={userPost._id} />;

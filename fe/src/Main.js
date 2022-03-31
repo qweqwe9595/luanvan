@@ -9,6 +9,8 @@ import { SocketContext } from "./context/SocketContext";
 import { UserContext } from "./context/userContext";
 import axios from "axios";
 import Event from "./pages/event/Event";
+import Notification from "./pages/notification/Notification";
+
 
 function Main() {
   const socket = useContext(SocketContext);
@@ -47,6 +49,7 @@ function Main() {
       <Route path="/friend" element={<Friend />}></Route>
       <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
+      <Route path="/notification" element={<Notification />}></Route>
     </Routes>
   );
 }
