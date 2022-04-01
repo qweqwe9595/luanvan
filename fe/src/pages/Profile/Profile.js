@@ -43,7 +43,7 @@ function Profile() {
   }, [param.userId]);
   return (
     <div className="profile">
-        <Nav></Nav>
+      <Nav></Nav>
       <Hero></Hero>
       <div className="profile-main">
         <div className="profile-left">
@@ -51,13 +51,13 @@ function Profile() {
           <FriendProfile userData={userData} />
         </div>
         <div className="profile-right">
-        {loginUserId.includes(param.userId) ? (
-          <Share />
-        ) : (
-          ""
-        )}
+          {loginUserId.includes(param.userId) ? (
+            <Share userPostsProp={[userPosts, setUserPost]} />
+          ) : (
+            ""
+          )}
           <p>--- Bài đăng gần đây. ---</p>
-           {userPosts?.map((userPost) => {
+          {userPosts?.map((userPost) => {
             return <Post postInfo={userPost} key={userPost._id} />;
           })}
         </div>

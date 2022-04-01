@@ -30,7 +30,7 @@ const getAUser = async (req, res) => {
     const userQuery = await userModal
       .findById(req.params.id)
       .populate("friends");
-    const { isAdmin, updatedAt, ...other } = userQuery._doc;
+    const { updatedAt, ...other } = userQuery._doc;
     res.status(200).json(other);
   } catch (err) {
     res.status(500).json(err);

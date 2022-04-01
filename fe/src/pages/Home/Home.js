@@ -9,9 +9,9 @@ import RecommendPage from "../../component/recommendPage/RecommendPage";
 import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import React, { useEffect, useState } from "react";
+import Post from "../../component/post/Post";
 import axios from "axios";
 function Home() {
-  const [user, setUser] = useContext(UserContext);
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userPosts, setUserPosts] = useState([]);
   useEffect(() => {
@@ -19,7 +19,11 @@ function Home() {
       axios
         .get(`http://localhost:5000/api/posts/timeline/${userIdCurrent}`)
         .then((res) => {
-          setUserPosts(res.data.posts);
+          let tempPosts = [];
+          res.data.posts.forEach((post) =>
+            post.forEach((item) => tempPosts.push(item))
+          );
+          setUserPosts(tempPosts.reverse());
         })
         .catch((err) => {
           console.log(err.response);
@@ -35,17 +39,15 @@ function Home() {
         <div className="leftbar">
           <Options></Options>
         </div>
-
         <div className="center">
-          <Share></Share>
+          <Share userPostsProp={[userPosts, setUserPosts]}></Share>
           <p>--- Có thể bạn biết họ ! ---</p>
           <RecommendPage></RecommendPage>
           <p>--- Hôm nay có gì mới nào ! ---</p>
           {userPosts.map((userPost, index) => {
-            return <Feed userPost={userPost} key={index}></Feed>;
+            return <Post postInfo={userPost} key={index}></Post>;
           })}
         </div>
-
         <div className="rightbar">
           <FriendRequest></FriendRequest>
           <Contacts></Contacts>

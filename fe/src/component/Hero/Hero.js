@@ -18,6 +18,7 @@ function Hero() {
       axios
         .get(`http://localhost:5000/api/users/getone/${userId}`)
         .then((res) => {
+          console.log(res);
           setUserInfos(res.data);
           setAvt(res.data.photos.avatar.length);
         })
@@ -27,7 +28,7 @@ function Hero() {
     };
     getUserInfo();
   }, [userId]);
-  console.log(avt);
+
   const addFriend = () => {
     axios
       .patch(`http://localhost:5000/api/users/add/${userId}`, {
@@ -69,21 +70,21 @@ function Hero() {
       <div className="hero-profile">
         <div className="avatar-container">
           {avt === 0 ? (
-               <img
-            className="avatar"
-            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-            alt=""
-          />
-          ):(
-             <img
-            className="avatar"
-            src={`http://localhost:5000/images/${
-              userinfos?.photos?.avatar[userinfos?.photos?.avatar?.length - 1]
-            }`}
-            alt=""
-          />
-          ) }
-         
+            <img
+              className="avatar"
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+              alt=""
+            />
+          ) : (
+            <img
+              className="avatar"
+              src={`http://localhost:5000/images/${
+                userinfos?.photos?.avatar[userinfos?.photos?.avatar?.length - 1]
+              }`}
+              alt=""
+            />
+          )}
+
           {userRequestId === userId ? (
             <AiOutlineCamera
               className="camera"

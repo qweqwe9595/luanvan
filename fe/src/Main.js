@@ -11,7 +11,6 @@ import axios from "axios";
 import Event from "./pages/event/Event";
 import Notification from "./pages/notification/Notification";
 
-
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
@@ -23,7 +22,9 @@ function Main() {
     const token = localStorage.getItem("token");
     axios
       .get(`http://localhost:5000/api/users/getone/${userId}`)
-      .then((res) => setUser(res.data));
+      .then((res) => {
+        setUser(res.data);
+      });
   }, []);
 
   useEffect(() => {
@@ -31,13 +32,11 @@ function Main() {
     socket.emit("userConnection", user);
   }, [user, socket]);
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (!user) return;
     socket?.on("getNotification", (data) => {
-      setNotifications(data);
       console.log(data);
+      setNotifications(data);
     });
   }, [user, socket]);
 

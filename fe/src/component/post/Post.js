@@ -19,27 +19,21 @@ function Post({ postInfo }) {
   const [isLike, setIsLike] = useState(
     postInfo.likes.some((item) => item._id === loginUser)
   );
+  const [cmtV1, setCmtV1] = useState("");
   const a = new Date();
   const b = new Date(postInfo.createdAt);
   const postDate = (a - b) / 1000;
-
-  const iconStyles = { color: "#0d47a1", 
-                       fontSize: "20px",
-                       margin: "auto 5px", 
-                       width: "max-content"};
   const [comment, setComment] = useState([]);
   const commentNumber = countCmts(comment);
   const socket = useContext(SocketContext);
   const [user] = useContext(UserContext);
 
-  function countCmts(comment) {
-    let lv1Count = comment.length;
-    let lv2Count = comment.reduce(
-      (prev, current) => prev + current.commentLv2.length,
-      0
-    );
-    return lv1Count + lv2Count;
-  }
+  const iconStyles = {
+    color: "#0d47a1",
+    fontSize: "20px",
+    margin: "auto 5px",
+    width: "max-content",
+  };
 
   useEffect(() => {
     if (postInfo.likes.includes(loginUser)) {
@@ -57,6 +51,16 @@ function Post({ postInfo }) {
     };
     getComment();
   }, []);
+
+  function countCmts(comment) {
+    let lv1Count = comment.length;
+    let lv2Count = comment.reduce(
+      (prev, current) => prev + current.commentLv2.length,
+      0
+    );
+    return lv1Count + lv2Count;
+  }
+
   //Lay tat ca comment
 
   //Like bai viet
@@ -70,16 +74,15 @@ function Post({ postInfo }) {
         alert("đã like");
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+        console.log(err);
       });
   };
   const deletePost = () => {
     axios
       .delete(`http://localhost:5000/api/posts/${postId}`, {
-        userId: loginUser,
+        data: { userId: loginUser },
       })
       .then((res) => {
-        alert("Đã xóa bài viết");
         window.location.reload();
       })
       .catch((err) => {
@@ -88,6 +91,7 @@ function Post({ postInfo }) {
   };
 
   const sendNotification = (type) => {
+    console.log(postInfo);
     axios
       .post("http://localhost:5000/api/users/notification", {
         userId: postInfo.userId._id,
@@ -100,8 +104,6 @@ function Post({ postInfo }) {
         });
       });
   };
-
-  const [cmtV1, setCmtV1] = useState("");
 
   const writeCommentV1 = () => {
     axios
@@ -120,29 +122,57 @@ function Post({ postInfo }) {
 
   return (
     <div className="post">
+      {openOptions ? (
+        <>
+          <div
+            className="post-meta-right-show"
+            onClick={() => setOpenOptions(!openOptions)}
+          ></div>
+          <ul className="post-meta-right-show-items">
+            {postInfo.userId._id.includes(loginUser) ? <li>Chỉnh sửa</li> : ""}
+            {postInfo.userId._id.includes(loginUser) ? (
+              <li
+                onClick={() => {
+                  deletePost();
+                }}
+              >
+                Xóa
+              </li>
+            ) : (
+              ""
+            )}
+            <li>Báo cáo</li>
+          </ul>
+        </>
+      ) : (
+        ""
+      )}
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
-          <Link to={`/profile/${postInfo.userId._id}`}>
-
-            {   postInfo?.userId?.photos?.avatar?.length !== 0 ? (
-              <img
-                src={`http://localhost:5000/images/${
-                 postInfo?.userId?.photos?.avatar[postInfo?.userId?.photos?.avatar?.length - 1]
-                }`}
-              className="avatar"></img>
-            ) : (
-              <img
-                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                className="avatar"></img>
-            )}
+            <Link to={`/profile/${postInfo.userId._id}`}>
+              {postInfo?.userId?.photos?.avatar?.length !== 0 ? (
+                <img
+                  src={`http://localhost:5000/images/${
+                    postInfo?.userId?.photos?.avatar[
+                      postInfo?.userId?.photos?.avatar?.length - 1
+                    ]
+                  }`}
+                  className="avatar"
+                ></img>
+              ) : (
+                <img
+                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                  className="avatar"
+                ></img>
+              )}
             </Link>
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
               <Link to={`/profile/${postInfo.userId._id}`}>
                 <p className="username">{postInfo.userId.userName}</p>
-                </Link>
+              </Link>
             </div>
             <div className="post-meta-left-timepost">
               {(() => {
@@ -178,57 +208,78 @@ function Post({ postInfo }) {
         </div>
         <div className="post-meta-right">
           <div className="post-meta-right-options">
-            <div className="post-meta-right-options-buttons" onClick={() => {openOptions?(setOpenOptions(false)):(setOpenOptions(true))}}>
+            <div
+              className="post-meta-right-options-buttons"
+              onClick={() => {
+                openOptions ? setOpenOptions(false) : setOpenOptions(true);
+              }}
+            >
               <span>
                 <BsThreeDots></BsThreeDots>
               </span>
             </div>
           </div>
-          
-          {openOptions?(<div className="post-meta-right-show">
-              <ul>
-                {postInfo.userId._id.includes(loginUser)?(<li>Chỉnh sửa</li>):""}
-                {postInfo.userId._id.includes(loginUser)?(<li onClick={() => {deletePost()}}>Xóa</li>):""}
-                <li>Báo cáo</li>
-              </ul>
-          </div>):""}
         </div>
       </div>
       <div className="post-desc">
         <p>{postInfo.desc}</p>
       </div>
-      {postInfo.img != "null" ? ( <div className="post-img">
-        {postInfo.img && (
-          <img src={`http://localhost:5000/images/${postInfo.img}`} />
-        )}
-      </div>): ""}     
+      {postInfo.img != "null" ? (
+        <div className="post-img">
+          {postInfo.img && (
+            <img src={`http://localhost:5000/images/${postInfo.img}`} />
+          )}
+        </div>
+      ) : (
+        ""
+      )}
       <div className="post-interaction-length">
         <div className="post-interaction-length-heart">
           <p>{likesCount} lượt thích</p>
-          </div>
+        </div>
         <div className="post-interaction-length-comment">
           <p>{commentNumber} bình luận</p>
-          </div>
+        </div>
         <div className="post-interaction-length-share">
-        {/* <FiShare2 style={iconStyles}></FiShare2> */}
-          </div>
+          {/* <FiShare2 style={iconStyles}></FiShare2> */}
+        </div>
       </div>
-      <div className="post-interaction">        
-          {isLike ? (
-            <div className="post-interaction-heart" 
-                onClick={() => {addLike();setLikesCount(likesCount - 1);setIsLike(false);}}>
-            <IoMdHeart style={iconStyles}/><p>Đã thích</p>
-            </div>
-          ) : (
-            <div className="post-interaction-heart" 
-            onClick={() => {addLike();setLikesCount(likesCount + 1);setIsLike(true);sendNotification("LIKE");}}>
-            <IoMdHeartEmpty style={iconStyles}/><p>Thích</p>
-            </div>
-          )}
-        <div className="post-interaction-comment" onClick={() => {
-              {open?(setOpen(false)):(setOpen(true))}
-            }}>      
-            <GoComment style={iconStyles}></GoComment>
+      <div className="post-interaction">
+        {isLike ? (
+          <div
+            className="post-interaction-heart"
+            onClick={() => {
+              addLike();
+              setLikesCount(likesCount - 1);
+              setIsLike(false);
+            }}
+          >
+            <IoMdHeart style={iconStyles} />
+            <p>Đã thích</p>
+          </div>
+        ) : (
+          <div
+            className="post-interaction-heart"
+            onClick={() => {
+              addLike();
+              setLikesCount(likesCount + 1);
+              setIsLike(true);
+              sendNotification("LIKE");
+            }}
+          >
+            <IoMdHeartEmpty style={iconStyles} />
+            <p>Thích</p>
+          </div>
+        )}
+        <div
+          className="post-interaction-comment"
+          onClick={() => {
+            {
+              open ? setOpen(false) : setOpen(true);
+            }
+          }}
+        >
+          <GoComment style={iconStyles}></GoComment>
           <p>Bình luận</p>
         </div>
         <div className="post-interaction-share">

@@ -19,7 +19,10 @@ const io = require("socket.io")(http, {
     origin: "*",
   },
 });
+
 io.on("connection", (socket) => {
+  console.log({ onlineUsers });
+  console.log({ asd: socket.id });
   socket.on("userDisconnect", () => {
     removeAuser(socket.id);
   });
@@ -31,6 +34,7 @@ io.on("connection", (socket) => {
 
     // if (receiver.socketID === socket.id) return;
     if (!receiver) return;
+    console.log(receiver.socketId);
     io.to(receiver.socketId).emit("getNotification", receiver.notifications);
   });
 });

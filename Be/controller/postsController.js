@@ -13,8 +13,9 @@ const createAPost = async (req, res) => {
       newPost.img = await req.file.filename;
     }
     const savePost = await newPost.save();
+    await savePost.populate("userId");
     console.log(newPost);
-    res.status(200).json({ message: "dang bai viet thanh cong", newPost });
+    res.status(200).json({ message: "dang bai viet thanh cong", savePost });
   } catch (err) {
     console.log(err);
     res.status(500).json(err.message);
@@ -111,7 +112,7 @@ const deleteAPost = async (req, res) => {
     const user = await userModel.findById(req.body.userId);
 
     if (!req.body.userId) {
-      return res.status(500).json({ message: "need userId in body" });
+      return res.status(400).json({ message: "need userId in body" });
     }
     if (!user) return res.status(500).json({ message: "khong tim thay user" });
     if (req.body.userId == post.userId || user.isAdmin) {
