@@ -91,7 +91,7 @@ function Post({ postInfo }) {
   };
 
   const sendNotification = (type) => {
-    console.log(postInfo);
+    if (loginUser === postInfo.userId._id) return;
     axios
       .post("http://localhost:5000/api/users/notification", {
         userId: postInfo.userId._id,

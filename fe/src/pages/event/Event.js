@@ -32,7 +32,7 @@ function Event() {
       <Nav></Nav>
       <div className="left_event">
         <span>SỰ KIỆN SẮP DIỄN RA</span>
-        {user.isAdmin && <p>tao su kien</p>}
+        {user?.isAdmin && <p>tao su kien</p>}
         <hr></hr>
       </div>
       <div className="center_event">

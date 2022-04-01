@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 function Share({ userPostsProp }) {
   const [userPosts, setUserPosts] = userPostsProp;
   const userId = localStorage.getItem("userID");
-  console.log(userId);
   const userInfo = localStorage.getItem("userInfo");
   const [desc, setDesc] = useState("");
   const [img, setImg] = useState(false);

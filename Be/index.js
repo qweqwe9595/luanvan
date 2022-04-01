@@ -21,21 +21,17 @@ const io = require("socket.io")(http, {
 });
 
 io.on("connection", (socket) => {
-  console.log({ onlineUsers });
-  console.log({ asd: socket.id });
-  socket.on("userDisconnect", () => {
+  socket.on("disconnect", () => {
     removeAuser(socket.id);
   });
   socket.on("userConnection", (user) => {
     addNewUser(user, socket.id);
   });
-  socket.on("sendNotification", ({ receiverUserId, type }) => {
-    const receiver = getAUser(receiverUserId);
-
-    // if (receiver.socketID === socket.id) return;
+  socket.on("sendNotification", async ({ receiverUserId, type }) => {
+    const receiver = await getAUser(receiverUserId);
     if (!receiver) return;
-    console.log(receiver.socketId);
-    io.to(receiver.socketId).emit("getNotification", receiver.notifications);
+    const query = await userModal.findById(receiver._id);
+    await io.to(receiver.socketId).emit("getNotification", query.notifications);
   });
 });
 
