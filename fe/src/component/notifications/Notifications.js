@@ -38,13 +38,17 @@ function Notifications() {
       </div>
      <div className="notifications-list">
           {notifications.map((item) => (
+               <Link to={`${item.post}`}>
             <div className="notifications-items">
               <p>
-              <Link to={`/profile/${item.userId}`}>
-                <span className="username">{`${item.userId}`} </span>
+                <Link to={`/profile/${item.userId}`}>
+                   <span className="username">
+                     {`${item.userId.userName}`} </span>
                 </Link>
-                  đã {`${item.message}`} bài viết của bạn.</p>
+                  đã {`${item.message}`} bài viết của bạn.</p>                  
             </div>
+            </Link>
+
           ))}
      </div>
     </div>

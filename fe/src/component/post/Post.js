@@ -83,11 +83,8 @@ function Post({ postInfo, setRefreshPosts }) {
         data: { userId: loginUser },
       })
       .then((res) => {
-<<<<<<< HEAD
-=======
         console.log("delete");
         setRefreshPosts((prev) => !prev);
->>>>>>> 102ae961b1910486a4556b31ca4a27adb4cb142b
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -100,8 +97,10 @@ function Post({ postInfo, setRefreshPosts }) {
       .post("http://localhost:5000/api/users/notification", {
         userId: postInfo.userId._id,
         message: "like",
+        post: "/postNotification/"+ postInfo._id,
       })
       .then((res) => {
+        console.log(res.data);
         socket?.emit("sendNotification", {
           receiverUserId: postInfo.userId._id,
           type,
