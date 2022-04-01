@@ -1,10 +1,56 @@
 import "./notifications.scss";
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
+import { SocketContext } from "../../context/SocketContext";
+import { UserContext } from "../../context/userContext";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Notifications() {
+  const socket = useContext(SocketContext);
+  const [user, setUser] = useContext(UserContext);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    if (!user) return;
+    socket?.on("getNotification", (data) => {
+      setNotifications(data);
+    });
+  }, [user, socket]);
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/api/users/getone/${user._id}`
+        );
+        setNotifications(res.data.notifications);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, [user]);
+  console.log(notifications);
   return (
-    <div className="notification-items">
-        <p><span>username</span>đã thích bài viết của bạn</p>
+    <div className="notifications">
+      <div className="notifications-title">
+        <h3>Thông báo gần đây</h3>
+      </div>
+     <div className="notifications-list">
+          {notifications.map((item) => (
+               <Link to={`${item.post}`}>
+            <div className="notifications-items">
+              <p>
+                <Link to={`/profile/${item.userId}`}>
+                   <span className="username">
+                     {`${item.userId.userName}`} </span>
+                </Link>
+                  đã {`${item.message}`} bài viết của bạn.</p>                  
+            </div>
+            </Link>
+
+          ))}
+     </div>
     </div>
   );
 }

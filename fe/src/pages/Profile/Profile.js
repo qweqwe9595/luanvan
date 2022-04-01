@@ -15,6 +15,8 @@ function Profile() {
   const loginUserId = localStorage.getItem("userID");
   const [userPosts, setUserPost] = useState([]);
   const [userData, setUserData] = useState({});
+  const [refreshPosts, setRefreshPosts] = useState(false);
+
   useEffect(() => {
     const getUserPost = () => {
       axios
@@ -22,7 +24,7 @@ function Profile() {
           `http://localhost:5000/api/posts/profile/${param.userId}?amount=20`
         )
         .then((res) => {
-          setUserPost(res.data.posts);
+          setUserPost(res.data.posts.reverse());
         })
         .catch((err) => {
           console.log(err.response);
@@ -40,7 +42,7 @@ function Profile() {
         });
     };
     getUser();
-  }, [param.userId]);
+  }, [param.userId, refreshPosts]);
   return (
     <div className="profile">
       <Nav></Nav>
@@ -52,13 +54,19 @@ function Profile() {
         </div>
         <div className="profile-right">
           {loginUserId.includes(param.userId) ? (
-            <Share userPostsProp={[userPosts, setUserPost]} />
+            <Share setRefreshPosts={setRefreshPosts} />
           ) : (
             ""
           )}
           <p>--- Bài đăng gần đây. ---</p>
           {userPosts?.map((userPost) => {
-            return <Post postInfo={userPost} key={userPost._id} />;
+            return (
+              <Post
+                setRefreshPosts={setRefreshPosts}
+                postInfo={userPost}
+                key={userPost._id}
+              />
+            );
           })}
         </div>
       </div>

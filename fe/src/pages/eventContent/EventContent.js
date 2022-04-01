@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./EventContent.scss";
 import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import { BsPeopleFill, BsSearch } from "react-icons/bs";
 import Nav from "../../component/nav/Nav";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { SocketContext } from "../../context/SocketContext";
 function EventContent() {
   const param = useParams();
   const [events, setEvents] = useState("");
@@ -13,7 +14,8 @@ function EventContent() {
   const user = localStorage.getItem("userID");
   const [numjoins, setNumjoins] = useState();
   const [join, setJoin] = useState();
-    useEffect(() => {
+  const socket = useContext(SocketContext);
+  useEffect(() => {
     axios
       .get(
         `http://localhost:5000/api/events/getOne/${param.id} `,
@@ -42,14 +44,13 @@ function EventContent() {
       })
       .catch((err) => {});
   }, [searchTerm]);
-  
-  const joinEvent = () => { 
+
+  const joinEvent = () => {
     axios
       .post(
         `http://localhost:5000/api/events/join `,
         {
           eventId: events._id,
-        
         },
         {
           headers: {
@@ -62,13 +63,13 @@ function EventContent() {
         setNumjoins(numjoins + 1);
       })
       .catch((err) => {});
-  }
-    const notjoins = () => {
+  };
+  const notjoins = () => {
     axios
       .post(
         `http://localhost:5000/api/events/join `,
         {
-          eventId:events._id,
+          eventId: events._id,
         },
         {
           headers: {
@@ -77,12 +78,24 @@ function EventContent() {
         }
       )
       .then((res) => {
-          setJoin(false);
+        setJoin(false);
         setNumjoins(numjoins - 1);
       })
       .catch((err) => {});
-  }
+  };
 
+  const sendInvite = (userId) => {
+    axios
+      .post("http://localhost:5000/api/users/notification", {
+        userId,
+        message: `Mời tham gia sự kiện ${events._id}`,
+      })
+      .then((res) => {
+        socket?.emit("sendNotification", {
+          receiverUserId: userId,
+        });
+      });
+  };
 
   return (
     <div className="eventcontent">
@@ -100,28 +113,29 @@ function EventContent() {
         </div>
         <div className="button_event">
           {join ? (
-              <button
-            className="join_event"
-            onClick={() => {
-              notjoins();
-            }}
-          >
+            <button
+              className="join_event"
+              onClick={() => {
+                notjoins();
+              }}
+            >
               <div className="join">
                 <AiTwotoneStar className="icon_join" />
                 <span>Đã tham gia</span>
               </div>
-          </button>
-          ): (
-              <button className="join_event"
-            onClick={() => {
-            joinEvent()
-            }}>
-             <div className="join">
+            </button>
+          ) : (
+            <button
+              className="join_event"
+              onClick={() => {
+                joinEvent();
+              }}
+            >
+              <div className="join">
                 <AiOutlineStar className="icon_join" />
                 <span>Tham gia</span>
               </div>
-              
-          </button>
+            </button>
           )}
 
           <button className="invite">
@@ -138,8 +152,9 @@ function EventContent() {
           <BsPeopleFill className="icon_event" />
           {events?.joins ? (
             <span>{numjoins} Người tham gia</span>
-          ):"0 người tham gia"}
-         
+          ) : (
+            "0 người tham gia"
+          )}
         </div>
         <div className="details">
           {events?.desc ? (
@@ -164,11 +179,11 @@ function EventContent() {
           )}
           {events?.link ? (
             <span>
-              Xem chi tiết tại: {" "}
-               <a>{events.link}</a>
+              Xem chi tiết tại: <a>{events.link}</a>
             </span>
-                 
-              ):""}
+          ) : (
+            ""
+          )}
         </div>
       </div>
 
@@ -208,11 +223,16 @@ function EventContent() {
                   </Link>
                 </span>
                 {events.joins.includes(results._id) ? (
-                  <span className="joined" >Đã tham gia</span>
+                  <span className="joined">Đã tham gia</span>
                 ) : (
-                    < button>Mời</button>
+                  <button
+                    onClick={() => {
+                      sendInvite(results._id);
+                    }}
+                  >
+                    Mời
+                  </button>
                 )}
-                
               </div>
             );
           })}

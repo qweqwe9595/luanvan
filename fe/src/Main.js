@@ -10,11 +10,11 @@ import { UserContext } from "./context/userContext";
 import axios from "axios";
 import Event from "./pages/event/Event";
 import Notification from "./pages/notification/Notification";
+import PostNotification from "./pages/postNotification/PostNotification";
 
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
-  const [notifications, setNotifications] = useState([]);
 
   //get user
   useEffect(() => {
@@ -32,14 +32,6 @@ function Main() {
     socket.emit("userConnection", user);
   }, [user, socket]);
 
-  useEffect(() => {
-    if (!user) return;
-    socket?.on("getNotification", (data) => {
-      console.log(data);
-      setNotifications(data);
-    });
-  }, [user, socket]);
-
   return (
     <Routes>
       <Route path="/profile/:userId" element={<Profile />}></Route>
@@ -49,6 +41,7 @@ function Main() {
       <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
       <Route path="/notification" element={<Notification />}></Route>
+      <Route path="/postNotification/:postId" element={<PostNotification />}></Route>      
     </Routes>
   );
 }

@@ -63,6 +63,7 @@ function Event() {
     <div className="event_container">
       <Nav></Nav>
       <div className="left_event">
+<<<<<<< HEAD
         {user?.isAdmin && (
           <div
             className="item"
@@ -76,6 +77,11 @@ function Event() {
         <div className="item">
           <span>sự kiện sắp diễn ra</span>
         </div>
+=======
+        <span>SỰ KIỆN SẮP DIỄN RA</span>
+        {user?.isAdmin && <p>tao su kien</p>}
+        <hr></hr>
+>>>>>>> bebbd7d4ba1405acaca3c68a5ecec6d9c0913b4f
       </div>
       <div className="center_event">
         {eventDetails?.map((eventI, index) => (
