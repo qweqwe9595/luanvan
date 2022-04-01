@@ -22,7 +22,7 @@ function Profile() {
           `http://localhost:5000/api/posts/profile/${param.userId}?amount=20`
         )
         .then((res) => {
-          setUserPost(res.data.posts);
+          setUserPost(res.data.posts.reverse());
         })
         .catch((err) => {
           console.log(err.response);

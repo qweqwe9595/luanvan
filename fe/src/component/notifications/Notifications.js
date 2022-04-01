@@ -3,6 +3,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { SocketContext } from "../../context/SocketContext";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Notifications() {
   const socket = useContext(SocketContext);
@@ -29,12 +30,23 @@ function Notifications() {
     };
     getUser();
   }, [user]);
-
+  console.log(notifications);
   return (
-    <div style={{ margin: "100px 0" }} className="notification-items">
-      {notifications.map((item) => (
-        <p>{`${item.userId} ${item.message} cua ban`}</p>
-      ))}
+    <div className="notifications">
+      <div className="notifications-title">
+        <h3>Thông báo gần đây</h3>
+      </div>
+     <div className="notifications-list">
+          {notifications.map((item) => (
+            <div className="notifications-items">
+              <p>
+              <Link to={`/profile/${item.userId}`}>
+                <span className="username">{`${item.userId}`} </span>
+                </Link>
+                  đã {`${item.message}`} bài viết của bạn.</p>
+            </div>
+          ))}
+     </div>
     </div>
   );
 }

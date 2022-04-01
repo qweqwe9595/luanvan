@@ -29,7 +29,7 @@ function FriendRequest() {
         })}
       </div>
       <div className="link">
-        <a href="#friends.js">Xem thêm</a>
+        <a href="./friend">Xem thêm</a>
       </div>
     </div>
   );

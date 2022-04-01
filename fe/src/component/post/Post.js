@@ -83,7 +83,6 @@ function Post({ postInfo }) {
         data: { userId: loginUser },
       })
       .then((res) => {
-        window.location.reload();
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -197,8 +196,9 @@ function Post({ postInfo }) {
                   default:
                     return (
                       <p>
-                        {Math.round(postDate / (60 * 60 * 24 * 7 * 4))} tháng
-                        trước
+                        {/* {Math.round(postDate / (60 * 60 * 24 * 7 * 4))} tháng
+                        trước */}
+                        {postDate}
                       </p>
                     );
                 }

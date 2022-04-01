@@ -58,7 +58,7 @@
             height          : 25px;
             border          : none;
             border-radius   : 10px;
-            background-color: #0d47a1 !important;
+            background-color: #0d47a1;
             color           : white;
             margin-right    : 5px;
             font-weight     : bold;
@@ -66,6 +66,10 @@
             cursor          : pointer;
             font-family     : "oswald";
         }
+        :hover{
+            background-color: #0b326d;
+        }
+
     }
 }
 
