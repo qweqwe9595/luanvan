@@ -6,14 +6,13 @@ import Contacts from "../../component/contacts/Contacts";
 import FriendRequest from "../../component/friendRequest/FriendRequest";
 import Options from "../../component/options/Options";
 import RecommendPage from "../../component/recommendPage/RecommendPage";
-import { useContext } from "react";
-import { UserContext } from "../../context/userContext";
 import React, { useEffect, useState } from "react";
 import Post from "../../component/post/Post";
 import axios from "axios";
 function Home() {
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userPosts, setUserPosts] = useState([]);
+  const [refreshPosts, setRefreshPosts] = useState(false);
   useEffect(() => {
     const getUserPost = () => {
       axios
@@ -30,7 +29,7 @@ function Home() {
         });
     };
     getUserPost();
-  }, []);
+  }, [refreshPosts]);
 
   return (
     <div className="home">
@@ -40,12 +39,18 @@ function Home() {
           <Options></Options>
         </div>
         <div className="center">
-          <Share userPostsProp={[userPosts, setUserPosts]}></Share>
+          <Share setRefreshPosts={setRefreshPosts}></Share>
           <p>--- Có thể bạn biết họ ! ---</p>
           <RecommendPage></RecommendPage>
           <p>--- Hôm nay có gì mới nào ! ---</p>
           {userPosts.map((userPost, index) => {
-            return <Post postInfo={userPost} key={index}></Post>;
+            return (
+              <Post
+                postInfo={userPost}
+                setRefreshPosts={setRefreshPosts}
+                key={index}
+              ></Post>
+            );
           })}
         </div>
         <div className="rightbar">

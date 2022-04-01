@@ -6,10 +6,8 @@ import axios from "axios";
 import PostImgUpload from "../fileUpload/PostImgUpload";
 import { Link } from "react-router-dom";
 
-function Share({ userPostsProp }) {
-  const [userPosts, setUserPosts] = userPostsProp;
+function Share({ setRefreshPosts }) {
   const userId = localStorage.getItem("userID");
-  const userInfo = localStorage.getItem("userInfo");
   const [desc, setDesc] = useState("");
   const [img, setImg] = useState(false);
   const [fileRef, setFileRef] = useState(null);
@@ -34,8 +32,7 @@ function Share({ userPostsProp }) {
         },
       })
       .then((res) => {
-        console.log(res);
-        setUserPosts((prev) => [res.data.savePost, ...prev]);
+        setRefreshPosts((prev) => !prev);
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);

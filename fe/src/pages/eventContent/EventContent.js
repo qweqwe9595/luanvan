@@ -85,7 +85,6 @@ function EventContent() {
   };
 
   const sendInvite = (userId) => {
-    console.log(userId);
     axios
       .post("http://localhost:5000/api/users/notification", {
         userId,
