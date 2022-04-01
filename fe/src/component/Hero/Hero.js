@@ -7,11 +7,12 @@ import PhotoUpload from "../fileUpload/PhotoUpload";
 
 function Hero() {
   const userId = useParams().userId;
-  const userRequestId = JSON.parse(localStorage.getItem("userInfo"))._id;
-  const [userinfos, setUserInfos] = useState("");
+  const loginUser = localStorage.getItem("userID");
+  const [userinfos, setUserInfos] = useState({});
   const [uploadAvatar, setUploadAvatar] = useState(false);
   const [uploadBackground, setUploadBackground] = useState(false);
   const [avt, setAvt] = useState([]);
+  console.log(userinfos);
 
   useEffect(() => {
     const getUserInfo = () => {
@@ -32,7 +33,7 @@ function Hero() {
   const addFriend = () => {
     axios
       .patch(`http://localhost:5000/api/users/add/${userId}`, {
-        userId: userRequestId,
+        userId: loginUser,
       })
       .then((res) => {
         console.log(res.data);
@@ -58,7 +59,7 @@ function Hero() {
           }`}
           alt=""
         />
-        {userRequestId === userId ? (
+        {loginUser === userId ? (
           <AiOutlineCamera
             className="camera-background"
             onClick={() => setUploadBackground(true)}
@@ -85,7 +86,7 @@ function Hero() {
             />
           )}
 
-          {userRequestId === userId ? (
+          {loginUser === userId ? (
             <AiOutlineCamera
               className="camera"
               onClick={() => setUploadAvatar(true)}
@@ -100,7 +101,8 @@ function Hero() {
       </div>
       <div className="hero-content">
         <div>Nhắn tin</div>
-        {!userId.includes(userRequestId) ? (
+        {userId !== loginUser &&
+        !userinfos?.friends?.filter((item) => item._id == loginUser).length ? (
           <div className="icon-request">
             <div onClick={() => addFriend()}>Kết bạn</div>
           </div>

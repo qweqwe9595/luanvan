@@ -14,7 +14,6 @@ import Notification from "./pages/notification/Notification";
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
-  const [notifications, setNotifications] = useState([]);
 
   //get user
   useEffect(() => {
@@ -30,14 +29,6 @@ function Main() {
   useEffect(() => {
     if (!user) return;
     socket.emit("userConnection", user);
-  }, [user, socket]);
-
-  useEffect(() => {
-    if (!user) return;
-    socket?.on("getNotification", (data) => {
-      console.log(data);
-      setNotifications(data);
-    });
   }, [user, socket]);
 
   return (

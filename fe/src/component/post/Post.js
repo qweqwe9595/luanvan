@@ -10,7 +10,7 @@ import CommentV1 from "../comment/CommentV1";
 import { SocketContext } from "../../context/SocketContext";
 import { UserContext } from "../../context/userContext";
 
-function Post({ postInfo }) {
+function Post({ postInfo, setRefreshPosts }) {
   const [open, setOpen] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const loginUser = localStorage.getItem("userID");
@@ -26,7 +26,7 @@ function Post({ postInfo }) {
   const [comment, setComment] = useState([]);
   const commentNumber = countCmts(comment);
   const socket = useContext(SocketContext);
-  const [user] = useContext(UserContext);
+  const [getNewComment, setGetNewComment] = useState(false);
 
   const iconStyles = {
     color: "#0d47a1",
@@ -50,7 +50,7 @@ function Post({ postInfo }) {
         });
     };
     getComment();
-  }, []);
+  }, [getNewComment]);
 
   function countCmts(comment) {
     let lv1Count = comment.length;
@@ -83,7 +83,8 @@ function Post({ postInfo }) {
         data: { userId: loginUser },
       })
       .then((res) => {
-        window.location.reload();
+        console.log("delete");
+        setRefreshPosts((prev) => !prev);
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -113,7 +114,7 @@ function Post({ postInfo }) {
         userId: loginUser,
       })
       .then((res) => {
-        alert("Binh luan thanh cong!");
+        setGetNewComment((prev) => !prev);
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);
@@ -293,7 +294,13 @@ function Post({ postInfo }) {
           <p>Các bình luận trước đó</p>
           <div className="post-comment-list-item">
             {comment?.map((comment) => {
-              return <CommentV1 key={comment._id} commentV1={{ comment }} />;
+              return (
+                <CommentV1
+                  key={comment._id}
+                  commentV1={{ comment }}
+                  setGetNewComment={setGetNewComment}
+                />
+              );
             })}
           </div>
           <div className="post-comment-bar">

@@ -29,7 +29,11 @@ const getAUser = async (req, res) => {
   try {
     const userQuery = await userModal
       .findById(req.params.id)
-      .populate("friends");
+      .populate("friends")
+      .populate({
+        path: "notifications",
+        populate: { path: "userId", model: "usersModal" },
+      });
     const { updatedAt, ...other } = userQuery._doc;
     res.status(200).json(other);
   } catch (err) {

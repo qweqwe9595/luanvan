@@ -6,7 +6,7 @@ import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import axios from "axios";
 
-function CommentV1({ commentV1 }) {
+function CommentV1({ commentV1, setGetNewComment }) {
   const [liking, setLiking] = useState(false);
   const [likes, setLikes] = useState(commentV1.comment.like.length);
   const [open, setOpen] = useState(false);
@@ -17,7 +17,7 @@ function CommentV1({ commentV1 }) {
   const a = new Date();
   const b = new Date(commentV1.comment.createdAt);
   const commentDate = (a - b) / 1000;
-  const iconStyles = { color: "#0d47a1", fontSize: "15px", margin: "auto 2px"};
+  const iconStyles = { color: "#0d47a1", fontSize: "15px", margin: "auto 2px" };
   const [cmtV2, setCmtV2] = useState("");
   useEffect(() => {
     const Id = localStorage.getItem("userID");
@@ -34,7 +34,7 @@ function CommentV1({ commentV1 }) {
       })
       .then((res) => {
         //console.log("Thanh cong", res.data);
-        alert("Binh luan thanh cong!");
+        setGetNewComment((prev) => !prev);
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);
@@ -69,7 +69,6 @@ function CommentV1({ commentV1 }) {
     <div>
       <div className="comment-1">
         <div className="comment-tag">
-          
           <div className="avatar">
             {commentV1?.comment?.userId?.photos?.avatar?.length !== 0 ? (
               <img
@@ -129,20 +128,22 @@ function CommentV1({ commentV1 }) {
         </div>
         <div className="post-interaction-2">
           {liking ? (
-              <div className="post-interaction-heart-2" onClick={() => disLike()}>
-              <IoMdHeart style={iconStyles}/>
+            <div className="post-interaction-heart-2" onClick={() => disLike()}>
+              <IoMdHeart style={iconStyles} />
               <p>Đã thích</p>
-              </div>
-            ) : (
-              <div className="post-interaction-heart-2" onClick={() => like()}>
-               <IoMdHeartEmpty style={iconStyles}/>
-                <p>Thích</p>
-              </div>
-            )}
+            </div>
+          ) : (
+            <div className="post-interaction-heart-2" onClick={() => like()}>
+              <IoMdHeartEmpty style={iconStyles} />
+              <p>Thích</p>
+            </div>
+          )}
           <div
             className="post-interaction-comment-2"
             onClick={() => {
-              {open?(setOpen(false)):(setOpen(true))}
+              {
+                open ? setOpen(false) : setOpen(true);
+              }
             }}
           >
             {/* <p>{commentV2.length}</p> */}
