@@ -109,7 +109,7 @@ function EventContent() {
           {events?.startTime ? <span>{events.startTime}</span> : "không có"}
         </div>
         <div className="title">
-          {events?._id ? <span>{events._id}</span> : ""}
+          {events?.eventName ? <span>{events.eventName}</span> : ""}
         </div>
         <div className="button_event">
           {join ? (
@@ -160,7 +160,7 @@ function EventContent() {
           {events?.desc ? (
             <span>{events.desc}</span>
           ) : (
-            <span>chưa thêm nội dung sự kiện nhe bạn</span>
+            <span>không có nội dung</span>
           )}
 
           {events?.startTime ? (

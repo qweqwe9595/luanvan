@@ -26,7 +26,6 @@ function UserIntro({ setOpen }) {
       axios
         .get(`http://localhost:5000/api/users//getone/${param.userId}`)
         .then((res) => {
-          //console.log(res.data.email);
           setUserInfo(res.data);
           setUsername(res.data.userName);
           setmssv(res.data.MSSV);
@@ -60,7 +59,6 @@ function UserIntro({ setOpen }) {
       return;
     }
     const dateFormat = new Date(dayOfBirth).getTime();
-    console.log(dateFormat);
     axios
       .patch(`http://localhost:5000/api/users/${param.userId}`, {
         userId: param.userId,
