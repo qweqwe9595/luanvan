@@ -16,7 +16,6 @@ function CreateNewEvent({ setOpen }) {
   const [link, setLink] = useState("");
   const [duration, setDuration] = useState("");
   const [user] = useContext(UserContext);
-
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
 
@@ -30,21 +29,23 @@ function CreateNewEvent({ setOpen }) {
       formData.append("participants",participants);
       formData.append("link",link);
       formData.append("duration",duration);
-      formData.append("img",fileRef);
+      formData.append("eventImg",fileRef);
     axios
       .post(
           `http://localhost:5000/api/events/createOne`,formData,
         {
             headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"), 
                "Content-Type": "multipart/form-data",
-                Authorization: "Bearer " + localStorage.getItem("token"), 
           },
         }
       )
       .then((res) => {
         alert("thành công ");
+        console.log(res.data);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err.response.data);      });
   };
   return (
     <div className="create_event">
