@@ -5,7 +5,7 @@ import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import axios from "axios";
 
-function CommentV2({ commentV2, commentLv1 }) {
+function CommentV2({ commentV2, commentLv1, setGetNewComment }) {
   //console.log(commentLv1);
   const [liking, setLiking] = useState(false);
   const [likes, setLikes] = useState(commentV2.like.length);
@@ -28,8 +28,7 @@ function CommentV2({ commentV2, commentLv1 }) {
         userId: userId,
       })
       .then((res) => {
-       // console.log("Thanh cong", res.data);
-        alert("Binh luan thanh cong!");
+        setGetNewComment((prev) => !prev);
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);
@@ -77,7 +76,7 @@ function CommentV2({ commentV2, commentLv1 }) {
             )}
           </div>
           <div className="comment-tag-username">
-          <Link to={`/profile/${commentV2.userId?._id}`}>
+            <Link to={`/profile/${commentV2.userId?._id}`}>
               <p className="username">{commentV2.userId?.userName}</p>
             </Link>
           </div>
@@ -114,28 +113,32 @@ function CommentV2({ commentV2, commentLv1 }) {
           </div>
         </div>
         <div className="comment-tag-message">
-          <p><span>{commentLv1?.userId?.userName}</span> {commentV2.message}</p>
+          <p>
+            <span>{commentLv1?.userId?.userName}</span> {commentV2.message}
+          </p>
         </div>
         <div className="post-interaction-length">
           <p>{likes} lượt thích</p>
         </div>
         <div className="post-interaction-3">
-            {liking ? (
-              <div className="post-interaction-heart-3" onClick={() => disLike()}>
-               <IoMdHeart style={iconStyles}/>
+          {liking ? (
+            <div className="post-interaction-heart-3" onClick={() => disLike()}>
+              <IoMdHeart style={iconStyles} />
               <p>Đã thích</p>
-              </div>
-            ) : (
-              <div className="post-interaction-heart-3" onClick={() => like()}>
-               <IoMdHeartEmpty style={iconStyles}/>
-                <p>Thích</p>
-              </div>
-            )}
-            {/* <p>{likes}</p> */}
+            </div>
+          ) : (
+            <div className="post-interaction-heart-3" onClick={() => like()}>
+              <IoMdHeartEmpty style={iconStyles} />
+              <p>Thích</p>
+            </div>
+          )}
+          {/* <p>{likes}</p> */}
           <div
             className="post-interaction-comment-3"
             onClick={() => {
-              {open?(setOpen(false)):(setOpen(true))}
+              {
+                open ? setOpen(false) : setOpen(true);
+              }
             }}
           >
             {/* <GoComment style={iconStyles} />

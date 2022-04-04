@@ -25,6 +25,7 @@ function Share({ setRefreshPosts }) {
     formData.append("img", fileRef);
     formData.append("userId", userId);
     formData.append("desc", desc);
+
     axios
       .post("http://localhost:5000/api/posts", formData, {
         headers: {
@@ -38,6 +39,7 @@ function Share({ setRefreshPosts }) {
         console.log("Loi roi", err.response.data.message);
       });
   };
+
   useEffect(() => {
     const getUserInfo = () => {
       axios

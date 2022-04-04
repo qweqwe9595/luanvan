@@ -37,25 +37,27 @@ function Event() {
       .catch((err) => {});
   }, []);
   const createEvent = () => {
-    axios.post(
-      `http://localhost:5000/api/events/createOne`,
-      {
-        userId: user._id,
-        startTime,
-        eventName,
-        desc,
-        location,
-        participants,
-        link,
-        duration,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+    axios
+      .post(
+        `http://localhost:5000/api/events/createOne`,
+        {
+          userId: user._id,
+          startTime,
+          eventName,
+          desc,
+          location,
+          participants,
+          link,
+          duration,
         },
-      }
-    ).then((res) => {
-      alert("thành công ");
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => {
+        alert("thành công ");
       })
       .catch((err) => {});
   };
@@ -84,120 +86,119 @@ function Event() {
       </div>
       {open ? (
         <div className="create_event">
-        <div className="exit">
-          <button
-            onClick={() => {
-              setOpen(!open);
-            }}
-          >
-            X
-          </button>
-        </div>
-
-        <div className="pic_cover">
-          <BsImages></BsImages>
-        </div>
-          
-        <div className="choose_img">
-          <button>
-            chọn ảnh
-          </button>
-        </div> 
-          
-        <div className="create_details">
-          <div className="time_event">
-            <div className="starttime">
-              <input
-                type="date"
-                placeholder="Thời gian bất đầu"
-                value={startTime}
-                onChange={(e) => {
-                  setStartTime(e.target.value);
-                }}
-              ></input>
-              <BiTimeFive></BiTimeFive>
-            </div>
-
-            <div className="day_number">
-              <input
-                type="number"
-                min="0"
-                value={duration}
-                onChange={(e) => {
-                  setDuration(e.target.value);
-                }}
-                placeholder="Khoảng thời gian diễn ra sự kiện"
-              ></input>
-              Ngày
-            </div>
-          </div>
-          <div className="item_details">
-            <input
-              type="text"
-              placeholder="Tiêu đề của sự kiện"
-              value={eventName}
-              onChange={(e) => {
-                setEventName(e.target.value);
-              }}
-            ></input>
-            <BsPenFill></BsPenFill>
-          </div>
-          <div className="item_details">
-            <input
-              type="text"
-              placeholder="Đia điểm diễn ra sự kiện"
-              value={location}
-              onChange={(e) => {
-                setLocation(e.target.value);
-              }}
-            ></input>
-            <RiMapPinFill></RiMapPinFill>
-          </div>
-          <div className="item_details">
-            <input
-              type="text"
-              placeholder="Đối tượng tham gia"
-              value={participants}
-              onChange={(e) => {
-                setParticipants(e.target.value);
-              }}
-            ></input>
-            <BsPenFill></BsPenFill>
-          </div>
-          <div className="item_details">
-            <input
-              type="text"
-              placeholder="Link"
-              value={link}
-              onChange={(e) => {
-                setLink(e.target.value);
-              }}
-            ></input>
-            <BsPenFill></BsPenFill>
-          </div>
-          <div className="item_contents">
-            <textarea
-              type="text"
-              placeholder="Nội dung sự kiện"
-              value={desc}
-              onChange={(e) => {
-                setDesc(e.target.value);
-              }}
-            ></textarea>
-          </div>
-          <div className="button_create">
+          <div className="exit">
             <button
               onClick={() => {
-                createEvent();
+                setOpen(!open);
               }}
             >
-              Tạo sự kiện
+              X
             </button>
           </div>
+
+          <div className="pic_cover">
+            <BsImages></BsImages>
+          </div>
+
+          <div className="choose_img">
+            <button>chọn ảnh</button>
+          </div>
+
+          <div className="create_details">
+            <div className="time_event">
+              <div className="starttime">
+                <input
+                  type="date"
+                  placeholder="Thời gian bất đầu"
+                  value={startTime}
+                  onChange={(e) => {
+                    setStartTime(e.target.value);
+                  }}
+                ></input>
+                <BiTimeFive></BiTimeFive>
+              </div>
+
+              <div className="day_number">
+                <input
+                  type="number"
+                  min="0"
+                  value={duration}
+                  onChange={(e) => {
+                    setDuration(e.target.value);
+                  }}
+                  placeholder="Khoảng thời gian diễn ra sự kiện"
+                ></input>
+                Ngày
+              </div>
+            </div>
+            <div className="item_details">
+              <input
+                type="text"
+                placeholder="Tiêu đề của sự kiện"
+                value={eventName}
+                onChange={(e) => {
+                  setEventName(e.target.value);
+                }}
+              ></input>
+              <BsPenFill></BsPenFill>
+            </div>
+            <div className="item_details">
+              <input
+                type="text"
+                placeholder="Đia điểm diễn ra sự kiện"
+                value={location}
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                }}
+              ></input>
+              <RiMapPinFill></RiMapPinFill>
+            </div>
+            <div className="item_details">
+              <input
+                type="text"
+                placeholder="Đối tượng tham gia"
+                value={participants}
+                onChange={(e) => {
+                  setParticipants(e.target.value);
+                }}
+              ></input>
+              <BsPenFill></BsPenFill>
+            </div>
+            <div className="item_details">
+              <input
+                type="text"
+                placeholder="Link"
+                value={link}
+                onChange={(e) => {
+                  setLink(e.target.value);
+                }}
+              ></input>
+              <BsPenFill></BsPenFill>
+            </div>
+            <div className="item_contents">
+              <textarea
+                type="text"
+                placeholder="Nội dung sự kiện"
+                value={desc}
+                onChange={(e) => {
+                  setDesc(e.target.value);
+                }}
+              ></textarea>
+            </div>
+            <div className="button_create">
+              <button
+                onClick={() => {
+                  createEvent();
+                }}
+              >
+                Tạo sự kiện
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      ):""}
-      
+      ) : (
+        ""
+      )}
     </div>
   );
 }

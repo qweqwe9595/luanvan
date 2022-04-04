@@ -30,7 +30,11 @@ io.on("connection", (socket) => {
   socket.on("sendNotification", async ({ receiverUserId, type }) => {
     const receiver = await getAUser(receiverUserId);
     if (!receiver) return;
-    const query = await userModal.findById(receiver._id);
+    const query = await userModal.findById(receiver._id).populate({
+      path: "notifications",
+      populate: { path: "userId", model: "usersModal" },
+    });
+    console.log(query);
     await io.to(receiver.socketId).emit("getNotification", query.notifications);
   });
 });

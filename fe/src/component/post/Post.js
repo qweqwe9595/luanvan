@@ -15,13 +15,13 @@ function Post({ postInfo, setRefreshPosts }) {
   const [openOptions, setOpenOptions] = useState(false);
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
-  const [likesCount, setLikesCount] = useState(postInfo.likes.length);
+  const [likesCount, setLikesCount] = useState(postInfo?.likes?.length);
   const [isLike, setIsLike] = useState(
-    postInfo.likes.some((item) => item._id === loginUser)
+    postInfo?.likes?.some((item) => item._id === loginUser)
   );
   const [cmtV1, setCmtV1] = useState("");
   const a = new Date();
-  const b = new Date(postInfo.createdAt);
+  const b = new Date(postInfo?.createdAt);
   const postDate = (a - b) / 1000;
   const [comment, setComment] = useState([]);
   const commentNumber = countCmts(comment);
@@ -36,6 +36,7 @@ function Post({ postInfo, setRefreshPosts }) {
   };
 
   useEffect(() => {
+    if (Object.keys(postInfo).length === 0) return;
     if (postInfo.likes.includes(loginUser)) {
       setIsLike(true);
     }
@@ -93,19 +94,23 @@ function Post({ postInfo, setRefreshPosts }) {
 
   const sendNotification = (type) => {
     if (loginUser === postInfo.userId._id) return;
+
     axios
-      .post("http://localhost:5000/api/users/notification", {
-        userId: postInfo.userId._id,
-        message: "like",
-        post: "/postNotification/"+ postInfo._id,
-      })
+      .post(
+        `http://localhost:5000/api/users/notification/${postInfo.userId._id}`,
+        {
+          userId: loginUser,
+          message: "like",
+          post: "/postNotification/" + postInfo._id,
+        }
+      )
       .then((res) => {
-        console.log(res.data);
         socket?.emit("sendNotification", {
           receiverUserId: postInfo.userId._id,
           type,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   const writeCommentV1 = () => {
@@ -153,7 +158,7 @@ function Post({ postInfo, setRefreshPosts }) {
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
-            <Link to={`/profile/${postInfo.userId._id}`}>
+            <Link to={`/profile/${postInfo?.userId?._id}`}>
               {postInfo?.userId?.photos?.avatar?.length !== 0 ? (
                 <img
                   src={`http://localhost:5000/images/${
@@ -173,8 +178,8 @@ function Post({ postInfo, setRefreshPosts }) {
           </div>
           <div className="post-meta-left-username-timepost">
             <div className="post-meta-left-username">
-              <Link to={`/profile/${postInfo.userId._id}`}>
-                <p className="username">{postInfo.userId.userName}</p>
+              <Link to={`/profile/${postInfo?.userId?._id}`}>
+                <p className="username">{postInfo?.userId?.userName}</p>
               </Link>
             </div>
             <div className="post-meta-left-timepost">

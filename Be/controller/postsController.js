@@ -84,7 +84,10 @@ const getAProfilePosts = async (req, res) => {
 //get a post
 const getAPost = async (req, res) => {
   try {
-    const post = await postsModel.findById(req.params.id).populate("likes");
+    const post = await postsModel
+      .findById(req.params.id)
+      .populate("userId")
+      .populate("likes");
     res.status(200).json({ message: "thanh cong", post });
   } catch (err) {
     res.status(500).json(err);
