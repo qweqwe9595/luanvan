@@ -62,15 +62,11 @@ function EventTag(eventI) {
       </div>
       <Link to={`/eventContent/${eventI.eventI._id}`}>
         <div className="title">
-<<<<<<< HEAD
-          {eventI?.eventI?._id ? (
+          {eventI?.eventI?.eventName ? (
             <span>{eventI.eventI.eventName}</span>
           ) : (
-            "không có"
+            "không có tên"
           )}
-=======
-          {eventI?.eventI?.eventName ? <span>{eventI.eventI.eventName}</span> : "không có tên"}
->>>>>>> 1da424d883116b1a5214facd4080eaa2fab83cd4
         </div>
       </Link>
       <div className="button_join">
