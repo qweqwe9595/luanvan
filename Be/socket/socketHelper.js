@@ -16,4 +16,4 @@ const getAllUser = (userIdArray) => {
   return onlineUsers.map((onlineUser) => userIdArray.every(onlineUser._id));
 };
 
-module.exports = { onlineUsers, addNewUser, removeAuser, getAUser };
+module.exports = { onlineUsers, addNewUser, removeAuser, getAUser, getAllUser };
