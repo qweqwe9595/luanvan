@@ -12,5 +12,8 @@ const getAUser = (userId) => {
     return user._id == userId;
   });
 };
+const getAllUser = (userIdArray) => {
+  return onlineUsers.map((onlineUser) => userIdArray.every(onlineUser._id));
+};
 
 module.exports = { onlineUsers, addNewUser, removeAuser, getAUser };
