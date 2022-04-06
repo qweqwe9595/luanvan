@@ -6,7 +6,27 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import Nav from "../../component/nav/Nav";
 import "./Message.scss";
+import { useEffect, useState } from "react";
+import axios from "axios";
 function Message() {
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/conversations/getall`,
+        {}, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }, []);
+
+
   return (
     <div className="message_container">
       <Nav></Nav>
@@ -46,6 +66,7 @@ function Message() {
                 </div>
             </div>
           <div className="mess_content">
+            
           </div>
           <div className="mess_fill">
             <div className="fill">
