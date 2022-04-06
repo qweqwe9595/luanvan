@@ -41,8 +41,11 @@ function Main() {
       <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
       <Route path="/notification" element={<Notification />}></Route>
-      <Route path="/postNotification/:postId" element={<PostNotification />}></Route>  
-      <Route path="/message" element ={<Message/>}></Route>
+      <Route
+        path="/postNotification/:postId"
+        element={<PostNotification />}
+      ></Route>
+      <Route path="/message" element={<Message />}></Route>
     </Routes>
   );
 }

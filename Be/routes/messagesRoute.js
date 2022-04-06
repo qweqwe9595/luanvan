@@ -8,16 +8,17 @@ const {
   getMessageConversation,
 } = require("../controller/messagesController");
 const authenticateToken = require("../middleWare/authJWT");
+const authenticateTokenQuery = require("../middleWare/authJWTQuery");
 //create 1
 router.post("/createOne", authenticateToken, createOne);
 //get all
-router.get("/getall", authenticateToken, getAll);
+router.get("/getall", authenticateTokenQuery, getAll);
 //get one
-router.get("/getone/:id", authenticateToken, getOne);
+router.get("/getone/:id", authenticateTokenQuery, getOne);
 //get all of conversation
 router.get(
   "/getfromcoversation/:id",
-  authenticateToken,
+  authenticateTokenQuery,
   getMessageConversation
 );
 //update one

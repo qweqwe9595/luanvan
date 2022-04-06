@@ -8,12 +8,13 @@ const {
   deleteAConversation,
 } = require("../controller/conversationsController");
 const authenticateToken = require("../middleWare/authJWT");
+const authenticateTokenQuery = require("../middleWare/authJWTQuery");
 //create 1
 router.post("/createOne", authenticateToken, createAConversation);
 //get all
-router.get("/getall", authenticateToken, getAllConversation);
+router.get("/getall", authenticateTokenQuery, getAllConversation);
 //get all
-router.get("/getone/:id", authenticateToken, getAConversation);
+router.get("/getone/:id", authenticateTokenQuery, getAConversation);
 //push a new user to conversation
 router.patch("/push/:id", authenticateToken, addANewUserToAConversation);
 //pull a new user to conversation

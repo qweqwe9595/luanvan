@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
       console.log(error);
     }
   });
-  socket.on("sendMessage", async ({ conversationId, message }) => {
+  socket.on("sendMessage", async ({ conversationId }) => {
     try {
       const conversationQuery = conversationModel.findById(conversationId);
       const receivers = getAllUser(conversationQuery.members);
