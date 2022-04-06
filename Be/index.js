@@ -80,6 +80,7 @@ const usersRoute = require("./routes/usersRoute");
 const postsRoute = require("./routes/postsRoute");
 const commentsRoute = require("./routes/commentsRoute");
 const eventsRoute = require("./routes/eventsRoute");
+const jobsRoute = require("./routes/jobsRoute");
 const conversationsRoute = require("./routes/conversationsRoute");
 const messagesRoute = require("./routes/messagesRoute");
 
@@ -101,6 +102,7 @@ app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
 app.use("/api/comments", commentsRoute);
 app.use("/api/events", eventsRoute);
+app.use("/api/jobs", jobsRoute);
 app.use("/api/conversations", conversationsRoute);
 app.use("/api/messages", messagesRoute);
 
