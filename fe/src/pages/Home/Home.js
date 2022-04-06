@@ -9,6 +9,7 @@ import RecommendPage from "../../component/recommendPage/RecommendPage";
 import React, { useEffect, useState } from "react";
 import Post from "../../component/post/Post";
 import axios from "axios";
+
 function Home() {
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userPosts, setUserPosts] = useState([]);
@@ -30,7 +31,6 @@ function Home() {
     };
     getUserPost();
   }, [refreshPosts]);
-
   return (
     <div className="home">
       <Nav></Nav>

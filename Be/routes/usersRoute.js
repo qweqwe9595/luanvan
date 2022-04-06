@@ -67,6 +67,6 @@ router.post(
   upload.single("avatar"),
   uploadBackground
 );
-router.post("/notification", addNotification);
+router.post("/notification/:id", addNotification);
 
 module.exports = router;

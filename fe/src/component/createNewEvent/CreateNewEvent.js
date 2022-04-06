@@ -20,32 +20,30 @@ function CreateNewEvent({ setOpen }) {
   const [previewURL, setPreviewUrl] = useState(null);
 
   const createEvent = () => {
-      var formData = new FormData();
-      formData.append("userId",user._id);
-      formData.append("startTime",startTime);
-      formData.append("eventName",eventName);
-      formData.append("desc",desc);
-      formData.append("location",location);
-      formData.append("participants",participants);
-      formData.append("link",link);
-      formData.append("duration",duration);
-      formData.append("eventImg",fileRef);
+    var formData = new FormData();
+    formData.append("userId", user._id);
+    formData.append("startTime", startTime);
+    formData.append("eventName", eventName);
+    formData.append("desc", desc);
+    formData.append("location", location);
+    formData.append("participants", participants);
+    formData.append("link", link);
+    formData.append("duration", duration);
+    formData.append("eventImg", fileRef);
     axios
-      .post(
-          `http://localhost:5000/api/events/createOne`,formData,
-        {
-            headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"), 
-               "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+      .post(`http://localhost:5000/api/events/createOne`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
-        alert("thành công ");
         console.log(res.data);
+        alert("thành công ");
       })
       .catch((err) => {
-        console.log(err.response.data);      });
+        console.log(err.message);
+      });
   };
   return (
     <div className="create_event">

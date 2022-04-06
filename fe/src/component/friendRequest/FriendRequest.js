@@ -21,17 +21,22 @@ function FriendRequest() {
     getFRequests();
   }, []);
   return (
-    <div className="friend_request">
-      <p>Lời mời kết bạn</p>
-      <div className="requestss">
-        {fRequests?.map((user, index) => {
-          return <Request user={user} key={index}></Request>;
-        })}
-      </div>
-      <div className="link">
-        <a href="./friend">Xem thêm</a>
-      </div>
+    <div>
+      {fRequests?.length !==0 ? (
+        <div className="friend_request">
+          <p>Lời mời kết bạn</p>
+          <div className="requestss">
+            {fRequests?.map((user, index) => {
+              return <Request user={user} key={index}></Request>;
+            })}
+          </div>
+          <div className="link">
+            <a href="./friend">Xem thêm</a>
+          </div>
+        </div>
+      ) : ""}
     </div>
+    
   );
 }
 export default FriendRequest;

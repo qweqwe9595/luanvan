@@ -1,5 +1,5 @@
 .friends_request_tag {
-    background-color: rgba(196, 196, 196, 0.47);
+    background-color: #EEF0F5;
     width           : 98%;
     height          : 60px;
     border-radius   : 12px;
@@ -22,18 +22,20 @@
     .friend_request_tag_info {
         height    : 55px;
         text-align: center;
+
         p {
-            margin: 0;
+            margin        : 0;
             text-transform: capitalize;
             font-size     : 17px;
             font-weight   : bold;
             text-align    : center;
             font-family   : "oswald";
-            text-align: center;
+            text-align    : center;
         }
 
         .friend_request_tag_button {
             display: flex;
+
             .button_accept {
                 width           : 80px;
                 height          : 23px;
@@ -61,10 +63,12 @@
                 cursor          : pointer;
 
             }
-            .button_accept:hover{
+
+            .button_accept:hover {
                 background-color: #0b326d;
             }
-            .button_refuse:hover{
+
+            .button_refuse:hover {
                 background-color: white;
             }
         }

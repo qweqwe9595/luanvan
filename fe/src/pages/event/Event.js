@@ -10,7 +10,7 @@ function Event() {
   const [eventDetails, setEventDetails] = useState([]);
   const [user] = useContext(UserContext);
 
-
+  console.log(user);
   useEffect(() => {
     axios
       .get(
@@ -25,9 +25,8 @@ function Event() {
       .then((res) => {
         setEventDetails(res.data.eventsQuery);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, [open]);
-
   return (
     <div className="event_container">
       <Nav></Nav>
@@ -47,15 +46,12 @@ function Event() {
         </div>
       </div>
       <div className="center_event">
-        {eventDetails?.map((eventI, index) => (
+        {eventDetails?.reverse().map((eventI, index) => (
           <EventTag eventI={eventI} key={index}></EventTag>
         ))}
       </div>
 
-      {open ? (
-      <CreateNewEvent setOpen={setOpen}></CreateNewEvent>
-      ):""}
-      
+      {open ? <CreateNewEvent setOpen={setOpen}></CreateNewEvent> : ""}
     </div>
   );
 }

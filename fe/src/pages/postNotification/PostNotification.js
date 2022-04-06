@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./postNotification.scss";
 import Nav from "../../component/nav/Nav";
 import Post from "../../component/post/Post";
@@ -7,17 +7,15 @@ import axios from "axios";
 
 function PostNotification() {
   const param = useParams();
-  console.log(param);
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState({});
   const [refreshPosts, setRefreshPosts] = useState(false);
 
   useEffect(() => {
     const getAPost = () => {
       axios
-        .get(
-          `http://localhost:5000/api/posts/${param.postId}`
-        )
+        .get(`http://localhost:5000/api/posts/${param.postId}`)
         .then((res) => {
+          console.log(res);
           setPost(res.data.post);
         })
         .catch((err) => {
@@ -25,15 +23,14 @@ function PostNotification() {
         });
     };
     getAPost();
-  }, [param.postId, refreshPosts])
-  
-  console.log("post", post);
+  }, [param.postId, refreshPosts]);
+
   return (
     <div>
       <Nav></Nav>
-        <div className="post-notification">
-           <Post postInfo={post} setRefreshPosts={setRefreshPosts}></Post> 
-        </div>
+      <div className="post-notification">
+        <Post postInfo={post} setRefreshPosts={setRefreshPosts}></Post>
+      </div>
     </div>
   );
 }

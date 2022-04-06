@@ -11,7 +11,7 @@ import axios from "axios";
 import Event from "./pages/event/Event";
 import Notification from "./pages/notification/Notification";
 import PostNotification from "./pages/postNotification/PostNotification";
-
+import Message from "./pages/message/Message";
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
@@ -41,7 +41,8 @@ function Main() {
       <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
       <Route path="/notification" element={<Notification />}></Route>
-      <Route path="/postNotification/:postId" element={<PostNotification />}></Route>      
+      <Route path="/postNotification/:postId" element={<PostNotification />}></Route>  
+      <Route path="/message" element ={<Message/>}></Route>
     </Routes>
   );
 }

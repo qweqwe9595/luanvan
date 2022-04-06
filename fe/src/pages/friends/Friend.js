@@ -45,24 +45,30 @@ function Friend() {
         </div>
 
         <div className="friend_content">
-          <div className="f_request">
+          {fRequests?.length !==0 ? (
+             <div className="f_request">
             <p>Lời mời kết bạn</p>
             {fRequests?.map((user, index) => {
               return <RequestBox user={user} key={index}></RequestBox>;
             })}
             <button>Xem tất cả</button>
           </div>
+          ):""}
+         
           {/* <div className="f_request">
             <p>Những người bạn có thể biết</p>
             <button>Xem tất cả</button>
           </div> */}
-          <div className="f_request">
+          {friendId?.length !== 0 ? (
+              <div className="f_request">
             <p>Danh sách bạn bè</p>
             {friendId?.map((friend, indexs) => {
               return <FriendTag friend={friend} key={indexs}></FriendTag>;
             })}
             <button>Xem tất cả</button>
           </div>
+          ) :""}
+        
         </div>
       </div>
     </div>

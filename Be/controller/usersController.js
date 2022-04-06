@@ -251,7 +251,6 @@ const uploadAvatar = async (req, res) => {
     await updateUser.save();
     res.status(200).json({ message: "thanh cong", updateUser });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err.message);
   }
 };
@@ -262,19 +261,19 @@ const uploadBackground = async (req, res) => {
     await updateUser.save();
     res.status(200).json({ message: "thanh cong", updateUser });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err.message);
   }
 };
 
 const addNotification = async (req, res) => {
   try {
-    const updateUser = await userModal.findById(req.body.userId);
+    const updateUser = await userModal.findById(req.params.id);
+    console.log(updateUser);
     await updateUser.notifications.unshift(req.body);
     await updateUser.save();
+
     res.status(200).json({ message: "thanh cong", updateUser });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err.message);
   }
 };

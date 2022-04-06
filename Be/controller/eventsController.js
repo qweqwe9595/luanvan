@@ -28,6 +28,9 @@ const createAnEvent = async (req, res) => {
         .status(400)
         .json({ message: "only Admin can create an event" });
     const eventsQuery = await new eventsModel(req.body);
+    if (req.file) {
+      eventsQuery.img = req.file.filename;
+    }
     eventsQuery.save();
     res.status(200).json({ eventsQuery });
   } catch (error) {

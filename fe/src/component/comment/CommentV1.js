@@ -188,6 +188,7 @@ function CommentV1({ commentV1, setGetNewComment }) {
                 key={comment._id}
                 commentV2={comment}
                 commentLv1={commentV1.comment}
+                setGetNewComment={setGetNewComment}
               />
             );
           })}
