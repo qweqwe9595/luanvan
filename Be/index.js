@@ -5,11 +5,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
 const userModal = require("./model/usersModel");
+const conversationModel = require("./model/conversationsModel");
+const messagesModel = require("./model/messagesModel");
 const {
   onlineUsers,
   addNewUser,
   removeAuser,
   getAUser,
+  getAllUser,
 } = require("./socket/socketHelper");
 
 //socket
@@ -28,14 +31,35 @@ io.on("connection", (socket) => {
     addNewUser(user, socket.id);
   });
   socket.on("sendNotification", async ({ receiverUserId, type }) => {
-    const receiver = await getAUser(receiverUserId);
-    if (!receiver) return;
-    const query = await userModal.findById(receiver._id).populate({
-      path: "notifications",
-      populate: { path: "userId", model: "usersModal" },
-    });
-    console.log(query);
-    await io.to(receiver.socketId).emit("getNotification", query.notifications);
+    try {
+      const receiver = await getAUser(receiverUserId);
+      if (!receiver) return;
+      const query = await userModal.findById(receiver._id).populate({
+        path: "notifications",
+        populate: { path: "userId", model: "usersModal" },
+      });
+      console.log(query);
+      await io
+        .to(receiver.socketId)
+        .emit("getNotification", query.notifications);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  socket.on("sendMessage", async ({ conversationId, message }) => {
+    try {
+      const conversationQuery = conversationModel.findById(conversationId);
+      const receivers = getAllUser(conversationQuery.members);
+      if (!receivers) return;
+      const messageQuery = await messagesModel.find({
+        conversationId: conversationId,
+      });
+      receivers.forEach((r) => {
+        io.to(r.socketId).emit("getMessage", messageQuery);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   });
 });
 
@@ -56,6 +80,8 @@ const usersRoute = require("./routes/usersRoute");
 const postsRoute = require("./routes/postsRoute");
 const commentsRoute = require("./routes/commentsRoute");
 const eventsRoute = require("./routes/eventsRoute");
+const conversationsRoute = require("./routes/conversationsRoute");
+const messagesRoute = require("./routes/messagesRoute");
 
 require("dotenv").config();
 
@@ -75,6 +101,8 @@ app.use("/api/users", usersRoute);
 app.use("/api/posts", postsRoute);
 app.use("/api/comments", commentsRoute);
 app.use("/api/events", eventsRoute);
+app.use("/api/conversations", conversationsRoute);
+app.use("/api/messages", messagesRoute);
 
 http.listen(5000, () => {
   console.log("running at local host 5000");
