@@ -52,6 +52,8 @@ function Nav() {
     localStorage.removeItem("token");
     window.location.reload();
   };
+
+  console.log(openNoti);
   return (
     <div className="nav">
       {openNoti ? (
@@ -100,6 +102,7 @@ function Nav() {
             setOpenNoti(!openNoti);
           }}
         ></AiOutlineBell>
+
         <FaBars
           className="hamburger"
           onClick={() => {
@@ -107,21 +110,30 @@ function Nav() {
           }}
         ></FaBars>
 
-        <Link to={`/profile/${currentUserId}`}>
-          <div className="user-container">
-            {avt === 0 ? (
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
-            ) : (
-              <img
-                src={`http://localhost:5000/images/${
-                  userInfo?.photos?.avatar[userInfo?.photos?.avatar?.length - 1]
-                }`}
-              />
-            )}
-            <span>{userInfo.userName ? userInfo.userName : ""}</span>
-            <AiFillCaretDown className="arrow-down" />
-          </div>
-        </Link>
+        <div className="user-container">
+          <Link to={`/profile/${currentUserId}`}>
+            <div className="userinfo">
+              {avt === 0 ? (
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+              ) : (
+                <img
+                  src={`http://localhost:5000/images/${
+                    userInfo?.photos?.avatar[
+                      userInfo?.photos?.avatar?.length - 1
+                    ]
+                  }`}
+                />
+              )}
+              <span>{userInfo.userName ? userInfo.userName : ""}</span>
+            </div>
+          </Link>
+
+          <AiFillCaretDown className="arrow-down" 
+            onClick={() => {
+            setOpen(!open);
+          }}
+          />
+        </div>
       </div>
 
       {open ? (
