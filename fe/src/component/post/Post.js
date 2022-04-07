@@ -142,6 +142,7 @@ function Post({ postInfo, setRefreshPosts }) {
               <li
                 onClick={() => {
                   deletePost();
+                  setOpenOptions(!openOptions);
                 }}
               >
                 Xóa

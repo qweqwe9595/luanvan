@@ -30,7 +30,6 @@ function Notifications() {
     };
     getUser();
   }, [user]);
-  console.log(notifications);
   return (
     <div className="notifications">
       <div className="notifications-title">
@@ -41,7 +40,7 @@ function Notifications() {
           <Link to={`${item.post}`}>
             <div className="notifications-items">
               <p>
-                <Link to={`/profile/${item.userId}`}>
+                <Link to={`/profile/${item.userId._id}`}>
                   <span className="username">{`${item.userId.userName}`} </span>
                 </Link>
                 đã {`${item.message}`} bài viết của bạn.
