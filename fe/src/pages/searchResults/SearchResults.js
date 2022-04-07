@@ -94,7 +94,7 @@ function SearchResults() {
                           : "0 người theo dõi"}{" "}
                         người theo dõi
                       </span>
-                      <span> {people.address ? people.address.city : ""}</span>
+                      {/* <span> {people.address ? people.address.city : ""}</span> */}
                     </div>
                   </div>
                   {people._id === userIdCurrent ? (

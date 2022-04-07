@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./hero.scss";
 import { AiOutlineCamera } from "react-icons/ai";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PhotoUpload from "../fileUpload/PhotoUpload";
 
 function Hero() {
@@ -100,7 +100,9 @@ function Hero() {
         </p>
       </div>
       <div className="hero-content">
-        <div>Nhắn tin</div>
+        <Link to={"/message"}>
+          <div className="message">Nhắn tin</div>
+        </Link>
         {userId !== loginUser &&
         !userinfos?.friends?.filter((item) => item._id == loginUser).length ? (
           <div className="icon-request">

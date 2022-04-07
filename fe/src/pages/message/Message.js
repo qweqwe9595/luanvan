@@ -1,14 +1,18 @@
 import React from "react";
 import { BiSearch } from "react-icons/bi";
 import { RiEditBoxLine } from "react-icons/ri";
-import { MdSend } from "react-icons/md";
-import { BsThreeDots } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import Nav from "../../component/nav/Nav";
 import "./Message.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../context/userContext";
 import axios from "axios";
+import MessTag from "../../component/messTag/MessTag";
+import MessContent from "../../component/messContent/MessContent";
 function Message() {
+  const [user] = useContext(UserContext);
+  const [myConversation, SetMyConversations] = useState("");
+  const [conversations, SetConversations] = useState("");
   useEffect(() => {
     axios
       .get(
@@ -18,13 +22,12 @@ function Message() {
         {}
       )
       .then((res) => {
-        console.log(res.data);
+        SetConversations(res.data);
       })
       .catch((err) => {
         console.log(err.response);
       });
   }, []);
-
   return (
     <div className="message_container">
       <Nav></Nav>
@@ -42,35 +45,34 @@ function Message() {
               <AiOutlineUsergroupAdd />
             </div>
           </div>
-          <div className="mess_tag"></div>
+          <div className="mess_tag">
+            {user ? (
+              <div>
+                {conversations
+                  ? conversations?.map((people, index) =>
+                    people.members.includes(user?._id) ? (   
+                      <div key={index} onClick={() => {
+                        SetMyConversations(people);
+                      }}>
+                        <MessTag people={people} ></MessTag>    
+                         </div>
+                      ) : (
+                        ""
+                      )
+                    )
+                  : ""}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
 
         <div className="mess_center">
-          <div className="mess_cent_header">
-            <div className="mess_info">
-              <img
-                src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/07/cute-astronaut-wallpaperize-amoled-clean-scaled.jpg"
-                className="mess_cent_avt"
-              ></img>
-              <span>Nguyễn Văn An</span>
-            </div>
-            <div className="mess_cent_search">
-              <BiSearch></BiSearch>
-            </div>
-            <div className="mess_cent_setting">
-              <BsThreeDots></BsThreeDots>
-            </div>
-          </div>
-          <div className="mess_content"></div>
-          <div className="mess_fill">
-            <div className="fill">
-              <img className="mess_avt" src=""></img>
-              <input type="text" placeholder="Nhắn tin"></input>
-              <div className="send_message">
-                <MdSend></MdSend>
-              </div>
-            </div>
-          </div>
+          {myConversation ? (
+            <MessContent myConversation = {myConversation}></MessContent>
+          ): ""}
+          
         </div>
       </div>
     </div>

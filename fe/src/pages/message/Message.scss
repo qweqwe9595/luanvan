@@ -14,7 +14,7 @@
             height            : 100%;
             background-color  : #ffff;
             padding           : 10px;
-            border-right      : 1px solid #F4F4F4;
+            border-right      : 1px solid #ead8d8;
             display           : grid;
             grid-template-rows: 10% 90%;
 
@@ -23,7 +23,7 @@
                 width        : 100%;
                 display      : flex;
                 height       : 60px;
-                border-bottom: 1px solid #F4F4F4;
+                border-bottom: 1px solid #ead8d8;
                 align-items  : center;
 
                 .mess_left_search {
@@ -87,130 +87,8 @@
         }
 
         .mess_center {
-            width             : 100%;
-            height            : 100%;
-            margin            : auto;
-            display           : grid;
-            grid-template-rows: 70px 80% 70px;
-            background-color  : #FFFFFF;
-
-
-            .mess_cent_header {
-                width           : 100%;
-                height          : 70px;
-                background-color: #FFFFFF;
-                display         : flex;
-                align-items     : center;
-                border-bottom   : 1px solid #F4F4F4;
-
-                .mess_info {
-                    display     : flex;
-                    align-items : center;
-                    padding-left: 10px;
-                    flex        : 1;
-
-
-                    .mess_cent_avt {
-                        width        : 50px;
-                        height       : 50px;
-                        border-radius: 50%;
-                        object-fit   : cover;
-                    }
-
-                    &>span {
-                        padding-left: 10px;
-                        font-size   : 20px;
-                        font-weight : bold;
-                        font-family : "oswald";
-                    }
-                }
-
-                .mess_cent_search {
-                    color       : #0d47a1;
-                    font-size   : 25px;
-                    width       : 40px;
-                    height      : 50px;
-                    text-align  : center;
-                    align-items : center;
-                    cursor      : pointer;
-                    margin      : auto;
-                    text-align  : center;
-                    margin-right: 10px;
-                    padding-top : 13px;
-                }
-
-                .mess_cent_setting {
-                    width           : 50px;
-                    height          : 20px;
-                    background-color: #0d47a1;
-                    cursor          : pointer;
-                    margin-right    : 20px;
-                    border-radius   : 12px;
-                    color           : #FFFFFF;
-                    font-size       : 30px;
-                    display         : flex;
-                    text-align      : center;
-                    align-items     : center;
-                    padding-left    : 10px;
-                }
-
-            }
-
-            .mess_content {
-                width           : 100%;
-                background-color: #f6eaea;
-                padding         : 10px;
-                overflow-y      : auto;
-                padding-bottom  : 30px;
-            }
-
-
-
-            .mess_fill {
-                width      : 100%;
-                height     : 70px;
-                display    : flex;
-                align-items: center;
-                border-top : 1px solid #F4F4F4;
-
-                .fill {
-                    width           : 95%;
-                    height          : fit-content;
-                    display         : flex;
-                    align-items     : center;
-                    background-color: #EAEAEA;
-                    padding-left    : 10px;
-                    padding-right   : 10px;
-                    border-radius   : 30px;
-                    margin          : auto;
-
-                    &>input {
-                        width           : 100%;
-                        height          : auto;
-                        min-height      : 50px;
-                        border          : none;
-                        background-color: #EAEAEA;
-                        border-radius   : 30px;
-                        font-size       : 18px;
-                        padding-left    : 10px;
-                        font-family     : "oswald";
-                        color           : black;
-                    }
-
-                    .send_message {
-                        color    : #3399FF;
-                        font-size: 30px;
-                        cursor   : pointer;
-
-                        padding-top: 7px;
-                    }
-
-                    &>input:focus {
-                        outline: none;
-                    }
-                }
-            }
-
+            width : 100%;
+            height: 100%;
         }
 
     }

@@ -14,10 +14,12 @@ function Options() {
   return (
     <div className="options">
       <div className="options-container">
-        <div className="tag">
-          <FaComments className="tag-icon" />
-          <span>Trò chuyện</span>
-        </div>
+        <Link to={"/message"}>
+          <div className="tag">
+            <FaComments className="tag-icon" />
+            <span>Trò chuyện</span>
+          </div>
+        </Link>
         <hr className="hr" />
         <Link to={"/friend"}>
           <div className="tag">
