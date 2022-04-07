@@ -1,6 +1,5 @@
 import "./Home.scss";
 import Nav from "../../component/nav/Nav";
-import Feed from "../../component/feed/Feed";
 import Share from "../../component/share/Share";
 import Contacts from "../../component/contacts/Contacts";
 import FriendRequest from "../../component/friendRequest/FriendRequest";

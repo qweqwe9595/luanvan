@@ -6,7 +6,6 @@ import Hero from "../../component/Hero/Hero";
 import Infos from "../../component/infos/Infos";
 import FriendProfile from "../../component/friendsProfile/FriendProfile";
 import Share from "../../component/share/Share";
-import Feed from "../../component/feed/Feed";
 import Post from "../../component/post/Post";
 import { useParams } from "react-router-dom";
 

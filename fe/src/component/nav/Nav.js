@@ -54,11 +54,13 @@ function Nav() {
   };
   return (
     <div className="nav">
-      {openNoti?(
-      <div className="notification-icon">
-        <Notifications></Notifications>
-      </div>
-      ):""}      
+      {openNoti ? (
+        <div className="notification-icon">
+          <Notifications></Notifications>
+        </div>
+      ) : (
+        ""
+      )}
       <div className="nav-left">
         <Link to={"/"}>
           <img className="logo" src="/stocks/img/logo/ctu.png" alt="" />
@@ -92,11 +94,12 @@ function Nav() {
         />
       </div>
       <div className="nav-right">
-        <AiOutlineBell 
-          className="bell" 
+        <AiOutlineBell
+          className="bell"
           onClick={() => {
             setOpenNoti(!openNoti);
-          }}></AiOutlineBell>
+          }}
+        ></AiOutlineBell>
         <FaBars
           className="hamburger"
           onClick={() => {
@@ -111,22 +114,14 @@ function Nav() {
             ) : (
               <img
                 src={`http://localhost:5000/images/${
-                  userInfo?.photos?.avatar[
-                    userInfo?.photos?.avatar?.length - 1
-                  ]
+                  userInfo?.photos?.avatar[userInfo?.photos?.avatar?.length - 1]
                 }`}
               />
             )}
             <span>{userInfo.userName ? userInfo.userName : ""}</span>
+            <AiFillCaretDown className="arrow-down" />
           </div>
         </Link>
-        <button
-          onClick={() => {
-            setOpen(!open);
-          }}
-        >
-          <AiFillCaretDown className="arrow-down" />
-        </button>
       </div>
 
       {open ? (
@@ -134,16 +129,16 @@ function Nav() {
           <Link to={`/profile/${currentUserId}`}>
             <div className="user">
               {avt === 0 ? (
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
-            ) : (
-              <img
-                src={`http://localhost:5000/images/${
-                  userInfo?.photos?.avatar[
-                    userInfo?.photos?.avatar?.length - 1
-                  ]
-                }`}
-              />
-            )}
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+              ) : (
+                <img
+                  src={`http://localhost:5000/images/${
+                    userInfo?.photos?.avatar[
+                      userInfo?.photos?.avatar?.length - 1
+                    ]
+                  }`}
+                />
+              )}
               <div className="infouser">
                 <span>{userInfo.userName ? userInfo.userName : ""}</span>
                 <p>Xem trang cá nhân của bạn </p>
