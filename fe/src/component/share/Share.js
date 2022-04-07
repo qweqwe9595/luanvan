@@ -34,6 +34,7 @@ function Share({ setRefreshPosts }) {
       })
       .then((res) => {
         setRefreshPosts((prev) => !prev);
+        // window.location.reload(false);        
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);

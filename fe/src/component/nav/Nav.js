@@ -5,10 +5,12 @@ import "./nav.scss";
 import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import { SearchResultContext } from "../../context/SearchContext";
+import Notifications from "../../component/notifications/Notifications";
 import { useNavigate, Link } from "react-router-dom";
 
 function Nav() {
   const [open, setOpen] = useState(false);
+  const [openNoti, setOpenNoti] = useState(false);
   let navigate = useNavigate();
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
   const [searchTerm, setSearchTerm] = useState("");
@@ -52,6 +54,11 @@ function Nav() {
   };
   return (
     <div className="nav">
+      {openNoti?(
+      <div className="notification-icon">
+        <Notifications></Notifications>
+      </div>
+      ):""}      
       <div className="nav-left">
         <Link to={"/"}>
           <img className="logo" src="/stocks/img/logo/ctu.png" alt="" />
@@ -85,8 +92,11 @@ function Nav() {
         />
       </div>
       <div className="nav-right">
-        <AiOutlineBell className="bell"></AiOutlineBell>
-
+        <AiOutlineBell 
+          className="bell" 
+          onClick={() => {
+            setOpenNoti(!openNoti);
+          }}></AiOutlineBell>
         <FaBars
           className="hamburger"
           onClick={() => {

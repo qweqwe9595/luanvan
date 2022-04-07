@@ -4,11 +4,13 @@ import Home from "./pages/Home/Home";
 import Profile from "./pages/Profile/Profile";
 import SearchResults from "./pages/searchResults/SearchResults";
 import Friend from "./pages/friends/Friend";
-import EventContent from "./pages/eventContent/EventContent";
 import { SocketContext } from "./context/SocketContext";
 import { UserContext } from "./context/userContext";
 import axios from "axios";
 import Event from "./pages/event/Event";
+import EventContent from "./pages/eventContent/EventContent";
+import Job from "./pages/job/Job";
+import JobContent from "./pages/jobContent/JobContent";
 import Notification from "./pages/notification/Notification";
 import PostNotification from "./pages/postNotification/PostNotification";
 import Message from "./pages/message/Message";
@@ -40,6 +42,8 @@ function Main() {
       <Route path="/friend" element={<Friend />}></Route>
       <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
+      <Route path="/job" element={<Job />}></Route>
+      <Route path="/jobContent/:id" element={<JobContent />}></Route>
       <Route path="/notification" element={<Notification />}></Route>
       <Route
         path="/postNotification/:postId"
