@@ -228,6 +228,7 @@
 
       .bell {
         display: block;
+        z-index: 1000;
       }
     }
 
@@ -259,6 +260,7 @@
     .nav-right {
       .bell {
         display: block;
+        z-index: 1000;
       }
 
       .bell:hover {
