@@ -9,12 +9,13 @@ import { UserContext } from "../../context/userContext";
 import MyMess from "./myMess/MyMess";
 import YourMess from "./yourMess/YourMess";
 import PartnerInfo from "./partnerInfo/PartnerInfo";
-
+import { SocketContext } from "../../context/SocketContext";
 function MessContent({ myConversation, setLoadAll, loadAll }) {
   const [mess, SetMess] = useState("");
   const [me] = useContext(UserContext);
   const [chat, setChat] = useState("");
   const [loadd, setLoat] = useState(false);
+  const socket = useContext(SocketContext);
   // gửi tin nhắn
   const sendMessage = () => {
     if (chat === "") return;
@@ -33,6 +34,9 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
         }
       )
       .then((res) => {
+        socket?.emit("sendMessage", {
+          conversationId: myConversation._id,
+        });
         setLoat(!loadd);
         setChat("");
       })

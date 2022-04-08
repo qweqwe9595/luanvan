@@ -34,6 +34,15 @@ function Main() {
     socket.emit("userConnection", user);
   }, [user, socket]);
 
+  //
+  useEffect(() => {
+    if (!user) return;
+    socket.on("getMessage", (mess) => {
+       console.log(mess);
+    });
+   
+  }, [user, socket]);
+  //
   return (
     <Routes>
       <Route path="/profile/:userId" element={<Profile />}></Route>
