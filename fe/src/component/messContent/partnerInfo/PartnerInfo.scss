@@ -12,9 +12,10 @@
     }
 
     &>span {
-        padding-left: 10px;
-        font-size   : 20px;
-        font-weight : bold;
-        font-family : "oswald";
+        padding-left  : 10px;
+        font-size     : 20px;
+        font-weight   : bold;
+        font-family   : "oswald";
+        text-transform: capitalize;
     }
 }

@@ -53,7 +53,7 @@ function Nav() {
     window.location.reload();
   };
 
-  console.log(openNoti);
+  // console.log(openNoti);
   return (
     <div className="nav">
       {openNoti ? (

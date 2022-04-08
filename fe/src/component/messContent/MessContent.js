@@ -1,20 +1,21 @@
 import React from "react";
 import { useEffect, useState,useContext } from "react";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch,BiUserPlus } from "react-icons/bi";
 import axios from "axios";
 import "./MessContent.scss";
-import { MdSend } from "react-icons/md";
+import {  MdOutlineGroups, MdSend } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { UserContext } from "../../context/userContext";
 import MyMess from "./myMess/MyMess";
 import YourMess from "./yourMess/YourMess";
 import PartnerInfo from "./partnerInfo/PartnerInfo";
-function MessContent({myConversation}) {
+
+function MessContent({myConversation,setLoadAll,loadAll}) {
   const [mess, SetMess] = useState("");
   const [me] = useContext(UserContext);
   const [chat, setChat] = useState("");
   const [loadd, setLoat] = useState(false);
-
+// gửi tin nhắn
   const sendMessage = () => {
     if (chat === "")
       return;
@@ -36,7 +37,7 @@ function MessContent({myConversation}) {
         console.log(err);
       });
   }
-
+// reload hợp thoại
   useEffect(() => {
     const getmessage = () => {
       axios
@@ -55,8 +56,6 @@ function MessContent({myConversation}) {
     }
     getmessage();
   }, [myConversation,loadd]);
-
-
   return (
     <div className="mess">
       <div className="mess_cent_header">
@@ -80,10 +79,12 @@ function MessContent({myConversation}) {
         <div className="mess_cent_search">
           <BiSearch></BiSearch>
         </div>
-        <div className="mess_cent_setting">
+        <div className="mess_cent_setting"
+        onClick={()=> setLoadAll(!loadAll)}>
           <BsThreeDots></BsThreeDots>
         </div>
       </div>
+      
       <div className="mess_content">
         {me ? (
           mess ? (

@@ -12,7 +12,8 @@ function PartnerInfo({ partners }) {
         .catch((err) => {
           console.log(err.response.data);
         });
-    }, []);
+    }, [partners]);
+ // console.log(partners);
   return (
       <div>
           <div className="mess_info">
