@@ -36,19 +36,24 @@ function Notifications() {
         <h3>Thông báo gần đây</h3>
       </div>
       <div className="notifications-list">
-        {notifications.map((item) => (
+        {notifications?(notifications.map((item) => (
           <Link to={`${item.post}`}>
             <div className="notifications-items">
               <p>
-                <Link to={`/profile/${item.userId._id}`}>
-                  <span className="username">{`${item.userId.userName}`} </span>
-                </Link>
-                đã {`${item.message}`} bài viết của bạn.
-              </p>
-            </div>
-          </Link>
-        ))}
+                  <Link to={`/profile/${item.userId._id}`}>
+                    <span className="username">{`${item.userId.userName}`} </span>
+                  </Link>
+                  đã {`${item.message}`} bài viết của bạn.
+                </p>
+              </div>
+            </Link>
+        ))):(<p>Không có thông báo nào !</p>)}
       </div>
+        <div className="notifications-all">
+          <Link to={`/notification`}>
+            <p>Xem tất cả</p>
+          </Link>
+        </div>
     </div>
   );
 }

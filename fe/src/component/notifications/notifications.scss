@@ -47,4 +47,14 @@
             cursor: pointer;
         }
     }
+    .notifications-all{
+        & > a{
+            & > p{
+                font-size: 15px;
+                color: blue;
+                text-align: center;
+                padding-bottom: 10px;
+            }
+       }
+    }
 }
