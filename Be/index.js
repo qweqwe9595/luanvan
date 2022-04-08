@@ -47,12 +47,18 @@ io.on("connection", (socket) => {
   });
   socket.on("sendMessage", async ({ conversationId }) => {
     try {
-      const conversationQuery = conversationModel.findById(conversationId);
+      const conversationQuery = await conversationModel.findById(
+        conversationId
+      );
+
       const receivers = getAllUser(conversationQuery.members);
+      console.log(receivers);
       if (!receivers) return;
-      const messageQuery = await messagesModel.find({
-        conversationId: conversationId,
-      });
+      const messageQuery = await messagesModel
+        .find({
+          conversationId: conversationId,
+        })
+        .populate("sender");
       receivers.forEach((r) => {
         io.to(r.socketId).emit("getMessage", messageQuery);
       });

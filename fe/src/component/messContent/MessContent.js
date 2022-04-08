@@ -16,6 +16,13 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
   const [chat, setChat] = useState("");
   const [loadd, setLoat] = useState(false);
   const socket = useContext(SocketContext);
+
+  useEffect(() => {
+    if (!me) return;
+    socket.on("getMessage", (mess) => {
+      SetMess(mess);
+    });
+  }, [me, socket]);
   // gửi tin nhắn
   const sendMessage = () => {
     if (chat === "") return;

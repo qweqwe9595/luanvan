@@ -13,7 +13,9 @@ const getAUser = (userId) => {
   });
 };
 const getAllUser = (userIdArray) => {
-  return onlineUsers.map((onlineUser) => userIdArray.every(onlineUser._id));
+  return onlineUsers.filter((onlineUser) => {
+    return userIdArray.some((item) => item === onlineUser._id);
+  });
 };
 
 module.exports = { onlineUsers, addNewUser, removeAuser, getAUser, getAllUser };
