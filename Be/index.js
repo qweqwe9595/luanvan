@@ -38,7 +38,6 @@ io.on("connection", (socket) => {
         path: "notifications",
         populate: { path: "userId", model: "usersModal" },
       });
-      console.log(query);
       await io
         .to(receiver.socketId)
         .emit("getNotification", query.notifications);
