@@ -18,6 +18,7 @@ function Message() {
   const [conversations, SetConversations] = useState("");
   const [openNewCover, setOpenNewConver] = useState(false);
   const [loadAll, setLoadAll] = useState(false);
+  console.log(myConversation);
 
   useEffect(() => {
     axios
@@ -38,13 +39,20 @@ function Message() {
     <div className="message_container">
       <Nav></Nav>
       {openNewCover ? (
-        <CreateConversation setOpenNewConver = {setOpenNewConver}></CreateConversation>
-      ) : ""}
-      //
+        <CreateConversation
+          setOpenNewConver={setOpenNewConver}
+        ></CreateConversation>
+      ) : (
+        ""
+      )}
       {loadAll ? (
-        <SettingConversation  myConversation = {myConversation}></SettingConversation>
-      ) : ""}
-      
+        <SettingConversation
+          myConversation={myConversation}
+        ></SettingConversation>
+      ) : (
+        ""
+      )}
+
       <div className="message_box_content">
         <div className="mess_left">
           <div className="mess_left_header">
@@ -52,8 +60,10 @@ function Message() {
               <BiSearch></BiSearch>
               <input placeholder="Tìm kiếm hội thoại" type="search"></input>
             </div>
-            <div className="icon_mess_left"
-            onClick={() =>setOpenNewConver(!openNewCover)}>
+            <div
+              className="icon_mess_left"
+              onClick={() => setOpenNewConver(!openNewCover)}
+            >
               <RiEditBoxLine />
             </div>
             <div className="icon_mess_left">
@@ -65,13 +75,16 @@ function Message() {
               <div>
                 {conversations
                   ? conversations?.map((people, index) =>
-                    people.members.includes(user?._id) ? (   
-                      <div key={index} onClick={() => {
-                        SetMyConversations(people);
-                        setLoadAll(false);
-                      }}>
-                        <MessTag people={people} ></MessTag>    
-                         </div>
+                      people.members.includes(user?._id) ? (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            SetMyConversations(people);
+                            setLoadAll(false);
+                          }}
+                        >
+                          <MessTag people={people}></MessTag>
+                        </div>
                       ) : (
                         ""
                       )
@@ -86,9 +99,14 @@ function Message() {
 
         <div className="mess_center">
           {myConversation ? (
-            <MessContent myConversation = {myConversation} setLoadAll={setLoadAll} loadAll = {loadAll}></MessContent>
-          ): ""}
-          
+            <MessContent
+              myConversation={myConversation}
+              setLoadAll={setLoadAll}
+              loadAll={loadAll}
+            ></MessContent>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

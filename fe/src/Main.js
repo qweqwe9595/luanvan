@@ -14,14 +14,15 @@ import JobContent from "./pages/jobContent/JobContent";
 import Notification from "./pages/notification/Notification";
 import PostNotification from "./pages/postNotification/PostNotification";
 import Message from "./pages/message/Message";
+import Test from "./Test";
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
+  const [onlineFriends, setOnlineFriends] = useState([]);
 
   //get user
   useEffect(() => {
     const userId = localStorage.getItem("userID");
-    const token = localStorage.getItem("token");
     axios
       .get(`http://localhost:5000/api/users/getone/${userId}`)
       .then((res) => {
@@ -32,22 +33,31 @@ function Main() {
   useEffect(() => {
     if (!user) return;
     socket.emit("userConnection", user);
-  }, [user, socket]);
+    socket.emit("sendListToGetOnlineFriends", { friends: user.friends, user });
+    socket.on("getOnlineUsers", (data) => {
+      console.log(data);
+      setOnlineFriends(
+        data.filter((data) =>
+          user.friends.some((item) => item._id === data._id)
+        )
+      );
+    });
+  }, [user]);
+  console.log(onlineFriends);
 
   //
   useEffect(() => {
     if (!user) return;
     socket.on("getMessage", (mess) => {
-       console.log(mess);
+      console.log(mess);
     });
-   
   }, [user, socket]);
   //
   return (
     <Routes>
       <Route path="/profile/:userId" element={<Profile />}></Route>
       <Route path="/searchresult" element={<SearchResults />}></Route>
-      <Route path="/" element={<Home />}></Route>
+      <Route path="/" element={<Home onlineFriends={onlineFriends} />}></Route>
       <Route path="/friend" element={<Friend />}></Route>
       <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
@@ -59,6 +69,7 @@ function Main() {
         element={<PostNotification />}
       ></Route>
       <Route path="/message" element={<Message />}></Route>
+      <Route path="/test" element={<Test />}></Route>
     </Routes>
   );
 }

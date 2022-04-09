@@ -13,6 +13,8 @@ const {
   removeAuser,
   getAUser,
   getAllUser,
+  getOnlineUser,
+  getFriendsOnline,
 } = require("./socket/socketHelper");
 
 //socket
@@ -24,9 +26,16 @@ const io = require("socket.io")(http, {
 });
 
 io.on("connection", (socket) => {
+  socket.on("sendListToGetOnlineFriends", ({ friends, user }) => {
+    getFriendsOnline(friends).forEach((friend) => {
+      io.emit("getOnlineUsers", getOnlineUser());
+    });
+  });
+
   socket.on("disconnect", () => {
     removeAuser(socket.id);
   });
+
   socket.on("userConnection", (user) => {
     addNewUser(user, socket.id);
   });
@@ -52,7 +61,6 @@ io.on("connection", (socket) => {
       );
 
       const receivers = getAllUser(conversationQuery.members);
-      console.log(receivers);
       if (!receivers) return;
       const messageQuery = await messagesModel
         .find({

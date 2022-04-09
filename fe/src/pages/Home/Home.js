@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import Post from "../../component/post/Post";
 import axios from "axios";
 
-function Home() {
+function Home({ onlineFriends }) {
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userPosts, setUserPosts] = useState([]);
   const [refreshPosts, setRefreshPosts] = useState(false);
@@ -40,7 +40,7 @@ function Home() {
         <div className="center">
           <Share setRefreshPosts={setRefreshPosts}></Share>
           <p>--- Có thể bạn biết họ ! ---</p>
-          <RecommendPage></RecommendPage>
+          {/* <RecommendPage></RecommendPage> */}
           <p>--- Hôm nay có gì mới nào ! ---</p>
           {userPosts.map((userPost, index) => {
             return (
@@ -54,7 +54,7 @@ function Home() {
         </div>
         <div className="rightbar">
           <FriendRequest></FriendRequest>
-          <Contacts></Contacts>
+          <Contacts onlineFriends={onlineFriends}></Contacts>
         </div>
       </div>
     </div>

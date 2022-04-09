@@ -102,6 +102,7 @@ const userSchema = new mongoose.Schema(
         message: "",
         post: { type: String },
       },
+      { timestamps: true },
     ],
   },
   { timestamps: true }
