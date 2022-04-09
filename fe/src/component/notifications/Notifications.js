@@ -49,11 +49,14 @@ function Notifications() {
             </Link>
         ))):(<p>Không có thông báo nào !</p>)}
       </div>
+      {window.location.pathname !== "/notification"?(
         <div className="notifications-all">
-          <Link to={`/notification`}>
-            <p>Xem tất cả</p>
-          </Link>
-        </div>
+        <Link to={`/notification`}>
+          <p>Xem tất cả</p>
+        </Link>
+      </div>
+      ):""}
+        
     </div>
   );
 }

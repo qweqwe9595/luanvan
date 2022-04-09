@@ -7,11 +7,14 @@ import { BsThreeDots } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { Link } from "react-router-dom";
 import CommentV1 from "../comment/CommentV1";
+import UpdatePost from "../updatePost/UpdatePost";
+
 import { SocketContext } from "../../context/SocketContext";
 import { UserContext } from "../../context/userContext";
 
 function Post({ postInfo, setRefreshPosts }) {
   const [open, setOpen] = useState(false);
+  const [openUpdate, setOpenUpdate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
@@ -137,7 +140,14 @@ function Post({ postInfo, setRefreshPosts }) {
             onClick={() => setOpenOptions(!openOptions)}
           ></div>
           <ul className="post-meta-right-show-items">
-            {postInfo.userId._id.includes(loginUser) ? <li>Chỉnh sửa</li> : ""}
+            {postInfo.userId._id.includes(loginUser) ? (
+              <li
+                onClick={() => {
+                  setOpenUpdate(!openUpdate);
+                  setOpenOptions(!openOptions);
+                }}
+              >Chỉnh sửa</li>
+            ) : ""}
             {postInfo.userId._id.includes(loginUser) ? (
               <li
                 onClick={() => {
@@ -156,6 +166,11 @@ function Post({ postInfo, setRefreshPosts }) {
       ) : (
         ""
       )}
+
+      {openUpdate ? <UpdatePost setOpenUpdate={setOpenUpdate} postInfo={postInfo}></UpdatePost> : ""}
+
+
+
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
