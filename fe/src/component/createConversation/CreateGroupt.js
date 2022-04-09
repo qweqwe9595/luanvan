@@ -6,7 +6,9 @@ import axios from "axios";
 import { UserContext } from "../../context/userContext";
 function CreateGroupt({setAddGroupt,SetMyConversations}) {
   const [user] = useContext(UserContext);
- 
+  const [number, setNumber] = useState([]);
+
+
   return (
     <div className="Groupt_box">
       <div className="exit">
@@ -34,7 +36,7 @@ function CreateGroupt({setAddGroupt,SetMyConversations}) {
         <div className="my_friend">
         {user?.friends?.map((values, index) => {
           return (
-            <div className="friend_values" key={index}>
+            <div className="friend_values" key={index} >
               {/* <input type="checkbox" defaultChecked={checked}></input> */}
                   {values?.photos?.avatar?.length === 0 ? (
                 <img   
