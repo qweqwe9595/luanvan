@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./CreateConversation.scss";
 import axios from "axios";
 import { UserContext } from "../../context/userContext";
-function CreateConversation({setOpenNewConver}) {
+function CreateConversation({ setOpenNewConver, SetMyConversations }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [user] = useContext(UserContext);
@@ -22,37 +22,39 @@ function CreateConversation({setOpenNewConver}) {
         console.log(err.response);
       });
   }, [search]);
-  console.log(partner);
+  // console.log(partner);
 
   useEffect(() => {
     if (partner === "") {
       return;
     }
-    axios.post("http://localhost:5000/api/conversations/createone", {
-      members: [
-        user._id,
-        partner
-      ]
-    }, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    axios
+      .post(
+        "http://localhost:5000/api/conversations/createone",
+        {
+          members: [user._id, partner],
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
       .then((res) => {
         setOpenNewConver(false);
+        SetMyConversations(res.data);
       })
       .catch((err) => {
         console.log(err.response);
       });
   }, [partner]);
 
-
   return (
-      <div className="new_conversation">
-          <div className="exit">
-              <span>Tin nhắn mới</span>
-              <button onClick={() => setOpenNewConver(false)}>X</button>
-        </div>
+    <div className="new_conversation">
+      <div className="exit">
+        <span>Tin nhắn mới</span>
+        <button onClick={() => setOpenNewConver(false)}>X</button>
+      </div>
       <div className="search_friend">
         <span>Đến:</span>
         <input
@@ -66,8 +68,11 @@ function CreateConversation({setOpenNewConver}) {
       <div className="search_friend_result">
         {results?.map((res, index) => {
           return (
-            <div className="search_friend_result_tag" key={index}
-             onClick ={() => setPartner(res._id)}>
+            <div
+              className="search_friend_result_tag"
+              key={index}
+              onClick={() => setPartner(res._id)}
+            >
               {res?.photos?.avatar?.length === 0 ? (
                 <img
                   className="avt_friend"
@@ -75,13 +80,13 @@ function CreateConversation({setOpenNewConver}) {
                 ></img>
               ) : (
                 <img
-                   className="avt_friend"
+                  className="avt_friend"
                   src={`http://localhost:5000/images/${
                     res?.photos?.avatar[res?.photos?.avatar?.length - 1]
                   }`}
                 />
               )}
-                  <span>{res.userName}</span>
+              <span>{res.userName}</span>
             </div>
           );
         })}

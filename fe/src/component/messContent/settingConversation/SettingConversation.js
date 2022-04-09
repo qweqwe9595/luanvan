@@ -8,7 +8,8 @@ import PartnerInfo from "../partnerInfo/PartnerInfo";
 import axios from "axios";
 import { UserContext } from "../../../context/userContext";
 function SettingConversation({myConversation}) {
-    const [me] = useContext(UserContext);
+  const [me] = useContext(UserContext);
+  const [anotherUser, setAnotherUser] = useState(""); 
     // xóa hội thoại
   const deleteConver = () => {
     axios
@@ -25,22 +26,32 @@ function SettingConversation({myConversation}) {
         console.log(err.response);
       });
   }
+  console.log(anotherUser);
+  //add another user to conversation
+
   return (
      <div className="setting_conversation">
           <div className="partner_info">
               {myConversation?.members?.length > 2 ? (
-            <div className="mess_info">
+            <div className="group_info">
               <img
                 src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
-                className="mess_cent_avt"
-              ></img>
-              <span>{myConversation._id}</span>
+              className="mess_cent_avt"
+              
+            ></img>
+            <div className="members">
+            <p>{myConversation.conversationName}</p>
+            <span>{ myConversation.members.length} thành viên</span>
+              </div>
             </div>
           ) : (
             <div>
                 {myConversation?.members?.map((partners, index) => (
                   partners === me?._id ? "" : (
-                    <PartnerInfo partners={partners} key={index}></PartnerInfo>
+                    <div key={index}>
+                    <PartnerInfo partners={partners}></PartnerInfo>
+                    </div>
+                   
                 )))}            
             </div>
           )}
