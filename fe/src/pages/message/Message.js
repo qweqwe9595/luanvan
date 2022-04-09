@@ -7,19 +7,22 @@ import "./Message.scss";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
-import { SocketContext } from "../../context/SocketContext";
+// import { SocketContext } from "../../context/SocketContext";
 import MessTag from "../../component/messTag/MessTag";
 import MessContent from "../../component/messContent/MessContent";
 import CreateConversation from "../../component/createConversation/CreateConversation";
 import SettingConversation from "../../component/messContent/settingConversation/SettingConversation";
+import CreateGroupt from "../../component/createConversation/CreateGroupt";
+
 function Message() {
   const [user] = useContext(UserContext);
   const [myConversation, SetMyConversations] = useState("");
   const [conversations, SetConversations] = useState("");
   const [openNewCover, setOpenNewConver] = useState(false);
   const [loadAll, setLoadAll] = useState(false);
-  console.log(myConversation);
-
+  const [addGroupt, setAddGroupt] = useState(false);
+  // let member = [user?._id];
+  // console.log(member);
   useEffect(() => {
     axios
       .get(
@@ -34,7 +37,7 @@ function Message() {
       .catch((err) => {
         console.log(err.response);
       });
-  }, [openNewCover, loadAll]);
+  }, [openNewCover, loadAll, addGroupt]);
   return (
     <div className="message_container">
       <Nav></Nav>
@@ -52,7 +55,6 @@ function Message() {
       ) : (
         ""
       )}
-
       <div className="message_box_content">
         <div className="mess_left">
           <div className="mess_left_header">
@@ -66,7 +68,12 @@ function Message() {
             >
               <RiEditBoxLine />
             </div>
-            <div className="icon_mess_left">
+            <div
+              className="icon_mess_left"
+              onClick={() => {
+                setAddGroupt(!addGroupt);
+              }}
+            >
               <AiOutlineUsergroupAdd />
             </div>
           </div>

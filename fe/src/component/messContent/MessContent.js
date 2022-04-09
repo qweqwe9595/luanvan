@@ -16,14 +16,16 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
   const [chat, setChat] = useState("");
   const [loadd, setLoat] = useState(false);
   const socket = useContext(SocketContext);
-  console.log(myConversation);
 
   useEffect(() => {
     if (!me) return;
     socket.on("getMessage", (mess) => {
-      SetMess(mess);
+      if (mess?.[mess?.length - 1].conversationId === myConversation?._id) {
+        SetMess(mess);
+      }
     });
   }, [me, socket]);
+
   // gửi tin nhắn
   const sendMessage = () => {
     if (chat === "") return;
@@ -80,7 +82,7 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
               src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
               className="mess_cent_avt"
             ></img>
-            <span>{myConversation._id}</span>
+            <span>{myConversation.conversationName}</span>
           </div>
         ) : (
           <div>
