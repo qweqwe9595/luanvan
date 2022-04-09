@@ -48,6 +48,11 @@ function Message() {
       ) : (
         ""
       )}
+      {addGroupt ? (
+        <CreateGroupt setAddGroupt={setAddGroupt}></CreateGroupt>
+      ) : (
+        ""
+      )}
       {loadAll ? (
         <SettingConversation
           myConversation={myConversation}
@@ -103,7 +108,6 @@ function Message() {
             )}
           </div>
         </div>
-
         <div className="mess_center">
           {myConversation ? (
             <MessContent

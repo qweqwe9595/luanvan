@@ -43,7 +43,6 @@ function Main() {
       );
     });
   }, [user]);
-  console.log(onlineFriends);
 
   //
   useEffect(() => {
