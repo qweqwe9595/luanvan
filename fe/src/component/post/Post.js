@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./post.scss";
 import axios from "axios";
+import CommentV1 from "../comment/CommentV1";
+import UpdatePost from "../updatePost/UpdatePost";
+import { UserContext } from "../../context/userContext";
+
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
 import { BsThreeDots } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { Link } from "react-router-dom";
-import CommentV1 from "../comment/CommentV1";
-import UpdatePost from "../updatePost/UpdatePost";
-
 import { SocketContext } from "../../context/SocketContext";
-import { UserContext } from "../../context/userContext";
 
 function Post({ postInfo, setRefreshPosts }) {
   const [open, setOpen] = useState(false);
@@ -30,6 +30,7 @@ function Post({ postInfo, setRefreshPosts }) {
   const commentNumber = countCmts(comment);
   const socket = useContext(SocketContext);
   const [getNewComment, setGetNewComment] = useState(false);
+  const [user] = useContext(UserContext);
 
   const iconStyles = {
     color: "#0d47a1",
@@ -140,7 +141,7 @@ function Post({ postInfo, setRefreshPosts }) {
             onClick={() => setOpenOptions(!openOptions)}
           ></div>
           <ul className="post-meta-right-show-items">
-            {postInfo.userId._id.includes(loginUser) ? (
+            {postInfo.userId._id.includes(loginUser) || user?.isAdmin ? (
               <li
                 onClick={() => {
                   setOpenUpdate(!openUpdate);
@@ -148,7 +149,7 @@ function Post({ postInfo, setRefreshPosts }) {
                 }}
               >Chỉnh sửa</li>
             ) : ""}
-            {postInfo.userId._id.includes(loginUser) ? (
+            {postInfo.userId._id.includes(loginUser) || user?.isAdmin ? (
               <li
                 onClick={() => {
                   deletePost();
@@ -167,7 +168,7 @@ function Post({ postInfo, setRefreshPosts }) {
         ""
       )}
 
-      {openUpdate ? <UpdatePost setOpenUpdate={setOpenUpdate} postInfo={postInfo}></UpdatePost> : ""}
+      {openUpdate ? <UpdatePost setOpenUpdate={setOpenUpdate} post={postInfo}></UpdatePost> : ""}
 
 
 

@@ -3,26 +3,32 @@ import "./updatePost.scss";
 import { BsPenFill, BsImages, BsCloudArrowUpFill } from "react-icons/bs";
 import axios from "axios";
 
-function UpdatePost({ setOpenUpdate }, {postInfo}) {
-  console.log(postInfo);
-  const [desc, setDesc] = useState("");
-  const [fileRef, setFileRef] = useState(null);
-  const [previewURL, setPreviewUrl] = useState(null);
+function UpdatePost({ setOpenUpdate, post }) {
+  console.log(post);
+  const [defaultDesc, setDefaultDesc] = useState(post.desc);
+  const [defaultFiledefaultDescef, setDefaultFiledefaultDescef] = useState(post.img);
+  const [desc, setDesc] = useState(post.desc);
+  const [fileRef, setFileRef] = useState(post.img);
+  const [previewURL, setPreviewUrl] = useState("http://localhost:5000/images/" + post.img);
 
   const updatePosts = () => {
     var formData = new FormData();
+    if (defaultFiledefaultDescef === fileRef && defaultDesc === desc) {
+      alert("Phải cập nhật ảnh hoặc text.");
+      return;
+    }
     formData.append("desc", desc);
-    formData.append("eventImg", fileRef);
+    formData.append("img", fileRef);
     axios
-      .post(`http://localhost:5000/api/posts/${postInfo._id}`, formData, {
+      .patch(`http://localhost:5000/api/posts/${post._id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((res) => {
-        console.log(res.data);
-        alert("thành công ");
+        window.location.reload();
+        // alert("thành công ");
       })
       .catch((err) => {
         console.log(err.message);
@@ -58,9 +64,10 @@ function UpdatePost({ setOpenUpdate }, {postInfo}) {
           id="file-upload"
           type="file"
           name="photo"
-          placeholder="Nội dung cập nhật..."
           onChange={function (e) {
-            if (e.target.files[0]) {
+            {console.log(e.target.files[0]);
+            console.log(fileRef)}
+            if (e.target.files[0] !== fileRef) {
               setPreviewUrl(URL.createObjectURL(e.target.files[0]));
               setFileRef(e.target.files[0]);
             }
@@ -79,6 +86,7 @@ function UpdatePost({ setOpenUpdate }, {postInfo}) {
           <button
             onClick={() => {
               updatePosts();
+              setOpenUpdate(false);
             }}
           >
             Cập nhật
