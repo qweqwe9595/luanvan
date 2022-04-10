@@ -84,7 +84,7 @@ function CreateNewJob({ setOpen }) {
           <div className="starttime">
             <input
               type="date"
-              placeholder="Thời gian bất đầu"
+              placeholder="Hạn chót"
               value={startTime}
               onChange={(e) => {
                 setStartTime(e.target.value);
@@ -92,24 +92,11 @@ function CreateNewJob({ setOpen }) {
             ></input>
             <BiTimeFive></BiTimeFive>
           </div>
-
-          <div className="day_number">
-            <input
-              type="number"
-              min="0"
-              value={duration}
-              onChange={(e) => {
-                setDuration(e.target.value);
-              }}
-              placeholder="Khoảng thời gian diễn ra sự kiện"
-            ></input>
-            giây
-          </div>
         </div>
         <div className="item_details">
           <input
             type="text"
-            placeholder="Tiêu đề của sự kiện"
+            placeholder="Tiêu đề"
             value={jobName}
             onChange={(e) => {
               setJobName(e.target.value);
@@ -120,7 +107,7 @@ function CreateNewJob({ setOpen }) {
         <div className="item_details">
           <input
             type="text"
-            placeholder="Đia điểm diễn ra sự kiện"
+            placeholder="Đia điểm tuyển dụng"
             value={location}
             onChange={(e) => {
               setLocation(e.target.value);
@@ -131,7 +118,7 @@ function CreateNewJob({ setOpen }) {
         <div className="item_details">
           <input
             type="text"
-            placeholder="Đối tượng tham gia"
+            placeholder="Đối tượng tuyển dụng"
             value={participants}
             onChange={(e) => {
               setParticipants(e.target.value);
@@ -153,7 +140,7 @@ function CreateNewJob({ setOpen }) {
         <div className="item_contents">
           <textarea
             type="text"
-            placeholder="Nội dung sự kiện"
+            placeholder="Nội dung tuyển dụng"
             value={desc}
             onChange={(e) => {
               setDesc(e.target.value);
@@ -166,7 +153,7 @@ function CreateNewJob({ setOpen }) {
               createJob();
             }}
           >
-            Tạo sự kiện
+            Tạo tuyển dụng
           </button>
         </div>
       </div>

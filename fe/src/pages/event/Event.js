@@ -38,11 +38,11 @@ function Event() {
               setOpen(true);
             }}
           >
-            <span>tạo sự kiện mới</span>
+            <span>Tạo sự kiện mới</span>
           </div>
         )}
         <div className="item">
-          <span>sự kiện sắp diễn ra</span>
+          <span>Sự kiện sắp diễn ra</span>
         </div>
       </div>
       <div className="center_event">
