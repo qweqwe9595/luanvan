@@ -37,6 +37,19 @@ const getAConversation = async (req, res) => {
 
 //update
 
+const updateOne = async (req, res) => {
+  try {
+    const conversationQuery = await conversationModel.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+    res.status(200).json(conversationQuery);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 const addANewUserToAConversation = async (req, res) => {
   try {
     const conversationQuery = await conversationModel.findById(req.params.id);
@@ -108,4 +121,5 @@ module.exports = {
   pullAUserOutOfAConversation,
   getAConversation,
   deleteAConversation,
+  updateOne,
 };

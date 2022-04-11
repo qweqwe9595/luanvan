@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 const createOne = async (req, res) => {
   try {
     const newMessage = await new messagesModel(req.body);
+    if (req.file) {
+      newMessage.file = req.file.filename;
+    }
     await newMessage.save();
     res.status(200).json(newMessage);
   } catch (error) {
@@ -52,7 +55,7 @@ const updateOne = async (req, res) => {
     const messageQuery = await messagesModel.findByIdAndUpdate(
       req.params.id,
       {
-        $set: { text: req.body.text },
+        $set: { text: req.body.text, file: req?.file.filename },
       },
       { new: true }
     );
