@@ -18,7 +18,7 @@ function Message() {
   const [user] = useContext(UserContext);
   const [myConversation, SetMyConversations] = useState("");
   const [conversations, SetConversations] = useState("");
-  const [openNewCover, setOpenNewConver] = useState(false);
+  const [openNewConver, setOpenNewConver] = useState(false);
   const [loadAll, setLoadAll] = useState(false);
   const [addGroupt, setAddGroupt] = useState(false);
   // let member = [user?._id];
@@ -37,22 +37,39 @@ function Message() {
       .catch((err) => {
         console.log(err.response);
       });
-  }, [openNewCover, loadAll, addGroupt]);
+  }, [openNewConver, loadAll, addGroupt]);
   return (
     <div className="message_container">
       <Nav></Nav>
-      {openNewCover ? (
-        <CreateConversation
+      {openNewConver ? (
+
+        <div> 
+           <div className="create_new_groupt"
+          onClick={() => setOpenNewConver(false)}>
+        </div>   
+          <CreateConversation
           setOpenNewConver={setOpenNewConver}
+          SetMyConversations={SetMyConversations}
         ></CreateConversation>
+        </div>      
+        
       ) : (
         ""
       )}
       {addGroupt ? (
-        <CreateGroupt setAddGroupt={setAddGroupt}></CreateGroupt>
+        <div> 
+           <div className="create_new_groupt"
+          onClick={() => setAddGroupt(false)}>
+        </div>   
+          <CreateGroupt
+          setAddGroupt={setAddGroupt}
+          SetMyConversations={SetMyConversations}
+        ></CreateGroupt>
+        </div>      
       ) : (
         ""
       )}
+
       {loadAll ? (
         <SettingConversation
           myConversation={myConversation}
@@ -69,7 +86,7 @@ function Message() {
             </div>
             <div
               className="icon_mess_left"
-              onClick={() => setOpenNewConver(!openNewCover)}
+              onClick={() => setOpenNewConver(!openNewConver)}
             >
               <RiEditBoxLine />
             </div>

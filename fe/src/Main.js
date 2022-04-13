@@ -15,6 +15,7 @@ import Notification from "./pages/notification/Notification";
 import PostNotification from "./pages/postNotification/PostNotification";
 import Message from "./pages/message/Message";
 import Test from "./Test";
+import Docurmen from "./pages/document/Docurmen";
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
@@ -61,6 +62,7 @@ function Main() {
       <Route path="/eventContent/:id" element={<EventContent />}></Route>
       <Route path="/event" element={<Event />}></Route>
       <Route path="/job" element={<Job />}></Route>
+      <Route path="/document" element={<Docurmen />}></Route>
       <Route path="/jobContent/:id" element={<JobContent />}></Route>
       <Route path="/notification" element={<Notification />}></Route>
       <Route

@@ -8,8 +8,37 @@ import { UserContext } from "../../context/userContext";
 function CreateGroupt({ setAddGroupt, SetMyConversations }) {
   const [user] = useContext(UserContext);
   const [number, setNumber] = useState([user]);
-  console.log(number);
+  const [name, setName] = useState("");
+  const [fileRef, setFileRef] = useState(null);
+  const [previewURL, setPreviewUrl] = useState(null);
+  const [openImg, setOpenImg] = useState(false);
 
+  const sendCreateGroupt = () => {
+    if (name === "") {
+      return;
+    }
+    var formData = new FormData();
+    formData.append("members", number);
+    formData.append("conversationName", name);
+    formData.append("img", fileRef);
+    axios
+      .post(`http://localhost:5000/api/conversations/createone`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+
+      .then((res) => {
+        // setAddGroupt(false);
+        // SetMyConversations(res.data);
+         console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+  // console.log(fileRef);
   return (
     <div className="Groupt_box">
       <div className="exit">
@@ -23,11 +52,20 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
         </button>
       </div>
       <div className="Groupt_info">
-        <div className="image">
-          {/* <img src="" className="avt_groupt"></img> */}
-          <BsImage className="icons"></BsImage>
+        <div className="image" onClick={() => setOpenImg(true)}>
+          {previewURL ? (
+            <img className="avt_groupt" src={previewURL} alt=""></img>
+          ) : (
+            <BsImage className="icons"></BsImage>
+          )}
         </div>
-        <input placeholder="Nhập tên nhóm" type="text"></input>
+        <input
+          placeholder="Nhập tên nhóm"
+          type="text"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        ></input>
       </div>
       <div className="search_friend">
         <span>Thêm thành viên vào nhóm</span>
@@ -48,12 +86,14 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
                 key={index}
                 onClick={() => {
                   setNumber((pre) => {
-                    if (pre.includes(values._id)) return pre;
-                    return [...pre, values];
+                    if (pre.includes(values) === true) {
+                      return pre;
+                    } else {
+                      return [...pre, values];
+                    }
                   });
                 }}
               >
-                {/* <input type="checkbox" defaultChecked={checked}></input> */}
                 {values?.photos?.avatar?.length === 0 ? (
                   <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
                 ) : (
@@ -85,13 +125,57 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
                   });
                 }}
               >
-                <img src=""></img>
+                {item?.photos?.avatar?.length === 0 ? (
+                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+                ) : (
+                  <img
+                    src={`http://localhost:5000/images/${
+                      item?.photos?.avatar[item?.photos?.avatar?.length - 1]
+                    }`}
+                  />
+                )}
                 <span>{item.userName}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
+      <div className="button_create">
+        <button onClick={() => sendCreateGroupt()}>Tạo nhóm</button>
+      </div>
+      {openImg ? (
+        <div className="upload_image">
+          <img className="img" src={previewURL}></img>
+          <input
+            id="file-upload"
+            type="file"
+            name="photo"
+            onChange={function (e) {
+              if (e.target.files[0]) {
+                setPreviewUrl(URL.createObjectURL(e.target.files[0]));
+                setFileRef(e.target.files[0]);
+              }
+            }}
+          />
+          <div className="button">
+            <button
+              className="button_exit"
+              onClick={() => {
+                setOpenImg(false);
+                setPreviewUrl(null);
+                setFileRef(null);
+              }}
+            >
+              Hủy
+            </button>
+            <button className="button_accept" onClick={() => setOpenImg(false)}>
+              Chọn ảnh
+            </button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

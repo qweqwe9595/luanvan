@@ -12,11 +12,20 @@ function MessTag({ people }) {
     <div>
         <div>
           {people.members.length > 2 ? (
-            <div className="messTag">
-              <img
-                src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
-                className="avt_mess_tag"
-              ></img>
+          <div className="messTag">
+            {people?.img?.length === 0 ? (
+            <img
+              className="avt_mess_tag"
+            src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
+              alt=""
+            />
+          ) : (
+            <img
+              className="avt_mess_tag"
+              src={`http://localhost:5000/images/${people?.img}`}
+              alt=""
+            />
+          )}
               <span>{people. conversationName}</span>
             </div>
           ) : (

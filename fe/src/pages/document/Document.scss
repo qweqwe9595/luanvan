@@ -1,0 +1,172 @@
+.document_container {
+    width      : 100%;
+    height     : 100%;
+    display    : flex;
+    padding-top: 100px;
+    position   : relative;
+
+    .document_left {
+        width           : 250px;
+        background-color: #ffffff;
+        margin-left     : 50px;
+        margin-right    : 50px;
+        box-shadow      : 0px 1px 5px 0px #333e50;
+        border-radius   : 10px;
+        padding         : 10px;
+        height          : 338px;
+
+        &>span {
+            font-size  : 20px;
+            font-weight: bold;
+            color      : black;
+            font-family: "oswald";
+        }
+
+        .document_tag {
+            width           : 100%;
+            height          : 40px;
+            border-radius   : 8px;
+            background-color: #EEF0F5;
+            margin-top      : 10px;
+            align-items     : center;
+            display         : flex;
+            padding-left    : 10px;
+            font-size       : 18px;
+            color           : black;
+            font-family     : "oswald";
+            cursor          : pointer;
+        }
+    }
+
+    .document_right {
+        width           : 66%;
+        min-width       : 500px;
+        height          : 650px;
+        box-shadow      : 0px 1px 5px 0px #333e50;
+        border-radius   : 10px;
+        background-color: #ffffff;
+
+
+        .document_right_header {
+            width                  : 100%;
+            display                : flex;
+            height                 : 60px;
+            box-shadow             : 0px 1px 5px 0px #333e50;
+            padding                : 10px;
+            align-items            : center;
+            border-top-left-radius : 10px;
+            border-top-right-radius: 10px;
+
+            .document_right_header_search {
+                display    : flex;
+                height     : 40px;
+                flex       : 1;
+                align-items: center;
+
+                .search {
+                    display         : flex;
+                    width           : 300px;
+                    background-color: #EEF0F5;
+                    height          : 40px;
+                    align-items     : center;
+                    font-size       : 22px;
+                    border-radius   : 12px;
+                    padding-left    : 5px;
+                    color           : #0D47A1;
+
+                    &>input {
+                        flex                      : 1;
+                        height                    : 40px;
+                        background-color          : #EEF0F5;
+                        border                    : none;
+                        border-top-right-radius   : 12px;
+                        border-bottom-right-radius: 12px;
+                        font-size                 : 18px;
+                        font-family               : "oswald";
+                        padding-left              : 5px;
+                        padding-right             : 5px;
+                    }
+
+                    &>input:focus {
+                        outline: none;
+                    }
+                }
+            }
+
+            &>button {
+                width        : 110px;
+                height       : 35px;
+                border-radius: 12px;
+                border       : none;
+                cursor       : pointer;
+                font-size    : 18px;
+                font-family  : 'oswald';
+                color        : #0D47A1;
+            }
+        }
+
+        .document_right_body {
+            width      : 100%;
+            height     : 580px;
+            display    : flex;
+            flex-wrap  : wrap;
+            padding    : 15px;
+            padding-top: 30px;
+            margin     : auto;
+            overflow-y : auto;
+
+
+            .document_tag {
+                width        : 178px;
+                height       : 261px;
+                border-radius: 12px;
+                margin-right : 15px;
+                margin-left  : 15px;
+                margin-bottom: 25px;
+                box-shadow   : 0px 1px 5px 0px #333e50;
+
+                .document_tag_cover {
+                    width                  : 100%;
+                    height                 : 190px;
+                    object-fit             : cover;
+                    border-top-left-radius : 12px;
+                    border-top-right-radius: 12px;
+                }
+
+                &>p {
+                    font-size     : 18px;
+                    font-family   : "oswald";
+                    text-align    : center;
+                    text-transform: capitalize;
+                    font-weight   : bold;
+                    cursor        : pointer;
+                }
+
+                .author {
+                    width      : 100%;
+                    align-items: center;
+                    display    : flex;
+
+                    &>b {
+                        width      : 80px;
+                        font-size  : 18px;
+                        font-family: "oswald";
+                    }
+
+                    &>span {
+                        font-size     : 18px;
+                        font-family   : "oswald";
+                        text-align    : center;
+                        text-transform: capitalize;
+                        text-overflow : ellipsis;
+                        white-space   : nowrap;
+                        overflow      : hidden;
+                        font-family   : "oswald";
+                    }
+                }
+
+            }
+        }
+    }
+
+}
