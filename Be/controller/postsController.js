@@ -97,14 +97,20 @@ const getAPost = async (req, res) => {
 //update 1 post (chinh sua)
 const updateAPost = async (req, res) => {
   try {
+    console.log(req.file);
     const post = await postsModel.findOneAndUpdate(
       { _id: req.params.id },
       { $set: req.body },
       { new: true }
     );
-    res.status(200).json(post);
+    const postQuery = await postsModel.findById(req.params.id);
+    if (req.file) {
+      postQuery.img = await req.file.filename;
+    }
+    await postQuery.save();
+    res.status(200).json(postQuery);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err.message);
   }
 };
 

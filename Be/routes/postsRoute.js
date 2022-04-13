@@ -40,7 +40,7 @@ router.get("/profile/:id", getAProfilePosts);
 router.get("/:id", getAPost);
 
 //update 1 post (chinh sua)
-router.patch("/:id", updateAPost);
+router.patch("/:id", upload.single("img"), updateAPost);
 
 //delete a post
 router.delete("/:id", deleteAPost);

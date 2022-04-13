@@ -5,8 +5,10 @@ const {
   getOne,
   deleteOne,
   updateOne,
-  getMessageConversation,
-} = require("../controller/messagesController");
+  getDocumentApproved,
+  approved,
+  unApproved,
+} = require("../controller/documentsController");
 
 const multer = require("multer");
 
@@ -27,21 +29,22 @@ const authenticateTokenQuery = require("../middleWare/authJWTQuery");
 //create 1
 router.post(
   "/createOne",
-  [authenticateToken, upload.single("messageFile")],
+  [authenticateToken, upload.single("docFile")],
   createOne
 );
 //get all
 router.get("/getall", authenticateTokenQuery, getAll);
 //get one
-router.get("/getone/:id", authenticateTokenQuery, getOne);
+router.get("/getone/:id", getOne);
 //get all of conversation
-router.get(
-  "/getfromcoversation/:id",
-  authenticateTokenQuery,
-  getMessageConversation
-);
+
+router.get("/getapproved", getDocumentApproved);
 //update one
 router.patch("/updateone/:id", authenticateToken, updateOne);
+//approved one
+router.patch("/approveone/:id", authenticateToken, approved);
+//unapproved one
+router.patch("/unapproveone/:id", authenticateToken, unApproved);
 //delete a conversation
 router.delete("/delete/:id", authenticateToken, deleteOne);
 module.exports = router;

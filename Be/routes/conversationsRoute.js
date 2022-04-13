@@ -6,6 +6,7 @@ const {
   pullAUserOutOfAConversation,
   getAConversation,
   deleteAConversation,
+  updateOne,
 } = require("../controller/conversationsController");
 const authenticateToken = require("../middleWare/authJWT");
 const authenticateTokenQuery = require("../middleWare/authJWTQuery");
@@ -15,6 +16,8 @@ router.post("/createOne", authenticateToken, createAConversation);
 router.get("/getall", authenticateTokenQuery, getAllConversation);
 //get all
 router.get("/getone/:id", authenticateTokenQuery, getAConversation);
+//update one
+router.patch("/updateone/:id", authenticateToken, updateOne);
 //push a new user to conversation
 router.patch("/push/:id", authenticateToken, addANewUserToAConversation);
 //pull a new user to conversation

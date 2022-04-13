@@ -98,11 +98,15 @@ const userSchema = new mongoose.Schema(
     },
     notifications: [
       {
-        userId: { type: String, ref: "usersModal" },
-        message: "",
-        post: { type: String },
+        type: new mongoose.Schema(
+          {
+            userId: { type: String, ref: "usersModal" },
+            message: "",
+            post: { type: String },
+          },
+          { timestamps: true }
+        ),
       },
-      { timestamps: true },
     ],
   },
   { timestamps: true }

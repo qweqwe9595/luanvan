@@ -115,7 +115,7 @@ function Share({ setRefreshPosts }) {
       <div className="share-bottom">
         {previewURL && (
           <div className="preview-container">
-            <img className="preview-img" src={previewURL} alt="" />
+            <img className="preview-img" src={previewURL} />
           </div>
         )}
       </div>

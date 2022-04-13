@@ -5,8 +5,11 @@
   justify-content: center;
 
   .center {
-    width : 600px;
-    margin: auto;
+    &>p {
+      font-size  : 20px;
+      font-family: "Oswald";
+      text-align : center;
+    }
   }
 
   .rightbar {
