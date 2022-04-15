@@ -96,6 +96,8 @@ function Share({ setRefreshPosts }) {
             className="share-btn"
             onClick={() => {
               Share();
+              setDesc("");
+              setPreviewUrl(null);
             }}
           >
             <FaRegPaperPlane />

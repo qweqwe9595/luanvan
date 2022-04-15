@@ -24,7 +24,7 @@ function Notifications() {
           `http://localhost:5000/api/users/getone/${user._id}`
         );
         setNotifications(res.data.notifications);
-        console.log(res.data);
+        console.log(res.data.notifications);
       } catch (error) {
         console.log(error);
       }
@@ -37,7 +37,7 @@ function Notifications() {
   return (
     <div className="notifications">
       <div className="notifications-title">
-        <h3>Thông báo gần đây</h3>
+        {(window.location.pathname !== "/notification")?(<h3>Thông báo gần đây</h3>):(<h3>Tất cả thông báo</h3>)}
       </div>
       {notifications.length > 0?(notifications.map((item) => (
       <div className="notifications-list">

@@ -80,19 +80,6 @@ function CreateNewJob({ setOpen }) {
       </div>
 
       <div className="create_details">
-        <div className="time_job">
-          <div className="starttime">
-            <input
-              type="date"
-              placeholder="Hạn chót"
-              value={startTime}
-              onChange={(e) => {
-                setStartTime(e.target.value);
-              }}
-            ></input>
-            <BiTimeFive></BiTimeFive>
-          </div>
-        </div>
         <div className="item_details">
           <input
             type="text"

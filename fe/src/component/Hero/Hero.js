@@ -93,11 +93,12 @@ function Hero() {
             />
           ) : (
             ""
-          )}
+          )}          
         </div>
         <p className="hero-name">
-          {userinfos.userName ? userinfos.userName : ""}
+          {userinfos.userName ? userinfos.userName : ""}          
         </p>
+              
       </div>
       <div className="hero-content">
         <Link to={"/message"}>
@@ -109,7 +110,7 @@ function Hero() {
             <div onClick={() => addFriend()}>Kết bạn</div>
           </div>
         ) : (
-          ""
+          " "
         )}
         <div>Dự phòng</div>
       </div>

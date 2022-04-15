@@ -40,7 +40,6 @@
     .avatar-container {
       display : flex;
       position: relative;
-
       .avatar {
         height       : 120px;
         width        : 120px;
@@ -48,7 +47,6 @@
         border       : 5px solid white;
         object-fit   : cover;
       }
-
       .camera {
         position        : absolute;
         color           : #0d47a1;
@@ -78,12 +76,11 @@
 
   .hero-content {
     margin-top           : 110px;
-    padding              : 0 50px;
+    padding              : 0 60px;
     display              : grid;
     grid-template-columns: 1fr 1fr;
     align-content        : center;
     gap                  : 10px; // justify-items: center;
-
     &>div {
       color           : white;
       background-color: #0d47a1;
