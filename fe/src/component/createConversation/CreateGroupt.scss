@@ -1,17 +1,16 @@
 .Groupt_box {
-    width              : 500px;
-    //display          : grid;
-    height             : 600px;
-    background-color   : #ffff;
-    border-radius      : 15px;
-    position           : fixed;
-    top                : 50%;
-    left               : 50%;
-    -webkit-transform  : translate(-50%, -50%);
-    transform          : translate(-50%, -50%);
-    z-index            : 100;
-    padding            : 10px;
-    box-shadow         : 0px 1px 5px 0px #333e50;
+    width            : 500px;
+    background-color : #ffff;
+    border-radius    : 15px;
+    position         : absolute;
+    top              : 50%;
+    left             : 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform        : translate(-50%, -50%);
+    z-index          : 10;
+    padding          : 10px;
+    box-shadow       : 0px 1px 5px 0px #333e50;
+    display          : grid;
 
     .exit {
         width        : 100%;
@@ -63,6 +62,18 @@
             .icons {
                 margin: auto;
             }
+
+            .avt_groupt {
+                width           : 50px;
+                height          : 50px;
+                border-radius   : 50px;
+                background-color: #EAEAEA;
+                align-items     : center;
+                display         : flex;
+                font-size       : 25px;
+                margin-right    : 10px;
+                cursor          : pointer;
+            }
         }
 
         &>input {
@@ -89,6 +100,7 @@
         font-family: "oswald";
         color      : black;
         font-size  : 18px;
+
 
         .search {
             display         : flex;
@@ -125,15 +137,14 @@
     }
 
     .result {
-        width             : 100%;
-        height            : 40px;
-        //background-color: #333e50;
-        margin-top        : 20px;
-        padding-top       : 5px;
-        font-size         : 18px;
-        font-family       : "oswald";
-        color             : black;
-        font-weight       : bold;
+        width      : 100%;
+        height     : 40px;
+        margin-top : 20px;
+        padding-top: 5px;
+        font-size  : 18px;
+        font-family: "oswald";
+        color      : black;
+        font-weight: bold;
     }
 
     .friendss {
@@ -174,11 +185,6 @@
                     padding-left  : 5px;
                     text-transform: capitalize;
                 }
-
-                &>input {
-                    margin-right: 10px;
-                    cursor      : pointer;
-                }
             }
 
 
@@ -215,12 +221,14 @@
 
                 .info_fr {
                     width           : 100%;
-                    height          : 40px;
-                    background-color: #9c9595;
+                    height          : 45px;
+                    background-color: #EAEAEA;
                     display         : flex;
                     align-items     : center;
                     border-radius   : 20px;
-                    padding-left    : 15px;
+                    padding-left    : 10px;
+                    margin-bottom   : 5px;
+
 
                     &>img {
                         width        : 35px;
@@ -233,9 +241,103 @@
                         flex          : 1;
                         font-size     : 17px;
                         text-transform: capitalize;
+                        text-overflow : ellipsis;
+                        white-space   : nowrap;
+                        overflow      : hidden;
+                        color         : #0D47A1;
                     }
                 }
             }
         }
+    }
+
+    .button_create {
+        width     : 100%;
+        height    : 50px;
+        display   : block;
+        border-top: 1px solid #9c9595;
+
+        &>button {
+            float           : right;
+            width           : 130px;
+            height          : 40px;
+            margin-top      : 10px;
+            background-color: #0D47A1;
+            color           : #ffff;
+            font-size       : 19px;
+            font-family     : "oswald";
+            border          : none;
+            border-radius   : 10px;
+            cursor          : pointer;
+
+        }
+
+        &>:hover {
+            color: red;
+        }
+    }
+
+    .upload_image {
+        width            : 400px;
+        background-color : #ffff;
+        border-radius    : 15px;
+        position         : fixed;
+        top              : 50%;
+        left             : 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform        : translate(-50%, -50%);
+        z-index          : 100;
+        padding          : 10px;
+        box-shadow       : 0px 1px 5px 0px #333e50;
+        display          : grid;
+        height           : 400px;
+
+        &>input {
+            width : 23%;
+            margin: auto;
+            cursor: pointer;
+        }
+
+        .img {
+            width        : 100%;
+            height       : 300px;
+            object-fit   : cover;
+            border-radius: 10px;
+        }
+
+        .button {
+            width    : 100%;
+            display  : flex;
+            height   : 40px;
+            margin   : auto;
+            font-size: 18px;
+
+            .button_accept {
+                width           : 50%;
+                font-size       : 18px;
+                background-color: #0D47A1;
+                cursor          : pointer;
+                border          : none;
+                color           : #ffff;
+            }
+
+            .button_accept:hover {
+                color: red;
+            }
+
+            .button_exit {
+                width           : 50%;
+                font-size       : 18px;
+                background-color: #EAEAEA;
+                cursor          : pointer;
+                border          : none;
+                color           : black;
+            }
+
+            .button_exit:hover {
+                background-color: #9c9595;
+            }
+        }
+
     }
 }

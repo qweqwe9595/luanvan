@@ -6,7 +6,6 @@ function FriendTag({ friend }) {
   const [friendInfo, setFriendInfo] = useState([]);
   const [notFriend, setNotFriend] = useState(false);
   const [request, setRequested] = useState(false);
-
   useEffect(() => {
     const getFRequests = () => {
       axios
@@ -30,7 +29,6 @@ function FriendTag({ friend }) {
       .then((res) => {})
       .catch((err) => {});
   };
-
   const sendRequest = () => {
     axios
       .patch(`http://localhost:5000/api/users/add/${friend._id}`, {

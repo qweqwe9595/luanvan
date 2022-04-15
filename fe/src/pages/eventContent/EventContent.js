@@ -6,12 +6,13 @@ import Nav from "../../component/nav/Nav";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { SocketContext } from "../../context/SocketContext";
+import { UserContext } from "../../context/userContext";
 function EventContent() {
   const param = useParams();
   const [events, setEvents] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState([]);
-  const user = localStorage.getItem("userID");
+  const [user] = useContext(UserContext);
   const [numjoins, setNumjoins] = useState();
   const [join, setJoin] = useState();
   const socket = useContext(SocketContext);
@@ -28,7 +29,7 @@ function EventContent() {
       )
       .then((res) => {
         setEvents(res.data.eventsQuery);
-        setJoin(res.data.eventsQuery.joins.some((item) => item === user));
+        setJoin(res.data.eventsQuery.joins.some((item) => item === user._Id));
         setNumjoins(res.data.eventsQuery.joins.length);
       })
       .catch((err) => {});
@@ -62,7 +63,9 @@ function EventContent() {
         setJoin(true);
         setNumjoins(numjoins + 1);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const notjoins = () => {
     axios
@@ -96,7 +99,6 @@ function EventContent() {
         });
       });
   };
-
   return (
     <div className="eventcontent">
       <Nav></Nav>
@@ -139,9 +141,14 @@ function EventContent() {
           )}
 
           <button className="invite">
-            <span>Mời</span>
+            Mời
           </button>
-        </div>
+            
+          <button className="delete_event">
+            Chỉnh sửa
+          </button>      
+          </div>
+        
       </div>
 
       <div className="event_details">
@@ -159,15 +166,11 @@ function EventContent() {
         <div className="details">
           {events?.desc ? (
             <span>{events.desc}</span>
-          ) : (
-            <span>không có nội dung</span>
-          )}
+          ) :""}
 
           {events?.startTime ? (
             <span>{events.startTime}</span>
-          ) : (
-            <span>chưa thêm thời gian sự kiện nhe bạn ê</span>
-          )}
+          ) :""}
           {events?.location ? <span>Địa điểm: {events.location}</span> : ""}
           {events?.participants ? (
             <span>

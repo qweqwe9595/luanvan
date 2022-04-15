@@ -22,6 +22,7 @@
     .friend_request_tag_info {
         height    : 55px;
         text-align: center;
+        flex      : 1;
 
         p {
             margin        : 0;
@@ -31,6 +32,11 @@
             text-align    : center;
             font-family   : "oswald";
             text-align    : center;
+            text-transform: capitalize;
+            text-overflow : ellipsis;
+            white-space   : nowrap;
+            overflow      : hidden;
+            padding-right : 10px;
         }
 
         .friend_request_tag_button {

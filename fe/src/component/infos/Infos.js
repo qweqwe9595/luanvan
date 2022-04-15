@@ -109,7 +109,13 @@ function Infos() {
       ) : (
         ""
       )}
-      {open ? <UserIntro setOpen={setOpen}></UserIntro> : ""}
+      {open ? (
+        <div>
+          <div className="open_setting"
+            onClick={() => setOpen(false)}></div>
+          <UserIntro setOpen={setOpen}></UserIntro> 
+        </div>
+      ): ""}
       {currentUserId === param.userId ? (
         <button
           onClick={() => {

@@ -78,10 +78,20 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
       <div className="mess_cent_header">
         {myConversation?.members?.length > 2 ? (
           <div className="mess_info">
+            
+            {myConversation?.img?.length === 0 ? (
             <img
-              src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
-              className="mess_cent_avt"
-            ></img>
+               className="mess_cent_avt"
+            src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
+              alt=""
+            />
+          ) : (
+            <img
+               className="mess_cent_avt"
+              src={`http://localhost:5000/images/${myConversation?.img}`}
+              alt=""
+            />
+          )}
             <span>{myConversation.conversationName}</span>
           </div>
         ) : (
