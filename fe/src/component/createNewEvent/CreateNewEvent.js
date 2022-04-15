@@ -46,7 +46,6 @@ function CreateNewEvent({ setOpen }) {
       });
   };
   return (
-<<<<<<< HEAD
     <>
       <div
         className="show_create_event"
@@ -55,12 +54,6 @@ function CreateNewEvent({ setOpen }) {
         }}
       ></div>
       <div className="create_event">
-=======
-    <div className="show_create_event" onClick={() => {
-      // setOpen(false);
-    }}>
-        <div className="create_event">
->>>>>>> 86cb960590cfa484d97567e67f06cb4b31aa64c1
         <div className="exit">
           <button
             onClick={() => {
