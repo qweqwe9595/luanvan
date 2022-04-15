@@ -70,7 +70,7 @@ function EventContent() {
   const notjoins = () => {
     axios
       .post(
-        `http://localhost:5000/api/events/join `,
+        `http://localhost:5000/api/events/join`,
         {
           eventId: events._id,
         },
@@ -140,15 +140,10 @@ function EventContent() {
             </button>
           )}
 
-          <button className="invite">
-            Mời
-          </button>
-            
-          <button className="delete_event">
-            Chỉnh sửa
-          </button>      
-          </div>
-        
+          <button className="invite">Mời</button>
+
+          <button className="delete_event">Chỉnh sửa</button>
+        </div>
       </div>
 
       <div className="event_details">
@@ -164,13 +159,9 @@ function EventContent() {
           )}
         </div>
         <div className="details">
-          {events?.desc ? (
-            <span>{events.desc}</span>
-          ) :""}
+          {events?.desc ? <span>{events.desc}</span> : ""}
 
-          {events?.startTime ? (
-            <span>{events.startTime}</span>
-          ) :""}
+          {events?.startTime ? <span>{events.startTime}</span> : ""}
           {events?.location ? <span>Địa điểm: {events.location}</span> : ""}
           {events?.participants ? (
             <span>

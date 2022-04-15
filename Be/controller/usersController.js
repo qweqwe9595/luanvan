@@ -244,6 +244,7 @@ const refuseFriendRequest = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
 const uploadAvatar = async (req, res) => {
   try {
     const updateUser = await userModal.findById(req.params.id);
@@ -254,6 +255,7 @@ const uploadAvatar = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
 const uploadBackground = async (req, res) => {
   try {
     const updateUser = await userModal.findById(req.params.id);

@@ -18,10 +18,8 @@ function Post({ postInfo, setRefreshPosts }) {
   const [openOptions, setOpenOptions] = useState(false);
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
-  const [likesCount, setLikesCount] = useState(postInfo?.likes?.length);
-  const [isLike, setIsLike] = useState(
-    postInfo?.likes?.some((item) => item._id === loginUser)
-  );
+  const [likesCount, setLikesCount] = useState(0);
+  const [isLike, setIsLike] = useState();
   const [cmtV1, setCmtV1] = useState("");
   const a = new Date();
   const b = new Date(postInfo?.createdAt);
@@ -38,6 +36,11 @@ function Post({ postInfo, setRefreshPosts }) {
     margin: "auto 5px",
     width: "max-content",
   };
+
+  useEffect(() => {
+    setLikesCount(postInfo?.likes.length);
+    setIsLike(postInfo?.likes?.some((item) => item._id === loginUser));
+  }, [postInfo]);
 
   useEffect(() => {
     if (Object.keys(postInfo).length === 0) return;
@@ -147,8 +150,12 @@ function Post({ postInfo, setRefreshPosts }) {
                   setOpenUpdate(!openUpdate);
                   setOpenOptions(!openOptions);
                 }}
-              >Chỉnh sửa</li>
-            ) : ""}
+              >
+                Chỉnh sửa
+              </li>
+            ) : (
+              ""
+            )}
             {postInfo.userId._id.includes(loginUser) || user?.isAdmin ? (
               <li
                 onClick={() => {
@@ -168,7 +175,11 @@ function Post({ postInfo, setRefreshPosts }) {
         ""
       )}
 
-      {openUpdate ? <UpdatePost setOpenUpdate={setOpenUpdate} post={postInfo}></UpdatePost> : ""}
+      {openUpdate ? (
+        <UpdatePost setOpenUpdate={setOpenUpdate} post={postInfo}></UpdatePost>
+      ) : (
+        ""
+      )}
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">
