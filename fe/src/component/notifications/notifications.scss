@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+.notifications{
+    min-width: 300px;
+    margin: auto;
+    width: 60%;
+    margin-top: 90px;
+    background-color: white;
+    box-shadow: 0px 1px 4px 0px #333e50;
+=======
 .notifications {
   margin: auto;
   width: 300px;
@@ -7,6 +16,7 @@
   border-radius: 30px;
   padding-bottom: 10px;
   .notifications-title {
+>>>>>>> bf0217403c5495cf2103f0d52af5b767e277bf22
     border-radius: 30px;
     margin: auto;
     & > h3 {
@@ -60,5 +70,48 @@
         padding-bottom: 10px;
       }
     }
+<<<<<<< HEAD
+    .notifications-list{
+        width: 100%;
+        margin: auto;
+        
+        .notifications-items{
+            width: 90%;
+            background-color: #eaeaea;
+            border-radius: 30px;
+            box-shadow: 0px 1px 4px 0px #333e50;
+            margin: 20px auto;
+            & > p {
+                font-family: "Roboto", sans-serif;
+                font-size: 16px;
+                padding: 10px 20px;
+                text-align: left;
+                .username{
+                    text-transform: capitalize;
+                    font-weight: 600;
+                }
+                :hover{
+                    color: #0d47a1;
+                }
+            }
+        }
+        .notifications-items:hover{
+            background-color: #d6d6d6;
+            cursor: pointer;
+        }
+    }
+    .notifications-all{
+        & > a{
+            & > p{
+                font-size: 15px;
+                color: blue;
+                text-align: center;
+                padding-bottom: 10px;
+            }
+       }
+    }
+}
+=======
   }
 }
+>>>>>>> bf0217403c5495cf2103f0d52af5b767e277bf22

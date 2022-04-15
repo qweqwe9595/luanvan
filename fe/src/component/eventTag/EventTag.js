@@ -7,7 +7,7 @@ import { UserContext } from "../../context/userContext";
 function EventTag({ eventI, setEventId }) {
   const [user] = useContext(UserContext);
   const [join, setJoin] = useState(
-    eventI.joins.some((item) => item === user?._Id)
+    eventI.joins.some((item) => item === user._id)
   );
   const joinEvent = () => {
     axios
@@ -40,6 +40,7 @@ function EventTag({ eventI, setEventId }) {
       })
       .then((res) => {
         alert("đã xóa thành công");
+        setEventId((prev) => !prev);
       })
       .catch((err) => {
         console.log(err);

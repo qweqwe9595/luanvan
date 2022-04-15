@@ -18,7 +18,7 @@ function Contacts({ onlineFriends }) {
             className="contacts_tag_avt"
           />
           <span>{friend?.userName}</span>
-          <div className="notifications">
+          <div className="contacts-notifications">
             <span>3</span>
           </div>
           <div className="signal"></div>

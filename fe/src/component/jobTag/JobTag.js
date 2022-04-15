@@ -11,13 +11,6 @@ function JobTag(jobI) {
         src={`http://localhost:5000/images/${jobI?.jobI?.img}`}
         className="cover"
       ></img>
-      <div className="time">
-        {jobI?.jobI?.startTime ? (
-          <span>{jobI.jobI.startTime}</span>
-        ) : (
-          ""
-        )}
-      </div>
       <Link to={`/jobContent/${jobI.jobI._id}`}>
         <div className="title">
           {jobI?.jobI?.jobName ? (

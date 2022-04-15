@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../../component/nav/Nav";
-import "./DocumentTag.scss";
+import "./DocContent.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 function DocContent() {
@@ -50,9 +50,11 @@ function DocContent() {
           )}
           <span>{doc?.userId?.userName}</span>
         </div>
-        
-        <iframe className="doc_content" src={`http://localhost:5000/images/${doc?.file}`}></iframe>          
-       
+        <iframe
+          src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://infolab.stanford.edu/pub/papers/google.pdf#toolbar=0&scrollbar=0"
+          title="description"
+          className="doc_content"
+        ></iframe>
       </div>
       <div className="doc_footer">
         <p>Nội dung tài liệu</p>

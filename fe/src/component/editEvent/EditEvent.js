@@ -1,45 +1,46 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./createNewEvent.scss";
+import "./EditEvent.scss";
 import { BsPenFill, BsImages, BsCloudArrowUpFill } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
 import { RiMapPinFill } from "react-icons/ri";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
-
-function CreateNewEvent({ setOpen }) {
-  const [startTime, setStartTime] = useState("");
-  const [eventName, setEventName] = useState("");
-  const [desc, setDesc] = useState("");
-  //const [img, setImg] = useState("");
-  const [location, setLocation] = useState("");
-  const [participants, setParticipants] = useState("");
-  const [link, setLink] = useState("");
-  const [duration, setDuration] = useState("");
-  const [user] = useContext(UserContext);
+function EditEvent({ setOpen, events }) {
+  const [startTime, setStartTime] = useState(events?.startTime);
+  const [eventName, setEventName] = useState(events?.eventName);
+  const [desc, setDesc] = useState(events?.desc);
+  const [location, setLocation] = useState(events?.location);
+  const [participants, setParticipants] = useState(events?.participants);
+  const [link, setLink] = useState(events?.link);
+  const [duration, setDuration] = useState(events?.duration);
+  //const [user] = useContext(UserContext);
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
-
-  const createEvent = () => {
+  const updateEvent = () => {
     var formData = new FormData();
-    formData.append("userId", user._id);
-    formData.append("startTime", startTime);
-    formData.append("eventName", eventName);
-    formData.append("desc", desc);
-    formData.append("location", location);
-    formData.append("participants", participants);
-    formData.append("link", link);
-    formData.append("duration", duration);
-    formData.append("eventImg", fileRef);
+    formData.append('eventId',events._id);
+    formData.append('startTime',startTime);
+    formData.append('eventName',eventName);
+    formData.append('desc',desc);
+    formData.append('location',location);
+    formData.append('participants',participants);
+    formData.append('link',link);
+    formData.append('duration',duration);
+    formData.append('eventImg', fileRef);
+    formData.append('_method', 'PATCH');
     axios
-      .post(`http://localhost:5000/api/events/createOne`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
+      .patch(
+        `http://localhost:5000/api/events/updateOne`,formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
       .then((res) => {
-        console.log(res.data);
-        alert("thành công ");
+        console.log(res);
+        alert("cập nhật thành công");
+        setOpen(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -48,12 +49,12 @@ function CreateNewEvent({ setOpen }) {
   return (
     <>
       <div
-        className="show_create_event"
+        className="show_edit_event"
         onClick={() => {
           setOpen(false);
         }}
       ></div>
-      <div className="create_event">
+      <div className="edit_event">
         <div className="exit">
           <button
             onClick={() => {
@@ -170,10 +171,10 @@ function CreateNewEvent({ setOpen }) {
           <div className="button_create">
             <button
               onClick={() => {
-                createEvent();
+                updateEvent();
               }}
             >
-              Tạo sự kiện
+              Cập nhật
             </button>
           </div>
         </div>
@@ -181,4 +182,5 @@ function CreateNewEvent({ setOpen }) {
     </>
   );
 }
-export default CreateNewEvent;
+
+export default EditEvent;

@@ -54,9 +54,6 @@ function JobContent() {
           src={`http://localhost:5000/images/${jobs.img}`}
           className="cover"
         ></img>
-        <div className="time">
-          {jobs?.startTime ? <span>{jobs.startTime}</span> : "không có"}
-        </div>
         <div className="title">
           {jobs?.jobName ? <span>{jobs.jobName}</span> : ""}
         </div>
@@ -68,16 +65,11 @@ function JobContent() {
         </div>
         <div className="details">
           {jobs?.desc ? (
-            <span>{jobs.desc}</span>
+            <span>Nội dung: {jobs.desc}</span>
           ) : (
             <span>không có nội dung</span>
           )}
 
-          {jobs?.startTime ? (
-            <span>{jobs.startTime}</span>
-          ) : (
-            <span>chưa thêm thời gian sự kiện nhe bạn ê</span>
-          )}
           {jobs?.location ? <span>Địa điểm: {jobs.location}</span> : ""}
           {jobs?.participants ? (
             <span>
@@ -89,7 +81,7 @@ function JobContent() {
           )}
           {jobs?.link ? (
             <span>
-              Xem chi tiết tại: <a>{jobs.link}</a>
+              Xem chi tiết tại:<a href={jobs?.link}>{jobs.link}</a>
             </span>
           ) : (
             ""

@@ -9,7 +9,7 @@ function Event() {
   const [open, setOpen] = useState(false);
   const [eventDetails, setEventDetails] = useState([]);
   const [user] = useContext(UserContext);
-  const [eventId, setEventId] = useState("");
+  const [eventId, setEventId] = useState(false);
   useEffect(() => {
     axios
       .get(
@@ -25,31 +25,8 @@ function Event() {
         setEventDetails(res.data.eventsQuery);
       })
       .catch((err) => {});
-  }, [open]);
-  // xoa sự kiện //
-  // useEffect(() => {
-  //   if (eventId === "") {
-  //     return;
-  //   }
-  //   axios
-  //     .delete(
-  //       `http://localhost:5000/api/events/deleteOne`,
-  //       {
-  //         eventId,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + localStorage.getItem("token"),
-  //         },
-  //       }
-  //     )
-  //     .then((res) => {
-  //       alert("đã xóa thành công");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [eventId]);
+  }, [open,eventId]);
+
   console.log(eventId);
 
   return (
