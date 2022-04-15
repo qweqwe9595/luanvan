@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import "./EventTag.scss";
 import axios from "axios";
-
-function EventTag(eventI) {
-  const user = localStorage.getItem("userID");
+import {UserContext } from "../../context/userContext";
+function EventTag({ eventI, setEventId }) {
+  const [user] = useContext(UserContext)
   const [join, setJoin] = useState(
-    eventI.eventI.joins.some((item) => item === user)
+    eventI.eventI.joins.some((item) => item === user?._Id)
   );
-
   const joinEvent = () => {
     axios
       .post(
@@ -69,7 +68,8 @@ function EventTag(eventI) {
           )}
         </div>
       </Link>
-      <div className="button_join">
+      <div className="button">
+            <div className="button_join">
         {join ? (
           <button
             onClick={() => {
@@ -93,7 +93,15 @@ function EventTag(eventI) {
             </div>
           </button>
         )}
-      </div>
+        </div>
+        {user?.isAdmin ? (
+          <button className="button_delete"
+          onClick={()=>{setEventId(eventI.eventI._id)}}>
+          Xóa sự kiện
+        </button>
+        ) : ""}
+        
+      </div> 
     </div>
   );
 }

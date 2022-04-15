@@ -16,6 +16,7 @@ import PostNotification from "./pages/postNotification/PostNotification";
 import Message from "./pages/message/Message";
 import Test from "./Test";
 import Docurmen from "./pages/document/Docurmen";
+import DocContent from "./pages/documentContent/DocContent";
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
@@ -65,6 +66,7 @@ function Main() {
       <Route path="/document" element={<Docurmen />}></Route>
       <Route path="/jobContent/:id" element={<JobContent />}></Route>
       <Route path="/notification" element={<Notification />}></Route>
+      <Route path="/docContent/:id" element={<DocContent />}></Route>
       <Route
         path="/postNotification/:postId"
         element={<PostNotification />}
