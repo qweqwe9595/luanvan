@@ -188,7 +188,7 @@ function EventContent() {
           )}
           {events?.link ? (
             <span>
-              Xem chi tiết tại: <a>{events.link}</a>
+              Xem chi tiết tại: <a href="{events.link}">{events.link}</a>
             </span>
           ) : (
             ""

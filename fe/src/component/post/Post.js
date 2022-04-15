@@ -31,7 +31,7 @@ function Post({ postInfo, setRefreshPosts }) {
   const socket = useContext(SocketContext);
   const [getNewComment, setGetNewComment] = useState(false);
   const [user] = useContext(UserContext);
-
+  
   const iconStyles = {
     color: "#0d47a1",
     fontSize: "20px",
