@@ -4,7 +4,7 @@ import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import "./EventTag.scss";
 import axios from "axios";
 import {UserContext } from "../../context/userContext";
-function EventTag({ eventI, setEventId }) {
+function EventTag({eventI,  setEventId }) {
   const [user] = useContext(UserContext)
   const [join, setJoin] = useState(
     eventI.eventI.joins.some((item) => item === user?._Id)
