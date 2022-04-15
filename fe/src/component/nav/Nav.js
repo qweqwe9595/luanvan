@@ -7,6 +7,7 @@ import axios from "axios";
 import { SearchResultContext } from "../../context/SearchContext";
 import Notifications from "../../component/notifications/Notifications";
 import { useNavigate, Link } from "react-router-dom";
+import { BsFillChatSquareFill } from "react-icons/bs";
 
 function Nav() {
   const [open, setOpen] = useState(false);
@@ -96,6 +97,10 @@ function Nav() {
         />
       </div>
       <div className="nav-right">
+        <Link to={"/message"}>
+          <BsFillChatSquareFill className="bell" />
+        </Link>
+
         <AiOutlineBell
           className="bell"
           onClick={() => {
@@ -128,10 +133,11 @@ function Nav() {
             </div>
           </Link>
 
-          <AiFillCaretDown className="arrow-down" 
+          <AiFillCaretDown
+            className="arrow-down"
             onClick={() => {
-            setOpen(!open);
-          }}
+              setOpen(!open);
+            }}
           />
         </div>
       </div>

@@ -24,7 +24,7 @@ function Hero() {
           setAvt(res.data.photos.avatar.length);
         })
         .catch((err) => {
-          console.log(err.response);
+          console.log(err.response.data.message);
         });
     };
     getUserInfo();

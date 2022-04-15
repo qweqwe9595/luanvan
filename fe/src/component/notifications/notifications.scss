@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .notifications{
     min-width: 300px;
     margin: auto;
@@ -5,24 +6,71 @@
     margin-top: 90px;
     background-color: white;
     box-shadow: 0px 1px 4px 0px #333e50;
+=======
+.notifications {
+  margin: auto;
+  width: 300px;
+  margin-top: 90px;
+  background-color: white;
+  box-shadow: 0px 1px 4px 0px #333e50;
+  border-radius: 30px;
+  padding-bottom: 10px;
+  .notifications-title {
+>>>>>>> bf0217403c5495cf2103f0d52af5b767e277bf22
     border-radius: 30px;
+    margin: auto;
+    & > h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 25px;
+      padding: 10px 10px;
+      text-align: center;
+    }
+  }
+  .none {
+    width: max-content;
+    margin: auto;
+    background-color: white;
     padding-bottom: 10px;
-    .notifications-title{ 
-        border-radius: 30px;
-        margin: auto;
-        & > h3{
-            font-family: "Oswald", sans-serif;
-            font-size: 25px;
-            padding: 10px 10px;
-            text-align: center;
+  }
+  .notifications-list {
+    width: 100%;
+    margin: auto;
+
+    .notifications-items {
+      width: 90%;
+      background-color: #eaeaea;
+      border-radius: 30px;
+      box-shadow: 0px 1px 4px 0px #333e50;
+      margin: 20px auto;
+      & > p {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        padding: 20px 30px;
+        text-align: left;
+        .username {
+          text-transform: capitalize;
+          font-weight: 600;
         }
+        :hover {
+          color: #0d47a1;
+        }
+      }
     }
-    .none{
-        width: max-content;
-        margin: auto;
-        background-color: white;
+    & > :hover {
+      background-color: #dbd9d9;
+      cursor: pointer;
+    }
+  }
+  .notifications-all {
+    & > a {
+      & > p {
+        font-size: 15px;
+        color: blue;
+        text-align: center;
         padding-bottom: 10px;
+      }
     }
+<<<<<<< HEAD
     .notifications-list{
         width: 100%;
         margin: auto;
@@ -63,3 +111,7 @@
        }
     }
 }
+=======
+  }
+}
+>>>>>>> bf0217403c5495cf2103f0d52af5b767e277bf22

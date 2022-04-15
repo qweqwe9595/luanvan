@@ -169,9 +169,6 @@ function Post({ postInfo, setRefreshPosts }) {
       )}
 
       {openUpdate ? <UpdatePost setOpenUpdate={setOpenUpdate} post={postInfo}></UpdatePost> : ""}
-
-
-
       <div className="post-meta">
         <div className="post-meta-left">
           <div className="post-meta-left-avatar">

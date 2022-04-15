@@ -36,16 +36,18 @@ function Options() {
         </Link>
         <hr className="hr" />
         <Link to={"/job"}>
-        <div className="tag">
-          <FaUserTie className="tag-icon" />
-          <span>Thực tập tuyển dụng</span>
-        </div>
+          <div className="tag">
+            <FaUserTie className="tag-icon" />
+            <span>Thực tập tuyển dụng</span>
+          </div>
         </Link>
         <hr className="hr" />
-        <div className="tag">
-          <FaBook className="tag-icon" />
-          <span>Tài liệu</span>
-        </div>
+        <Link to={"/document"}>
+          <div className="tag">
+            <FaBook className="tag-icon" />
+            <span>Tài liệu</span>
+          </div>
+        </Link>
       </div>
     </div>
   );

@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import "./EventTag.scss";
 import axios from "axios";
-
-function EventTag(eventI) {
-  const user = localStorage.getItem("userID");
+import { UserContext } from "../../context/userContext";
+function EventTag({ eventI, setEventId }) {
+  const [user] = useContext(UserContext);
   const [join, setJoin] = useState(
-    eventI.eventI.joins.some((item) => item === user)
+    eventI.joins.some((item) => item === user?._Id)
   );
-
   const joinEvent = () => {
     axios
       .post(
         `http://localhost:5000/api/events/join `,
         {
-          eventId: eventI.eventI._id,
+          eventId: eventI._id,
         },
         {
           headers: {
@@ -27,6 +26,24 @@ function EventTag(eventI) {
         setJoin(true);
       })
       .catch((err) => {});
+  };
+
+  const xoaEvent = () => {
+    axios
+      .delete(`http://localhost:5000/api/events/deleteOne`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: {
+          eventId: eventI._id,
+        },
+      })
+      .then((res) => {
+        alert("đã xóa thành công");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const notjoins = () => {
@@ -50,48 +67,54 @@ function EventTag(eventI) {
   return (
     <div className="event_tag">
       <img
-        src={`http://localhost:5000/images/${eventI?.eventI?.img}`}
+        src={`http://localhost:5000/images/${eventI?.img}`}
         className="cover"
       ></img>
       <div className="time">
-        {eventI?.eventI?.startTime ? (
-          <span>{eventI.eventI.startTime}</span>
-        ) : (
-          ""
-        )}
+        {eventI?.startTime ? <span>{eventI.startTime}</span> : ""}
       </div>
-      <Link to={`/eventContent/${eventI.eventI._id}`}>
+      <Link to={`/eventContent/${eventI._id}`}>
         <div className="title">
-          {eventI?.eventI?.eventName ? (
-            <span>{eventI.eventI.eventName}</span>
-          ) : (
-            "không có tên"
-          )}
+          {eventI?.eventName ? <span>{eventI.eventName}</span> : "không có tên"}
         </div>
       </Link>
-      <div className="button_join">
-        {join ? (
+      <div className="button">
+        <div className="button_join">
+          {join ? (
+            <button
+              onClick={() => {
+                notjoins();
+              }}
+            >
+              <div className="join">
+                <AiTwotoneStar className="icon_join" />
+                <span>Đã tham gia</span>
+              </div>
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                joinEvent();
+              }}
+            >
+              <div className="join">
+                <AiOutlineStar className="icon_join" />
+                <span>Tham gia</span>
+              </div>
+            </button>
+          )}
+        </div>
+        {user?.isAdmin ? (
           <button
+            className="button_delete"
             onClick={() => {
-              notjoins();
+              xoaEvent(eventI._id);
             }}
           >
-            <div className="join">
-              <AiTwotoneStar className="icon_join" />
-              <span>Đã tham gia</span>
-            </div>
+            Xóa sự kiện
           </button>
         ) : (
-          <button
-            onClick={() => {
-              joinEvent();
-            }}
-          >
-            <div className="join">
-              <AiOutlineStar className="icon_join" />
-              <span>Tham gia</span>
-            </div>
-          </button>
+          ""
         )}
       </div>
     </div>

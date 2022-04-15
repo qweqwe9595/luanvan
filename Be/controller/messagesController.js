@@ -55,7 +55,7 @@ const updateOne = async (req, res) => {
     const messageQuery = await messagesModel.findByIdAndUpdate(
       req.params.id,
       {
-        $set: { text: req.body.text, file: req?.file.filename },
+        $set: { text: req.body.text, file: req?.file?.filename },
       },
       { new: true }
     );

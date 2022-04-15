@@ -45,7 +45,8 @@ function UserIntro({ setOpen }) {
     getUserInfo();
   }, []);
 
-  const UserIntro = () => {
+  const UserIntro = (e) => {
+    e.preventDefault();
     if (
       userName === "" ||
       MSSV === "" ||
@@ -64,7 +65,7 @@ function UserIntro({ setOpen }) {
         userId: param.userId,
         userName,
         MSSV,
-        major: { class: Class, majorName, yearKey },
+        major: { class: Class, majorName },
         dateOfBirth: dateFormat,
         address: { city, distrist },
       })

@@ -9,8 +9,7 @@ function Event() {
   const [open, setOpen] = useState(false);
   const [eventDetails, setEventDetails] = useState([]);
   const [user] = useContext(UserContext);
-
-  console.log(user);
+  const [eventId, setEventId] = useState("");
   useEffect(() => {
     axios
       .get(
@@ -25,8 +24,34 @@ function Event() {
       .then((res) => {
         setEventDetails(res.data.eventsQuery);
       })
-      .catch((err) => { });
+      .catch((err) => {});
   }, [open]);
+  // xoa sự kiện //
+  // useEffect(() => {
+  //   if (eventId === "") {
+  //     return;
+  //   }
+  //   axios
+  //     .delete(
+  //       `http://localhost:5000/api/events/deleteOne`,
+  //       {
+  //         eventId,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + localStorage.getItem("token"),
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       alert("đã xóa thành công");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [eventId]);
+  console.log(eventId);
+
   return (
     <div className="event_container">
       <Nav></Nav>
@@ -46,9 +71,16 @@ function Event() {
         </div>
       </div>
       <div className="center_event">
-        {eventDetails?.reverse().map((eventI, index) => (
-          <EventTag eventI={eventI} key={index}></EventTag>
-        ))}
+        {eventDetails?.map((eventId, index) => {
+          
+          return (
+            <EventTag
+              eventI={eventId}
+              setEventId={setEventId}
+              key={index}
+            ></EventTag>
+          );
+        })}
       </div>
 
       {open ? <CreateNewEvent setOpen={setOpen}></CreateNewEvent> : ""}
