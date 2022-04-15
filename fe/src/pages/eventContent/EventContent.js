@@ -7,7 +7,9 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { SocketContext } from "../../context/SocketContext";
 import { UserContext } from "../../context/userContext";
+import EditEvent from "../../component/editEvent/EditEvent";
 function EventContent() {
+  const [open, setOpen] = useState(false);
   const param = useParams();
   const [events, setEvents] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,7 +31,7 @@ function EventContent() {
       )
       .then((res) => {
         setEvents(res.data.eventsQuery);
-        setJoin(res.data.eventsQuery.joins.some((item) => item === user._Id));
+        setJoin(res.data.eventsQuery.joins.some((item) => item === user._id));
         setNumjoins(res.data.eventsQuery.joins.length);
       })
       .catch((err) => {});
@@ -143,14 +145,18 @@ function EventContent() {
           <button className="invite">
             Mời
           </button>
-            
-          <button className="delete_event">
+          <button className="delete_event"
+          onClick={()=>{setOpen(!open)}}>
             Chỉnh sửa
           </button>      
           </div>
         
       </div>
-
+       {open ? (
+        <EditEvent
+          setOpen={setOpen}
+        events={events}></EditEvent>
+          ) :""}
       <div className="event_details">
         <div className="details_header">
           <span>Chi tiết sự kiện</span>

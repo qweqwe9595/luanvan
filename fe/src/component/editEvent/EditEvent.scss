@@ -1,4 +1,4 @@
-  .show_create_event {
+  .show_edit_event {
       position        : fixed;
       width           : 100vw;
       height          : 100vh;
@@ -9,9 +9,9 @@
 
   }
 
-  .create_event {
+  .edit_event {
       width            : 50%;
-      min-width        : 400px;
+      min-width        : 450px;
       height           : auto;
       color            : #0D47A1;
       box-shadow       : 0px 2px 10px 0px #00000040;
