@@ -188,7 +188,6 @@ function EventContent() {
           )}
         </div>
       </div>
-
       <div className="invite_event">
         <span>Khách mời</span>
         <div className="search">

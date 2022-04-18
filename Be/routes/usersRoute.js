@@ -3,6 +3,7 @@ const { status } = require("express/lib/response");
 const { findById } = require("../model/usersModel");
 const userModal = require("../model/usersModel");
 const multer = require("multer");
+const authenticateToken = require("../middleWare/authJWT");
 
 //multer
 const storage = multer.diskStorage({
@@ -28,6 +29,9 @@ const {
   uploadAvatar,
   uploadBackground,
   addNotification,
+  saveDoc,
+  saveEvent,
+  savePost,
 } = require("../controller/usersController");
 
 //searching user
@@ -48,13 +52,18 @@ router.patch("/add/:id", addFriend);
 //accept friend
 router.patch("/accept/:id", acceptFriend);
 
-//update user
-router.patch("/:id", updateAUser);
-
 //unfriend
 router.patch("/unfriend/:id", unFriend);
 //refuseFriendRequest
 router.patch("/refuse/:id", refuseFriendRequest);
+//save posts
+router.patch("/savepost", authenticateToken, savePost);
+//save events
+router.patch("/saveevent", authenticateToken, saveEvent);
+//save docs
+router.patch("/savedoc", authenticateToken, saveDoc);
+//update user
+router.patch("/:id", updateAUser);
 
 //delete user
 router.delete("/:id", deleteAUser);
