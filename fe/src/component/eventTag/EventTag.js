@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 import "./EventTag.scss";
@@ -7,8 +7,9 @@ import { UserContext } from "../../context/userContext";
 function EventTag({ eventI, setEventId }) {
   const [user] = useContext(UserContext);
   const [join, setJoin] = useState(
-    eventI.joins.some((item) => item === user._id)
+    eventI.joins.some((item) => item === user?._id)
   );
+
   const joinEvent = () => {
     axios
       .post(

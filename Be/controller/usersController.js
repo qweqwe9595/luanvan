@@ -244,6 +244,7 @@ const refuseFriendRequest = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
 const uploadAvatar = async (req, res) => {
   try {
     const updateUser = await userModal.findById(req.params.id);
@@ -254,6 +255,7 @@ const uploadAvatar = async (req, res) => {
     res.status(500).json(err.message);
   }
 };
+
 const uploadBackground = async (req, res) => {
   try {
     const updateUser = await userModal.findById(req.params.id);
@@ -278,6 +280,46 @@ const addNotification = async (req, res) => {
   }
 };
 
+const saveDoc = async (req, res) => {
+  try {
+    const updateUser = await userModal.findById(req.user._id);
+    if (updateUser.saveDocs.includes(req.body.docId))
+      return res.status(500).json({ message: "already have" });
+    await updateUser.saveDocs.unshift(req.body.docId);
+    const save = await updateUser.save();
+
+    res.status(200).json({ message: "thanh cong", save });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+const saveEvent = async (req, res) => {
+  try {
+    const updateUser = await userModal.findById(req.user._id);
+    if (updateUser.saveEvents.includes(req.body.eventId))
+      return res.status(500).json({ message: "already have" });
+    await updateUser.saveEvents.unshift(req.body.eventId);
+    const save = await updateUser.save();
+    res.status(200).json({ message: "thanh cong", save });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+const savePost = async (req, res) => {
+  try {
+    const updateUser = await userModal.findById(req.user._id);
+    if (updateUser.savePosts.includes(req.body.postId))
+      return res.status(500).json({ message: "already have" });
+    await updateUser.savePosts.unshift(req.body.postId);
+    const save = await updateUser.save();
+    res.status(200).json({ message: "thanh cong", save });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
 module.exports = {
   searchingUser,
   getAUser,
@@ -292,4 +334,7 @@ module.exports = {
   uploadAvatar,
   uploadBackground,
   addNotification,
+  saveDoc,
+  saveEvent,
+  savePost,
 };

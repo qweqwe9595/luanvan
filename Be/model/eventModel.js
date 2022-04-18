@@ -15,7 +15,6 @@ const eventsSchema = new mongoose.Schema(
       lowercase: true,
     },
     joins: [{ type: String, ref: "usersModal" }],
-
     img: {
       type: String,
       default: "defaultEvent.jpg",

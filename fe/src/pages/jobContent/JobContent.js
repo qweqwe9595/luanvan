@@ -6,8 +6,10 @@ import Nav from "../../component/nav/Nav";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { SocketContext } from "../../context/SocketContext";
+import EditJob from "../../component/editJob/EditJob";
 function JobContent() {
   const param = useParams();
+  const [open, setOpen] = useState(false);
   const [jobs, setJobs] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState([]);
@@ -45,9 +47,26 @@ function JobContent() {
       .catch((err) => {});
   }, [searchTerm]);
 
-
+  const deleteJob = () => {
+    axios
+      .delete("http://localhost:5000/api/jobs/deleteOne", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        jobId: jobs._Id
+      }
+    })
+      .then((res) => {
+        alert("delete thanh cong");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  };
   return (
-    <div className="jobcontent">
+    
+    <div className="jobcontent">       
       <Nav></Nav>
       <div className="job_header">
         <img
@@ -57,23 +76,33 @@ function JobContent() {
         <div className="title">
           {jobs?.jobName ? <span>{jobs.jobName}</span> : ""}
         </div>
+        <div className="button-options">
+            <button className="job-button" onClick={()=>{setOpen(!open)}}>Chỉnh sửa</button>
+            <Link to={"/job"}>
+              <button className="job-button" onClick={()=>{deleteJob()}}>Xóa</button>
+            </Link>
+        </div>
       </div>
-
+      {open ? (
+        <EditJob
+          setOpen={setOpen}
+        jobs={jobs}></EditJob>
+          ) :""}
       <div className="job_details">
         <div className="details_header">
           <span>Chi tiết tuyển dụng</span>
         </div>
         <div className="details">
           {jobs?.desc ? (
-            <span>Nội dung: {jobs.desc}</span>
+            <span><b>Nội dung:</b> {jobs.desc}</span>
           ) : (
             <span>không có nội dung</span>
           )}
 
-          {jobs?.location ? <span>Địa điểm: {jobs.location}</span> : ""}
+          {jobs?.location ? <span><b>Địa điểm:</b> {jobs.location}</span> : ""}
           {jobs?.participants ? (
             <span>
-              Đối tượng tham gia: {""}
+              <b>Đối tượng tham gia:</b> {""}
               {jobs.participants}
             </span>
           ) : (
@@ -81,7 +110,7 @@ function JobContent() {
           )}
           {jobs?.link ? (
             <span>
-              Xem chi tiết tại:<a href={jobs?.link}>{jobs.link}</a>
+              <b>Xem chi tiết tại:</b><a href={jobs?.link}>{jobs.link}</a>
             </span>
           ) : (
             ""

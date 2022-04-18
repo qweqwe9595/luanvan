@@ -72,7 +72,7 @@ function EventContent() {
   const notjoins = () => {
     axios
       .post(
-        `http://localhost:5000/api/events/join `,
+        `http://localhost:5000/api/events/join`,
         {
           eventId: events._id,
         },
@@ -142,21 +142,18 @@ function EventContent() {
             </button>
           )}
 
-          <button className="invite">
-            Mời
-          </button>
-          <button className="delete_event"
-          onClick={()=>{setOpen(!open)}}>
+          <button className="invite">Mời</button>
+          <button
+            className="delete_event"
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
             Chỉnh sửa
-          </button>      
-          </div>
-        
+          </button>
+        </div>
       </div>
-       {open ? (
-        <EditEvent
-          setOpen={setOpen}
-        events={events}></EditEvent>
-          ) :""}
+      {open ? <EditEvent setOpen={setOpen} events={events}></EditEvent> : ""}
       <div className="event_details">
         <div className="details_header">
           <span>Chi tiết sự kiện</span>
@@ -170,13 +167,9 @@ function EventContent() {
           )}
         </div>
         <div className="details">
-          {events?.desc ? (
-            <span>{events.desc}</span>
-          ) :""}
+          {events?.desc ? <span>{events.desc}</span> : ""}
 
-          {events?.startTime ? (
-            <span>{events.startTime}</span>
-          ) :""}
+          {events?.startTime ? <span>{events.startTime}</span> : ""}
           {events?.location ? <span>Địa điểm: {events.location}</span> : ""}
           {events?.participants ? (
             <span>
@@ -195,7 +188,6 @@ function EventContent() {
           )}
         </div>
       </div>
-
       <div className="invite_event">
         <span>Khách mời</span>
         <div className="search">
