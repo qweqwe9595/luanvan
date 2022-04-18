@@ -6,7 +6,7 @@ import { RiMapPinFill } from "react-icons/ri";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
 function EditEvent({ setOpen, events }) {
-  const [startTime, setStartTime] = useState(events?.startTime);
+  const [startTime, setStartTime] = useState( new Date(events?.startTime).toLocaleDateString("en-US"));
   const [eventName, setEventName] = useState(events?.eventName);
   const [desc, setDesc] = useState(events?.desc);
   const [location, setLocation] = useState(events?.location);
@@ -91,7 +91,7 @@ function EditEvent({ setOpen, events }) {
           <div className="time_event">
             <div className="starttime">
               <input
-                type="date"
+                type="text"
                 placeholder="Thời gian bất đầu"
                 value={startTime}
                 onChange={(e) => {

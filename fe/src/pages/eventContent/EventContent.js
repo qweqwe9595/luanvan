@@ -110,7 +110,7 @@ function EventContent() {
           className="cover"
         ></img>
         <div className="time">
-          {events?.startTime ? <span>{events.startTime}</span> : "không có"}
+          {events?.startTime ? <span>{new Date(events?.startTime).toLocaleDateString("en-US")}</span> : ""}
         </div>
         <div className="title">
           {events?.eventName ? <span>{events.eventName}</span> : ""}

@@ -4,9 +4,13 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/userContext";
 
 function Contacts({ onlineFriends }) {
+  console.log(onlineFriends);
   return (
-    <div className="contacts">
-      <p>Bạn bè</p>
+    <>
+      {
+      onlineFriends?.length !==0 ?(
+      <div className="contacts">
+      <p>Đang hoạt động</p>
       {onlineFriends.map((friend, index) => (
         <div key={index} className="contacts_tag">
           <img
@@ -25,6 +29,8 @@ function Contacts({ onlineFriends }) {
         </div>
       ))}
     </div>
+    ) :""}
+  </>  
   );
 }
 export default Contacts;

@@ -123,3 +123,20 @@
         }
     }
 }
+
+@media all and(max-width: 600px) {
+    .docTag {
+        width      : 100%;
+        height     : auto;
+        padding-top: 80px;
+        font-family: "oswald";
+
+        .docTag_title {
+            width           : 95%;
+            margin          : auto;
+            background-color: #ffff;
+            padding         : 30px;
+            border-radius   : 12px;
+        }
+    }
+}

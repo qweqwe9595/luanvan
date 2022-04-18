@@ -72,7 +72,7 @@ function EventTag({ eventI, setEventId }) {
         className="cover"
       ></img>
       <div className="time">
-        {eventI?.startTime ? <span>{eventI.startTime}</span> : ""}
+        {eventI?.startTime ? <span>{new Date(eventI.startTime).toLocaleDateString("en-US")}</span> : ""}
       </div>
       <Link to={`/eventContent/${eventI._id}`}>
         <div className="title">

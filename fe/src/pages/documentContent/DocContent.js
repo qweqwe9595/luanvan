@@ -25,7 +25,7 @@ function DocContent() {
       <div className="docTag_title">
         <div className="doc_header">
           <div className="doc_header_left">
-            <p>{}</p>
+            <p>{doc?.docName}</p>
             <span>thời gian</span>
           </div>
           <div className="button">

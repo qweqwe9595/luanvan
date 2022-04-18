@@ -47,8 +47,7 @@ function CreateNewEvent({ setOpen }) {
   };
   return (
     <>
-      <div
-        className="show_create_event"
+      <div className="show_create_event"
         onClick={() => {
           setOpen(false);
         }}
@@ -77,6 +76,7 @@ function CreateNewEvent({ setOpen }) {
             id="file-upload"
             type="file"
             name="photo"
+            accept="image/*"
             onChange={function (e) {
               if (e.target.files[0]) {
                 setPreviewUrl(URL.createObjectURL(e.target.files[0]));
@@ -110,7 +110,7 @@ function CreateNewEvent({ setOpen }) {
                 }}
                 placeholder="Khoảng thời gian diễn ra sự kiện"
               ></input>
-              giây
+              phút
             </div>
           </div>
           <div className="item_details">
