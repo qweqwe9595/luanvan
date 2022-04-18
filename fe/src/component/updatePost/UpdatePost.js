@@ -48,7 +48,7 @@ function UpdatePost({ setOpenUpdate, post }) {
       </div>     
 
       <div className="update_details">
-        <div className="item_details">
+        <div className="item_details-desc">
           <input
             type="text"
             placeholder="Nội dung cập nhật..."
@@ -57,29 +57,26 @@ function UpdatePost({ setOpenUpdate, post }) {
                 setDesc(e.target.value);
             }}
           ></input>
-          <BsPenFill></BsPenFill>
         </div>
-        <div className="item_details">
+        <div className="item_details-img">
         <input
           id="file-upload"
           type="file"
           name="photo"
-          onChange={function (e) {
-            {console.log(e.target.files[0]);
-            console.log(fileRef)}
+          onChange={function (e) {  
             if (e.target.files[0] !== fileRef) {
               setPreviewUrl(URL.createObjectURL(e.target.files[0]));
               setFileRef(e.target.files[0]);
             }
           }}
         />
-          <BsPenFill></BsPenFill>
         </div>
         <div className="pic_cover">
-        {previewURL ? (
+        {previewURL !== "http://localhost:5000/images/null" ? (
           <img className="cover" src={previewURL} alt=""></img>
         ) : (
-          <BsImages></BsImages>
+          // <BsImages></BsImages>
+          ""
         )}
         </div>
         <div className="button_update">

@@ -22,7 +22,7 @@ function Job() {
         }
       )
       .then((res) => {
-        setJobDetails(res.data.jobsQuery);
+        setJobDetails(res.data.jobsQuery.reverse());
       })
       .catch((err) => { });
   }, [open]);

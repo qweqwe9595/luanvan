@@ -22,7 +22,7 @@ function Event() {
         }
       )
       .then((res) => {
-        setEventDetails(res.data.eventsQuery);
+        setEventDetails(res.data.eventsQuery.reverse());
       })
       .catch((err) => {});
   }, [open,eventId]);

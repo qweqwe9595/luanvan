@@ -44,7 +44,7 @@ function Post({ postInfo, setRefreshPosts }) {
 
   useEffect(() => {
     if (Object.keys(postInfo).length === 0) return;
-    if (postInfo.likes.includes(loginUser)) {
+    if (postInfo?.likes.includes(loginUser)) {
       setIsLike(true);
     }
     const getComment = () => {
@@ -144,7 +144,7 @@ function Post({ postInfo, setRefreshPosts }) {
             onClick={() => setOpenOptions(!openOptions)}
           ></div>
           <ul className="post-meta-right-show-items">
-            {postInfo.userId._id.includes(loginUser) || user?.isAdmin ? (
+            {postInfo?.userId?._id.includes(loginUser) || user?.isAdmin ? (
               <li
                 onClick={() => {
                   setOpenUpdate(!openUpdate);
@@ -275,7 +275,7 @@ function Post({ postInfo, setRefreshPosts }) {
           <p>{commentNumber} bình luận</p>
         </div>
         <div className="post-interaction-length-share">
-          {/* <FiShare2 style={iconStyles}></FiShare2> */}
+          <p>0 chia sẻ</p>
         </div>
       </div>
       <div className="post-interaction">
