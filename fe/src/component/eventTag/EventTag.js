@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
+import { MdStarOutline, MdStar } from "react-icons/md";
+
 import "./EventTag.scss";
 import axios from "axios";
 import { UserContext } from "../../context/userContext";
@@ -53,7 +54,7 @@ function EventTag({ eventI, setEventId }) {
       .post(
         `http://localhost:5000/api/events/join `,
         {
-          eventId: eventI.eventI._id,
+          eventId: eventI._id,
         },
         {
           headers: {
@@ -73,11 +74,15 @@ function EventTag({ eventI, setEventId }) {
         className="cover"
       ></img>
       <div className="time">
-        {eventI?.startTime ? <span>{new Date(eventI.startTime).toLocaleDateString("en-US")}</span> : ""}
+        {eventI?.startTime ? (
+          <span>{new Date(eventI.startTime).toLocaleDateString("en-US")}</span>
+        ) : (
+          ""
+        )}
       </div>
-      <Link to={`/eventContent/${eventI._id}`}>
+      <Link to={`/eventContent/${eventI?._id}`}>
         <div className="title">
-          {eventI?.eventName ? <span>{eventI.eventName}</span> : "không có tên"}
+          {eventI?.eventName ? <span>{eventI?.eventName}</span> : "eventName"}
         </div>
       </Link>
       <div className="button">
@@ -89,7 +94,7 @@ function EventTag({ eventI, setEventId }) {
               }}
             >
               <div className="join">
-                <AiTwotoneStar className="icon_join" />
+                <MdStar className="icon_join" />
                 <span>Đã tham gia</span>
               </div>
             </button>
@@ -100,7 +105,7 @@ function EventTag({ eventI, setEventId }) {
               }}
             >
               <div className="join">
-                <AiOutlineStar className="icon_join" />
+                <MdStarOutline className="icon_join" />
                 <span>Tham gia</span>
               </div>
             </button>

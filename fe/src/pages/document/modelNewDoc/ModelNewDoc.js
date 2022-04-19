@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function ModelNewDoc({ setModelApprove }) {
   const [alldocument, setAllDocument] = useState([]);
+  const [reLoad, setReLoad] = useState(false);
   useEffect(() => {
     axios
       .get(
@@ -18,16 +19,21 @@ function ModelNewDoc({ setModelApprove }) {
       .catch((err) => {
         console.log(err.response);
       });
-  }, []);
+  }, [reLoad]);
   const sentApprose = (Doc_id) => {
     axios
-      .patch(`http://localhost:5000/api/documents/approveone/${Doc_id}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
+      .patch(
+        `http://localhost:5000/api/documents/approveone/${Doc_id}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
       .then((res) => {
         alert("đã duyệt thành công");
+        setReLoad(!reLoad);
       })
       .catch((err) => {
         console.log(err.message);
@@ -35,16 +41,18 @@ function ModelNewDoc({ setModelApprove }) {
   };
   const sentUnApprose = (Doc_id) => {
     axios
-      .patch(`http://localhost:5000/api/documents/unapproveone/${Doc_id}`, {
+      .delete(`http://localhost:5000/api/documents/delete/${Doc_id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
+        data: {},
       })
       .then((res) => {
         alert("đã từ chối");
+        setReLoad(!reLoad);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       });
   };
   return (
@@ -66,46 +74,48 @@ function ModelNewDoc({ setModelApprove }) {
             X
           </button>
         </div>
-        {alldocument?.map((document, index) => {
-          if (document.isApproved === true) {
-            return;
-          }
-          return (
-            <div className="document_tag" key={index}>
-              <img
-                src={`http://localhost:5000/images/${document?.img}`}
-                className="document_tag_cover"
-              />
-              <p>
-                <Link to={`/docContent/${document._id}`}>
-                  {document?.docName}
-                </Link>
-              </p>
-              <div className="author">
-                <b>Tác giả:</b>
-                <span>{document?.userId?.userName}</span>
+        <div className="model_new_body">
+          {alldocument?.map((document, index) => {
+            if (document.isApproved === true) {
+              return;
+            }
+            return (
+              <div className="document_tag" key={index}>
+                <img
+                  src={`http://localhost:5000/images/${document?.img}`}
+                  className="document_tag_cover"
+                />
+                <p>
+                  <Link to={`/docContent/${document._id}`}>
+                    {document?.docName}
+                  </Link>
+                </p>
+                <div className="author">
+                  <b>Tác giả:</b>
+                  <span>{document?.userId?.userName}</span>
+                </div>
+                <div className="button_approve_unapprove">
+                  <button
+                    className="approve"
+                    onClick={() => {
+                      sentApprose(document?._id);
+                    }}
+                  >
+                    Duyệt
+                  </button>
+                  <button
+                    className="unapprove"
+                    onClick={() => {
+                      sentUnApprose(document?._id);
+                    }}
+                  >
+                    Từ chuối
+                  </button>
+                </div>
               </div>
-              <div className="button_approve_unapprove">
-                <button
-                  className="approve"
-                  onClick={() => {
-                    sentApprose(document?._id);
-                  }}
-                >
-                  Duyệt
-                </button>
-                <button
-                  className="unapprove"
-                  onClick={() => {
-                    sentUnApprose(document?._id);
-                  }}
-                >
-                  Từ chuối
-                </button>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </>
   );

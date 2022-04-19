@@ -21,9 +21,10 @@
                 flex: 1;
 
                 &>p {
-                    font-size  : 22px;
-                    font-weight: bold;
-                    font-family: "oswald";
+                    font-size     : 22px;
+                    font-weight   : bold;
+                    font-family   : "oswald";
+                    text-transform: uppercase;
                 }
 
                 &>span {

@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 function SearchResults() {
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
-  let usertest;
+
   return (
     <div>
       <Nav></Nav>
@@ -64,21 +64,22 @@ function SearchResults() {
               return (
                 <div className="People_tag" key={people._id}>
                   <div className="img-info">
-                    {people?.photos?.avatar?.length !== 0? (
-                        <img
-                      src={`http://localhost:5000/images/${
-                        people?.photos?.avatar[
-                          people?.photos?.avatar?.length - 1
-                        ]
-                      }`}
-                      className="avt"
-                    ></img>
+                    {people?.photos?.avatar?.length !== 0 ? (
+                      <img
+                        src={`http://localhost:5000/images/${
+                          people?.photos?.avatar[
+                            people?.photos?.avatar?.length - 1
+                          ]
+                        }`}
+                        className="avt"
+                      ></img>
                     ) : (
-                        <img
-                          className="avt"
-                          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+                      <img
+                        className="avt"
+                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                      />
                     )}
-                  
+
                     <div className="people_info">
                       <Link to={`/profile/${people._id}`} className="link">
                         <p>{people.userName}</p>
@@ -94,7 +95,7 @@ function SearchResults() {
                           : "0 người theo dõi"}{" "}
                         người theo dõi
                       </span>
-                      {/* <span> {people.address ? people.address.city : ""}</span> */}
+                      <span> {people.address ? people.address.city : ""}</span>
                     </div>
                   </div>
                   {people._id === userIdCurrent ? (

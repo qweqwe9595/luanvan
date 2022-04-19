@@ -143,40 +143,48 @@ function Nav() {
       </div>
 
       {open ? (
-        <div className="account">
-          <Link to={`/profile/${currentUserId}`}>
-            <div className="user">
-              {avt === 0 ? (
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
-              ) : (
-                <img
-                  src={`http://localhost:5000/images/${
-                    userInfo?.photos?.avatar[
-                      userInfo?.photos?.avatar?.length - 1
-                    ]
-                  }`}
-                />
-              )}
-              <div className="infouser">
-                <span>{userInfo.userName ? userInfo.userName : ""}</span>
-                <p>Xem trang cá nhân của bạn </p>
-              </div>
-            </div>
-          </Link>
-
-          <hr></hr>
+        <>
           <div
-            className="signout"
+            className="show_optional"
             onClick={() => {
-              logOut();
+              setOpen(false);
             }}
-          >
-            <div className="icon-signout">
-              <GoSignOut></GoSignOut>
+          ></div>
+          <div className="optional">
+            <Link to={`/profile/${currentUserId}`}>
+              <div className="user">
+                {avt === 0 ? (
+                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
+                ) : (
+                  <img
+                    src={`http://localhost:5000/images/${
+                      userInfo?.photos?.avatar[
+                        userInfo?.photos?.avatar?.length - 1
+                      ]
+                    }`}
+                  />
+                )}
+                <div className="infouser">
+                  <span>{userInfo.userName ? userInfo.userName : ""}</span>
+                  <p>Xem trang cá nhân của bạn </p>
+                </div>
+              </div>
+            </Link>
+
+            <hr></hr>
+            <div
+              className="signout"
+              onClick={() => {
+                logOut();
+              }}
+            >
+              <div className="icon-signout">
+                <GoSignOut></GoSignOut>
+              </div>
+              <span>Đăng xuất</span>
             </div>
-            <span>Đăng xuất</span>
           </div>
-        </div>
+        </>
       ) : (
         ""
       )}

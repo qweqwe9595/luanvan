@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./EventContent.scss";
-import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
+import { MdStarOutline, MdStar } from "react-icons/md";
 import { BsPeopleFill, BsSearch } from "react-icons/bs";
 import Nav from "../../component/nav/Nav";
 import { Link, useParams } from "react-router-dom";
@@ -21,7 +21,7 @@ function EventContent() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/events/getOne/${param.id} `,
+        `http://localhost:5000/api/events/getOne/${param?.id} `,
         {},
         {
           headers: {
@@ -34,7 +34,9 @@ function EventContent() {
         setJoin(res.data.eventsQuery.joins.some((item) => item === user._id));
         setNumjoins(res.data.eventsQuery.joins.length);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   useEffect(() => {
     if (searchTerm === "") {
@@ -106,14 +108,20 @@ function EventContent() {
       <Nav></Nav>
       <div className="event_header">
         <img
-          src={`http://localhost:5000/images/${events.img}`}
+          src={`http://localhost:5000/images/${events?.img}`}
           className="cover"
         ></img>
         <div className="time">
-          {events?.startTime ? <span>{new Date(events?.startTime).toLocaleDateString("en-US")}</span> : ""}
+          {events?.startTime ? (
+            <span>
+              {new Date(events?.startTime).toLocaleDateString("en-US")}
+            </span>
+          ) : (
+            ""
+          )}
         </div>
         <div className="title">
-          {events?.eventName ? <span>{events.eventName}</span> : ""}
+          {events?.eventName ? <span>{events?.eventName}</span> : ""}
         </div>
         <div className="button_event">
           {join ? (
@@ -124,7 +132,7 @@ function EventContent() {
               }}
             >
               <div className="join">
-                <AiTwotoneStar className="icon_join" />
+                <MdStar className="icon_join" />
                 <span>Đã tham gia</span>
               </div>
             </button>
@@ -136,7 +144,7 @@ function EventContent() {
               }}
             >
               <div className="join">
-                <AiOutlineStar className="icon_join" />
+                <MdStarOutline className="icon_join" />
                 <span>Tham gia</span>
               </div>
             </button>
@@ -179,9 +187,9 @@ function EventContent() {
           ) : (
             ""
           )}
-          {events?.link ? (
+          {events ? (
             <span>
-              Xem chi tiết tại: <a href="{events.link}">{events.link}</a>
+              Xem chi tiết tại: <a href={events?.link}>{events?.link}</a>
             </span>
           ) : (
             ""
