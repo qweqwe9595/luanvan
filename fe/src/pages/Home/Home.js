@@ -30,7 +30,6 @@ function Home({ onlineFriends }) {
     };
     getUserPost();
   }, [refreshPosts]);
-  console.log(userPosts);
   return (
     <div className="home">
       <Nav></Nav>

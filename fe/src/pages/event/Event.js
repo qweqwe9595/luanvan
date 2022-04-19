@@ -25,10 +25,7 @@ function Event() {
         setEventDetails(res.data.eventsQuery.reverse());
       })
       .catch((err) => {});
-  }, [open,eventId]);
-
-  console.log(eventId);
-
+  }, [open, eventId]);
   return (
     <div className="event_container">
       <Nav></Nav>
@@ -49,7 +46,6 @@ function Event() {
       </div>
       <div className="center_event">
         {eventDetails?.map((eventId, index) => {
-          
           return (
             <EventTag
               eventI={eventId}

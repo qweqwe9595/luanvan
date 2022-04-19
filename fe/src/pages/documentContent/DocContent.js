@@ -1,24 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Nav from "../../component/nav/Nav";
 import "./DocContent.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../../context/userContext";
 function DocContent() {
   const param = useParams();
   const [doc, setDoc] = useState([]);
-  console.log(param);
+  const [user] = useContext(UserContext);
+  const [save, setSave] = useState(
+    user?.saveDocs?.some((item) => item === param?.id)
+  );
+  console.log(user);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/documents/getone/${param.id}`)
       .then((res) => {
         setDoc(res.data);
+        setSave(user?.saveDocs?.some((item) => item === param?.id));
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  console.log(doc);
-
+  console.log(save);
+  const saveDoc = (docId) => {
+    axios
+      .patch(
+        `http://localhost:5000/api/users/savedoc`,
+        {
+          docId,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => {
+        setSave(true);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <div className="docTag">
       <Nav></Nav>
@@ -26,10 +51,27 @@ function DocContent() {
         <div className="doc_header">
           <div className="doc_header_left">
             <p>{doc?.docName}</p>
-            <span>thời gian</span>
+            {/* <span>thời gian</span> */}
           </div>
           <div className="button">
-            <button className="save_doc">Lưu</button>
+            {user ? (
+              <>
+                {save ? (
+                  <button className="save_doc">Đã lưu</button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      saveDoc(doc?._id);
+                    }}
+                    className="save_doc"
+                  >
+                    Lưu
+                  </button>
+                )}
+              </>
+            ) : (
+              ""
+            )}
             <button className="down_doc">Tải xuống</button>
           </div>
         </div>
