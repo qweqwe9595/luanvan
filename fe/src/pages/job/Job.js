@@ -24,8 +24,9 @@ function Job() {
       .then((res) => {
         setJobDetails(res.data.jobsQuery.reverse());
       })
-      .catch((err) => { });
+      .catch((err) => {});
   }, [open]);
+  console.log(jobDetails);
   return (
     <div className="job_container">
       <Nav></Nav>
@@ -42,13 +43,13 @@ function Job() {
         )}
         <div className="item">
           <span>Tuyển dụng hiện tại</span>
-        </div>       
+        </div>
       </div>
       <div className="center_job">
         {jobDetails?.reverse().map((jobI, index) => (
           <JobTag jobI={jobI} key={index}></JobTag>
         ))}
-      </div>   
+      </div>
       {open ? <CreateNewJob setOpen={setOpen}></CreateNewJob> : ""}
     </div>
   );

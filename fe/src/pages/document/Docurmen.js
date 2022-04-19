@@ -28,7 +28,7 @@ function Docurmen() {
       .catch((err) => {
         console.log(err.response);
       });
-  }, [openCreateDoc]);
+  }, [openCreateDoc, openModelApprove]);
   return (
     <div className="document_container">
       <Nav></Nav>
@@ -43,8 +43,7 @@ function Docurmen() {
       )}
       {/* hiển thị tài liệu chưa được duyệt */}
       {openModelApprove ? (
-        <ModelNewDoc
-          setModelApprove={setModelApprove}></ModelNewDoc>
+        <ModelNewDoc setModelApprove={setModelApprove}></ModelNewDoc>
       ) : (
         ""
       )}

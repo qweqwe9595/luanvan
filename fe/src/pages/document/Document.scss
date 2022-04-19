@@ -152,12 +152,18 @@
                 }
 
                 &>p {
+                    padding-left  : 10px;
+                    padding-right : 10px;
+                    height        : 30px;
                     font-size     : 18px;
                     font-family   : "oswald";
                     text-align    : center;
-                    text-transform: capitalize;
+                    text-transform: uppercase;
                     font-weight   : bold;
                     cursor        : pointer;
+                    text-overflow : ellipsis;
+                    white-space   : nowrap;
+                    overflow      : hidden;
                 }
 
                 .author {
