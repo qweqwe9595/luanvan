@@ -39,6 +39,7 @@ function ModelNewDoc({ setModelApprove }) {
         console.log(err.message);
       });
   };
+
   const sentUnApprose = (Doc_id) => {
     axios
       .delete(`http://localhost:5000/api/documents/delete/${Doc_id}`, {

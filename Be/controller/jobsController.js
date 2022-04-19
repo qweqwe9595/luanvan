@@ -39,6 +39,7 @@ const createAJob = async (req, res) => {
 
 //update an event
 const updateAJob = async (req, res) => {
+  console.log(req.body.jobId);
   try {
     if (req.user.isAdmin === false)
       return res
@@ -51,7 +52,9 @@ const updateAJob = async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).json({ jobsQuery });
+    const jobsQuery2 = await jobsModel.findById(req.body.jobId);
+
+    res.status(200).json({ jobsQuery2 });
   } catch (error) {
     res.status(500).json(error.message);
   }
@@ -59,6 +62,7 @@ const updateAJob = async (req, res) => {
 
 const deleteAJob = async (req, res) => {
   try {
+    console.log(req.body.jobId);
     if (req.user.isAdmin === false)
       return res
         .status(400)

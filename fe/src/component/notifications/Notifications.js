@@ -4,6 +4,7 @@ import { SocketContext } from "../../context/SocketContext";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import dateFormat from "dateformat";
 
 function Notifications() {
   const socket = useContext(SocketContext);
@@ -32,73 +33,83 @@ function Notifications() {
     getUser();
   }, [user]);
 
-  console.log(notifications);
-  const a = new Date();
-  const b = new Date(notifications?.createdAt);
-  const timepost = (a - b) / 1000;
   return (
     <div className="notifications">
       <div className="notifications-title">
-        {(window.location.pathname !== "/notification")?(<h3>Thông báo gần đây</h3>):(<h3>Tất cả thông báo</h3>)}
+        {window.location.pathname !== "/notification" ? (
+          <h3>Thông báo gần đây</h3>
+        ) : (
+          <h3>Tất cả thông báo</h3>
+        )}
       </div>
       {notifications.length > 0 ? (
-        notifications?.map((item) => (
-          <div className="notifications-list">
-            <Link to={`${item.post}`}>
-              <div className="notifications-items">
-                <p>
-                  <Link to={`/profile/${item?.userId?._id}`}>
-                    <span className="username">
-                      {`${item?.userId?.userName}`}{" "}
+        notifications?.map((item) => {
+          const a = new Date();
+          const b = new Date(item?.createdAt);
+          const timepost = (a - b) / 1000;
+          return (
+            <div className="notifications-list">
+              <Link to={`${item.post}`}>
+                <div className="notifications-items">
+                  <p>
+                    <Link to={`/profile/${item?.userId?._id}`}>
+                      <span className="username">
+                        {`${item?.userId?.userName}`}{" "}
+                      </span>
+                    </Link>
+                    đã {`${item?.message}`} bài viết của bạn.
+                    <span>
+                      {(() => {
+                        switch (true) {
+                          case timepost < 60:
+                            return (
+                              <span>{Math.round(timepost)} giây trước</span>
+                            );
+                          case timepost >= 60 && timepost < 60 * 60:
+                            return (
+                              <span>
+                                {Math.round(timepost / 60)} phút trước
+                              </span>
+                            );
+                          case timepost >= 60 * 60 && timepost < 60 * 60 * 24:
+                            return (
+                              <span>
+                                {Math.round(timepost / (60 * 60))} giờ trước
+                              </span>
+                            );
+                          case timepost >= 60 * 60 * 24 &&
+                            timepost < 60 * 60 * 24 * 7:
+                            return (
+                              <span>
+                                {Math.round(timepost / (60 * 60 * 24))} ngày
+                                trước
+                              </span>
+                            );
+                          case timepost >= 60 * 60 * 24 * 7 &&
+                            timepost < 60 * 60 * 24 * 7 * 4:
+                            return (
+                              <span>
+                                {Math.round(timepost / (60 * 60 * 24 * 7))} tuần
+                                trước
+                              </span>
+                            );
+                          default:
+                            return (
+                              <span>
+                                {Math.round(timepost / (60 * 60 * 24 * 7 * 4))}{" "}
+                                tháng trước
+                                {timepost}
+                              </span>
+                            );
+                        }
+                      })()}
                     </span>
-                  </Link>
-                  đã {`${item?.message}`} bài viết của bạn. ---
-                  <span>
-                    {(() => {
-                      switch (true) {
-                        case timepost < 60:
-                          return <span>{Math.round(timepost)} giây trước</span>;
-                        case timepost >= 60 && timepost < 60 * 60:
-                          return (
-                            <span>{Math.round(timepost / 60)} phút trước</span>
-                          );
-                        case timepost >= 60 * 60 && timepost < 60 * 60 * 24:
-                          return (
-                            <span>
-                              {Math.round(timepost / (60 * 60))} giờ trước
-                            </span>
-                          );
-                        case timepost >= 60 * 60 * 24 &&
-                          timepost < 60 * 60 * 24 * 7:
-                          return (
-                            <span>
-                              {Math.round(timepost / (60 * 60 * 24))} ngày trước
-                            </span>
-                          );
-                        case timepost >= 60 * 60 * 24 * 7 &&
-                          timepost < 60 * 60 * 24 * 7 * 4:
-                          return (
-                            <span>
-                              {Math.round(timepost / (60 * 60 * 24 * 7))} tuần
-                              trước
-                            </span>
-                          );
-                        default:
-                          return (
-                            <span>
-                              {/* {Math.round(timepost / (60 * 60 * 24 * 7 * 4))} tháng
-                              trước */}
-                              {timepost}
-                            </span>
-                          );
-                      }
-                    })()}
-                  </span>
-                </p>
-              </div>
-            </Link>
-          </div>
-        ))
+                  </p>
+                </div>
+              </Link>
+            </div>
+          );
+        })
       ) : (
         <div className="none">Không có thông báo nào !</div>
       )}

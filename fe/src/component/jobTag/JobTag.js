@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./jobTag.scss";
+import dateFormat from "dateformat";
 
 function JobTag(jobI) {
   const time = new Date(jobI.jobI?.createdAt);
-  const timejob1 = time.getDay();
-  const timejob2 = time.getMonth();
-  const timejob3 = time.getFullYear();
   const user = localStorage.getItem("userID");
   return (
     <div className="job_tag">
       <img
         src={`http://localhost:5000/images/${jobI?.jobI?.img}`}
         className="cover"
-      ></img>
+        alt="asd"
+      />
       <Link to={`/jobContent/${jobI.jobI._id}`}>
         <div className="title">
           {jobI?.jobI?.jobName ? (
-            <span>{jobI.jobI.jobName}</span>            
+            <span>{jobI.jobI.jobName}</span>
           ) : (
             "không có tên"
           )}
         </div>
         <div className="timejob">
-          <p>Ngày đăng: {timejob1+"/"+timejob2+"/"+timejob3}</p>
+          <p>Ngày đăng: {new Date(time).toLocaleDateString("en-US")}</p>
         </div>
-        </Link>
+      </Link>
     </div>
   );
 }

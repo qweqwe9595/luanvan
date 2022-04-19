@@ -17,6 +17,7 @@ function JobContent() {
   const [numjoins, setNumjoins] = useState();
   const [join, setJoin] = useState();
   const socket = useContext(SocketContext);
+
   useEffect(() => {
     axios
       .get(
@@ -50,13 +51,13 @@ function JobContent() {
   const deleteJob = () => {
     axios
       .delete("http://localhost:5000/api/jobs/deleteOne", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      data: {
-        jobId: jobs._Id
-      }
-    })
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data: {
+          jobId: jobs._id,
+        },
+      })
       .then((res) => {
         alert("delete thanh cong");
       })
@@ -65,8 +66,7 @@ function JobContent() {
       });
   };
   return (
-    
-    <div className="jobcontent">       
+    <div className="jobcontent">
       <Nav></Nav>
       <div className="job_header">
         <img
@@ -77,29 +77,47 @@ function JobContent() {
           {jobs?.jobName ? <span>{jobs.jobName}</span> : ""}
         </div>
         <div className="button-options">
-            <button className="job-button" onClick={()=>{setOpen(!open)}}>Chỉnh sửa</button>
-            <Link to={"/job"}>
-              <button className="job-button" onClick={()=>{deleteJob()}}>Xóa</button>
-            </Link>
+          <button
+            className="job-button"
+            onClick={() => {
+              setOpen(!open);
+            }}
+          >
+            Chỉnh sửa
+          </button>
+          <Link to={"/job"}>
+            <button
+              className="job-button"
+              onClick={() => {
+                deleteJob();
+              }}
+            >
+              Xóa
+            </button>
+          </Link>
         </div>
       </div>
-      {open ? (
-        <EditJob
-          setOpen={setOpen}
-        jobs={jobs}></EditJob>
-          ) :""}
+      {open ? <EditJob setOpen={setOpen} jobs={jobs}></EditJob> : ""}
       <div className="job_details">
         <div className="details_header">
           <span>Chi tiết tuyển dụng</span>
         </div>
         <div className="details">
           {jobs?.desc ? (
-            <span><b>Nội dung:</b> {jobs.desc}</span>
+            <span>
+              <b>Nội dung:</b> {jobs.desc}
+            </span>
           ) : (
             <span>không có nội dung</span>
           )}
 
-          {jobs?.location ? <span><b>Địa điểm:</b> {jobs.location}</span> : ""}
+          {jobs?.location ? (
+            <span>
+              <b>Địa điểm:</b> {jobs.location}
+            </span>
+          ) : (
+            ""
+          )}
           {jobs?.participants ? (
             <span>
               <b>Đối tượng tham gia:</b> {""}
@@ -110,13 +128,14 @@ function JobContent() {
           )}
           {jobs?.link ? (
             <span>
-              <b>Xem chi tiết tại:</b><a href={jobs?.link}>{jobs.link}</a>
+              <b>Xem chi tiết tại:</b>
+              <a href={jobs?.link}>{jobs.link}</a>
             </span>
           ) : (
             ""
           )}
         </div>
-      </div>      
+      </div>
     </div>
   );
 }

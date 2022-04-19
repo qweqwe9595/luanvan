@@ -7,7 +7,7 @@ import Main from "./Main";
 import { SocketContextProvider } from "./context/SocketContext";
 import { UserContextProvider } from "./context/userContext";
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));

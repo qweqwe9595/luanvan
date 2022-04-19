@@ -172,6 +172,19 @@ function Nav() {
             </Link>
 
             <hr></hr>
+
+            <Link to={"/friend"} className="signout">
+              <span>Bạn Bè</span>
+            </Link>
+            <Link to={"/event"} className="signout">
+              <span>Sự kiện</span>
+            </Link>
+            <Link to={"/job"} className="signout">
+              <span>Thực tập tuyển dụng</span>
+            </Link>
+            <Link to={"/document"} className="signout">
+              <span>Tài liệu</span>
+            </Link>
             <div
               className="signout"
               onClick={() => {
@@ -181,6 +194,7 @@ function Nav() {
               <div className="icon-signout">
                 <GoSignOut></GoSignOut>
               </div>
+
               <span>Đăng xuất</span>
             </div>
           </div>
