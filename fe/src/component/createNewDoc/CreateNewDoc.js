@@ -46,16 +46,14 @@ function CreateNewDoc({ setOpenCreateDoc }) {
 
         <div className="create_new_doc_image">
           {previewURL ? (
-            <img
-              src={previewURL}
-              alt=""
-            ></img>
+            <img src={previewURL} alt=""></img>
           ) : (
             <BsImage className="icon_img"></BsImage>
           )}
         </div>
         <div className="choose_file">
-          <input type="file"
+          <input
+            type="file"
             accept="image/*"
             id="file_img"
             onChange={function (e) {
@@ -63,7 +61,8 @@ function CreateNewDoc({ setOpenCreateDoc }) {
                 setPreviewUrl(URL.createObjectURL(e.target.files[0]));
                 setFileImg(e.target.files[0]);
               }
-            }}></input>
+            }}
+          ></input>
           <div className="file_choose_img">
             <label htmlFor="file_img">Chọn ảnh</label>
           </div>
@@ -84,33 +83,33 @@ function CreateNewDoc({ setOpenCreateDoc }) {
 
           <div className="create-new_doc_body_item_file">
             <div className="file_content">
-              {file ? (
-                <div className="file_doc_name">
-                  {file?.name}
-                </div>
-              ):""}
+              {file ? <div className="file_doc_name">{file?.name}</div> : ""}
             </div>
             <div className="file_doc">
               <input
                 type="file"
                 id="file"
                 accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.txt,.pdf"
-                    onChange={function (e) {
-              if (e.target.files[0]) {
-                setFile(e.target.files[0]);
-              }
-            }}
+                onChange={function (e) {
+                  if (e.target.files[0]) {
+                    setFile(e.target.files[0]);
+                  }
+                }}
               ></input>
               <div className="file_choose">
                 <label htmlFor="file">Chọn file</label>
               </div>
             </div>
           </div>
-
         </div>
         <div className="footer_doc">
           <button
-          onClick={()=>{newDoc()}}>Đăng tài liệu</button>
+            onClick={() => {
+              newDoc();
+            }}
+          >
+            Đăng tài liệu
+          </button>
         </div>
       </div>
     </>

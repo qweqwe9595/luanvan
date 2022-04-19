@@ -16,23 +16,21 @@ function EditJob({ setOpen, jobs }) {
   const [previewURL, setPreviewUrl] = useState(null);
   const updateJob = () => {
     var formData = new FormData();
-    formData.append('jobId',jobs._id);
-    formData.append('jobName',jobName);
-    formData.append('desc',desc);
-    formData.append('location',location);
-    formData.append('participants',participants);
-    formData.append('link',link);
-    formData.append('jobImg', fileRef);
-    formData.append('_method', 'PATCH');
+    formData.append("jobId", jobs._id);
+    formData.append("jobName", jobName);
+    formData.append("desc", desc);
+    formData.append("location", location);
+    formData.append("participants", participants);
+    formData.append("link", link);
+    // formData.append('jobImg', fileRef);
+    formData.append("_method", "PATCH");
     axios
-      .patch(
-        `http://localhost:5000/api/jobs/updateOne`,formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
+      .patch(`http://localhost:5000/api/jobs/updateOne`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         console.log(res);
         alert("cập nhật thành công");
@@ -83,7 +81,7 @@ function EditJob({ setOpen, jobs }) {
           />
         </div>
 
-        <div className="create_details">          
+        <div className="create_details">
           <div className="item_details">
             <input
               type="text"

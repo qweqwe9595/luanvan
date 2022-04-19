@@ -3,6 +3,7 @@ const usersModal = require("../model/usersModel");
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
+  console.log(authHeader);
 
   const token = authHeader && authHeader.split(" ")[1];
 

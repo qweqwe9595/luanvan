@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function ModelNewDoc({ setModelApprove }) {
   const [alldocument, setAllDocument] = useState([]);
+  console.log(localStorage.getItem("token"));
   useEffect(() => {
     axios
       .get(
@@ -21,11 +22,15 @@ function ModelNewDoc({ setModelApprove }) {
   }, []);
   const sentApprose = (Doc_id) => {
     axios
-      .patch(`http://localhost:5000/api/documents/approveone/${Doc_id}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
+      .patch(
+        `http://localhost:5000/api/documents/approveone/${Doc_id}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
       .then((res) => {
         alert("đã duyệt thành công");
       })
@@ -33,13 +38,18 @@ function ModelNewDoc({ setModelApprove }) {
         console.log(err.message);
       });
   };
+
   const sentUnApprose = (Doc_id) => {
     axios
-      .patch(`http://localhost:5000/api/documents/unapproveone/${Doc_id}`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
+      .patch(
+        `http://localhost:5000/api/documents/unapproveone/${Doc_id}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
       .then((res) => {
         alert("đã từ chối");
       })

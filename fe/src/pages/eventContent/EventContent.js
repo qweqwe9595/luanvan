@@ -106,11 +106,17 @@ function EventContent() {
       <Nav></Nav>
       <div className="event_header">
         <img
-          src={`http://localhost:5000/images/${events.img}`}
+          src={`http://localhost:5000/images/${events?.img}`}
           className="cover"
         ></img>
         <div className="time">
-          {events?.startTime ? <span>{new Date(events?.startTime).toLocaleDateString("en-US")}</span> : ""}
+          {events?.startTime ? (
+            <span>
+              {new Date(events?.startTime).toLocaleDateString("en-US")}
+            </span>
+          ) : (
+            ""
+          )}
         </div>
         <div className="title">
           {events?.eventName ? <span>{events.eventName}</span> : ""}
