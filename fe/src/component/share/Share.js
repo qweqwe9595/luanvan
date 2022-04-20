@@ -81,7 +81,7 @@ function Share({ setRefreshPosts }) {
           <div className="share-left-content">
             <input
               type="text"
-              placeholder="Bạn muốn chia sẻ gì không?"
+              placeholder="Hôm nay bạn thế nào?"
               value={desc}
               onChange={(e) => {
                 setDesc(e.target.value);

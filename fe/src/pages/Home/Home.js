@@ -39,7 +39,7 @@ function Home({ onlineFriends }) {
         </div>
         <div className="center">
           <Share setRefreshPosts={setRefreshPosts}></Share>
-          <p>--- Có thể bạn biết họ ! ---</p>
+          {/* <p>--- Có thể bạn biết họ ! ---</p> */}
           {/* <RecommendPage></RecommendPage> */}
           <p>--- Hôm nay có gì mới nào ! ---</p>
           {userPosts.map((userPost, index) => {

@@ -1,5 +1,5 @@
 .post {
-  min-width       : 550px;
+  width           : 100%;
   margin-left     : auto;
   margin-right    : auto;
   height          : auto;
@@ -51,7 +51,7 @@
       display: flex;
 
       .post-meta-left-avatar {
-        width: 50px;
+        width : 50px;
         margin: auto;
 
         .avatar {
@@ -68,8 +68,10 @@
 
       .post-meta-left-username-timepost {
         margin: auto;
+
         .post-meta-left-username {
           width: max-content;
+
           .username {
             text-transform: capitalize;
             font-family   : "Oswald", sans-serif;
@@ -99,21 +101,24 @@
       position: relative;
       height  : max-content;
       width   : 100%;
+
       .post-meta-right-options {
-        float     : right;
-        display   : flex;
+        float  : right;
+        display: flex;
+
         .post-meta-right-options-buttons {
           background-color: #0d47a1;
-          border-radius: 50px;
-          height: 20px;
-          width: 30px;
-          text-align: center;
+          border-radius   : 50px;
+          height          : 20px;
+          width           : 30px;
+          text-align      : center;
+
           &>span {
             font-size: 20px;
             color    : white;
             cursor   : pointer;
-            margin: auto;
-            padding: auto;
+            margin   : auto;
+            padding  : auto;
           }
         }
 
@@ -169,11 +174,12 @@
         font-family: "Oswald", sans-serif;
       }
     }
+
     .post-interaction-length-share {
       &>p {
         padding-right: 10px;
-        font-size  : 16px;
-        font-family: "Oswald", sans-serif;
+        font-size    : 16px;
+        font-family  : "Oswald", sans-serif;
       }
     }
   }

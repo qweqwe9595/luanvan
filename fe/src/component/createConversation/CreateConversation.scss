@@ -1,17 +1,18 @@
 .new_conversation {
-    width            : 500px;
-    display          : grid;
-    height           : 400px;
-    background-color : #ffff;
-    border-radius    : 15px;
-    position         : absolute;
-    top              : 40%;
-    left             : 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform        : translate(-50%, -50%);
-    z-index          : 3;
-    padding          : 10px;
-    box-shadow       : 0px 1px 5px 0px #333e50;
+    width             : 500px;
+    display           : grid;
+    grid-template-rows: 30px 1fr;
+    height            : 400px;
+    background-color  : #ffff;
+    border-radius     : 15px;
+    position          : absolute;
+    top               : 40%;
+    left              : 50%;
+    -webkit-transform : translate(-50%, -50%);
+    transform         : translate(-50%, -50%);
+    z-index           : 3;
+    padding           : 10px;
+    box-shadow        : 0px 1px 5px 0px #333e50;
 
     .exit {
         width  : 100%;
@@ -44,8 +45,9 @@
         display      : flex;
         width        : 100%;
         height       : 60px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #0D47A1;
         align-items  : center;
+
 
 
         &>span {
@@ -74,9 +76,9 @@
     }
 
     .search_friend_result {
-        width     : 100%;
-        height    : 330px;
-        overflow-y: auto;
+        width       : 100%;
+        //height    : 330px;
+        overflow-y  : auto;
 
         .search_friend_result_tag {
             width           : 100%;

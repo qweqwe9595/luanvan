@@ -75,7 +75,7 @@ function EventTag({ eventI, setEventId }) {
       ></img>
       <div className="time">
         {eventI?.startTime ? (
-          <span>{new Date(eventI.startTime).toLocaleDateString("en-US")}</span>
+          <span>Thời gian diễn ra sự kiện: <b>{new Date(eventI.startTime).toLocaleDateString("en-US")}</b></span>
         ) : (
           ""
         )}

@@ -110,6 +110,7 @@
       color        : white;
       border-radius: 5px;
       cursor       : pointer;
+      margin-right : 7px;
     }
 
     .bell:hover {
@@ -130,29 +131,28 @@
   }
 
   .show_optional {
-    position           : fixed;
-    width              : 100vw;
-    height             : 100vh;
-    margin-top         : 60px;
-    top                : 0;
-    left               : 0;
-    // background-color: rgba(0, 0, 0, 0.3);
-    z-index            : 1;
+    position  : fixed;
+    width     : 100vw;
+    height    : 100vh;
+    margin-top: 60px;
+    top       : 0;
+    left      : 0;
+    z-index   : 1;
   }
 
   .optional {
-    width           : 400px;
-    height          : auto;
-    background-color: #ffffff;
-    z-index         : 3;
-    position        : absolute;
-    right           : 10px;
-    top             : 60px;
-    border-radius   : 12px;
-    padding         : 10px;
-    color           : #0d47a1;
-    cursor          : pointer;
-    box-shadow      : 0px 1px 5px 0px #333e50;
+    width             : 400px;
+    height            : auto;
+    background-color  : #ffffff;
+    z-index           : 3;
+    position          : absolute;
+    right             : 10px;
+    top               : 60px;
+    border-radius     : 12px;
+    padding           : 10px;
+    //color           : #0d47a1;
+    cursor            : pointer;
+    box-shadow        : 0px 1px 5px 0px #333e50;
 
     .user {
       display      : flex;
@@ -161,7 +161,8 @@
       padding      : 5px;
       border-radius: 10px;
       margin-bottom: 10px;
-      color        : #0d47a1;
+
+
 
       &>img {
         height       : 60px;
@@ -178,15 +179,15 @@
         // padding-top: 5px;
 
         &>span {
-          text-transform   : capitalize;
-          font-size        : 20px;
-          // font-weight   : bold;
+          text-transform: capitalize;
+          font-size     : 20px;
+          font-weight   : bold;
         }
       }
     }
 
     .user:hover {
-      background-color: #EEF0F5;
+      background-color: #E8E8E8;
     }
 
     .signout {
@@ -196,6 +197,21 @@
       align-items  : center;
       padding      : 5px;
       border-radius: 10px;
+
+
+      .icon_doc {
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        height          : 40px;
+        width           : 40px;
+        font-size       : 25px;
+        border-radius   : 50%;
+        border          : none;
+        background-color: #ffffff;
+        color           : #0d47a1;
+
+      }
 
       .icon-signout {
         display         : flex;
@@ -215,11 +231,12 @@
       &>span {
         font-size  : 18px;
         margin-left: 10px;
+
       }
     }
 
     .signout:hover {
-      background-color: #EEF0F5;
+      background-color: #E8E8E8;
     }
   }
 }
@@ -236,8 +253,9 @@
       }
 
       .bell {
-        display: block;
-        z-index: 1000;
+        display     : block;
+        z-index     : 1000;
+        margin-right: 7px;
       }
     }
 
@@ -268,8 +286,9 @@
 
     .nav-right {
       .bell {
-        display: block;
-        z-index: 1000;
+        display     : block;
+        z-index     : 1000;
+        margin-right: 7px;
       }
 
     }

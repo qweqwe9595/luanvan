@@ -1,5 +1,13 @@
-import { FaBars, FaSearch } from "react-icons/fa";
-import { AiOutlineBell, AiFillCaretDown } from "react-icons/ai";
+import {
+  FaBars,
+  FaSearch,
+  FaBook,
+  FaUserTie,
+  FaCalendarAlt,
+  FaUserFriends,
+} from "react-icons/fa";
+import { AiFillCaretDown } from "react-icons/ai";
+import { FiBell } from "react-icons/fi";
 import { GoSignOut } from "react-icons/go";
 import "./nav.scss";
 import React, { useState, useEffect, useContext, useRef } from "react";
@@ -7,7 +15,7 @@ import axios from "axios";
 import { SearchResultContext } from "../../context/SearchContext";
 import Notifications from "../../component/notifications/Notifications";
 import { useNavigate, Link } from "react-router-dom";
-import { BsFillChatSquareFill } from "react-icons/bs";
+import {BsChatSquareDots } from "react-icons/bs";
 
 function Nav() {
   const [open, setOpen] = useState(false);
@@ -53,8 +61,6 @@ function Nav() {
     localStorage.removeItem("token");
     window.location.reload();
   };
-
-  // console.log(openNoti);
   return (
     <div className="nav">
       {openNoti ? (
@@ -98,15 +104,15 @@ function Nav() {
       </div>
       <div className="nav-right">
         <Link to={"/message"}>
-          <BsFillChatSquareFill className="bell" />
+          <BsChatSquareDots className="bell" />
         </Link>
 
-        <AiOutlineBell
+        <FiBell
           className="bell"
           onClick={() => {
             setOpenNoti(!openNoti);
           }}
-        ></AiOutlineBell>
+        ></FiBell>
 
         <FaBars
           className="hamburger"
@@ -173,17 +179,38 @@ function Nav() {
 
             <hr></hr>
 
-            <Link to={"/friend"} className="signout">
-              <span>Bạn Bè</span>
+            <Link to={"/friend"}>
+              <div className="signout">
+                <div className="icon_doc">
+                  <FaUserFriends />
+                </div>
+                <span>Bạn bè</span>
+              </div>
             </Link>
-            <Link to={"/event"} className="signout">
-              <span>Sự kiện</span>
+            <Link to={"/event"}>
+              <div className="signout">
+                <div className="icon_doc">
+                  <FaCalendarAlt></FaCalendarAlt>
+                </div>
+                <span>Tin tức & Sự kiện</span>
+              </div>
             </Link>
-            <Link to={"/job"} className="signout">
-              <span>Thực tập tuyển dụng</span>
+            <Link to={"/job"}>
+              <div className="signout">
+                <div className="icon_doc">
+                  <FaUserTie></FaUserTie>
+                </div>
+                <span>Thực tập tuyển dụng</span>
+              </div>
             </Link>
-            <Link to={"/document"} className="signout">
-              <span>Tài liệu</span>
+
+            <Link to={"/document"}>
+              <div className="signout">
+                <div className="icon_doc">
+                  <FaBook></FaBook>
+                </div>
+                <span>Tài liệu</span>
+              </div>
             </Link>
             <div
               className="signout"
@@ -194,7 +221,6 @@ function Nav() {
               <div className="icon-signout">
                 <GoSignOut></GoSignOut>
               </div>
-
               <span>Đăng xuất</span>
             </div>
           </div>

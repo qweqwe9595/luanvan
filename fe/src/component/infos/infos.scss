@@ -48,17 +48,17 @@
      }
 
      &>button {
-         width               : 50%;
-         height              : 37px;
-         margin              : auto;
-         margin-top          : 20px;
-         margin-bottom       : 20px;
-         font-size           : 18px;
-         background-color    : #0D47A1;
-         color               : white;
-         font-family         : "oswald";
-         //  font-weight     : bold;
-         cursor              : pointer;
+         width           : 50%;
+         height          : 37px;
+         margin          : auto;
+         margin-top      : 20px;
+         margin-bottom   : 20px;
+         font-size       : 18px;
+         background-color: #0D47A1;
+         color           : white;
+         font-family     : "oswald";
+         cursor          : pointer;
+         border          : none;
      }
 
  }

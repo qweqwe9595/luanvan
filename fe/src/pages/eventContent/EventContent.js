@@ -113,7 +113,7 @@ function EventContent() {
         ></img>
         <div className="time">
           {events?.startTime ? (
-            <span>
+            <span>Thời gian:{" "}
               {new Date(events?.startTime).toLocaleDateString("en-US")}
             </span>
           ) : (
@@ -175,13 +175,12 @@ function EventContent() {
           )}
         </div>
         <div className="details">
-          {events?.desc ? <span>{events.desc}</span> : ""}
-
-          {events?.startTime ? <span>{events.startTime}</span> : ""}
-          {events?.location ? <span>Địa điểm: {events.location}</span> : ""}
+          {events?.desc ? <span><b>Nội dung sự kiện:</b> {events.desc}</span> : ""}
+          {events?.startTime ? <span><b>Thời gian:</b> {new Date(events?.startTime).toLocaleDateString("en-US")}</span> : ""}
+          {events?.location ? <span><b>Địa điểm:</b> {events.location}</span> : ""}
           {events?.participants ? (
             <span>
-              Đối tượng tham gia: {""}
+              <b>Đối tượng tham gia:</b> {""}
               {events.participants}
             </span>
           ) : (
@@ -189,7 +188,7 @@ function EventContent() {
           )}
           {events ? (
             <span>
-              Xem chi tiết tại: <a href={events?.link}>{events?.link}</a>
+              <b>Xem chi tiết tại:</b> <a href={events?.link}>{events?.link}</a>
             </span>
           ) : (
             ""

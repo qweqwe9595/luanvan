@@ -1,40 +1,47 @@
 .friendprofile {
-  margin: auto;
+  margin          : auto;
   background-color: white;
-  padding: 20px;
-  border-radius: 20px;
-  width: 100%;
-  margin-top: 20px;
-  .title{
-    font-size: 24px;
-    font-family: 'Oswald', sans-serif;
-    text-align: center;
-    font-weight: 600;
+  padding         : 20px;
+  border-radius   : 20px;
+  width           : 100%;
+  margin-top      : 20px;
+  height          : fit-content;
+
+  .title {
+    font-size    : 24px;
+    font-family  : 'Oswald', sans-serif;
+    text-align   : center;
+    font-weight  : 600;
     margin-bottom: 10px;
   }
-  .username{
-    font-size: 18px;
+
+  .username {
+    font-size  : 18px;
     font-family: 'Oswald', sans-serif;
-    text-align: center;
+    text-align : center;
   }
+
   .friendprofile-container {
-    width: 100%;
-    height: 500px;
-    display: grid;
+    width                : 100%;
+    height               : 500px;
+    display              : grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-rows   : repeat(3, 1fr);
+    gap                  : 15px;
+
     .friendprofile-item {
       &:hover {
         cursor: pointer;
       }
-      & > img {
-        height: 80%;
+
+      &>img {
+        height       : 80%;
         border-radius: 10px;
-        width: 100%;
-        object-fit: cover;
+        width        : 100%;
+        object-fit   : cover;
       }
-      & > p {
+
+      &>p {
         text-transform: capitalize;
       }
     }
@@ -45,16 +52,15 @@
   .friendprofile {
     width: 80%;
 
-    .friendprofile-container {
-      .friendprofile-item {
-        &:hover {
-        }
-        & > img {
-        }
-        & > p {
-        }
-      }
-    }
+    // .friendprofile-container {
+    //   .friendprofile-item {
+    //     &:hover {}
+
+    //     &>img {}
+
+    //     &>p {}
+    //   }
+    // }
   }
 }
 
@@ -62,15 +68,14 @@
   .friendprofile {
     width: 450px;
 
-    .friendprofile-container {
-      .friendprofile-item {
-        &:hover {
-        }
-        & > img {
-        }
-        & > p {
-        }
-      }
-    }
+    // .friendprofile-container {
+    //   .friendprofile-item {
+    //     // &:hover {}
+
+    //     // &>img {}
+
+    //     // &>p {}
+    //   }
+    // }
   }
 }
