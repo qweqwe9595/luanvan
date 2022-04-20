@@ -18,6 +18,12 @@ import Test from "./Test";
 import Docurmen from "./pages/document/Docurmen";
 import DocContent from "./pages/documentContent/DocContent";
 
+import Admin from "./pages/Admin/Admin";
+import Dashboard from "./pages/Admin/Dashboard";
+import Setting from "./pages/Admin/Settings";
+import Maps from "./pages/Admin/Maps";
+import Tables from "./pages/Admin/Tables";
+
 function Main() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
@@ -74,6 +80,12 @@ function Main() {
       ></Route>
       <Route path="/message" element={<Message />}></Route>
       <Route path="/test" element={<Test />}></Route>
+      <Route path="/admin" element={<Admin />}>
+        <Route path="" element={<Dashboard />} />
+        <Route exact path="settings" element={<Setting />} />
+        <Route exact path="tables" element={<Tables />} />
+        <Route exact path="maps" element={<Maps />} />
+      </Route>
     </Routes>
   );
 }

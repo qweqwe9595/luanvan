@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import Main from "./Main";
 import { SocketContextProvider } from "./context/SocketContext";
 import { UserContextProvider } from "./context/userContext";
+import "./tailwind.css";
+
 const App = () => {
   const [token, setToken] = useState(null);
 
