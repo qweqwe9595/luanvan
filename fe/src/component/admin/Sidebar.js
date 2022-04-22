@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AdminNavbar from "./AdminNavbar";
 import Icon from "@material-tailwind/react/Icon";
 import H6 from "@material-tailwind/react/Heading6";
@@ -27,45 +27,40 @@ export default function Sidebar() {
 
             <ul className="flex-col min-w-full flex list-none">
               <li className="rounded-lg mb-4">
-                <NavLink
+                <Link
                   to="/admin"
-                  exact
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                  activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <Icon name="dashboard" size="2xl" />
                   Dashboard
-                </NavLink>
+                </Link>
               </li>
               <li className="rounded-lg mb-2">
-                <NavLink
+                <Link
                   to="/admin/settings"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                  activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <Icon name="settings" size="2xl" />
                   Settings
-                </NavLink>
+                </Link>
               </li>
               <li className="rounded-lg mb-2 ">
-                <NavLink
+                <Link
                   to="/admin/tables"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                  activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <Icon name="toc" size="2xl" />
                   Tables
-                </NavLink>
+                </Link>
               </li>
               <li className="rounded-lg mb-2 text-gray-700">
-                <NavLink
+                <Link
                   to="/admin/maps"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                  activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <Icon name="map" size="2xl" />
                   Maps
-                </NavLink>
+                </Link>
               </li>
               <li className="px-4 rounded-lg mb-2 text-gray-700">
                 <a

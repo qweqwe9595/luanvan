@@ -24,7 +24,6 @@ export default function StatusCard({
             {icon === "apple" && <FaApple />}
             {icon === "user" && <FaUser />}
           </CardHeader>
-
           <CardStatus title={title} amount={amount} />
         </CardRow>
         <CardStatusFooter
