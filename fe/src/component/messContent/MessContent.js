@@ -16,7 +16,6 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
   const [chat, setChat] = useState("");
   const [loadd, setLoat] = useState(false);
   const socket = useContext(SocketContext);
-
   useEffect(() => {
     if (!me) return;
     socket.on("getMessage", (mess) => {

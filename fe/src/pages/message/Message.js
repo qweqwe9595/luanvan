@@ -8,11 +8,12 @@ import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
 // import { SocketContext } from "../../context/SocketContext";
-import MessTag from "../../component/messTag/MessTag";
 import MessContent from "../../component/messContent/MessContent";
 import CreateConversation from "../../component/createConversation/CreateConversation";
 import SettingConversation from "../../component/messContent/settingConversation/SettingConversation";
 import CreateGroupt from "../../component/createConversation/CreateGroupt";
+import MessTagGroup from "../../component/messTagGroup/MessTagGroup";
+import Partner from "../../component/messTagNormal/Partner";
 
 function Message() {
   const [user] = useContext(UserContext);
@@ -21,6 +22,7 @@ function Message() {
   const [openNewConver, setOpenNewConver] = useState(false);
   const [loadAll, setLoadAll] = useState(false);
   const [addGroupt, setAddGroupt] = useState(false);
+
   // let member = [user?._id];
   // console.log(member);
   useEffect(() => {
@@ -42,30 +44,30 @@ function Message() {
     <div className="message_container">
       <Nav></Nav>
       {openNewConver ? (
-
-        <div> 
-           <div className="create_new_groupt"
-          onClick={() => setOpenNewConver(false)}>
-        </div>   
+        <div>
+          <div
+            className="create_new_groupt"
+            onClick={() => setOpenNewConver(false)}
+          ></div>
           <CreateConversation
-          setOpenNewConver={setOpenNewConver}
-          SetMyConversations={SetMyConversations}
-        ></CreateConversation>
-        </div>      
-        
+            setOpenNewConver={setOpenNewConver}
+            SetMyConversations={SetMyConversations}
+          ></CreateConversation>
+        </div>
       ) : (
         ""
       )}
       {addGroupt ? (
-        <div> 
-           <div className="create_new_groupt"
-          onClick={() => setAddGroupt(false)}>
-        </div>   
+        <div>
+          <div
+            className="create_new_groupt"
+            onClick={() => setAddGroupt(false)}
+          ></div>
           <CreateGroupt
-          setAddGroupt={setAddGroupt}
-          SetMyConversations={SetMyConversations}
-        ></CreateGroupt>
-        </div>      
+            setAddGroupt={setAddGroupt}
+            SetMyConversations={SetMyConversations}
+          ></CreateGroupt>
+        </div>
       ) : (
         ""
       )}
@@ -108,11 +110,32 @@ function Message() {
                         <div
                           key={index}
                           onClick={() => {
-                            SetMyConversations(people);
                             setLoadAll(false);
                           }}
                         >
-                          <MessTag people={people}></MessTag>
+                          {people?.members?.length > 2 ? (
+                            <MessTagGroup
+                              people={people}
+                              SetMyConversations={SetMyConversations}
+                            ></MessTagGroup>
+                          ) : (
+                            <>
+                              {people?.members?.map((partners, index) =>
+                                partners === user?._id ? (
+                                  ""
+                                ) : (
+                                  <div
+                                    key={index}>
+                                    <Partner
+                                      partners={partners}
+                                        SetMyConversations={SetMyConversations}
+                                        people = {people}
+                                    ></Partner>
+                                  </div>
+                                )
+                              )}
+                            </>
+                          )}
                         </div>
                       ) : (
                         ""
