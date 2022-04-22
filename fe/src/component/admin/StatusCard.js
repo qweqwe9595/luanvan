@@ -4,6 +4,7 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardStatus from "@material-tailwind/react/CardStatus";
 import CardStatusFooter from "@material-tailwind/react/CardStatusFooter";
 import Icon from "@material-tailwind/react/Icon";
+import { FaUser, FaApple } from "react-icons/fa";
 
 export default function StatusCard({
   color,
@@ -20,7 +21,8 @@ export default function StatusCard({
       <Card>
         <CardRow>
           <CardHeader color={color} iconOnly className="mb-0">
-            <Icon name={icon} size="3xl" color="white" />
+            {icon === "apple" && <FaApple />}
+            {icon === "user" && <FaUser />}
           </CardHeader>
 
           <CardStatus title={title} amount={amount} />

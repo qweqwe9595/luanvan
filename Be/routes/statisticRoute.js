@@ -1,7 +1,4 @@
 const router = require("express").Router();
-const { status } = require("express/lib/response");
-const { findById } = require("../model/usersModel");
-const userModal = require("../model/usersModel");
 const authenticateToken = require("../middleWare/authJWT");
 const {
   newUsers,

@@ -10,7 +10,7 @@ export default function Setting() {
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
             <StatusCard
               color="pink"
-              icon="trending_up"
+              icon="apple"
               title="Traffic"
               amount="350,897"
               percentage="3.48"
@@ -20,7 +20,7 @@ export default function Setting() {
             />
             <StatusCard
               color="orange"
-              icon="groups"
+              icon="user"
               title="New Users"
               amount="2,356"
               percentage="3.48"
