@@ -135,7 +135,7 @@ function Nav() {
                   }`}
                 />
               )}
-              <span>{userInfo.userName ? userInfo.userName : ""}</span>
+              <span>{userInfo?.userName}</span>
             </div>
           </Link>
 
