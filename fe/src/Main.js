@@ -44,7 +44,6 @@ function Main() {
     socket.emit("userConnection", user);
     socket.emit("sendListToGetOnlineFriends", { friends: user.friends, user });
     socket.on("getOnlineUsers", (data) => {
-      console.log(data);
       setOnlineFriends(
         data.filter((data) =>
           user.friends.some((item) => item._id === data._id)

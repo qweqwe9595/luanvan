@@ -98,6 +98,7 @@ const conversationsRoute = require("./routes/conversationsRoute");
 const messagesRoute = require("./routes/messagesRoute");
 const documentsRoute = require("./routes/documentsRoute");
 const reportsRoute = require("./routes/reportsRoute");
+const statisticRoute = require("./routes/statisticRoute");
 
 require("dotenv").config();
 
@@ -122,6 +123,7 @@ app.use("/api/conversations", conversationsRoute);
 app.use("/api/messages", messagesRoute);
 app.use("/api/documents", documentsRoute);
 app.use("/api/reports", reportsRoute);
+app.use("/api/statistic", statisticRoute);
 
 http.listen(5000, () => {
   console.log("running at local host 5000");

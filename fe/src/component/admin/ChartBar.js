@@ -32,7 +32,7 @@ export default function ChartBar() {
             fill: false,
             backgroundColor: "#f44336",
             borderColor: "#f44336",
-            data: [27, 68, 86, 74, 10, 4, 87],
+            data: [100, 68, 86, 74, 10, 4, 87],
             barThickness: 8,
           },
         ],
