@@ -5,7 +5,6 @@ function Admin() {
   return (
     <>
       <Sidebar />
-
       <div className="md:ml-64">
         <Outlet />
       </div>

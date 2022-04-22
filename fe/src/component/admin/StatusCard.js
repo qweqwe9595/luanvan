@@ -22,7 +22,6 @@ export default function StatusCard({
           <CardHeader color={color} iconOnly className="mb-0">
             <Icon name={icon} size="3xl" color="white" />
           </CardHeader>
-
           <CardStatus title={title} amount={amount} />
         </CardRow>
         <CardStatusFooter
