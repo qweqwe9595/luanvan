@@ -7,16 +7,33 @@ const multer = require("multer");
 const userModal = require("./model/usersModel");
 const conversationModel = require("./model/conversationsModel");
 const messagesModel = require("./model/messagesModel");
+const onlineStatistc = require("./model/onlineStatistic");
 const {
-  onlineUsers,
   addNewUser,
   removeAuser,
   getAUser,
   getAllUser,
   getOnlineUser,
   getFriendsOnline,
+  online,
+  setOnlinePerDay,
+  getOnlinePerDay,
 } = require("./socket/socketHelper");
 
+//schedule
+const schedule = require("node-schedule");
+let today = new Date().toDateString("en-US");
+const job = schedule.scheduleJob("* 0 * * *", async () => {
+  const amount = getOnlinePerDay();
+  const newOnlineStatistic = new onlineStatistc({
+    amount,
+    date: today,
+  });
+  await newOnlineStatistic.save();
+  today = new Date().toDateString("en-US");
+  console.log(amount);
+  setOnlinePerDay(0);
+});
 //socket
 //online users
 const io = require("socket.io")(http, {
@@ -37,6 +54,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("userConnection", (user) => {
+    online();
     addNewUser(user, socket.id);
   });
   socket.on("sendNotification", async ({ receiverUserId, type }) => {

@@ -1,5 +1,6 @@
 const userModal = require("../model/usersModel");
 let onlineUsers = [];
+let onlinePerDay = 0;
 const addNewUser = (userLogin, socketId) => {
   if (!userLogin._id) return;
   !onlineUsers.some((user) => user._id === userLogin._id) &&
@@ -27,12 +28,26 @@ const getFriendsOnline = (friends) => {
   return onlineUsers.filter((item) => friends.some((f) => f._id === item._id));
 };
 
+const online = () => {
+  onlinePerDay++;
+};
+
+const getOnlinePerDay = () => {
+  return onlinePerDay;
+};
+
+const setOnlinePerDay = () => {
+  onlinePerDay = 0;
+};
+
 module.exports = {
-  onlineUsers,
   addNewUser,
   removeAuser,
   getAUser,
   getAllUser,
   getOnlineUser,
   getFriendsOnline,
+  online,
+  setOnlinePerDay,
+  getOnlinePerDay,
 };

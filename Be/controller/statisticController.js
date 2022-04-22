@@ -5,6 +5,7 @@ const eventsModel = require("../model/eventModel");
 const jobsModel = require("../model/jobsModel");
 const docsModel = require("../model/documentsModel");
 const mongoose = require("mongoose");
+const { getOnlinePerDay } = require("../socket/socketHelper");
 
 //helper
 const get6Lately = (query) => {
@@ -203,6 +204,16 @@ const newDocs = async (req, res) => {
   }
 };
 
+//user online today
+const onlineToday = async (req, res) => {
+  try {
+    res.status(200).json(getOnlinePerDay());
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   newUsers,
   newPosts,
@@ -210,4 +221,5 @@ module.exports = {
   newReports,
   newJobs,
   newDocs,
+  onlineToday,
 };
