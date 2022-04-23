@@ -4,8 +4,8 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardStatus from "@material-tailwind/react/CardStatus";
 import CardStatusFooter from "@material-tailwind/react/CardStatusFooter";
 import Icon from "@material-tailwind/react/Icon";
-import { FaUser, FaApple } from "react-icons/fa";
-
+import {FaCalendarAlt,FaCalendarCheck } from "react-icons/fa";
+import { GiCheckMark } from "react-icons/gi";
 export default function StatusCard({
   color,
   icon,
@@ -21,8 +21,9 @@ export default function StatusCard({
       <Card>
         <CardRow>
           <CardHeader color={color} iconOnly className="mb-0">
-            {icon === "apple" && <FaApple />}
-            {icon === "user" && <FaUser />}
+            {icon === "CalendarAlt" && <FaCalendarAlt />}
+            {icon === "check" && <GiCheckMark />}
+            {icon === "CalendarCheck" && <FaCalendarCheck/>}
           </CardHeader>
           <CardStatus title={title} amount={amount} />
         </CardRow>

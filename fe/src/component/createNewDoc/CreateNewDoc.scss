@@ -84,10 +84,11 @@
           text-align             : center;
           font-size              : 130px;
           color                  : #C4C4C4;
-          display                : block;
+          display                : flex;
 
           .icon_img {
-              margin-top: 50px;
+
+              margin: auto;
           }
 
           &>img {

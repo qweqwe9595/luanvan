@@ -81,7 +81,7 @@ function Docurmen() {
               <input placeholder="tìm kiếm tài liệu" type="search"></input>
             </div>
             <div className="document_filter">
-              <FiFilter></FiFilter>
+              <FiFilter className="icon_filter"></FiFilter>
             </div>
           </div>
           <button
