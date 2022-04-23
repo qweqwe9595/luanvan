@@ -5,12 +5,13 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 
 export default function ChartBar(newPost) {
-  const thang11 = newPost.newPost[`thang 11`];
-  const thang12 = newPost.newPost[`thang 12`];
-  const thang1 = newPost.newPost[`thang 1`];
-  const thang2 = newPost.newPost[`thang 2`];
-  const thang3 = newPost.newPost[`thang 3`];
-  const thang4 = newPost.newPost[`thang 4`];
+  const thang11 = +newPost.newPost[`thang 11`];
+  const thang12 = +newPost.newPost[`thang 12`];
+  const thang1 = +newPost.newPost[`thang 1`];
+  const thang2 = +newPost.newPost[`thang 2`];
+  const thang3 = +newPost.newPost[`thang 3`];
+  const thang4 = +newPost.newPost[`thang 4`];
+
   useEffect(() => {
     let config = {
       type: "bar",
@@ -97,7 +98,7 @@ export default function ChartBar(newPost) {
     };
     let ctx = document.getElementById("bar-chart").getContext("2d");
     window.myBar = new Chart(ctx, config);
-  }, []);
+  }, [newPost]);
   return (
     <Card>
       <CardHeader color="pink" contentPosition="left">
