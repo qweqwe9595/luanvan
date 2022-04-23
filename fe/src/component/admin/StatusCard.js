@@ -6,6 +6,7 @@ import CardStatusFooter from "@material-tailwind/react/CardStatusFooter";
 import Icon from "@material-tailwind/react/Icon";
 import {FaCalendarAlt,FaCalendarCheck } from "react-icons/fa";
 import { GiCheckMark } from "react-icons/gi";
+import { GrDocumentVerified ,GrDocumentStore,GrDocumentTime} from "react-icons/gr";
 export default function StatusCard({
   color,
   icon,
@@ -21,9 +22,12 @@ export default function StatusCard({
       <Card>
         <CardRow>
           <CardHeader color={color} iconOnly className="mb-0">
-            {icon === "CalendarAlt" && <FaCalendarAlt />}
-            {icon === "check" && <GiCheckMark />}
+            {icon === "CalendarAlt" && <FaCalendarAlt  />}
+            {icon === "check" && <GiCheckMark  />}
             {icon === "CalendarCheck" && <FaCalendarCheck/>}
+            {icon === "DocumentVerified" && <GrDocumentVerified  />}
+            {icon === "DocumentStore" && <GrDocumentStore />}
+            {icon === "DocumentTime" && <GrDocumentTime />}
           </CardHeader>
           <CardStatus title={title} amount={amount} />
         </CardRow>

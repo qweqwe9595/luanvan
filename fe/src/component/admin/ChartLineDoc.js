@@ -5,12 +5,12 @@ import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import axios from "axios";
 
-export default function ChartLineEvent({ data }) {
+export default function ChartLineDoc({ data }) {
   const [labels, setLables] = useState(Object.keys(data).reverse());
   const [dt, setDt] = useState(Object.values(data).reverse());
+  console.log(data);
+
   useEffect(() => {
-    setLables(Object.keys(data).reverse());
-    setDt(Object.values(data).reverse());
     var config = {
       type: "line",
       data: {
@@ -106,7 +106,7 @@ export default function ChartLineEvent({ data }) {
         <h6 className="uppercase text-gray-200 text-xs font-medium">
           Overview
         </h6>
-        <h2 className="text-white text-2xl">Sự kiện</h2>
+        <h2 className="text-white text-2xl">Tài liệu</h2>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">

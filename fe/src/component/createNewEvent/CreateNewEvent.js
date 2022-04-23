@@ -67,7 +67,7 @@ function CreateNewEvent({ setOpen }) {
           {previewURL ? (
             <img className="cover" src={previewURL} alt=""></img>
           ) : (
-            <BsImages></BsImages>
+            <BsImages className="icon_picture"></BsImages>
           )}
         </div>
 
