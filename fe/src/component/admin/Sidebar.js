@@ -58,7 +58,7 @@ export default function Sidebar() {
                   to="/admin/job-manager"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                 >
-                  <Icon name="event" size="2xl" />
+                  <Icon name="work" size="2xl" />
                   Quản lý tuyển dụng
                 </Link>
               </li>
