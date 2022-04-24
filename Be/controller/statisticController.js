@@ -207,7 +207,7 @@ const newDocs = async (req, res) => {
 //user online today
 const onlineToday = async (req, res) => {
   try {
-    res.status(200).json(getOnlinePerDay());
+    res.status(200).json({ Online: getOnlinePerDay() });
   } catch (error) {
     console.log(error);
     res.status(500).json(error.message);

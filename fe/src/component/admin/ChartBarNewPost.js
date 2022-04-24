@@ -7,8 +7,6 @@ import axios from "axios";
 
 export default function ChartBar() {
   const [newPost, setNewPost] = useState({});
-  const [labels, setLabels] = useState([]);
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     const countNewPost = () => {
@@ -22,20 +20,20 @@ export default function ChartBar() {
         });
     };
     countNewPost();
-    if (Object.keys(newPost).length === 0)
-    return;
-    setLabels(Object.keys(newPost).reverse());
-    setData(Object.values(newPost).reverse());
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(newPost).length === 0) return;
     let config = {
       type: "bar",
       data: {
-        labels,
+        labels: Object.keys(newPost).reverse(),
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data,
+            data: Object.values(newPost).reverse(),
             fill: false,
             barThickness: 8,
           },
@@ -64,23 +62,6 @@ export default function ChartBar() {
           position: "bottom",
         },
         scales: {
-          xAxes: [
-            {
-              display: false,
-              scaleLabel: {
-                display: true,
-                labelString: "Month",
-              },
-              gridLines: {
-                borderDash: [2],
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
           yAxes: [
             {
               display: true,
@@ -103,7 +84,7 @@ export default function ChartBar() {
       },
     };
     let ctx = document.getElementById("bar-chart").getContext("2d");
-    window.myBar = new Chart(ctx, config);
+    window.myBarNewPost = new Chart(ctx, config);
   }, [newPost]);
   return (
     <Card>

@@ -1,148 +1,141 @@
-.container {
-    width                : 100%;
-    height               : max-content;
-    display              : grid;
-    grid-template-columns: 50% 50%;
+.container2 {
+  width: 100%;
+  height: max-content;
+  display: grid;
+  grid-template-columns: 50% 50%;
 
-    .job_contai {
-        width     : 100%;
-        height    : fit-content;
-        display   : grid;
-        flex      : 1;
-        margin-top: 15px;
+  .job_contai {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    flex: 1;
+    margin-top: 15px;
 
-        .button_create {
-            width   : max-content;
-            height  : fit-content;
-            display : block;
-            position: absolute;
-            right   : 20px;
-            top     : -10px;
-            z-index : 100;
+    .button_create {
+      width: max-content;
+      height: fit-content;
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: -10px;
+      z-index: 100;
 
-            &>button {
-                float           : right;
-                width           : fit-content;
-                height          : fit-content;
-                padding         : 10px;
-                background-color: #0d47a1;
-                min-width       : 150px;
-                margin-top      : 20px;
-                border-radius   : 10px;
-                font-family     : "oswald";
-                font-size       : 18px;
-                box-shadow      : 0px 2px 10px #fff;
-                color           : #fff;
-
-            }
-        }
-
-
-        .tag {
-            flex: 1;
-        }
-
-        .charline {
-            padding   : 10px;
-            width     : 100%;
-            margin-top: -10px;
-        }
+      & > button {
+        float: right;
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+        background-color: #0d47a1;
+        min-width: 150px;
+        margin-top: 20px;
+        border-radius: 10px;
+        font-family: "oswald";
+        font-size: 18px;
+        box-shadow: 0px 2px 10px #fff;
+        color: #fff;
+      }
     }
 
-    .job_manager_content {
-        padding           : 20px;
-        width             : 95%;
-        min-width         : 400px;
-        height            : 680px;
-        background-color  : #fff;
-        box-shadow        : 0px 2px 10px rgba(0, 0, 0, 0.25);
-        margin-right      : 20px;
-        display           : grid;
-        grid-template-rows: 60px 90%;
-        border-radius     : 12px;
-        margin-left       : 20px;
-        margin-top        : 15px;
-
-        .job_manager_content_header {
-            width           : 98%;
-            margin          : auto;
-            height          : 80px;
-            background-color: rgb(62, 54, 99);
-            display         : flex;
-            align-items     : center;
-            margin-top      : -45px;
-            padding-left    : 20px;
-            color           : #ffff;
-            font-size       : 22px;
-            border-radius   : 12px;
-            box-shadow      : 0px 5px 10px 0px rgb(62, 54, 99);
-        }
-
-        .center_jobs {
-            width      : 100%;
-            max-height : 600px;
-            display    : flex;
-            gap        : 15px;
-            flex-wrap  : wrap;
-            overflow-y : auto;
-            border-top : 1px solid rgba(0, 0, 0, 0.25);
-            padding-top: 20px;
-            margin-left: 15px;
-
-
-            .job_tags {
-                width           : 190px;
-                min-width       : 190px;
-                height          : 240px;
-                background-color: aliceblue;
-                border-radius   : 12px;
-                font-family     : "oswald";
-                font-size       : 17px;
-                box-shadow      : 0px 2px 10px rgba(0, 0, 0, 0.25);
-                margin-bottom   : 15px;
-
-                .cover {
-                    width        : 190px;
-                    height       : 100px;
-                    border-radius: 12px;
-                    object-fit   : cover;
-                }
-
-                .time {
-                    padding: 5px;
-                }
-
-                .title {
-                    text-align    : center;
-                    font-weight   : bold;
-                    text-transform: uppercase;
-                }
-
-                .button_delete {
-                    width           : fit-content;
-                    padding         : 5px 10px 5px 10px;
-                    margin          : auto;
-                    background-color: #0d47a1;
-                    color           : #fff;
-                    font-size       : 18px;
-                    border-radius   : 12px;
-                }
-            }
-
-        }
-
+    .tag {
+      flex: 1;
     }
 
+    .charline {
+      padding: 10px;
+      width: 100%;
+      margin-top: -10px;
+    }
+  }
 
+  .job_manager_content {
+    padding: 20px;
+    width: 95%;
+    min-width: 400px;
+    height: 680px;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+    margin-right: 20px;
+    display: grid;
+    grid-template-rows: 60px 90%;
+    border-radius: 12px;
+    margin-left: 20px;
+    margin-top: 15px;
+
+    .job_manager_content_header {
+      width: 98%;
+      margin: auto;
+      height: 80px;
+      background-color: rgb(62, 54, 99);
+      display: flex;
+      align-items: center;
+      margin-top: -45px;
+      padding-left: 20px;
+      color: #ffff;
+      font-size: 22px;
+      border-radius: 12px;
+      box-shadow: 0px 5px 10px 0px rgb(62, 54, 99);
+    }
+
+    .center_jobs {
+      width: 100%;
+      max-height: 600px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      overflow-y: auto;
+      border-top: 1px solid rgba(0, 0, 0, 0.25);
+      padding-top: 20px;
+      margin-left: 15px;
+
+      .job_tags {
+        width: 190px;
+        min-width: 190px;
+        height: 240px;
+        background-color: aliceblue;
+        border-radius: 12px;
+        font-family: "oswald";
+        font-size: 17px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+        margin-bottom: 15px;
+
+        .cover {
+          width: 190px;
+          height: 100px;
+          border-radius: 12px;
+          object-fit: cover;
+        }
+
+        .time {
+          padding: 5px;
+        }
+
+        .title {
+          text-align: center;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        .button_delete {
+          width: fit-content;
+          padding: 5px 10px 5px 10px;
+          margin: auto;
+          background-color: #0d47a1;
+          color: #fff;
+          font-size: 18px;
+          border-radius: 12px;
+        }
+      }
+    }
+  }
 }
 
 @media all and(max-width: 1000px) {
-    .container {
-        display: block;
+  .container2 {
+    display: block;
 
-        .job_manager_content {
-            margin    : auto;
-            margin-top: 30px;
-        }
+    .job_manager_content {
+      margin: auto;
+      margin-top: 30px;
     }
+  }
 }

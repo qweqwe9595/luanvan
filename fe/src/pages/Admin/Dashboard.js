@@ -11,9 +11,9 @@ export default function Dashboard() {
   const [newJob, setNewJob] = useState({});
   const [newDoc, setNewDoc] = useState({});
   const [newReport, setNewReport] = useState({});
+  const [newOnline, setNewOnline] = useState({});
 
-  useEffect(() => {  
-    
+  useEffect(() => {
     const countNewEvent = () => {
       axios
         .get("http://localhost:5000/api/statistic/newEvents?query=month")
@@ -58,7 +58,17 @@ export default function Dashboard() {
         });
     };
     countNewReport();
-
+    const countNewOnline = () => {
+      axios
+        .get("http://localhost:5000/api/statistic/onlineToday")
+        .then((res) => {
+          setNewOnline(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    countNewOnline();
   }, []);
 
   return (
@@ -79,106 +89,130 @@ export default function Dashboard() {
 
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
-            {newEvent[Object.keys(newEvent)[0]] > newEvent[Object.keys(newEvent)[1]]?
-            (
-              <StatusCardDashBoard
-              color="red"
-              icon="events"
-              title="Sự kiện"
-              amount={newEvent[Object.keys(newEvent)[0]]}
-              percentage={newEvent[Object.keys(newEvent)[0]]-newEvent[Object.keys(newEvent)[1]]}
-              percentageIcon="arrow_upward"
-              percentageColor="green"
-              date="So với tháng trước"           
-            />
-            ):
-            (
-              <StatusCardDashBoard
-              color="red"
-              icon="events"
-              title="Sự kiện"
-              amount={newEvent[Object.keys(newEvent)[0]]}
-              percentage={newEvent[Object.keys(newEvent)[1]]-newEvent[Object.keys(newEvent)[0]]}
-              percentageIcon="arrow_lowward"
-              percentageColor="red"
-              date="So với tháng trước"           
-            />
-            )}
-            {newJob[Object.keys(newJob)[0]] > newJob[Object.keys(newJob)[1]]?
-            (
-              <StatusCardDashBoard
-              color="blue"
-              icon="works"
-              title="Tuyển dụng"
-              amount={newJob[Object.keys(newJob)[0]]}
-              percentage={newJob[Object.keys(newJob)[0]]-newJob[Object.keys(newJob)[1]]}
-              percentageIcon="arrow_upward"
-              percentageColor="green"
-              date="So với tháng trước"           
-            />
-            ):
-            (
-              <StatusCardDashBoard
-              color="blue"
-              icon="works"
-              title="Tuyển dụng"
-              amount={newJob[Object.keys(newJob)[0]]}
-              percentage={newJob[Object.keys(newJob)[1]]-newJob[Object.keys(newJob)[0]]}
-              percentageIcon="arrow_lowward"
-              percentageColor="red"
-              date="So với tháng trước"           
-            />
-            )}
-             {newDoc[Object.keys(newDoc)[0]] > newDoc[Object.keys(newDoc)[1]]?
-            (
-              <StatusCardDashBoard
-              color="yellow"
-              icon="sources"
-              title="Tài liệu"
-              amount={newDoc[Object.keys(newDoc)[0]]}
-              percentage={newDoc[Object.keys(newDoc)[0]]-newDoc[Object.keys(newDoc)[1]]}
-              percentageIcon="arrow_upward"
-              percentageColor="green"
-              date="So với tháng trước"           
-            />
-            ):
-            (
-              <StatusCardDashBoard
-              color="yellow"
-              icon="sources"
-              title="Tài liệu"
-              amount={newDoc[Object.keys(newDoc)[0]]}
-              percentage={newDoc[Object.keys(newDoc)[1]]-newDoc[Object.keys(newDoc)[0]]}
-              percentageIcon="arrow_lowward"
-              percentageColor="red"
-              date="So với tháng trước"           
-            />
-            )}
-            {newReport[Object.keys(newReport)[0]] > newReport[Object.keys(newReport)[1]]?
-            (
-              <StatusCardDashBoard
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 mb-4">
+            <StatusCardDashBoard
               color="green"
-              icon="reports"
-              title="Báo cáo"
-              amount={newReport[Object.keys(newReport)[0]]}
-              percentage={newReport[Object.keys(newReport)[0]]-newReport[Object.keys(newReport)[1]]}
-              percentageIcon="arrow_upward"
-              percentageColor="green"
-              date="So với tháng trước"           
+              icon="report"
+              title="Người đăng nhập hôm nay"
+              amount={newOnline[Object.keys(newOnline)[0]]}
             />
-            ):
-            (
+            {newEvent[Object.keys(newEvent)[0]] >
+            newEvent[Object.keys(newEvent)[1]] ? (
               <StatusCardDashBoard
-              color="green"
-              icon="reports"
-              title="Báo cáo"
-              amount={newReport[Object.keys(newReport)[0]]}
-              percentage={newReport[Object.keys(newReport)[1]]-newReport[Object.keys(newReport)[0]]}
-              percentageIcon="arrow_lowward"
-              percentageColor="red"
-              date="So với tháng trước"           
-            />
+                color="red"
+                icon="event"
+                title="Sự kiện"
+                amount={newEvent[Object.keys(newEvent)[0]]}
+                percentage={
+                  newEvent[Object.keys(newEvent)[0]] -
+                  newEvent[Object.keys(newEvent)[1]]
+                }
+                percentageIcon="arrow_upward"
+                percentageColor="green"
+                date="So với tháng trước"
+              />
+            ) : (
+              <StatusCardDashBoard
+                color="red"
+                icon="event"
+                title="Sự kiện"
+                amount={newEvent[Object.keys(newEvent)[0]]}
+                percentage={
+                  newEvent[Object.keys(newEvent)[1]] -
+                  newEvent[Object.keys(newEvent)[0]]
+                }
+                percentageIcon="arrow_lowward"
+                percentageColor="red"
+                date="So với tháng trước"
+              />
+            )}
+            {newJob[Object.keys(newJob)[0]] > newJob[Object.keys(newJob)[1]] ? (
+              <StatusCardDashBoard
+                color="blue"
+                icon="work"
+                title="Tuyển dụng"
+                amount={newJob[Object.keys(newJob)[0]]}
+                percentage={
+                  newJob[Object.keys(newJob)[0]] -
+                  newJob[Object.keys(newJob)[1]]
+                }
+                percentageIcon="arrow_upward"
+                percentageColor="green"
+                date="So với tháng trước"
+              />
+            ) : (
+              <StatusCardDashBoard
+                color="blue"
+                icon="work"
+                title="Tuyển dụng"
+                amount={newJob[Object.keys(newJob)[0]]}
+                percentage={
+                  newJob[Object.keys(newJob)[1]] -
+                  newJob[Object.keys(newJob)[0]]
+                }
+                percentageIcon="arrow_lowward"
+                percentageColor="red"
+                date="So với tháng trước"
+              />
+            )}
+            {newDoc[Object.keys(newDoc)[0]] > newDoc[Object.keys(newDoc)[1]] ? (
+              <StatusCardDashBoard
+                color="yellow"
+                icon="source"
+                title="Tài liệu"
+                amount={newDoc[Object.keys(newDoc)[0]]}
+                percentage={
+                  newDoc[Object.keys(newDoc)[0]] -
+                  newDoc[Object.keys(newDoc)[1]]
+                }
+                percentageIcon="arrow_upward"
+                percentageColor="green"
+                date="So với tháng trước"
+              />
+            ) : (
+              <StatusCardDashBoard
+                color="yellow"
+                icon="source"
+                title="Tài liệu"
+                amount={newDoc[Object.keys(newDoc)[0]]}
+                percentage={
+                  newDoc[Object.keys(newDoc)[1]] -
+                  newDoc[Object.keys(newDoc)[0]]
+                }
+                percentageIcon="arrow_lowward"
+                percentageColor="red"
+                date="So với tháng trước"
+              />
+            )}
+            {newReport[Object.keys(newReport)[0]] >
+            newReport[Object.keys(newReport)[1]] ? (
+              <StatusCardDashBoard
+                color="green"
+                icon="report"
+                title="Báo cáo"
+                amount={newReport[Object.keys(newReport)[0]]}
+                percentage={
+                  newReport[Object.keys(newReport)[0]] -
+                  newReport[Object.keys(newReport)[1]]
+                }
+                percentageIcon="arrow_upward"
+                percentageColor="green"
+                date="So với tháng trước"
+              />
+            ) : (
+              <StatusCardDashBoard
+                color="green"
+                icon="report"
+                title="Báo cáo"
+                amount={newReport[Object.keys(newReport)[0]]}
+                percentage={
+                  newReport[Object.keys(newReport)[1]] -
+                  newReport[Object.keys(newReport)[0]]
+                }
+                percentageIcon="arrow_lowward"
+                percentageColor="red"
+                date="So với tháng trước"
+              />
             )}
           </div>
         </div>

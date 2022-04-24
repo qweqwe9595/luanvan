@@ -7,8 +7,6 @@ import axios from "axios";
 
 export default function ChartLine() {
   const [newUser, setNewUser] = useState({});
-  const [labels, setLabels] = useState([]);
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     const countNewUser = () => {
@@ -22,21 +20,21 @@ export default function ChartLine() {
         });
     };
     countNewUser();
-    if (Object.keys(newUser).length === 0)
-    return;
-    setLabels(Object.keys(newUser).reverse());
-    setData(Object.values(newUser).reverse());
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(newUser).length === 0) return;
 
     var config = {
       type: "line",
       data: {
-        labels,
+        labels: Object.keys(newUser).reverse(),
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data,
+            data: Object.values(newUser).reverse(),
             fill: false,
           },
         ],
