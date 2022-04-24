@@ -14,18 +14,27 @@ export default function Sidebar() {
       >
         <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
           <a
-            href="https://material-tailwind.com?ref=mtd"
+            href=""
             target="_blank"
             rel="noreferrer"
             className="mt-2 text-center w-full inline-block"
           >
-            <H6 color="gray">Material Tailwind</H6>
+            <H6 color="gray">TRANG CHỦ ADMIN</H6>
           </a>
-
+           
           <div className="flex flex-col">
             <hr className="my-4 min-w-full" />
 
             <ul className="flex-col min-w-full flex list-none">
+              <li className="rounded-lg mb-4">
+                <Link
+                  to="/"
+                  className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                >
+                  <Icon name="home" size="2xl" />
+                  Trang chủ
+                </Link>
+              </li>
               <li className="rounded-lg mb-4">
                 <Link
                   to="/admin"
@@ -37,20 +46,29 @@ export default function Sidebar() {
               </li>
               <li className="rounded-lg mb-2">
                 <Link
-                  to="/admin/settings"
+                  to="/admin/event-manager"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                 >
-                  <Icon name="settings" size="2xl" />
-                  Settings
+                  <Icon name="event" size="2xl" />
+                  Quản lý sự kiện
+                </Link>
+              </li>
+              <li className="rounded-lg mb-2">
+                <Link
+                  to="/admin/job-manager"
+                  className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                >
+                  <Icon name="event" size="2xl" />
+                  Quản lý tuyển dụng
                 </Link>
               </li>
               <li className="rounded-lg mb-2 ">
                 <Link
-                  to="/admin/tables"
+                  to="/admin/doc-manager"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                 >
-                  <Icon name="toc" size="2xl" />
-                  Tables
+                    <Icon name="list_alt" size="2xl" />
+                  Quản lý tài liệu
                 </Link>
               </li>
               <li className="rounded-lg mb-2 text-gray-700">
@@ -61,28 +79,6 @@ export default function Sidebar() {
                   <Icon name="map" size="2xl" />
                   Maps
                 </Link>
-              </li>
-              <li className="px-4 rounded-lg mb-2 text-gray-700">
-                <a
-                  href="https://demos.creative-tim.com/material-tailwind-kit-react/#/login"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-4 text-sm font-light py-3"
-                >
-                  <Icon name="fingerprint" size="2xl" />
-                  Login
-                </a>
-              </li>
-              <li className="px-4 rounded-lg mb-2 text-gray-700">
-                <a
-                  href="https://demos.creative-tim.com/material-tailwind-kit-react/#/register"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-4 text-sm font-light py-3"
-                >
-                  <Icon name="list_alt" size="2xl" />
-                  Register
-                </a>
               </li>
               <li className="px-4 rounded-lg mb-2 text-gray-700">
                 <a

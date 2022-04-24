@@ -1,4 +1,4 @@
-import StatusCard from "../../component/admin/StatusCard";
+import StatusCardDashBoard from "../../component/admin/StatusCardDashBoard";
 import ChartLineNewUser from "../../component/admin/ChartLineNewUser";
 import ChartBarNewPost from "../../component/admin/ChartBarNewPost";
 import PageVisitsCard from "../../component/admin/PageVisitsCard";
@@ -81,7 +81,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
             {newEvent[Object.keys(newEvent)[0]] > newEvent[Object.keys(newEvent)[1]]?
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="red"
               icon="events"
               title="Sự kiện"
@@ -93,7 +93,7 @@ export default function Dashboard() {
             />
             ):
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="red"
               icon="events"
               title="Sự kiện"
@@ -106,7 +106,7 @@ export default function Dashboard() {
             )}
             {newJob[Object.keys(newJob)[0]] > newJob[Object.keys(newJob)[1]]?
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="blue"
               icon="works"
               title="Tuyển dụng"
@@ -118,7 +118,7 @@ export default function Dashboard() {
             />
             ):
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="blue"
               icon="works"
               title="Tuyển dụng"
@@ -131,7 +131,7 @@ export default function Dashboard() {
             )}
              {newDoc[Object.keys(newDoc)[0]] > newDoc[Object.keys(newDoc)[1]]?
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="yellow"
               icon="sources"
               title="Tài liệu"
@@ -143,7 +143,7 @@ export default function Dashboard() {
             />
             ):
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="yellow"
               icon="sources"
               title="Tài liệu"
@@ -156,7 +156,7 @@ export default function Dashboard() {
             )}
             {newReport[Object.keys(newReport)[0]] > newReport[Object.keys(newReport)[1]]?
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="green"
               icon="reports"
               title="Báo cáo"
@@ -168,7 +168,7 @@ export default function Dashboard() {
             />
             ):
             (
-              <StatusCard
+              <StatusCardDashBoard
               color="green"
               icon="reports"
               title="Báo cáo"

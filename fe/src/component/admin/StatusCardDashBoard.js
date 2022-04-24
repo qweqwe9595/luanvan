@@ -22,12 +22,7 @@ export default function StatusCard({
       <Card>
         <CardRow>
           <CardHeader color={color} iconOnly className="mb-0">
-            {icon === "CalendarAlt" && <FaCalendarAlt  />}
-            {icon === "check" && <GiCheckMark  />}
-            {icon === "CalendarCheck" && <FaCalendarCheck/>}
-            {icon === "DocumentVerified" && <GrDocumentVerified  />}
-            {icon === "DocumentStore" && <GrDocumentStore />}
-            {icon === "DocumentTime" && <GrDocumentTime />}
+          <Icon color="white" name={icon} />
           </CardHeader>
           <CardStatus title={title} amount={amount} />
         </CardRow>

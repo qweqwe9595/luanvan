@@ -20,9 +20,11 @@ import DocContent from "./pages/documentContent/DocContent";
 
 import Admin from "./pages/Admin/Admin";
 import Dashboard from "./pages/Admin/Dashboard";
-import Setting from "./pages/Admin/Settings";
 import Maps from "./pages/Admin/Maps";
-import Tables from "./pages/Admin/Tables";
+import EventManager from "./pages/Admin/eventManager/EventManager";
+import JobManager from "./pages/Admin/jobManager/JobManager";
+
+import DocManager from "./pages/Admin/docManager/DocManager";
 
 function Main() {
   const socket = useContext(SocketContext);
@@ -81,8 +83,9 @@ function Main() {
       <Route path="/test" element={<Test />}></Route>
       <Route path="/admin" element={<Admin />}>
         <Route path="" element={<Dashboard />} />
-        <Route exact path="settings" element={<Setting />} />
-        <Route exact path="tables" element={<Tables />} />
+        <Route exact path="event-Manager" element={<EventManager />} />
+        <Route exact path="job-Manager" element={<JobManager />} />
+        <Route exact path="doc-Manager" element={<DocManager />} />
         <Route exact path="maps" element={<Maps />} />
       </Route>
     </Routes>

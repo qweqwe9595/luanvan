@@ -101,7 +101,7 @@
                     align-items     : center;
                     font-size       : 25px;
                     color           : #0D47A1;
-                    padding-top     : 10px;
+                    padding-top     : 4px;
                     text-align      : center;
                     margin-left     : 10px;
                     cursor          : pointer;
@@ -227,7 +227,11 @@
                     }
 
                     .document_filter {
-                        display: block;
+                        display: flex;
+
+                        .icon_filter {
+                            margin: auto;
+                        }
                     }
                 }
             }
