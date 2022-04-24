@@ -1,42 +1,19 @@
 import StatusCard from "../../component/admin/StatusCard";
-import ChartLine from "../../component/admin/ChartLine";
-import ChartBar from "../../component/admin/ChartBar";
+import ChartLineNewUser from "../../component/admin/ChartLineNewUser";
+import ChartBarNewPost from "../../component/admin/ChartBarNewPost";
 import PageVisitsCard from "../../component/admin/PageVisitsCard";
 import TrafficCard from "../../component/admin/TrafficCard";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Dashboard() {
-  const [newUser, setNewUser] = useState({});
-  const [newPost, setNewPost] = useState({});
   const [newEvent, setNewEvent] = useState({});
   const [newJob, setNewJob] = useState({});
   const [newDoc, setNewDoc] = useState({});
   const [newReport, setNewReport] = useState({});
 
-  useEffect(() => {
-    const countNewUser = () => {
-      axios
-        .get("http://localhost:5000/api/statistic/newposts?query=month")
-        .then((res) => {
-          setNewUser(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    countNewUser();
-    const countNewPost = () => {
-      axios
-        .get("http://localhost:5000/api/statistic/newposts?query=month")
-        .then((res) => {
-          setNewPost(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    countNewPost();
+  useEffect(() => {  
+    
     const countNewEvent = () => {
       axios
         .get("http://localhost:5000/api/statistic/newEvents?query=month")
@@ -90,10 +67,10 @@ export default function Dashboard() {
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 xl:grid-cols-5">
             <div className="xl:col-start-1 xl:col-end-4 px-4 mb-14">
-              <ChartLine newUser={newUser} />
+              <ChartLineNewUser />
             </div>
             <div className="xl:col-start-4 xl:col-end-6 px-4 mb-14">
-              <ChartBar newPost={newPost} />
+              <ChartBarNewPost />
             </div>
           </div>
         </div>
@@ -102,46 +79,106 @@ export default function Dashboard() {
       <div className="px-3 md:px-8">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mb-4">
-            <StatusCard
-              color="pink"
-              icon="event"
+            {newEvent[Object.keys(newEvent)[0]] > newEvent[Object.keys(newEvent)[1]]?
+            (
+              <StatusCard
+              color="red"
+              icon="events"
               title="Sự kiện"
-              amount={newEvent[`thang 4`]}
-              percentage={newEvent[`thang 3`]}
+              amount={newEvent[Object.keys(newEvent)[0]]}
+              percentage={newEvent[Object.keys(newEvent)[0]]-newEvent[Object.keys(newEvent)[1]]}
               percentageIcon="arrow_upward"
               percentageColor="green"
-              date="So với tháng trước"
+              date="So với tháng trước"           
             />
-            <StatusCard
-              color="orange"
-              icon="groups"
-              title="Tuyển dụng"
-              amount={newJob[`thang 4`]}
-              percentage={newJob[`thang 3`]}
-              percentageIcon="arrow_upward"
+            ):
+            (
+              <StatusCard
+              color="red"
+              icon="events"
+              title="Sự kiện"
+              amount={newEvent[Object.keys(newEvent)[0]]}
+              percentage={newEvent[Object.keys(newEvent)[1]]-newEvent[Object.keys(newEvent)[0]]}
+              percentageIcon="arrow_lowward"
               percentageColor="red"
-              date="So với tháng trước"
+              date="So với tháng trước"           
             />
-            <StatusCard
-              color="purple"
-              icon="paid"
-              title="Tài liệu"
-              amount={newDoc[`thang 4`]}
-              percentage={newDoc[`thang 3`]}
-              percentageIcon="arrow_upward"
-              percentageColor="orange"
-              date="So với tháng trước"
-            />
-            <StatusCard
+            )}
+            {newJob[Object.keys(newJob)[0]] > newJob[Object.keys(newJob)[1]]?
+            (
+              <StatusCard
               color="blue"
-              icon="poll"
-              title="Báo cáo"
-              amount={newReport[`thang 4`]}
-              percentage={newReport[`thang 4`]}
+              icon="works"
+              title="Tuyển dụng"
+              amount={newJob[Object.keys(newJob)[0]]}
+              percentage={newJob[Object.keys(newJob)[0]]-newJob[Object.keys(newJob)[1]]}
               percentageIcon="arrow_upward"
               percentageColor="green"
-              date="So với tháng trước"
+              date="So với tháng trước"           
             />
+            ):
+            (
+              <StatusCard
+              color="blue"
+              icon="works"
+              title="Tuyển dụng"
+              amount={newJob[Object.keys(newJob)[0]]}
+              percentage={newJob[Object.keys(newJob)[1]]-newJob[Object.keys(newJob)[0]]}
+              percentageIcon="arrow_lowward"
+              percentageColor="red"
+              date="So với tháng trước"           
+            />
+            )}
+             {newDoc[Object.keys(newDoc)[0]] > newDoc[Object.keys(newDoc)[1]]?
+            (
+              <StatusCard
+              color="yellow"
+              icon="sources"
+              title="Tài liệu"
+              amount={newDoc[Object.keys(newDoc)[0]]}
+              percentage={newDoc[Object.keys(newDoc)[0]]-newDoc[Object.keys(newDoc)[1]]}
+              percentageIcon="arrow_upward"
+              percentageColor="green"
+              date="So với tháng trước"           
+            />
+            ):
+            (
+              <StatusCard
+              color="yellow"
+              icon="sources"
+              title="Tài liệu"
+              amount={newDoc[Object.keys(newDoc)[0]]}
+              percentage={newDoc[Object.keys(newDoc)[1]]-newDoc[Object.keys(newDoc)[0]]}
+              percentageIcon="arrow_lowward"
+              percentageColor="red"
+              date="So với tháng trước"           
+            />
+            )}
+            {newReport[Object.keys(newReport)[0]] > newReport[Object.keys(newReport)[1]]?
+            (
+              <StatusCard
+              color="green"
+              icon="reports"
+              title="Báo cáo"
+              amount={newReport[Object.keys(newReport)[0]]}
+              percentage={newReport[Object.keys(newReport)[0]]-newReport[Object.keys(newReport)[1]]}
+              percentageIcon="arrow_upward"
+              percentageColor="green"
+              date="So với tháng trước"           
+            />
+            ):
+            (
+              <StatusCard
+              color="green"
+              icon="reports"
+              title="Báo cáo"
+              amount={newReport[Object.keys(newReport)[0]]}
+              percentage={newReport[Object.keys(newReport)[1]]-newReport[Object.keys(newReport)[0]]}
+              percentageIcon="arrow_lowward"
+              percentageColor="red"
+              date="So với tháng trước"           
+            />
+            )}
           </div>
         </div>
       </div>

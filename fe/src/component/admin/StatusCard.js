@@ -21,8 +21,7 @@ export default function StatusCard({
       <Card>
         <CardRow>
           <CardHeader color={color} iconOnly className="mb-0">
-            {icon === "apple" && <FaApple />}
-            {icon === "user" && <FaUser />}
+            <Icon name={icon} />
           </CardHeader>
           <CardStatus title={title} amount={amount} />
         </CardRow>
