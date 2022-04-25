@@ -80,7 +80,11 @@ function EventManager() {
               color="pink"
               icon="CalendarAlt"
               title="Tất cả sự kiện"
-              amount={eventDetails.length}
+              amount={eventDetails?.length}
+              // percentage="3.48"
+              // percentageIcon="arrow_upward"
+              // percentageColor="green"
+              // date="Since last month"
             />
           </div>
           {data ? (

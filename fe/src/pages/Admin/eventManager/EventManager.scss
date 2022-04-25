@@ -5,12 +5,13 @@
     grid-template-columns: 50% 50%;
 
     .event_manager_left {
-        width      : 100%;
-        height     : fit-content;
-        flex       : 1;
-        margin-top : 15px;
-        margin-left: 10px;
-        margin-top : 15px;
+        width            : 100%;
+        height           : fit-content;
+        flex             : 1;
+        margin-top       : 15px;
+        margin-left      : 10px;
+        margin-top       : 15px;
+        // padding-bottom: 20px;
 
         .button_create {
             width   : max-content;
@@ -39,12 +40,12 @@
         }
 
 
-        .tag {
-            flex: 1;
-        }
+        // .tag {
+        //     flex: 1;
+        // }
 
         .charline {
-            padding   : 10px;
+            padding   : 15px;
             width     : 100%;
             margin-top: -10px;
         }
@@ -146,6 +147,10 @@
 
         .event_manager_left {
             margin: auto;
+
+            .button_create {
+                top: 10px;
+            }
         }
 
         .event_manager_content {
