@@ -64,8 +64,8 @@ function EventManager() {
   };
   return (
     <>
-      <div className="container">
-        <div className="event_contai">
+      <div className="event_manager">
+        <div className="event_manager_left">
           <div className="button_create">
             <button
               onClick={() => {

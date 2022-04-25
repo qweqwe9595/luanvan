@@ -1,15 +1,16 @@
-.container {
+.event_manager {
     width                : 100%;
     height               : max-content;
     display              : grid;
     grid-template-columns: 50% 50%;
 
-    .event_contai {
-        width     : 100%;
-        height    : fit-content;
-        display   : grid;
-        flex      : 1;
-        margin-top: 15px;
+    .event_manager_left {
+        width      : 100%;
+        height     : fit-content;
+        flex       : 1;
+        margin-top : 15px;
+        margin-left: 10px;
+        margin-top : 15px;
 
         .button_create {
             width   : max-content;
@@ -21,18 +22,18 @@
             z-index : 100;
 
             &>button {
-                float           : right;
-                width           : fit-content;
-                height          : fit-content;
-                padding         : 10px;
-                background-color: #0d47a1;
-                min-width       : 150px;
-                margin-top      : 20px;
-                border-radius   : 10px;
-                font-family     : "oswald";
-                font-size       : 18px;
-                box-shadow      : 0px 2px 10px #fff;
-                color           : #fff;
+                float              : right;
+                width              : fit-content;
+                height             : fit-content;
+                padding            : 10px;
+                background-color   : #0d47a1;
+                min-width          : 150px;
+                margin-top         : 20px;
+                border-radius      : 10px;
+                font-family        : "oswald";
+                font-size          : 18px;
+                // box-shadow      : 0px 2px 10px #fff;
+                color              : #fff;
 
             }
         }
@@ -76,18 +77,21 @@
             font-size       : 22px;
             border-radius   : 12px;
             box-shadow      : 0px 5px 10px 0px rgb(62, 54, 99);
+
         }
 
         .center_events {
-            width      : 100%;
-            max-height : 600px;
-            display    : flex;
-            gap        : 15px;
-            flex-wrap  : wrap;
-            overflow-y : auto;
-            border-top : 1px solid rgba(0, 0, 0, 0.25);
-            padding-top: 20px;
-            margin-left: 15px;
+            width                : 100%;
+            max-height           : 600px;
+            display              : grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows   : repeat(3, 1fr);
+            flex-wrap            : wrap;
+            overflow-y           : auto;
+            border-top           : 1px solid rgba(0, 0, 0, 0.25);
+            padding-top          : 20px;
+            margin-left          : 15px;
+            gap                  : 10px;
 
 
             .event_tags {
@@ -137,12 +141,44 @@
 }
 
 @media all and(max-width: 1000px) {
-    .container {
+    .event_manager {
         display: block;
+
+        .event_manager_left {
+            margin: auto;
+        }
 
         .event_manager_content {
             margin    : auto;
-            margin-top: 30px;
+            margin-top: 50px;
+            padding   : 5px;
+            height    : fit-content;
+
+            .center_events {
+                width                : 95%;
+                max-height           : 600px;
+                display              : grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows   : repeat(2, 1fr);
+                flex-wrap            : wrap;
+                overflow-y           : auto;
+                border-top           : 1px solid rgba(0, 0, 0, 0.25);
+                padding-top          : 20px;
+                gap                  : 5px;
+
+                .event_tags {
+                    width           : 180px;
+                    min-width       : 190px;
+                    height          : 240px;
+                    background-color: aliceblue;
+                    border-radius   : 12px;
+                    font-family     : "oswald";
+                    font-size       : 17px;
+                    margin          : auto;
+                    box-shadow      : 0px 2px 10px rgba(0, 0, 0, 0.25);
+                    margin-bottom   : 10px;
+                }
+            }
         }
     }
 }

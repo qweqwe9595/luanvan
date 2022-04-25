@@ -6,8 +6,7 @@ import ChartLineDoc from "../../../component/admin/ChartLineDoc";
 import { Link } from "react-router-dom";
 export default function DocManager() {
   const [alldocument, setAllDocument] = useState([]);
-  const [countIsAppove, setCountIsApprove] = useState(0);
-  const [countUnAppove, setCountUnApprove] = useState(0);
+  const [reload, setReLoad] = useState(false);
   const [data, setData] = useState("");
   
   const [del, setDel] = useState(false);
@@ -26,7 +25,7 @@ export default function DocManager() {
         setData(res.data);
       })
       .catch((err) => {});
-  }, [del]);
+  }, [del,reload]);
 
   useEffect(() => {
     axios
@@ -42,7 +41,7 @@ export default function DocManager() {
       .catch((err) => {
         console.log(err.response);
       });
-  }, []);
+  }, [reload]);
 
   const sentApprose = (Doc_id) => {
     axios
@@ -57,7 +56,7 @@ export default function DocManager() {
       )
       .then((res) => {
         alert("đã duyệt thành công");
-        // setReLoad(!reLoad);
+         setReLoad(!reload);
       })
       .catch((err) => {
         console.log(err.message);
@@ -74,13 +73,12 @@ export default function DocManager() {
       })
       .then((res) => {
         alert("đã từ chối");
-        // setReLoad(!reLoad);
+         setReLoad(!reload);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  //console.log(alldocument);
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
@@ -124,7 +122,7 @@ export default function DocManager() {
           ""
         )}
 
-        <div className="approve">
+        <div className="approve_container">
           <div className="approve_header">
             <span>Sự kiện chờ duyệt</span>
           </div>
