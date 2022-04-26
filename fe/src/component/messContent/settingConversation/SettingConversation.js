@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect, useState,useContext } from "react";
 import { AiOutlineDelete, AiOutlineUsergroupAdd } from "react-icons/ai";
-import { BiSearch, BiUserPlus } from "react-icons/bi";
+import { BiSearch, BiUser, BiUserPlus } from "react-icons/bi";
 import { MdOutlineGroups } from "react-icons/md";
 import "./SettingConversation.scss";
 import PartnerInfo from "../partnerInfo/PartnerInfo";
 import axios from "axios";
 import { UserContext } from "../../../context/userContext";
+import PartnerGroupt from "../partnerGroupt/PartnerGroupt";
 function SettingConversation({myConversation}) {
   const [me] = useContext(UserContext);
   const [anotherUser, setAnotherUser] = useState(""); 
@@ -26,9 +27,7 @@ function SettingConversation({myConversation}) {
         console.log(err.response);
       });
   }
-  console.log(anotherUser);
-  //add another user to conversation
-
+  // console.log(myConversation);
   return (
      <div className="setting_conversation">
           <div className="partner_info">
@@ -63,7 +62,25 @@ function SettingConversation({myConversation}) {
                 )))}            
             </div>
           )}
+      </div>
+      {myConversation?.members?.length > 2 ? (
+        <>
+        <div className="add">
+              <BiUser></BiUser>
+          <span>{myConversation?.members?.length} thàn viên</span>
           </div>
+          <div className="partner_box">
+            {myConversation?.members?.map((partners, index) => (
+                  partners === me?._id ? "" : (
+                    <div className="partner_goupt" key={index}>
+                   <PartnerGroupt partners={partners}></PartnerGroupt>
+                    </div>  
+                )))}        
+          </div>
+        </>
+           
+        
+        ) : ""}
         <div className="add">
               <BiUserPlus></BiUserPlus>
               <span>Thêm bạn vào hội thoại này</span>

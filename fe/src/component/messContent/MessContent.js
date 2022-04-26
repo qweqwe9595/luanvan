@@ -4,6 +4,7 @@ import { BiSearch, BiUserPlus } from "react-icons/bi";
 import axios from "axios";
 import "./MessContent.scss";
 import { MdOutlineGroups, MdSend } from "react-icons/md";
+import { AiOutlineUser } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { UserContext } from "../../context/userContext";
 import MyMess from "./myMess/MyMess";
@@ -77,21 +78,26 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
       <div className="mess_cent_header">
         {myConversation?.members?.length > 2 ? (
           <div className="mess_info">
-            
             {myConversation?.img?.length === 0 ? (
-            <img
-               className="mess_cent_avt"
-            src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
-              alt=""
-            />
-          ) : (
-            <img
-               className="mess_cent_avt"
-              src={`http://localhost:5000/images/${myConversation?.img}`}
-              alt=""
-            />
-          )}
-            <span>{myConversation.conversationName}</span>
+              <img
+                className="mess_cent_avt"
+                src="https://cdn.pixabay.com/photo/2016/03/23/22/26/user-1275780_960_720.png"
+                alt=""
+              />
+            ) : (
+              <img
+                className="mess_cent_avt"
+                src={`http://localhost:5000/images/${myConversation?.img}`}
+                alt=""
+              />
+            )}
+            <div className="mess_group_name">
+              <span>{myConversation.conversationName}</span>
+              <div className="mess_group_name_member">
+                <AiOutlineUser></AiOutlineUser>
+                <span>{myConversation?.members?.length} thành viên</span>
+              </div>
+            </div>
           </div>
         ) : (
           <div>

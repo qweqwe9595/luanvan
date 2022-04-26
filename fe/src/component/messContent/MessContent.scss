@@ -26,12 +26,37 @@
                 object-fit   : cover;
             }
 
-            &>span {
+            .mess_group_name {
+                display     : grid;
+                align-items : center;
+                width       : fit-content;
                 padding-left: 10px;
-                font-size   : 20px;
-                font-weight : bold;
-                font-family : "oswald";
+
+                &>span {
+                    font-size  : 20px;
+                    font-weight: bold;
+                    font-family: "oswald";
+                }
+
+                .mess_group_name_member {
+                    display    : flex;
+                    align-items: center;
+                    gap        : 5px;
+                    font-size  : 18px;
+                    cursor     : pointer;
+                    font-family: "oswald";
+
+                    &>span {
+                        font-size: 17px;
+                    }
+                }
+
+                .mess_group_name_member:hover {
+                    color: #0d47a1;
+                }
+
             }
+
         }
 
         .mess_cent_search {
