@@ -29,7 +29,7 @@ function CreateNewEvent({ setOpen }) {
     formData.append("participants", participants);
     formData.append("link", link);
     formData.append("duration", duration);
-    formData.append("eventImg", fileRef);
+    formData.append("img", fileRef);
     axios
       .patch(`http://localhost:5000/api/events/createOne`, formData, {
         headers: {

@@ -15,8 +15,8 @@ function EditEvent({ setOpen, events }) {
   const [duration, setDuration] = useState(events?.duration);
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
+
   const updateEvent = () => {
-    var formData = new FormData();
    var formData = new FormData();
     formData.append("eventId", events?._id);
     formData.append("startTime", startTime);
@@ -26,7 +26,7 @@ function EditEvent({ setOpen, events }) {
     formData.append("participants", participants);
     formData.append("link", link);
     formData.append("duration", duration);
-    formData.append("eventImg", fileRef);
+    formData.append("img", fileRef);
     axios
       .patch(`http://localhost:5000/api/events/updateOne`, formData, {
         headers: {
@@ -39,9 +39,10 @@ function EditEvent({ setOpen, events }) {
         alert("cập nhật thành công");
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err.response);
       });
   };
+
   return (
     <>
       <div

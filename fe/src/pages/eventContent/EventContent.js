@@ -108,7 +108,9 @@ function EventContent() {
       <Nav></Nav>
       <div className="event_header">
         <img
-          src={`http://localhost:5000/images/${events?.img}`}
+          src={`http://localhost:5000/images/${
+          events?.img
+          }`}
           className="cover"
         ></img>
         <div className="time">

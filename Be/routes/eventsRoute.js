@@ -28,13 +28,13 @@ router.get("/getOne/:id", getAnEvents);
 //create an event
 router.post(
   "/createOne",
-  [authenticateToken, upload.single("eventImg")],
+  [authenticateToken, upload.single("img")],
   createAnEvent
 );
 router.post("/join", authenticateToken, joinEvent);
 router.patch(
   "/updateOne",
-  [authenticateToken, upload.single("eventImg")],
+  [authenticateToken, upload.single("img")],
   updateAnEvent
 );
 router.delete("/deleteOne", authenticateToken, deleteAnEvent);
