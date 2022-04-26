@@ -8,6 +8,7 @@ const {
   getDocumentApproved,
   approved,
   unApproved,
+  getDocumentPeding,
 } = require("../controller/documentsController");
 
 const multer = require("multer");
@@ -29,18 +30,25 @@ const authenticateTokenQuery = require("../middleWare/authJWTQuery");
 //create 1
 router.post(
   "/createOne",
-  [authenticateToken, upload.single("docFile")],
+  [authenticateToken, upload.array("docFile", 2)],
   createOne
 );
 //get all
 router.get("/getall", authenticateTokenQuery, getAll);
 //get one
 router.get("/getone/:id", getOne);
-//get all of conversation
+//get all of app docs
 
 router.get("/getapproved", getDocumentApproved);
+
+//get all of unapp docs
+router.get("/getpending", getDocumentPeding);
 //update one
-router.patch("/updateone/:id", authenticateToken, updateOne);
+router.patch(
+  "/updateone/:id",
+  [authenticateToken, upload.array("docFile", 2)],
+  updateOne
+);
 //approved one
 router.patch("/approveone/:id", authenticateToken, approved);
 //unapproved one

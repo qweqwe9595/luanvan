@@ -31,7 +31,11 @@ router.post(
   createAJob
 );
 router.post("/join", authenticateToken, createAJob);
-router.patch("/updateOne", authenticateToken, updateAJob);
+router.patch(
+  "/updateOne",
+  [authenticateToken, upload.single("jobImg")],
+  updateAJob
+);
 router.delete("/deleteOne", authenticateToken, deleteAJob);
 
 module.exports = router;
