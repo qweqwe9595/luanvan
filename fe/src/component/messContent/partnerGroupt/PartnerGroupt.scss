@@ -1,0 +1,26 @@
+.mess_info_groupt {
+    display         : flex;
+    align-items     : center;
+    padding-left    : 10px;
+    flex            : 1;
+    padding         : 5px 10px 5px 10px;
+    background-color: #EAEAEA;
+    width           : 350px;
+    margin-bottom   : 5px;
+    border-radius   : 20px;
+
+    .mess_cent_avt {
+        width        : 35px;
+        height       : 35px;
+        border-radius: 50%;
+        object-fit   : cover;
+    }
+
+    &>span {
+        padding-left  : 5px;
+        font-size     : 16px;
+        font-weight   : bold;
+        font-family   : "oswald";
+        text-transform: capitalize;
+    }
+}

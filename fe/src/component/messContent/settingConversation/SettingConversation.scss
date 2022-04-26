@@ -3,7 +3,7 @@
      display         : grid;
      height          : auto;
      background-color: #ffff;
-     border-radius   : 15px;
+     border-radius   : 10px;
      position        : fixed;
      top             : 130px;
      right           : 10px;
@@ -76,4 +76,18 @@
      .add:hover {
          background-color: #eaeaea;
      }
+
+     .partner_box {
+         width : 100%;
+         height: max-content;
+         margin: auto;
+
+         .partner_goupt {
+             width       : 100%;
+             height      : max-content;
+             padding-left: 15px;
+         }
+
+     }
+
  }
