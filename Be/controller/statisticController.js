@@ -204,6 +204,70 @@ const newDocs = async (req, res) => {
   }
 };
 
+//docs
+const approvedDocs = async (req, res) => {
+  if (Object.keys(req.query).length == 0)
+    return res.status(200).json({ message: "need query params" });
+  try {
+    const DBQuerys = await docsModel
+      .find({ isApproved: true })
+      .select("createdAt");
+    let statistic = {};
+    switch (req.query.query) {
+      case "all":
+        {
+          statistic["all"] = DBQuerys.length;
+        }
+        break;
+      case "month":
+        {
+          statistic = get6Lately(DBQuerys);
+        }
+        break;
+      default: {
+        statistic = {};
+      }
+    }
+
+    res.status(200).json(statistic);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error.message);
+  }
+};
+
+//docs
+const pendingDocs = async (req, res) => {
+  if (Object.keys(req.query).length == 0)
+    return res.status(200).json({ message: "need query params" });
+  try {
+    const DBQuerys = await docsModel
+      .find({ isApproved: false })
+      .select("createdAt");
+    let statistic = {};
+    switch (req.query.query) {
+      case "all":
+        {
+          statistic["all"] = DBQuerys.length;
+        }
+        break;
+      case "month":
+        {
+          statistic = get6Lately(DBQuerys);
+        }
+        break;
+      default: {
+        statistic = {};
+      }
+    }
+
+    res.status(200).json(statistic);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error.message);
+  }
+};
+
 //user online today
 const onlineToday = async (req, res) => {
   try {
@@ -222,4 +286,6 @@ module.exports = {
   newJobs,
   newDocs,
   onlineToday,
+  approvedDocs,
+  pendingDocs,
 };
