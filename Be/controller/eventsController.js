@@ -54,6 +54,7 @@ const updateAnEvent = async (req, res) => {
     );
     if (req.file) {
       eventsQuery.img = req.file.filename;
+      await eventsQuery.save();
     }
     res.status(200).json({ eventsQuery });
   } catch (error) {
