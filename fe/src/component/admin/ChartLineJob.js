@@ -1,37 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
+import axios from "axios";
 
-export default function ChartBar(newPost) {
-  const thang11 = +newPost.newPost[`thang 11`];
-  const thang12 = +newPost.newPost[`thang 12`];
-  const thang1 = +newPost.newPost[`thang 1`];
-  const thang2 = +newPost.newPost[`thang 2`];
-  const thang3 = +newPost.newPost[`thang 3`];
-  const thang4 = +newPost.newPost[`thang 4`];
-
+export default function ChartLineEvent({ data }) {
+  const [labels, setLables] = useState(Object.keys(data).reverse());
+  const [dt, setDt] = useState(Object.values(data).reverse());
   useEffect(() => {
-    let config = {
-      type: "bar",
+    setLables(Object.keys(data).reverse());
+    setDt(Object.values(data).reverse());
+    var config = {
+      type: "line",
       data: {
-        labels: [
-          "Thang 11",
-          "Thang 12",
-          "Thang 1",
-          "Thang 2",
-          "Thang 3",
-          "Thang 4",
-        ],
+        labels,
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data: [thang11, thang12, thang1, thang2, thang3, thang4],
+            data: dt,
             fill: false,
-            barThickness: 8,
           },
         ],
       },
@@ -40,7 +30,15 @@ export default function ChartBar(newPost) {
         responsive: true,
         title: {
           display: false,
-          text: "Orders Chart",
+          text: "Sales Charts",
+          fontColor: "white",
+        },
+        legend: {
+          labels: {
+            fontColor: "black",
+          },
+          align: "end",
+          position: "bottom",
         },
         tooltips: {
           mode: "index",
@@ -50,26 +48,24 @@ export default function ChartBar(newPost) {
           mode: "nearest",
           intersect: true,
         },
-        legend: {
-          labels: {
-            fontColor: "rgba(17,17,17,.7)",
-          },
-          align: "end",
-          position: "bottom",
-        },
         scales: {
           xAxes: [
             {
-              display: false,
+              ticks: {
+                fontColor: "rgba(17,17,17,.7)",
+              },
+              display: true,
               scaleLabel: {
-                display: true,
+                display: false,
                 labelString: "Month",
+                fontColor: "white",
               },
               gridLines: {
+                display: false,
                 borderDash: [2],
                 borderDashOffset: [2],
                 color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(33, 37, 41, 0.3)",
+                zeroLineColor: "rgba(0, 0, 0, 0)",
                 zeroLineBorderDash: [2],
                 zeroLineBorderDashOffset: [2],
               },
@@ -77,17 +73,21 @@ export default function ChartBar(newPost) {
           ],
           yAxes: [
             {
+              ticks: {
+                fontColor: "rgba(17,17,17,.7)",
+              },
               display: true,
               scaleLabel: {
                 display: false,
                 labelString: "Value",
+                fontColor: "white",
               },
               gridLines: {
-                borderDash: [2],
+                borderDash: [3],
+                borderDashOffset: [3],
                 drawBorder: false,
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.2)",
-                zeroLineColor: "rgba(33, 37, 41, 0.15)",
+                color: "rgba(17, 17, 17, 0.15)",
+                zeroLineColor: "rgba(33, 37, 41, 0)",
                 zeroLineBorderDash: [2],
                 zeroLineBorderDashOffset: [2],
               },
@@ -96,20 +96,21 @@ export default function ChartBar(newPost) {
         },
       },
     };
-    let ctx = document.getElementById("bar-chart").getContext("2d");
-    window.myBar = new Chart(ctx, config);
-  }, [newPost]);
+    var ctx = document.getElementById("line-chart").getContext("2d");
+    window.myLine = new Chart(ctx, config);
+  }, [data]);
+
   return (
     <Card>
-      <CardHeader color="pink" contentPosition="left">
-        <h6 className="uppercase text-gray-200 text-xs font-medium">
+      <CardHeader color="orange" contentPosition="left">
+        {/* <h6 className="uppercase text-gray-200 text-xs font-medium">
           Overview
-        </h6>
-        <h2 className="text-white text-2xl">Sales value</h2>
+        </h6> */}
+        <h2 className="text-white text-2xl">Tuyển dụng mới</h2>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">
-          <canvas id="bar-chart"></canvas>
+          <canvas id="line-chart"></canvas>
         </div>
       </CardBody>
     </Card>

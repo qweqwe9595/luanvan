@@ -14,14 +14,14 @@ export default function Sidebar() {
       >
         <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
           <a
-            href=""
+            href="#"
             target="_blank"
             rel="noreferrer"
             className="mt-2 text-center w-full inline-block"
           >
             <H6 color="gray">TRANG CHỦ ADMIN</H6>
           </a>
-           
+
           <div className="flex flex-col">
             <hr className="my-4 min-w-full" />
 
@@ -50,7 +50,16 @@ export default function Sidebar() {
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                 >
                   <Icon name="event" size="2xl" />
-                  quản lý sự kiện
+                  Quản lý sự kiện
+                </Link>
+              </li>
+              <li className="rounded-lg mb-2">
+                <Link
+                  to="/admin/job-manager"
+                  className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                >
+                  <Icon name="work" size="2xl" />
+                  Quản lý tuyển dụng
                 </Link>
               </li>
               <li className="rounded-lg mb-2 ">
@@ -58,7 +67,7 @@ export default function Sidebar() {
                   to="/admin/doc-manager"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                 >
-                    <Icon name="list_alt" size="2xl" />
+                  <Icon name="list_alt" size="2xl" />
                   Quản lý tài liệu
                 </Link>
               </li>

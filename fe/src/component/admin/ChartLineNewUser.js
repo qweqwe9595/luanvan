@@ -1,35 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
+import axios from "axios";
 
-export default function ChartLine(newUser) {
-  const thang11 = +newUser.newUser[`thang 11`];
-  const thang12 = +newUser.newUser[`thang 12`];
-  const thang1 = +newUser.newUser[`thang 1`];
-  const thang2 = +newUser.newUser[`thang 2`];
-  const thang3 = +newUser.newUser[`thang 3`];
-  const thang4 = +newUser.newUser[`thang 4`];
+export default function ChartLine() {
+  const [newUser, setNewUser] = useState({});
 
   useEffect(() => {
+    const countNewUser = () => {
+      axios
+        .get("http://localhost:5000/api/statistic/newposts?query=month")
+        .then((res) => {
+          setNewUser(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    countNewUser();
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(newUser).length === 0) return;
+
     var config = {
       type: "line",
       data: {
-        labels: [
-          "Tháng 11",
-          "Tháng 12",
-          "Tháng 1",
-          "Tháng 2",
-          "Tháng 3",
-          "Tháng 4",
-        ],
+        labels: Object.keys(newUser).reverse(),
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data: [thang11, thang12, thang1, thang2, thang3, thang4],
+            data: Object.values(newUser).reverse(),
             fill: false,
           },
         ],
@@ -112,9 +117,9 @@ export default function ChartLine(newUser) {
   return (
     <Card>
       <CardHeader color="orange" contentPosition="left">
-        <h6 className="uppercase text-gray-200 text-xs font-medium">
+        {/* <h6 className="uppercase text-gray-200 text-xs font-medium">
           Overview
-        </h6>
+        </h6> */}
         <h2 className="text-white text-2xl">Người dùng mới</h2>
       </CardHeader>
       <CardBody>

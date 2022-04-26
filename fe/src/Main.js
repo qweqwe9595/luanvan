@@ -22,6 +22,8 @@ import Admin from "./pages/Admin/Admin";
 import Dashboard from "./pages/Admin/Dashboard";
 import Maps from "./pages/Admin/Maps";
 import EventManager from "./pages/Admin/eventManager/EventManager";
+import JobManager from "./pages/Admin/jobManager/JobManager";
+
 import DocManager from "./pages/Admin/docManager/DocManager";
 
 function Main() {
@@ -82,6 +84,7 @@ function Main() {
       <Route path="/admin" element={<Admin />}>
         <Route path="" element={<Dashboard />} />
         <Route exact path="event-Manager" element={<EventManager />} />
+        <Route exact path="job-Manager" element={<JobManager />} />
         <Route exact path="doc-Manager" element={<DocManager />} />
         <Route exact path="maps" element={<Maps />} />
       </Route>

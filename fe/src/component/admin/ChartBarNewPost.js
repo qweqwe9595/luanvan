@@ -1,35 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
+import axios from "axios";
 
-export default function ChartBar(newPost) {
-  const thang11 = +newPost.newPost[`thang 11`];
-  const thang12 = +newPost.newPost[`thang 12`];
-  const thang1 = +newPost.newPost[`thang 1`];
-  const thang2 = +newPost.newPost[`thang 2`];
-  const thang3 = +newPost.newPost[`thang 3`];
-  const thang4 = +newPost.newPost[`thang 4`];
+export default function ChartBar() {
+  const [newPost, setNewPost] = useState({});
 
   useEffect(() => {
+    const countNewPost = () => {
+      axios
+        .get("http://localhost:5000/api/statistic/newposts?query=month")
+        .then((res) => {
+          setNewPost(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    countNewPost();
+  }, []);
+
+  useEffect(() => {
+    if (Object.keys(newPost).length === 0) return;
     let config = {
       type: "bar",
       data: {
-        labels: [
-          "Thang 11",
-          "Thang 12",
-          "Thang 1",
-          "Thang 2",
-          "Thang 3",
-          "Thang 4",
-        ],
+        labels: Object.keys(newPost).reverse(),
         datasets: [
           {
             label: new Date().getFullYear(),
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data: [thang11, thang12, thang1, thang2, thang3, thang4],
+            data: Object.values(newPost).reverse(),
             fill: false,
             barThickness: 8,
           },
@@ -58,23 +62,6 @@ export default function ChartBar(newPost) {
           position: "bottom",
         },
         scales: {
-          xAxes: [
-            {
-              display: false,
-              scaleLabel: {
-                display: true,
-                labelString: "Month",
-              },
-              gridLines: {
-                borderDash: [2],
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
           yAxes: [
             {
               display: true,
@@ -97,15 +84,15 @@ export default function ChartBar(newPost) {
       },
     };
     let ctx = document.getElementById("bar-chart").getContext("2d");
-    window.myBar = new Chart(ctx, config);
+    window.myBarNewPost = new Chart(ctx, config);
   }, [newPost]);
   return (
     <Card>
       <CardHeader color="pink" contentPosition="left">
-        <h6 className="uppercase text-gray-200 text-xs font-medium">
+        {/* <h6 className="uppercase text-gray-200 text-xs font-medium">
           Overview
-        </h6>
-        <h2 className="text-white text-2xl">Sales value</h2>
+        </h6> */}
+        <h2 className="text-white text-2xl">Bài đăng mới</h2>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">

@@ -8,6 +8,8 @@ const {
   newJobs,
   newDocs,
   onlineToday,
+  approvedDocs,
+  pendingDocs,
 } = require("../controller/statisticController");
 
 //newUser
@@ -18,5 +20,7 @@ router.get("/newReports", newReports);
 router.get("/newJobs", newJobs);
 router.get("/newDocs", newDocs);
 router.get("/onlineToday", onlineToday);
+router.get("/approvedDocs", approvedDocs);
+router.get("/pendingDocs", pendingDocs);
 
 module.exports = router;

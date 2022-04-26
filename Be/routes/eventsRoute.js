@@ -32,7 +32,11 @@ router.post(
   createAnEvent
 );
 router.post("/join", authenticateToken, joinEvent);
-router.patch("/updateOne", authenticateToken, updateAnEvent);
+router.patch(
+  "/updateOne",
+  [authenticateToken, upload.single("eventImg")],
+  updateAnEvent
+);
 router.delete("/deleteOne", authenticateToken, deleteAnEvent);
 
 module.exports = router;

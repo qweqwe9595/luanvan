@@ -5,9 +5,13 @@ const mongoose = require("mongoose");
 //create document
 const createOne = async (req, res) => {
   try {
-    if (!req.file) return res.status(400).json({ message: "need doc file" });
+    if (!req.files.length === 0)
+      return res.status(400).json({ message: "need doc file" });
     const newDocument = await new documentsModel(req.body);
-    newDocument.file = req.file.filename;
+    newDocument.file = req.files[0].filename;
+    if (req.files[1]) {
+      newDocument.img = req.files[1].filename;
+    }
     newDocument.userId = req.user._id;
     await newDocument.save();
     res.status(200).json(newDocument);
@@ -43,6 +47,20 @@ const getDocumentApproved = async (req, res) => {
     const documentsQuery = await documentsModel
       .find({
         isApproved: true,
+      })
+      .populate("userId");
+    res.status(200).json(documentsQuery);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
+//get all approved documents
+const getDocumentPeding = async (req, res) => {
+  try {
+    const documentsQuery = await documentsModel
+      .find({
+        isApproved: false,
       })
       .populate("userId");
     res.status(200).json(documentsQuery);
@@ -121,4 +139,5 @@ module.exports = {
   getDocumentApproved,
   approved,
   unApproved,
+  getDocumentPeding,
 };

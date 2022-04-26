@@ -29,8 +29,8 @@ const createAJob = async (req, res) => {
     const jobsQuery = await new jobsModel(req.body);
     if (req.file) {
       jobsQuery.img = req.file.filename;
+      await jobsQuery.save();
     }
-    jobsQuery.save();
     res.status(200).json({ jobsQuery });
   } catch (error) {
     res.status(500).json(error.message);
@@ -39,12 +39,12 @@ const createAJob = async (req, res) => {
 
 //update an event
 const updateAJob = async (req, res) => {
-  console.log(req.body.jobId);
   try {
     if (req.user.isAdmin === false)
       return res
         .status(400)
         .json({ message: "only Admin can update an event" });
+
     const jobsQuery = await jobsModel.findByIdAndUpdate(
       req.body.jobId,
       {
@@ -52,9 +52,12 @@ const updateAJob = async (req, res) => {
       },
       { new: true }
     );
-    const jobsQuery2 = await jobsModel.findById(req.body.jobId);
-
-    res.status(200).json({ jobsQuery2 });
+    if (!jobsQuery) return res.status(200).json({ message: "no job found" });
+    if (req.file) {
+      jobsQuery.img = req.file.filename;
+      await jobsQuery.save();
+    }
+    res.status(200).json({ jobsQuery });
   } catch (error) {
     res.status(500).json(error.message);
   }

@@ -9,6 +9,10 @@ const createAConversation = async (req, res) => {
       ...req.body,
       ...{ admin: req.user._id },
     });
+    if (req.file) {
+      newConversation.img = req.file.filename;
+    }
+
     await newConversation.save();
     res.status(200).json(newConversation);
   } catch (error) {
@@ -39,12 +43,20 @@ const getAConversation = async (req, res) => {
 
 const updateOne = async (req, res) => {
   try {
-    const conversationQuery = await conversationModel.findByIdAndUpdate(
-      req.params.id,
-      { $set: req.body },
-      { new: true }
-    );
-    res.status(200).json(conversationQuery);
+    const query = await conversationModel.findById(req.params.id);
+    if (req.user._id === query.admin || query.members.length == 2) {
+      const conversationQuery = await conversationModel.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      if (req.file) {
+        conversationQuery.img = req.file.filename;
+      }
+      await conversationQuery.save();
+      res.status(200).json(conversationQuery);
+    }
+    res.status(400).json({ message: "you are not admin " });
   } catch (error) {
     res.status(500).json(error.message);
   }
