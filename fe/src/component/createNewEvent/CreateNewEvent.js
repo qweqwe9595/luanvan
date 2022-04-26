@@ -31,7 +31,7 @@ function CreateNewEvent({ setOpen }) {
     formData.append("duration", duration);
     formData.append("eventImg", fileRef);
     axios
-      .post(`http://localhost:5000/api/events/createOne`, formData, {
+      .patch(`http://localhost:5000/api/events/createOne`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: "Bearer " + localStorage.getItem("token"),

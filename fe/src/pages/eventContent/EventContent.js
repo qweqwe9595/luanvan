@@ -31,13 +31,13 @@ function EventContent() {
       )
       .then((res) => {
         setEvents(res.data.eventsQuery);
-        setJoin(res.data.eventsQuery.joins.some((item) => item === user._id));
+        setJoin(res.data.eventsQuery.joins.some((item) => item === user?._id));
         setNumjoins(res.data.eventsQuery.joins.length);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [open]);
   useEffect(() => {
     if (searchTerm === "") {
       return;

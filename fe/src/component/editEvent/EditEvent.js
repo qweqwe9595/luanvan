@@ -13,34 +13,30 @@ function EditEvent({ setOpen, events }) {
   const [participants, setParticipants] = useState(events?.participants);
   const [link, setLink] = useState(events?.link);
   const [duration, setDuration] = useState(events?.duration);
-  //const [user] = useContext(UserContext);
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
   const updateEvent = () => {
     var formData = new FormData();
-    formData.append('eventId',events._id);
-    formData.append('startTime',startTime);
-    formData.append('eventName',eventName);
-    formData.append('desc',desc);
-    formData.append('location',location);
-    formData.append('participants',participants);
-    formData.append('link',link);
-    formData.append('duration',duration);
-    formData.append('eventImg', fileRef);
-    formData.append('_method', 'PATCH');
+   var formData = new FormData();
+    formData.append("eventId", events?._id);
+    formData.append("startTime", startTime);
+    formData.append("eventName", eventName);
+    formData.append("desc", desc);
+    formData.append("location", location);
+    formData.append("participants", participants);
+    formData.append("link", link);
+    formData.append("duration", duration);
+    formData.append("eventImg", fileRef);
     axios
-      .patch(
-        `http://localhost:5000/api/events/updateOne`,formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
+      .patch(`http://localhost:5000/api/events/updateOne`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         alert("cập nhật thành công");
-        setOpen(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -69,15 +65,16 @@ function EditEvent({ setOpen, events }) {
           {previewURL ? (
             <img className="cover" src={previewURL} alt=""></img>
           ) : (
-            <BsImages></BsImages>
+            <BsImages className="icon_picture_event"></BsImages>
           )}
         </div>
 
         <div className="choose_img">
-          <input
+         <input
             id="file-upload"
             type="file"
             name="photo"
+            accept="image/*"
             onChange={function (e) {
               if (e.target.files[0]) {
                 setPreviewUrl(URL.createObjectURL(e.target.files[0]));
