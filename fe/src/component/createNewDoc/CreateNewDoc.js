@@ -15,8 +15,8 @@ function CreateNewDoc({ setOpenCreateDoc }) {
     formData.append("userId", user?._id);
     formData.append("docName", docName);
     formData.append("desc", desc);
-    formData.append("img", fileImg);
-    formData.append("file", file);
+    formData.append("docFile", file);
+    formData.append("docFile", fileImg);
     axios
       .post(`http://localhost:5000/api/documents/createone`, formData, {
         headers: {
@@ -26,7 +26,7 @@ function CreateNewDoc({ setOpenCreateDoc }) {
       })
       .then((res) => {
         console.log(res.data);
-        alert("thành công ");
+        alert("Đăng tài liệu thành công! vui lòng chờ admin duyệt");
       })
       .catch((err) => {
         console.log(err);

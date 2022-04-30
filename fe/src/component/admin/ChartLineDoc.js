@@ -8,7 +8,7 @@ import axios from "axios";
 export default function ChartLineDoc({ data }) {
   const [labels, setLables] = useState(Object.keys(data).reverse());
   const [dt, setDt] = useState(Object.values(data).reverse());
-  console.log(data);
+  
 
   useEffect(() => {
     var config = {

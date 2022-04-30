@@ -23,8 +23,6 @@ function Message() {
   const [loadAll, setLoadAll] = useState(false);
   const [addGroupt, setAddGroupt] = useState(false);
 
-  // let member = [user?._id];
-  // console.log(member);
   useEffect(() => {
     axios
       .get(
@@ -40,6 +38,8 @@ function Message() {
         console.log(err.response);
       });
   }, [openNewConver, loadAll, addGroupt]);
+
+
   return (
     <div className="message_container">
       <Nav></Nav>
@@ -127,7 +127,7 @@ function Message() {
                                   <div
                                     key={index}>
                                     <Partner
-                                      partners={partners}
+                                        partners={partners}
                                         SetMyConversations={SetMyConversations}
                                         people = {people}
                                     ></Partner>

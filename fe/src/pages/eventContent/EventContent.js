@@ -152,7 +152,7 @@ function EventContent() {
             </button>
           )}
 
-          <button className="invite">Mời</button>
+          <button className="invite">Mời bạn</button>
           <button
             className="delete_event"
             onClick={() => {
@@ -198,7 +198,7 @@ function EventContent() {
         </div>
       </div>
       <div className="invite_event">
-        <span>Khách mời</span>
+        <span>Mời bạn tham gia sự kiện</span>
         <div className="search">
           <BsSearch></BsSearch>
           <input

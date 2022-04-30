@@ -85,6 +85,7 @@ function Docurmen() {
             </div>
           </div>
           <button
+            className="button_create"
             onClick={() => {
               setOpenCreateDoc(!openCreateDoc);
             }}

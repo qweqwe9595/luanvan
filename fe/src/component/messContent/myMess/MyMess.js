@@ -21,12 +21,15 @@ function MyMess({ sender }) {
         />
       )}
       <div className="my_mess">
-        <div>
-          <div className="my_mess_detail">
-            <span>{sender.text}</span>
-          </div>
-          <br></br>
+        <div className="my_mess_detail">
+          <span>{sender.text}</span>
         </div>
+        <p>
+          {new Date(sender.createdAt).toLocaleTimeString(["it-IT"], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
       </div>
     </div>
   );

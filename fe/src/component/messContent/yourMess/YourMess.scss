@@ -1,8 +1,11 @@
  .your_mess_content {
-     display: flex;
-     height : auto;
-     width  : 100%;
-     padding: 5px;
+     display      : flex;
+     height       : auto;
+     width        : 100%;
+     margin-bottom: 10px;
+     right        : 10px;
+     float        : left;
+     min-width    : 300px;
 
      ._avt {
          width        : 50px;
@@ -15,22 +18,33 @@
      }
 
      .your_mess {
-         width     : fit-content;
-         flex      : 1;
-         max-width : 80%;
-         margin-top: 5px;
+         min-width       : 100px;
+         max-width       : 75%;
+         height          : max-content;
+         float           : left;
+         background-color: #EAEAEA;
+         word-wrap       : break-word;
+         display         : grid;
+         border-radius   : 7px;
+         padding         : 7px 15px 7px 15px;
 
          .your_mess_detail {
-             width           : fit-content;
-             background-color: #EAEAEA;
-             margin-bottom   : 10px;
-             padding         : 7px;
-             border-radius   : 12px;
-             text-align      : center;
-             font-size       : 17px;
-             font-family     : "oswald";
-             min-width       : 50px;
+             width        : 100%;
+             max-width    : 100%;
+             float        : right;
+             width        : fit-content;
+             min-width    : 50px;
+             color        : black;
+             font-family  : "oswald";
+             font-size    : 17px;
+             margin-bottom: 5px;
+             margin-top   : 5px;
+         }
 
+         &>p {
+             color         : cadetblue;
+             font-size     : 14px;
+             text-transform: capitalize;
          }
      }
  }

@@ -10,7 +10,7 @@ import { UserContext } from "../../../context/userContext";
 import PartnerGroupt from "../partnerGroupt/PartnerGroupt";
 function SettingConversation({myConversation}) {
   const [me] = useContext(UserContext);
-  const [anotherUser, setAnotherUser] = useState(""); 
+  const [more, setMore] = useState(false);
     // xóa hội thoại
   const deleteConver = () => {
     axios
@@ -27,7 +27,7 @@ function SettingConversation({myConversation}) {
         console.log(err.response);
       });
   }
-  // console.log(myConversation);
+  
   return (
      <div className="setting_conversation">
           <div className="partner_info">
@@ -65,11 +65,13 @@ function SettingConversation({myConversation}) {
       </div>
       {myConversation?.members?.length > 2 ? (
         <>
-        <div className="add">
+          <div className="add"
+          onClick={()=>{setMore(!more)}}>
               <BiUser></BiUser>
           <span>{myConversation?.members?.length} thàn viên</span>
           </div>
-          <div className="partner_box">
+          {more ? (
+            <div className="partner_box">
             {myConversation?.members?.map((partners, index) => (
                   partners === me?._id ? "" : (
                     <div className="partner_goupt" key={index}>
@@ -77,6 +79,8 @@ function SettingConversation({myConversation}) {
                     </div>  
                 )))}        
           </div>
+          ):""}
+          
         </>
            
         

@@ -26,6 +26,8 @@ function EventManager() {
       })
       .catch((err) => {});
   }, [open, del]);
+
+
   useEffect(() => {
     axios
       .get(
@@ -78,7 +80,7 @@ function EventManager() {
           <div className="grid grid-cols-1">
             <StatusCard
               color="pink"
-              icon="CalendarAlt"
+              icon="event"
               title="Tất cả sự kiện"
               amount={eventDetails?.length}
               // percentage="3.48"

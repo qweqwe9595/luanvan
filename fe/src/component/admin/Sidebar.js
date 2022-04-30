@@ -19,7 +19,7 @@ export default function Sidebar() {
             rel="noreferrer"
             className="mt-2 text-center w-full inline-block"
           >
-            <H6 color="gray">TRANG CHỦ ADMIN</H6>
+            <H6 color="gray">TRANG QUẢN TRỊ</H6>
           </a>
 
           <div className="flex flex-col">

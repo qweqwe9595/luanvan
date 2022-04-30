@@ -58,7 +58,7 @@ function Main() {
   useEffect(() => {
     if (!user) return;
     socket.on("getMessage", (mess) => {
-      console.log(mess);
+      //console.log(mess);
     });
   }, [user, socket]);
   //

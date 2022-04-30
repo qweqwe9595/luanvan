@@ -111,16 +111,23 @@
 
 
 
-            &>button {
-                width        : 110px;
-                height       : 40px;
-                border-radius: 12px;
-                border       : none;
-                cursor       : pointer;
-                font-size    : 18px;
-                font-family  : 'oswald';
-                color        : #0D47A1;
+            .button_create {
+                width           : 110px;
+                height          : 40px;
+                border-radius   : 12px;
+                border          : none;
+                cursor          : pointer;
+                font-size       : 18px;
+                font-family     : 'oswald';
+                color           : #ffffff;
+                background-color: #0D47A1;
             }
+
+            &>button:focus {
+                outline: none;
+            }
+
+
         }
 
         .document_right_body {

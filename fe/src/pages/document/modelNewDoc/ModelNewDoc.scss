@@ -9,7 +9,7 @@
 }
 
 .model_new_doc {
-    width            : 60%;
+    width            : 70%;
     min-width        : 400px;
     height           : auto;
     min-height       : 400px;
@@ -23,6 +23,7 @@
     border-radius    : 10px;
     display          : grid;
     z-index          : 3;
+
 
 
 
@@ -59,25 +60,30 @@
     }
 
     .model_new_body {
-        display    : flex;
-        width      : 100%;
-        height     : auto;
-        flex-wrap  : wrap;
-        padding-top: 20px;
+        display              : grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows   : repeat(4, 1fr);
+        width                : 100%;
+        height               : 650px;
+        flex-wrap            : wrap;
+        padding-top          : 20px;
+        overflow-y           : auto;
+        gap                  : 10px;
+
+
 
         .document_tag {
-            margin       : auto;
-            width        : 200px;
-            height       : 300px;
-            border-radius: 12px;
-            margin-right : 15px;
-            margin-left  : 15px;
-            margin-bottom: 25px;
-            box-shadow   : 0px 1px 5px 0px #333e50;
+            margin             : auto;
+            width              : 200px;
+            height             : 270px;
+            border-radius      : 12px;
+            // margin-right    : 15px;
+            margin-bottom      : 20px;
+            box-shadow         : 0px 1px 5px 0px #333e50;
 
             .document_tag_cover {
                 width                  : 100%;
-                height                 : 190px;
+                height                 : 160px;
                 object-fit             : cover;
                 border-top-left-radius : 12px;
                 border-top-right-radius: 12px;
@@ -159,8 +165,27 @@
     }
 }
 
-@media all and(max-width:600px) {
+@media all and(max-width:1200px) {
     .model_new_doc {
-        width: 99%;
+        width: 90%;
+
+        .model_new_body {
+            display              : grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows   : repeat(3, 1fr);
+        }
+    }
+}
+
+@media all and(max-width:800px) {
+    .model_new_doc {
+        width: 95%;
+
+        .model_new_body {
+            display              : grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows   : repeat(2, 1fr);
+            padding-bottom       : 20px;
+        }
     }
 }

@@ -1,10 +1,11 @@
 .my_mess_content {
-    display: block;
-    height : auto;
-    width  : 100%;
-    padding: 5px;
-    right  : 10px;
-    float  : right;
+    display      : block;
+    height       : auto;
+    width        : 100%;
+    right        : 10px;
+    float        : right;
+    min-width    : 300px;
+    margin-bottom: 10px;
 
     ._avt {
         width        : 50px;
@@ -14,29 +15,36 @@
         border       : none;
         margin-left  : 10px;
         float        : right;
+
     }
 
     .my_mess {
-        width     : auto;
-        flex      : 1;
-        max-width : 80%;
-        display   : block;
-        float     : right;
-        margin-top: 5px;
+        min-width       : 100px;
+        max-width       : 75%;
+        height          : max-content;
+        float           : right;
+        background-color: #0d47a1;
+        word-wrap       : break-word;
+        display         : grid;
+        border-radius   : 7px;
+        padding         : 5px;
 
         .my_mess_detail {
-            float           : right;
-            width           : fit-content;
-            min-width       : 50px;
-            background-color: #0d47a1;
-            margin-bottom   : 10px;
-            padding         : 7px;
-            border-radius   : 12px;
-            color           : #ffffff;
-            text-align      : center;
-            font-family     : "oswald";
-            font-size       : 17px;
+            width      : 100%;
+            max-width  : 100%;
+            float      : right;
+            width      : fit-content;
+            min-width  : 50px;
+            color      : #ffffff;
+            font-family: "oswald";
+            font-size  : 17px;
 
+        }
+
+        &>p {
+            color     : cadetblue;
+            font-size : 14px;
+            margin-top: 10px;
         }
     }
 }
