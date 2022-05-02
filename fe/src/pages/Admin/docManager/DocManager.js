@@ -6,11 +6,13 @@ import ChartLineDoc from "../../../component/admin/ChartLineDoc";
 import { Link } from "react-router-dom";
 export default function DocManager() {
   const [alldocument, setAllDocument] = useState([]);
+  const [filterDocument, setFilterDocument] = useState([]);
   const [reload, setReLoad] = useState(false);
   const [data, setData] = useState("");
   const [del, setDel] = useState(false);
   const [approved, setApproved] = useState();
   const [pending, setPending] = useState();
+
   useEffect(() => {
     axios
       .get(
@@ -56,6 +58,8 @@ export default function DocManager() {
       )
       .then((res) => {
         setAllDocument(res.data);
+        if (filterDocument.length !== 0) return;
+        setFilterDocument(res.data);
       })
       .catch((err) => {
         console.log(err.response);
@@ -91,7 +95,7 @@ export default function DocManager() {
         }
       )
       .then((res) => {
-        alert("đã duyệt thành công");
+        setFilterDocument(filterDocument.filter((item) => item._id !== Doc_id));
         setReLoad(!reload);
       })
       .catch((err) => {
@@ -115,6 +119,36 @@ export default function DocManager() {
         console.log(err);
       });
   };
+
+  const filterDocs = (filterText) => {
+    switch (filterText) {
+      case `all`: {
+        setFilterDocument(alldocument);
+        break;
+      }
+      case `aprroved`: {
+        setFilterDocument(
+          alldocument.filter((item, index) => {
+            return item.isApproved === true;
+          })
+        );
+        break;
+      }
+      case `pending`: {
+        setFilterDocument(
+          alldocument.filter((item, index) => {
+            console.log(item.isApproved);
+            return item.isApproved === false;
+          })
+        );
+        break;
+      }
+      default: {
+        return setFilterDocument(alldocument);
+      }
+    }
+  };
+
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
@@ -160,54 +194,55 @@ export default function DocManager() {
 
         <div className="approve_container">
           <div className="approve_header">
-            <select>
-              <option>Tất cả tài liệu</option>
-              <option>Tài liệu chờ duyệt</option>
-              <option>Tài liệu đã được duyệt</option>
+            <select
+              onChange={(e) => {
+                filterDocs(e.target.value);
+              }}
+            >
+              <option value={`all`}>Tất cả tài liệu</option>
+              <option value={`pending`}>Tài liệu chờ duyệt</option>
+              <option value={`aprroved`}>Tài liệu đã được duyệt</option>
             </select>
           </div>
-            <div className="approve_content">
-              {alldocument?.map((document, index) => {
-                if (document.isApproved === true) {
-                  return;
-                }
-                return (
-                  <div className="document_tag" key={index}>
-                    <img
-                      src={`http://localhost:5000/images/${document?.img}`}
-                      className="document_tag_cover"
-                    />
-                    <p>
-                      <Link to={`/docContent/${document._id}`}>
-                        {document?.docName}
-                      </Link>
-                    </p>
-                    <div className="author">
-                      <b>Tác giả:</b>
-                      <span>{document?.userId?.userName}</span>
-                    </div>
-                    <div className="button_approve_unapprove">
-                      <button
-                        className="approve"
-                        onClick={() => {
-                          sentApprose(document?._id);
-                        }}
-                      >
-                        Duyệt
-                      </button>
-                      <button
-                        className="unapprove"
-                        onClick={() => {
-                          sentUnApprose(document?._id);
-                        }}
-                      >
-                        Từ chuối
-                      </button>
-                    </div>
+          <div className="approve_content">
+            {filterDocument?.map((document, index) => {
+              return (
+                <div className="document_tag" key={index}>
+                  <img
+                    src={`http://localhost:5000/images/${document?.img}`}
+                    className="document_tag_cover"
+                  />
+                  <p>
+                    <Link to={`/docContent/${document._id}`}>
+                      {document?.docName}
+                    </Link>
+                  </p>
+                  <div className="author">
+                    <b>Tác giả:</b>
+                    <span>{document?.userId?.userName}</span>
                   </div>
-                );
-              })}
-            </div>
+                  <div className="button_approve_unapprove">
+                    <button
+                      className="approve"
+                      onClick={() => {
+                        sentApprose(document?._id);
+                      }}
+                    >
+                      Duyệt
+                    </button>
+                    <button
+                      className="unapprove"
+                      onClick={() => {
+                        sentUnApprose(document?._id);
+                      }}
+                    >
+                      Từ chuối
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
