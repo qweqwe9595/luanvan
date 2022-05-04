@@ -77,6 +77,7 @@ const userSchema = new mongoose.Schema(
     saveDocs: {
       type: Array,
     },
+    sharePosts:[{type:String,ref:`postsModal`}],
     savePosts: {
       type: Array,
     },
