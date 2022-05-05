@@ -11,6 +11,12 @@ import { BsThreeDots } from "react-icons/bs";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { SocketContext } from "../../context/SocketContext";
+import Modal from "@material-tailwind/react/Modal";
+import ModalHeader from "@material-tailwind/react/ModalHeader";
+import ModalBody from "@material-tailwind/react/ModalBody";
+import ModalFooter from "@material-tailwind/react/ModalFooter";
+import Button from "@material-tailwind/react/Button";
+import Textarea from "@material-tailwind/react/Textarea";
 
 function Post({ postInfo, setRefreshPosts }) {
   const [open, setOpen] = useState(false);
@@ -29,7 +35,10 @@ function Post({ postInfo, setRefreshPosts }) {
   const socket = useContext(SocketContext);
   const [getNewComment, setGetNewComment] = useState(false);
   const [user] = useContext(UserContext);
-  
+  const [showModalReports, setShowModalReports] = useState(false);
+  const [reports, setReports] = useState([]);
+
+
   const iconStyles = {
     color: "#0d47a1",
     fontSize: "20px",
@@ -120,6 +129,30 @@ function Post({ postInfo, setRefreshPosts }) {
       .catch((err) => console.log(err));
   };
 
+  const sendReports = () => {
+    console.log(reports, "/postNotification/" + postInfo._id);
+    axios
+      .post(`http://localhost:5000/api/reports/createone`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        data:{
+          message: reports,
+          link: "/postNotification/" + postInfo._id,
+        },
+      }
+    )
+    .then((res) => {
+      console.log("repost thanh cong");
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err.response.data.message);
+    });
+  }
+  
+
   const writeCommentV1 = () => {
     axios
       .post("http://localhost:5000/api/comments/commentlv1/", {
@@ -137,6 +170,46 @@ function Post({ postInfo, setRefreshPosts }) {
 
   return (
     <div className="post">
+      <Modal className="share-modal" size="lg" active={showModalReports} toggler={() => setShowModalReports(false)}>
+                <ModalHeader toggler={() => setShowModalReports(false)}>
+                    Báo cáo bài viết
+                </ModalHeader>
+                <ModalBody>
+                  <Textarea
+                      className="modal-desc"
+                      color="lightBlue"
+                      size="lg"
+                      outline={false}
+                      placeholder="Nhập nội dung phản ánh."
+                      value={reports}
+                      onChange={(e) => {
+                        setReports(e.target.value);
+                      }}
+                  />                  
+                </ModalBody>
+                <ModalFooter>
+                    <Button 
+                        color="red"
+                        buttonType="link"
+                        onClick={(e) => setShowModalReports(false)}
+                        ripple="dark"
+                    >
+                        Đóng
+                    </Button>
+
+                    <Button
+                        color="green"
+                        onClick={(e) => {
+                          sendReports();
+                          setReports("");
+                          setShowModalReports(false); 
+                        }}
+                        ripple="light"
+                    >
+                        Gửi
+                    </Button>
+                </ModalFooter>
+            </Modal>
       {openOptions ? (
         <>
           <div
@@ -168,7 +241,12 @@ function Post({ postInfo, setRefreshPosts }) {
             ) : (
               ""
             )}
-            <li>Báo cáo</li>
+            <li
+               onClick={() => {            
+                setShowModalReports(!showModalReports);
+                setOpenOptions(!openOptions);
+              }}
+            >Báo cáo</li>
           </ul>
         </>
       ) : (
@@ -249,7 +327,7 @@ function Post({ postInfo, setRefreshPosts }) {
               }}
             >
               <span>
-                <BsThreeDots></BsThreeDots>
+                <p><BsThreeDots></BsThreeDots></p>
               </span>
             </div>
           </div>

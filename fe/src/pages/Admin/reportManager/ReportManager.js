@@ -1,19 +1,18 @@
 import StatusCard from "../../../component/admin/StatusCard";
-import "./jobManager.scss";
+import "./reportManager.scss";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import ChartLineJob from "../../../component/admin/ChartLineJob";
-import CreateNewJob from "../../../component/createNewJob/CreateNewJob";
-function JobManager() {
-  const [jobDetails, setJobDetails] = useState([]);
+import ChartLineReport from "../../../component/admin/ChartLineReport";
+function ReportManager() {
+  const [reportDetails, setReportDetails] = useState([]);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState("");
   const [del, setDel] = useState(false);
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/api/statistic/newJobs?query=month",
+        "http://localhost:5000/api/statistic/newReports?query=month",
         {},
         {
           headers: {
@@ -29,7 +28,7 @@ function JobManager() {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:5000/api/jobs/all",
+        "http://localhost:5000/api/reports/all",
         {},
         {
           headers: {
@@ -38,19 +37,19 @@ function JobManager() {
         }
       )
       .then((res) => {
-        setJobDetails(res.data.jobsQuery.reverse());
+        setReportDetails(res.data.reportsQuery.reverse());
       })
       .catch((err) => {});
   }, [open, data]);
 
-  const xoaJob = (jobI) => {
+  const xoaReport = (reportI) => {
     axios
-      .delete(`http://localhost:5000/api/jobs/deleteOne`, {
+      .delete(`http://localhost:5000/api/reports/deleteOne`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
         data: {
-          jobId: jobI,
+          reportId: reportI,
         },
       })
       .then((res) => {
@@ -64,77 +63,64 @@ function JobManager() {
   };
   return (
     <>
-      <div className="job_manager">
-        <div className="job_manager_left">
-          <div className="button_create">
-            <button
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              Tạo tuyển dụng mới
-            </button>
-          </div>
+      <div className="report_manager">
+        <div className="report_manager_left">
           <div className="grid grid-cols-1">
             <StatusCard
               color="pink"
-              icon="works"
-              title="Tất cả tuyển dụng"
-              amount={jobDetails?.length}
-              // percentage="3.48"
-              // percentageIcon="arrow_upward"
-              // percentageColor="green"
-              // date="Since last month"
+              icon="reports"
+              title="Tất cả báo cáo"
+              amount={reportDetails?.length}
             />
           </div>
           {data ? (
             <div className="charline">
-              <ChartLineJob data={data} />
+              <ChartLineReport data={data} />
             </div>
           ) : (
             ""
           )}
         </div>
-        <div className="job_manager_content">
-          <div className="job_manager_content_header">
-            <span>Danh sách các tuyển dụng</span>
+        <div className="report_manager_content">
+          <div className="report_manager_content_header">
+            <span>Danh sách các báo cáo</span>
           </div>
-          <div className="center_jobs">
-          {jobDetails?.map((jobI, index) => {
+          <div className="center_reports">
+          {reportDetails?.map((reportI, index) => {
             return (
-              <div className="job_tags" key={index}>
+              <div className="report_tags" key={index}>
                 <img
-                  src={`http://localhost:5000/images/${jobI?.img}`}
+                  src={`http://localhost:5000/images/${reportI?.img}`}
                   className="cover"
                 ></img>
                 <div className="time">
-                  {jobI?.startTime ? (
+                  {reportI?.startTime ? (
                     <span>
-                      Thời gian diễn ra tuyển dụng:{" "}
+                      Thời gian diễn ra báo cáo:{" "}
                       <b>
-                        {new Date(jobI.startTime).toLocaleDateString("en-US")}
+                        {new Date(reportI.startTime).toLocaleDateString("en-US")}
                       </b>
                     </span>
                   ) : (
                     ""
                   )}
                 </div>
-                <Link to={`/jobContent/${jobI?._id}`}>
+                <Link to={`/reportContent/${reportI?._id}`}>
                   <div className="title">
-                    {jobI?.jobName ? (
-                      <span>{jobI?.jobName}</span>
+                    {reportI?.reportName ? (
+                      <span>{reportI?.reportName}</span>
                     ) : (
-                      "jobName"
+                      "reportName"
                     )}
                   </div>
                 </Link>
                 <div className="button_delete">
                   <button
                     onClick={() => {
-                      xoaJob(jobI._id);
+                      xoaReport(reportI._id);
                     }}
                   >
-                    Xóa tuyển dụng
+                    Xóa báo cáo
                   </button>
                 </div>
               </div>
@@ -144,8 +130,7 @@ function JobManager() {
         </div>
         
       </div>
-      {open ? <CreateNewJob setOpen={setOpen}></CreateNewJob> : ""}
     </>
   );
 }
-export default JobManager;
+export default ReportManager;

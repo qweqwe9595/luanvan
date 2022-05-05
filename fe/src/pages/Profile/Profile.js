@@ -9,12 +9,14 @@ import Share from "../../component/share/Share";
 import Post from "../../component/post/Post";
 import { useParams } from "react-router-dom";
 
+
 function Profile() {
   const param = useParams();
   const loginUserId = localStorage.getItem("userID");
   const [userPosts, setUserPost] = useState([]);
   const [userData, setUserData] = useState({});
   const [refreshPosts, setRefreshPosts] = useState(false);
+  
 
   useEffect(() => {
     const getUserPost = () => {
@@ -42,6 +44,9 @@ function Profile() {
     };
     getUser();
   }, [param.userId, refreshPosts]);
+
+
+  
   return (
     <div className="profile">
       <Nav></Nav>

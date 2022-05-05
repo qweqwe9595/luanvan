@@ -71,7 +71,16 @@ export default function Sidebar() {
                   Quản lý tài liệu
                 </Link>
               </li>
-              <li className="rounded-lg mb-2 text-gray-700">
+              <li className="rounded-lg mb-2 ">
+                <Link
+                  to="/admin/report-manager"
+                  className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                >
+                  <Icon name="report" size="2xl" />
+                  Quản lý báo cáo
+                </Link>
+              </li>
+              {/* <li className="rounded-lg mb-2 text-gray-700">
                 <Link
                   to="/admin/maps"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
@@ -125,7 +134,7 @@ export default function Sidebar() {
                 >
                   Free Download
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

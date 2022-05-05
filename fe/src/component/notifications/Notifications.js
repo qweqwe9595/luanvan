@@ -57,31 +57,31 @@ function Notifications() {
                         {`${item?.userId?.userName}`}{" "}
                       </span>
                     </Link>
-                    đã {`${item?.message}`} bài viết của bạn.
+                    đã {`${item?.message}`} bài viết của bạn -- 
                     <span>
                       {(() => {
                         switch (true) {
                           case timepost < 60:
                             return (
-                              <span>{Math.round(timepost)} giây trước</span>
+                              <span> {Math.round(timepost)} giây trước</span>
                             );
                           case timepost >= 60 && timepost < 60 * 60:
                             return (
                               <span>
-                                {Math.round(timepost / 60)} phút trước
+                                 {Math.round(timepost / 60)} phút trước
                               </span>
                             );
                           case timepost >= 60 * 60 && timepost < 60 * 60 * 24:
                             return (
                               <span>
-                                {Math.round(timepost / (60 * 60))} giờ trước
+                                 {Math.round(timepost / (60 * 60))} giờ trước
                               </span>
                             );
                           case timepost >= 60 * 60 * 24 &&
                             timepost < 60 * 60 * 24 * 7:
                             return (
                               <span>
-                                {Math.round(timepost / (60 * 60 * 24))} ngày
+                                 {Math.round(timepost / (60 * 60 * 24))} ngày
                                 trước
                               </span>
                             );
@@ -89,7 +89,7 @@ function Notifications() {
                             timepost < 60 * 60 * 24 * 7 * 4:
                             return (
                               <span>
-                                {Math.round(timepost / (60 * 60 * 24 * 7))} tuần
+                                 {Math.round(timepost / (60 * 60 * 24 * 7))} tuần
                                 trước
                               </span>
                             );

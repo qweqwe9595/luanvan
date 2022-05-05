@@ -23,6 +23,7 @@ import Dashboard from "./pages/Admin/Dashboard";
 import Maps from "./pages/Admin/Maps";
 import EventManager from "./pages/Admin/eventManager/EventManager";
 import JobManager from "./pages/Admin/jobManager/JobManager";
+import ReportManager from "./pages/Admin/reportManager/ReportManager";
 
 import DocManager from "./pages/Admin/docManager/DocManager";
 
@@ -86,6 +87,7 @@ function Main() {
         <Route exact path="event-Manager" element={<EventManager />} />
         <Route exact path="job-Manager" element={<JobManager />} />
         <Route exact path="doc-Manager" element={<DocManager />} />
+        <Route exact path="report-Manager" element={<ReportManager />} />
         <Route exact path="maps" element={<Maps />} />
       </Route>
     </Routes>

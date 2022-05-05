@@ -1,15 +1,11 @@
 .post {
-  width           : 100%;
-  margin-left     : auto;
-  margin-right    : auto;
-  height          : auto;
+  max-width: 600px;
   background-color: #ffffff;
   border-radius   : 12px;
-  overflow        : hidden;
   box-shadow      : 0px 1px 4px 0px #333e50;
   margin-bottom   : 20px;
   position        : relative;
-
+  padding: 5px;
   .post-meta-right-show {
     position        : fixed;
     width           : 100vw;
@@ -45,8 +41,7 @@
 
   .post-meta {
     display: flex;
-    margin : 15px;
-
+    margin: 0 20px;
     .post-meta-left {
       display: flex;
 
@@ -58,7 +53,7 @@
           object-fit   : cover;
           width        : 40px;
           height       : 40px;
-          border-radius: 20px;
+          border-radius: 50%;
         }
 
         :hover {
@@ -75,7 +70,7 @@
           .username {
             text-transform: capitalize;
             font-family   : "Oswald", sans-serif;
-            font-size     : 20px;
+            font-size     : 18px;
             font-weight   : 600;
           }
 
@@ -90,7 +85,7 @@
 
           &>p {
             font-family: "Oswald", sans-serif;
-            font-size  : 15px;
+            font-size  : 14px;
             color      : #808080;
           }
         }
@@ -98,30 +93,24 @@
     }
 
     .post-meta-right {
-      position: relative;
-      height  : max-content;
-      width   : 100%;
-
+      position: absolute;
+      right: 20px;
+      top: 15px;
       .post-meta-right-options {
-        float  : right;
-        display: flex;
-
         .post-meta-right-options-buttons {
           background-color: #0d47a1;
           border-radius   : 50px;
           height          : 20px;
           width           : 30px;
-          text-align      : center;
-
+          cursor          : pointer;
           &>span {
-            font-size: 20px;
-            color    : white;
-            cursor   : pointer;
-            margin   : auto;
-            padding  : auto;
+            &>p{
+              font-size: 20px;
+              color    : white;
+              margin-left: 5px;
+            }
           }
         }
-
         .post-meta-right-options-buttons:hover {
           background-color: #0b326d;
         }
@@ -129,17 +118,12 @@
     }
   }
 
-  .post-desc {
-    width        : 100%;
-    margin-top   : 10px;
-    margin-bottom: 10px;
-    margin-left  : 20px;
-    margin-right : 20px;
-    display      : block;
-
+  .post-desc {  
+    margin: 10px 20px;  
     &>p {
-      font-family: "Roboto", sans-serif;
-      font-size  : 18px;
+      word-wrap: break-word;
+      text-align: justify;
+      font-family: "Roboto";
     }
   }
 
