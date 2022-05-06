@@ -37,12 +37,23 @@ const getTimeLine = async (req, res) => {
     const posts = await Promise.all(
       followings.map((id) => {
         return postsModel
-          .find({ userId: id })
+          .find({ userId: id, $or:[{scope:"public"},{scope:"friends"} ]})
           .populate("userId")
           .populate("likes");
       })
     );
     res.status(200).json({ message: "lay time line thanh cong", posts });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+//get Share 
+const getMyShare = async (req, res) => {
+  try {
+    const usersQuery = await userModel.findById(req.user._id).populate("sharePosts")
+    const postQuery = usersQuery.sharePosts
+    res.status(200).json({ message: "lay time line thanh cong", postQuery });
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -65,12 +76,21 @@ const getAllPost = async (req, res) => {
 const getAProfilePosts = async (req, res) => {
   const amount = req.query.amount;
   try {
-    const postQuery = await postsModel
+    let postQuery=[];
+    if(req.user._id==req.params.id){
+      postQuery = await postsModel
       .find({ userId: req.params.id })
       .populate("userId")
       .populate("likes");
+    }else{
+      postQuery = await postsModel
+      .find({ userId: req.params.id,$or:[{scope:"public"}] })
+      .populate("userId")
+      .populate("likes");
+    }
+    
     if (!postQuery || postQuery.length === 0) {
-      return res.status(500).json({ message: "no User found" });
+      return res.status(500).json({ message: "no User found or no posts found" });
     }
     const postQueryFilter = amount
       ? postQuery.filter((post, index) => index < amount)
@@ -109,6 +129,41 @@ const updateAPost = async (req, res) => {
     }
     await postQuery.save();
     res.status(200).json(postQuery);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+//share a post (chinh sua)
+const shareAPost = async (req, res) => {
+  try {
+    const post = await postsModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $addToSet: {share:req.user._id}},
+      { new: true }
+    );
+    if(req.user._id !== post.userId){
+      const userShare = await userModel.findByIdAndUpdate(req.user._id,{$addToSet:{sharePosts:post._id}})
+    }
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+//unshare a post (chinh sua)
+const unShareAPost = async (req, res) => {
+  try {
+    const post = await postsModel.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: {share:req.user._id}},
+      { new: true }
+    );
+    if(req.user._id !== post.userId){
+      const userShare = await userModel.findByIdAndUpdate(req.user._id,{$pull:{sharePosts:post._id}})
+    }
+    
+    res.status(200).json(post);
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -162,5 +217,6 @@ module.exports = {
   getAPost,
   updateAPost,
   deleteAPost,
-  likeAPost,
+  likeAPost,shareAPost,
+  unShareAPost,getMyShare
 };

@@ -9,10 +9,14 @@ const {
   getAPost,
   updateAPost,
   deleteAPost,
-  likeAPost,
+  likeAPost,shareAPost,
+  unShareAPost,getMyShare
 } = require("../controller/postsController");
 
+const authenticateToken = require("../middleWare/authJWT");
+
 const multer = require("multer");
+
 
 //multer
 const storage = multer.diskStorage({
@@ -34,13 +38,24 @@ router.get("/timeline/:id", getTimeLine);
 router.get("/admin", getAllPost);
 
 //get a profile posts
-router.get("/profile/:id", getAProfilePosts);
+router.get("/profile/:id",authenticateToken, getAProfilePosts);
 
+
+//get my share
+router.get("/myshare", authenticateToken,getMyShare);
 //get a post
 router.get("/:id", getAPost);
 
+
+
+
 //update 1 post (chinh sua)
 router.patch("/:id", upload.single("img"), updateAPost);
+
+//unshare 1 post (chinh sua)
+router.patch("/unshare/:id",authenticateToken, unShareAPost);
+//share 1 post (chinh sua)
+router.patch("/share/:id",authenticateToken, shareAPost);
 
 //delete a post
 router.delete("/:id", deleteAPost);
