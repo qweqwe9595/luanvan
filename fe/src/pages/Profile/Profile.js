@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./profile.scss";
 import Nav from "../../component/nav/Nav";
@@ -9,22 +9,25 @@ import Share from "../../component/share/Share";
 import Post from "../../component/post/Post";
 import { useParams } from "react-router-dom";
 
-
 function Profile() {
   const param = useParams();
   const loginUserId = localStorage.getItem("userID");
   const [userPosts, setUserPost] = useState([]);
   const [userData, setUserData] = useState({});
   const [refreshPosts, setRefreshPosts] = useState(false);
-  
+  const token = `bearer ${localStorage.getItem("token")}`;
 
   useEffect(() => {
     const getUserPost = () => {
       axios
         .get(
-          `http://localhost:5000/api/posts/profile/${param.userId}?amount=20`
+          `http://localhost:5000/api/posts/profile/${param.userId}?amount=20`,
+          {
+            headers: { Authorization: token },
+          }
         )
         .then((res) => {
+          console.log(res);
           setUserPost(res.data.posts.reverse());
         })
         .catch((err) => {
@@ -45,8 +48,6 @@ function Profile() {
     getUser();
   }, [param.userId, refreshPosts]);
 
-
-  
   return (
     <div className="profile">
       <Nav></Nav>
