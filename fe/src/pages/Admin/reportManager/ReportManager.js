@@ -4,11 +4,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ChartLineReport from "../../../component/admin/ChartLineReport";
+import Modal from "@material-tailwind/react/Modal";
+import ModalHeader from "@material-tailwind/react/ModalHeader";
+import ModalBody from "@material-tailwind/react/ModalBody";
+import ModalFooter from "@material-tailwind/react/ModalFooter";
+import Button from "@material-tailwind/react/Button";
+import Post from "../../../component/post/Post";
+
 function ReportManager() {
   const [reportDetails, setReportDetails] = useState([]);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState("");
   const [del, setDel] = useState(false);
+  const [post, setPost] = useState("");
+  const [showModal, setShowModal] = React.useState(false);
+  const [refreshPosts, setRefreshPosts] = useState(false);
+
   useEffect(() => {
     axios
       .get(
@@ -25,32 +36,21 @@ function ReportManager() {
       })
       .catch((err) => {});
   }, [open, del]);
+
   useEffect(() => {
-    axios
-      .get(
-        "http://localhost:5000/api/reports/all",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
+    axios.get(`http://localhost:5000/api/reports/getall?token=Bearer `+ localStorage.getItem("token"))
       .then((res) => {
-        setReportDetails(res.data.reportsQuery.reverse());
+        setReportDetails(res.data.reverse());
       })
       .catch((err) => {});
   }, [open, data]);
 
   const xoaReport = (reportI) => {
     axios
-      .delete(`http://localhost:5000/api/reports/deleteOne`, {
+      .delete(`http://localhost:5000/api/reports/delete/${reportI}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        data: {
-          reportId: reportI,
-        },
+        },      
       })
       .then((res) => {
         alert("đã xóa thành công");
@@ -61,6 +61,17 @@ function ReportManager() {
         console.log(err);
       });
   };
+  const getPost = (postId) =>{
+    axios.get(`http://localhost:5000/api/posts/${postId}`)
+    .then((res) => {
+      setPost(res.data.post);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  console.log(reportDetails);
   return (
     <>
       <div className="report_manager">
@@ -87,42 +98,68 @@ function ReportManager() {
           </div>
           <div className="center_reports">
           {reportDetails?.map((reportI, index) => {
-            return (
+            return (              
               <div className="report_tags" key={index}>
-                <img
-                  src={`http://localhost:5000/images/${reportI?.img}`}
-                  className="cover"
-                ></img>
-                <div className="time">
-                  {reportI?.startTime ? (
-                    <span>
-                      Thời gian diễn ra báo cáo:{" "}
-                      <b>
-                        {new Date(reportI.startTime).toLocaleDateString("en-US")}
-                      </b>
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <Link to={`/reportContent/${reportI?._id}`}>
-                  <div className="title">
-                    {reportI?.reportName ? (
-                      <span>{reportI?.reportName}</span>
-                    ) : (
-                      "reportName"
-                    )}
+                <Link to={`/profile/${reportI?.userId?._id}`}>
+                  <div className="report-avatar">
+                    <img src={`http://localhost:5000/images/${reportI?.userId?.photos?.avatar[0]}`}></img>
                   </div>
                 </Link>
-                <div className="button_delete">
-                  <button
-                    onClick={() => {
-                      xoaReport(reportI._id);
-                    }}
-                  >
-                    Xóa báo cáo
-                  </button>
+                <div className="report-content">
+                  <div className="report-meta">
+                  <Link to={`/profile/${reportI?.userId?._id}`}>
+                  <p className="report-username">{reportI.userId.userName}</p>
+                  </Link>
+                  <p className="report-time">{new Date(reportI.createdAt).toLocaleDateString("vi-VN")}</p>  
+                  </div>
+                  
+                <div className="report-text">
+                <div className="report-message">
+                    <p>{reportI.reportMessage}--<span onClick={() => {getPost(reportI.link);setShowModal(!showModal)}}>Xem chi tiết</span></p>                    
+                  </div>     
+                  <div className="report-delete">
+                  <p
+                        onClick={() => {
+                          xoaReport(reportI._id);
+                        }}
+                      >
+                        Xóa báo cáo
+                    </p>    
+                  </div>       
+                    
                 </div>
+                </div>     
+                
+                <Modal size="regular" active={showModal} toggler={() => setShowModal(false)}>
+                  <ModalHeader toggler={() => setShowModal(false)}>
+                      Modal Title
+                  </ModalHeader>
+                  <ModalBody>
+                    <Post
+                      postInfo={post}
+                      setRefreshPosts={setRefreshPosts}
+                    ></Post>
+                  </ModalBody>
+                  <ModalFooter>
+                      <Button 
+                          color="red"
+                          buttonType="link"
+                          onClick={(e) => setShowModal(false)}
+                          ripple="dark"
+                      >
+                          Close
+                      </Button>
+
+                      <Button
+                          color="green"
+                          onClick={(e) => setShowModal(false)}
+                          ripple="light"
+                      >
+                          Save Changes
+                      </Button>
+                  </ModalFooter>
+                </Modal>
+                
               </div>
             );
           })}

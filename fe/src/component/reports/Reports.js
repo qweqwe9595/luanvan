@@ -1,29 +1,20 @@
-import "./notifications.scss";
+import "./reports.scss";
 import React, { useEffect, useContext, useState } from "react";
 import { SocketContext } from "../../context/SocketContext";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
-import Modal from "@material-tailwind/react/Modal";
-import ModalHeader from "@material-tailwind/react/ModalHeader";
-import ModalBody from "@material-tailwind/react/ModalBody";
-import ModalFooter from "@material-tailwind/react/ModalFooter";
-import Button from "@material-tailwind/react/Button";
-import Post from "../../component/post/Post";
 
-function Notifications() {
+function Reports() {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
-  const [notifications, setNotifications] = useState([]);
-  const [post, setPost] = useState("");
-  const [showModal, setShowModal] = React.useState(false);
-  const [refreshPosts, setRefreshPosts] = useState(false);
+  const [reports, setReports] = useState([]);
 
   useEffect(() => {
     if (!user) return;
-    socket?.on("getNotification", (data) => {
-      setNotifications(data);
+    socket?.on("getReport", (data) => {
+      setReports(data);
     });
   }, [user, socket]);
 
@@ -31,10 +22,10 @@ function Notifications() {
     const getUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/users/getone/${user._id}`
+          `http://localhost:5000/api/reports/getone/${reports._id}`
         );
-        setNotifications(res.data.notifications);
-        console.log(res.data.notifications);
+        setReports(res.data.reports);
+        console.log(res.data.reports);
       } catch (error) {
         console.log(error);
       }
@@ -42,34 +33,20 @@ function Notifications() {
     getUser();
   }, [user]);
 
-  const getPost = (postId) =>{
-    axios.get(`http://localhost:5000/api/posts/${postId}`)
-    .then((res) => {
-      setPost(res.data.post);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
-
   return (
-    <div className="notifications">
-      <div className="notifications-title">
-        {window.location.pathname !== "/notification" ? (
-          <h3>Thông báo gần đây</h3>
-        ) : (
-          <h3>Tất cả thông báo</h3>
-        )}
+    <div className="reports">
+      <div className="reports-title">
+        <h3>Báo cáo gần đây</h3>
       </div>
-      {notifications.length > 0 ? (
-        notifications?.map((item) => {
+      {reports.length > 0 ? (
+        reports?.map((item) => {
           const a = new Date();
           const b = new Date(item?.createdAt);
           const timepost = (a - b) / 1000;
           return (
-            <div className="notifications-list">
-                <div className="notifications-items" onClick={() => {getPost(item?.post);setShowModal(!showModal);}}>
+            <div className="reports-list">
+              <Link to={`${item.post}`}>
+                <div className="reports-items">
                   <p>
                     <Link to={`/profile/${item?.userId?._id}`}>
                       <span className="username">
@@ -125,53 +102,15 @@ function Notifications() {
                     </span>
                   </p>
                 </div>
+              </Link>
             </div>
           );
         })
       ) : (
-        <div className="none">Không có thông báo nào !</div>
+        <div className="none">Không có báo cáo nào !</div>
       )}
-      {window.location.pathname !== "/notification" &&
-      notifications.length > 0 ? (
-        <div className="notifications-all">
-          <Link to={`/notification`}>
-            <p>Xem tất cả</p>
-          </Link>
-        </div>
-      ) : (
-        ""
-      )}
-      <Modal size="regular" active={showModal} toggler={() => setShowModal(false)}>
-                  <ModalHeader toggler={() => setShowModal(false)}>
-                      Modal Title
-                  </ModalHeader>
-                  <ModalBody>
-                    <Post
-                      postInfo={post}
-                      setRefreshPosts={setRefreshPosts}
-                    ></Post>
-                  </ModalBody>
-                  <ModalFooter>
-                      <Button 
-                          color="red"
-                          buttonType="link"
-                          onClick={(e) => setShowModal(false)}
-                          ripple="dark"
-                      >
-                          Close
-                      </Button>
-
-                      <Button
-                          color="green"
-                          onClick={(e) => setShowModal(false)}
-                          ripple="light"
-                      >
-                          Save Changes
-                      </Button>
-                  </ModalFooter>
-                </Modal>
     </div>
   );
 }
 
-export default Notifications;
+export default Reports;

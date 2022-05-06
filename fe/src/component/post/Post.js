@@ -47,7 +47,7 @@ function Post({ postInfo, setRefreshPosts }) {
   };
 
   useEffect(() => {
-    setLikesCount(postInfo?.likes.length);
+    setLikesCount(postInfo?.likes?.length);
     setIsLike(postInfo?.likes?.some((item) => item._id === loginUser));
   }, [postInfo]);
 
@@ -70,8 +70,8 @@ function Post({ postInfo, setRefreshPosts }) {
   }, [getNewComment]);
 
   function countCmts(comment) {
-    let lv1Count = comment.length;
-    let lv2Count = comment.reduce(
+    let lv1Count = comment?.length;
+    let lv2Count = comment?.reduce(
       (prev, current) => prev + current.commentLv2.length,
       0
     );
@@ -117,7 +117,7 @@ function Post({ postInfo, setRefreshPosts }) {
         {
           userId: loginUser,
           message: "like",
-          post: "/postNotification/" + postInfo._id,
+          post: postInfo._id,
         }
       )
       .then((res) => {
@@ -130,16 +130,16 @@ function Post({ postInfo, setRefreshPosts }) {
   };
 
   const sendReports = () => {
-    console.log(reports, "/postNotification/" + postInfo._id);
+    console.log(reports, postInfo._id)
     axios
       .post(`http://localhost:5000/api/reports/createone`,
       {
+        reportMessage: reports,
+        link: postInfo._id,
+      },
+      {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        data:{
-          message: reports,
-          link: "/postNotification/" + postInfo._id,
         },
       }
     )
@@ -241,12 +241,16 @@ function Post({ postInfo, setRefreshPosts }) {
             ) : (
               ""
             )}
-            <li
-               onClick={() => {            
+             {postInfo.userId._id.includes(loginUser)? (
+              ""
+            ) : (
+              <li
+              onClick={() => {            
                 setShowModalReports(!showModalReports);
                 setOpenOptions(!openOptions);
               }}
-            >Báo cáo</li>
+            >Báo cáo</li>            )}
+           
           </ul>
         </>
       ) : (

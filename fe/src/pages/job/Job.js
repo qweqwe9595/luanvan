@@ -26,7 +26,6 @@ function Job() {
       })
       .catch((err) => {});
   }, [open]);
-  console.log(jobDetails);
   return (
     <div className="job_container">
       <Nav></Nav>
