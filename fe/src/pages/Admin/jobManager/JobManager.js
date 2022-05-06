@@ -1,5 +1,5 @@
 import StatusCard from "../../../component/admin/StatusCard";
-import "./jobManager.scss";
+import "./JobManager.scss";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -100,49 +100,44 @@ function JobManager() {
             <span>Danh sách các tuyển dụng</span>
           </div>
           <div className="center_jobs">
-          {jobDetails?.map((jobI, index) => {
-            return (
-              <div className="job_tags" key={index}>
-                <img
-                  src={`http://localhost:5000/images/${jobI?.img}`}
-                  className="cover"
-                ></img>
-                <div className="time">
-                  {jobI?.startTime ? (
-                    <span>
-                      Thời gian diễn ra tuyển dụng:{" "}
-                      <b>
-                        {new Date(jobI.startTime).toLocaleDateString("en-US")}
-                      </b>
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <Link to={`/jobContent/${jobI?._id}`}>
-                  <div className="title">
-                    {jobI?.jobName ? (
-                      <span>{jobI?.jobName}</span>
+            {jobDetails?.map((jobI, index) => {
+              return (
+                <div className="job_tags" key={index}>
+                  <img
+                    src={`http://localhost:5000/images/${jobI?.img}`}
+                    className="cover"
+                  ></img>
+                  <div className="time">
+                    {jobI?.startTime ? (
+                      <span>
+                        Thời gian diễn ra tuyển dụng:{" "}
+                        <b>
+                          {new Date(jobI.startTime).toLocaleDateString("en-US")}
+                        </b>
+                      </span>
                     ) : (
-                      "jobName"
+                      ""
                     )}
                   </div>
-                </Link>
-                <div className="button_delete">
-                  <button
-                    onClick={() => {
-                      xoaJob(jobI._id);
-                    }}
-                  >
-                    Xóa tuyển dụng
-                  </button>
+                  <Link to={`/jobContent/${jobI?._id}`}>
+                    <div className="title">
+                      {jobI?.jobName ? <span>{jobI?.jobName}</span> : "jobName"}
+                    </div>
+                  </Link>
+                  <div className="button_delete">
+                    <button
+                      onClick={() => {
+                        xoaJob(jobI._id);
+                      }}
+                    >
+                      Xóa tuyển dụng
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-        </div>
-        
       </div>
       {open ? <CreateNewJob setOpen={setOpen}></CreateNewJob> : ""}
     </>

@@ -76,7 +76,7 @@ function Notifications() {
                         {`${item?.userId?.userName}`}{" "}
                       </span>
                     </Link>
-                    đã {`${item?.message}`} bài viết của bạn -- 
+                    đã {`${item?.message}`} bài viết của bạn --- 
                     <span>
                       {(() => {
                         switch (true) {
