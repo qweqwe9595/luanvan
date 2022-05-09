@@ -221,7 +221,8 @@ export default function DocManager() {
                     <b>Tác giả:</b>
                     <span>{document?.userId?.userName}</span>
                   </div>
-                  <div className="button_approve_unapprove">
+                  {document.isApproved===true ? (
+                    <div className="button_approve_unapprove">
                     <button
                       className="approve"
                       onClick={() => {
@@ -239,6 +240,27 @@ export default function DocManager() {
                       Từ chuối
                     </button>
                   </div>
+                  ) : (
+                      <div className="button_approve_unapprove">
+                    {/* <button
+                      className="approve"
+                      // onClick={() => {
+                      //   sentApprose(document?._id);
+                      // }}
+                    >
+                      
+                    </button> */}
+                    <button
+                      className="approve"
+                      onClick={() => {
+                        sentUnApprose(document?._id);
+                      }}
+                    >
+                      Xóa tài liệu
+                    </button>
+                  </div>
+                  )}
+                  
                 </div>
               );
             })}
