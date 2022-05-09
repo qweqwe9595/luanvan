@@ -15,6 +15,7 @@ import Textarea from "@material-tailwind/react/Textarea";
 function Share({ setRefreshPosts }) {
   const userId = localStorage.getItem("userID");
   const [desc, setDesc] = useState("");
+  const [scope, setScope] = useState("");
   const [img, setImg] = useState(false);
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
@@ -32,6 +33,8 @@ function Share({ setRefreshPosts }) {
     formData.append("img", fileRef);
     formData.append("userId", userId);
     formData.append("desc", desc);
+    if(scope === "") formData.append("scope", "public")
+    else formData.append("scope", scope);   
 
     axios
       .post("http://localhost:5000/api/posts", formData, {
@@ -40,6 +43,7 @@ function Share({ setRefreshPosts }) {
         },
       })
       .then((res) => {
+        console.log(res.data);
         setRefreshPosts((prev) => !prev);
         // window.location.reload(false);        
       })
@@ -91,10 +95,17 @@ function Share({ setRefreshPosts }) {
                                 setFileRef(e.target.files[0]);
                               }
                             }}
-                          />                  
+                          />
+                  <select onChange={(e) => {
+                        setScope(e.target.value);
+                      }}>
+                    <option value="public" active>Công khai</option>
+                    <option value="friend">Bạn bè</option>
+                    <option value="private">Riêng tư</option>
+                  </select>                  
                     <div className="preview-container">
-                    <img className="preview-img" src={previewURL} />
-                  </div>
+                      <img className="preview-img" src={previewURL} />
+                    </div>
                 </ModalBody>
                 <ModalFooter>
                     <Button 

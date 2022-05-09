@@ -82,12 +82,20 @@
 
         .post-meta-left-timepost {
           width: max-content;
-
+          display: flex;
           &>p {
             font-family: "Oswald", sans-serif;
             font-size  : 14px;
             color      : #808080;
           }
+          .scope{
+            margin-left: 5px;
+            display: flex;
+            svg{
+              font-size: 20px;
+            }
+          }
+        
         }
       }
     }

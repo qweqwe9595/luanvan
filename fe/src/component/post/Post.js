@@ -4,11 +4,10 @@ import axios from "axios";
 import CommentV1 from "../comment/CommentV1";
 import UpdatePost from "../updatePost/UpdatePost";
 import { UserContext } from "../../context/userContext";
-
 import { FiShare2 } from "react-icons/fi";
 import { GoComment } from "react-icons/go";
 import { BsThreeDots } from "react-icons/bs";
-import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { IoMdHeartEmpty, IoMdHeart, IoMdContact } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { SocketContext } from "../../context/SocketContext";
 import Modal from "@material-tailwind/react/Modal";
@@ -25,6 +24,8 @@ function Post({ postInfo, setRefreshPosts }) {
   const loginUser = localStorage.getItem("userID");
   const postId = postInfo._id;
   const [likesCount, setLikesCount] = useState(0);
+  const [shareCount, setShareCount] = useState(0);
+
   const [isLike, setIsLike] = useState();
   const [cmtV1, setCmtV1] = useState("");
   const a = new Date();
@@ -47,6 +48,7 @@ function Post({ postInfo, setRefreshPosts }) {
   };
 
   useEffect(() => {
+    setShareCount(postInfo?.share?.length);
     setLikesCount(postInfo?.likes?.length);
     setIsLike(postInfo?.likes?.some((item) => item._id === loginUser));
   }, [postInfo]);
@@ -93,6 +95,23 @@ function Post({ postInfo, setRefreshPosts }) {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const sharePost = (shareId) => {
+    axios
+    .patch(`http://localhost:5000/api/posts/share/${shareId}`, {},
+    {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+      alert("đã share");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   };
   const deletePost = () => {
     axios
@@ -319,6 +338,11 @@ function Post({ postInfo, setRefreshPosts }) {
                     );
                 }
               })()}
+              <p className="scope"><IoMdContact></IoMdContact>
+              {postInfo?.scope === "public"?(" Công khai"):""}
+              {postInfo?.scope === "friend"?(" Bạn bè"):""}
+              {postInfo?.scope === "private"?(" Riêng tư"):""}
+              </p>
             </div>
           </div>
         </div>
@@ -357,7 +381,7 @@ function Post({ postInfo, setRefreshPosts }) {
           <p>{commentNumber} bình luận</p>
         </div>
         <div className="post-interaction-length-share">
-          <p>0 chia sẻ</p>
+          <p>{shareCount} chia sẻ</p>
         </div>
       </div>
       <div className="post-interaction">
@@ -400,7 +424,7 @@ function Post({ postInfo, setRefreshPosts }) {
         </div>
         <div className="post-interaction-share">
           <FiShare2 style={iconStyles}></FiShare2>
-          <p>Chia sẻ</p>
+          <p onClick={() => sharePost(postInfo._id)}>Chia sẻ</p>
         </div>
       </div>
 
