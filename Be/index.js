@@ -31,7 +31,6 @@ const job = schedule.scheduleJob("* 0 * * *", async () => {
   });
   await newOnlineStatistic.save();
   today = new Date().toDateString("en-US");
-  console.log(amount);
   setOnlinePerDay(0);
 });
 //socket

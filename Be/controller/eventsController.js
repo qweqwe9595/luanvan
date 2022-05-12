@@ -11,6 +11,15 @@ const getAllEvents = async (req, res) => {
   }
 };
 
+const getUserEvents = async (req, res) => {
+  try {
+    const eventsQuery = await eventsModel.find({ userId: req.user._id });
+    res.status(200).json({ eventsQuery });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 const getAnEvents = async (req, res) => {
   try {
     const eventsQuery = await eventsModel.findById(req.params.id);
@@ -108,4 +117,5 @@ module.exports = {
   updateAnEvent,
   getAnEvents,
   joinEvent,
+  getUserEvents,
 };
