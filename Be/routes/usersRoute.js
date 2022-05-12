@@ -29,6 +29,7 @@ const {
   uploadAvatar,
   uploadBackground,
   addNotification,
+  deleteNotification,
   saveDoc,
   saveEvent,
   savePost,
@@ -65,9 +66,6 @@ router.patch("/savedoc", authenticateToken, saveDoc);
 //update user
 router.patch("/:id", updateAUser);
 
-//delete user
-router.delete("/:id", deleteAUser);
-
 //upload avatar
 
 router.post("/upload/avatar/:id", upload.single("avatar"), uploadAvatar);
@@ -77,5 +75,8 @@ router.post(
   uploadBackground
 );
 router.post("/notification/:id", addNotification);
+router.delete("/notification/:id", authenticateToken, deleteNotification);
+//delete user
+router.delete("/:id", deleteAUser);
 
 module.exports = router;

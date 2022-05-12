@@ -29,6 +29,19 @@ const getAll = async (req, res) => {
   }
 };
 
+//get user docs
+const getOneUser = async (req, res) => {
+  try {
+    console.log(req.user);
+    const documentsQuery = await documentsModel
+      .find({ userId: req.user._id })
+      .populate("userId");
+    res.status(200).json(documentsQuery);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 //get a document
 const getOne = async (req, res) => {
   try {
@@ -140,4 +153,5 @@ module.exports = {
   approved,
   unApproved,
   getDocumentPeding,
+  getOneUser,
 };

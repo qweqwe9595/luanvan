@@ -9,6 +9,7 @@ const {
   approved,
   unApproved,
   getDocumentPeding,
+  getOneUser,
 } = require("../controller/documentsController");
 
 const multer = require("multer");
@@ -37,6 +38,8 @@ router.post(
 router.get("/getall", authenticateTokenQuery, getAll);
 //get one
 router.get("/getone/:id", getOne);
+//get one
+router.get("/getuser", authenticateToken, getOneUser);
 //get all of app docs
 
 router.get("/getapproved", getDocumentApproved);
