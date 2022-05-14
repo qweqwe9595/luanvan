@@ -6,6 +6,7 @@ const {
   updateAnEvent,
   getAnEvents,
   joinEvent,
+  getUserEvents,
 } = require("../controller/eventsController");
 
 const multer = require("multer");
@@ -25,6 +26,7 @@ const authenticateToken = require("../middleWare/authJWT");
 //get all cmt
 router.get("/all", getAllEvents);
 router.get("/getOne/:id", getAnEvents);
+router.get("/getUser", authenticateToken, getUserEvents);
 //create an event
 router.post(
   "/createOne",

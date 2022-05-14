@@ -280,6 +280,22 @@ const addNotification = async (req, res) => {
   }
 };
 
+const deleteNotification = async (req, res) => {
+  try {
+    const updateUser = await userModal.findByIdAndUpdate(
+      req.user._id,
+      {
+        $pull: { notifications: { _id: req.params.id } },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({ message: "thanh cong", updateUser });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
 const saveDoc = async (req, res) => {
   try {
     const updateUser = await userModal.findById(req.user._id);
@@ -337,4 +353,5 @@ module.exports = {
   saveDoc,
   saveEvent,
   savePost,
+  deleteNotification,
 };
