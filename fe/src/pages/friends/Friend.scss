@@ -2,71 +2,71 @@
     width      : 100%;
     height     : auto;
     display    : flex;
-    margin-top : 100px;
-    font-family: "oswald";
-
-    .Filters {
-        display: none;
-        width           : 20%;
-        height          : 400px;
-        background-color: #ffffff;
-        margin-top      : 10px;
-        border-radius   : 10px;
-        margin-left     : 10px;
-        min-width       : 200px;
-        position        : fixed;
-
-        &>p {
-            width         : 90%;
-            margin-left   : 10px;
-            font-size     : 20px;
-            font-weight   : bold;
-            margin-top    : 10px;
-            margin-bottom : 10px;
-            border-bottom : 1px solid black;
-            padding-bottom: 10px;
-        }
-
-        &>span {
-            margin-left: 10px;
-            font-size  : 18px;
-            font-weight: bold;
-
-        }
-
-        .items {
-            width           : 95%;
-            height          : 45px;
-            border-radius   : 10px;
-            margin          : auto;
-            margin-bottom   : 20px;
-            display         : flex;
-            align-items     : center;
-            background-color: #EEF0F5;
-
-            &>span {
-                width       : 90%;
-                font-size   : 17px;
-                height      : 45px;
-                font-weight : bold;
-                padding-left: 10px;
-                padding-top : 11px;
-            }
-        }
-
-        .items:hover {
-            background-color: #0d47a1;
-            color           : #ffffff;
-        }
-
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 10px;
+    .friend-left{
+        
     }
+    // .Filters {
+    //     display: none;
+    //     width           : 20%;
+    //     height          : 400px;
+    //     background-color: #ffffff;
+    //     margin-top      : 10px;
+    //     border-radius   : 10px;
+    //     margin-left     : 10px;
+    //     min-width       : 200px;
+    //     position        : fixed;
+
+    //     &>p {
+    //         width         : 90%;
+    //         margin-left   : 10px;
+    //         font-size     : 20px;
+    //         font-weight   : bold;
+    //         margin-top    : 10px;
+    //         margin-bottom : 10px;
+    //         border-bottom : 1px solid black;
+    //         padding-bottom: 10px;
+    //     }
+
+    //     &>span {
+    //         margin-left: 10px;
+    //         font-size  : 18px;
+    //         font-weight: bold;
+
+    //     }
+
+    //     .items {
+    //         width           : 95%;
+    //         height          : 45px;
+    //         border-radius   : 10px;
+    //         margin          : auto;
+    //         margin-bottom   : 20px;
+    //         display         : flex;
+    //         align-items     : center;
+    //         background-color: #EEF0F5;
+
+    //         &>span {
+    //             width       : 90%;
+    //             font-size   : 17px;
+    //             height      : 45px;
+    //             font-weight : bold;
+    //             padding-left: 10px;
+    //             padding-top : 11px;
+    //         }
+    //     }
+
+    //     .items:hover {
+    //         background-color: #0d47a1;
+    //         color           : #ffffff;
+    //     }
+
+    // }
 
     .friend_content {
         width     : 100%;
         height    : auto;
         margin-top: 60px;
-
-
         .f_request {
             width              : 40%;
             margin             : auto;
@@ -78,6 +78,7 @@
             height             : auto;
             padding            : 20px;
             border-radius      : 20px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
             &>p {
                 font-size    : 19px;
@@ -91,7 +92,7 @@
                 border          : none;
                 border-radius   : 5px;
                 font-size       : 15px;
-                font-family     : "oswald";
+                font-family: 'Quicksand', sans-serif;
                 font-weight     : bold;
                 background-color: #EEF0F5;
 

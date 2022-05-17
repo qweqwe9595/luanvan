@@ -7,6 +7,7 @@
     margin          : auto;
     align-items     : center;
     margin-bottom   : 25px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
 
     .avt_friend_request {
@@ -29,11 +30,13 @@
             text-align    : left;
             margin        : auto;
             margin-left   : -1%;
+            font-family: 'Quicksand', sans-serif;
+
         }
 
         span {
             font-size        : 15px;
-            font-family      : "oswald";
+            font-family: 'Quicksand', sans-serif;
             cursor           : pointer;
             // font-weight   : bold;
             text-align       : left;
@@ -48,36 +51,36 @@
         margin-right: 10px;
 
         .button_accept {
-            width           : 80px;
+            width           : 90px;
             height          : 25px;
             border          : none;
             border-radius   : 10px;
             background-color: #0d47a1;
             color           : white;
             margin-right    : 5px;
-            font-weight     : bold;
-            font-size       : 13px;
+            font-weight   : 500;
+            font-size       : 14px;
             cursor          : pointer;
-            font-family     : "oswald";
+            font-family: 'Quicksand', sans-serif;
         }
         .button_refuse {
-            width           : 80px;
+            width           : 90px;
             height          : 25px;
             border          : none;
             border-radius   : 10px;
             background-color: #c4c4c4;
-            font-weight     : bold;
-            font-size       : 13px;
+            font-weight   : 500;
+            font-size       : 14px;
             margin-left     : 5px;
             cursor          : pointer;
-            font-family     : "oswald";
+            font-family: 'Quicksand', sans-serif;
 
         }
         .button_accept:hover{
             background-color: #0b326d;
         }
         .button_refuse:hover{
-            background-color: white;
+            background-color: rgb(211, 211, 211);
         }
     }
 }

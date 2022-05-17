@@ -42,7 +42,7 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
   return (
     <div className="Groupt_box">
       <div className="exit">
-        <span>Tạo nhóm</span>
+        <p>Tạo nhóm chat</p>
         <button
           onClick={() => {
             setAddGroupt(false);
@@ -75,7 +75,7 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
         </div>
       </div>
       <div className="result">
-        <span>Bạn bè của bạn</span>
+        <p>Bạn bè của bạn</p>
       </div>
       <div className="friendss">
         <div className="my_friend">

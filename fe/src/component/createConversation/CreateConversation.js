@@ -52,7 +52,7 @@ function CreateConversation({ setOpenNewConver, SetMyConversations }) {
   return (
     <div className="new_conversation">
       <div className="exit">
-        <span>Tin nhắn mới</span>
+        <p>Tin nhắn mới</p>
         <button onClick={() => setOpenNewConver(false)}>X</button>
       </div>
       <div className="search_friend">

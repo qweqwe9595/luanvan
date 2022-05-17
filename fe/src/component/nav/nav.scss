@@ -2,7 +2,7 @@
   display        : flex;
   width          : 100%;
   padding        : 0px 20px;
-  height         : 60px;
+  height         : 55px;
   align-items    : center;
   background     : #0d47a1 !important;
   justify-content: space-between;
@@ -14,14 +14,15 @@
 
   .notification-icon {
     position: absolute;
-    top     : -45px;
-    right   : 3%;
-
+    right: 0;
+    top: -70px;
+    .close{
+      
+    }
     .notifications {
       background-color: white;
       border-radius   : 10px;
-      box-shadow      : 0px 1px 4px 0px #333e50;
-
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
       .notifications-title {
         border    : none;
         box-shadow: none;
@@ -29,16 +30,15 @@
         padding   : 0;
 
         &>h3 {
-          font-family: "Oswald", sans-serif;
+          font-family: 'Quicksand', sans-serif;
           font-size  : 16px;
           text-align : center;
         }
       }
 
       .notifications-list {
-        padding   : 5px;
+        padding   : 0;
         box-shadow: none;
-        border    : none;
         width     : 100%;
         margin    : 0 auto;
 
@@ -47,25 +47,7 @@
             width           : 90%;
             background-color: #eaeaea;
             border-radius   : 10px;
-            box-shadow      : 0px 1px 4px 0px #333e50;
-            margin          : 5px auto;
-            margin-top      : 0;
-
-            &>p {
-              font-family: "Roboto", sans-serif;
-              font-size  : 14px;
-              padding    : 5px 20px;
-              text-align : left;
-
-              .username {
-                text-transform: capitalize;
-                font-weight   : 600;
-              }
-
-              :hover {
-                color: #0d47a1;
-              }
-            }
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;            
           }
 
           &> :hover {
@@ -87,17 +69,10 @@
     gap        : 10px;
 
     .logo {
-      height: 40px;
+      border: 1px solid #0d47a1;
+      height: 42px;
+      width: 42px;
       cursor: pointer;
-    }
-
-    .search-icon-container {
-      color           : #0d47a1;
-      line-height     : 0;
-      padding         : 2px 6px;
-      border-radius   : 5px;
-      background-color: white;
-      cursor          : pointer;
     }
   }
 
@@ -106,7 +81,7 @@
     align-items: center;
 
     .bell {
-      font-size    : 30px;
+      font-size    : 25px;
       color        : white;
       border-radius: 5px;
       cursor       : pointer;
@@ -114,7 +89,7 @@
     }
 
     .bell:hover {
-      color: red;
+      color: rgb(63, 36, 218);
     }
 
     .user-container {
@@ -299,24 +274,32 @@
       left              : 50%;
       transform         : translateX(-50%);
       background-color  : #f5f5f5;
-      padding-left      : 7px;
-      //padding-right   : 7px;
-      border-radius     : 1rem;
+      border-radius     : 10px;
       align-items       : center;
       gap               : 5px;
       height            : 40px;
-      border-radius     : 1rem;
-      align-items       : center;
-      gap               : 5px;
       max-width         : 500px;
-
+      .search-icon-container {
+        color           : #0d47a1;
+        line-height     : 0;
+        border-radius   : 5px;        
+        background-color: white;
+        cursor          : pointer;
+        padding: 0 10px;
+        .search-icon{
+          height: 25px;
+          width: 25px;
+          margin: auto;
+        }
+      }
       &>input {
         width           : 100%;
-        font-family     : "Roboto", sans-serif;
+        font-family: "Quicksand", sans-serif;
         border          : none;
         width           : 200px;
         background-color: transparent;
         font-size       : 1.1rem;
+        padding: 0 2px;
       }
 
       &>input:focus {
@@ -397,7 +380,7 @@
 @media all and (min-width: 1024px) {
   .nav {
     .searchbar {
-      width: 55%;
+      width: 50%;
 
       &>input {
         width        : 100%;

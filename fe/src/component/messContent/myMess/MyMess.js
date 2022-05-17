@@ -22,7 +22,7 @@ function MyMess({ sender }) {
       )}
       <div className="my_mess">
         <div className="my_mess_detail">
-          <span>{sender.text}</span>
+          <p>{sender.text}</p>
         </div>
         <p>
           {new Date(sender.createdAt).toLocaleTimeString(["it-IT"], {

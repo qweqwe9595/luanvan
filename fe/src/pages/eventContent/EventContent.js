@@ -152,15 +152,16 @@ function EventContent() {
             </button>
           )}
 
-          <button className="invite">Mời bạn</button>
-          <button
+          {/* <button className="invite">Mời bạn</button> */}
+          {user.isAdmin?( <button
             className="delete_event"
             onClick={() => {
               setOpen(!open);
             }}
           >
             Chỉnh sửa
-          </button>
+          </button>):""}
+         
         </div>
       </div>
       {open ? <EditEvent setOpen={setOpen} events={events}></EditEvent> : ""}

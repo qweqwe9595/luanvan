@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./btnSendRequest.scss";
 import { FaUserPlus } from "react-icons/fa";
 import axios from "axios";
-function SearchResultTag({ id }) {
+function SearchResultTag({ id, setResetSearch }) {
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [requested, setRequested] = useState(false);
     const sendRequest = () => {
@@ -24,13 +24,18 @@ function SearchResultTag({ id }) {
               onClick={() => {
                 sendRequest();
                 setRequested(true);
+                setResetSearch(true);
           }}>
           <FaUserPlus/>
             </button>
       )   
-        : (<button type="button" className="icon2">
-          <FaUserPlus/>
-        </button>)
+        : (
+          <p className="friend-wait">Đã gửi lời mời kết bạn.</p>
+
+        // <button type="button" className="icon2">
+        //   <FaUserPlus/>
+        // </button>
+        )
       }
   </div>
     

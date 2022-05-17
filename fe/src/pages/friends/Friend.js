@@ -4,11 +4,16 @@ import axios from "axios";
 import RequestBox from "../../component/friendRequest/requestBox/RequestBox";
 import "./Friend.scss";
 import FriendTag from "../../component/friendTag/FriendTag";
+import Options from "../../component/options/Options";
+import Contacts from "../../component/contacts/Contacts";
+import FriendRequest from "../../component/friendRequest/FriendRequest";
 
-function Friend() {
+function Friend(onlineFriends) {
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [fRequests, setFRequests] = useState([]);
   const [friendId, setFriendId] = useState([]);
+  const [resetFriend, setResetFriend] = useState(false);
+
   useEffect(() => {
     const getFRequests = () => {
       axios
@@ -27,23 +32,6 @@ function Friend() {
     <div>
       <Nav></Nav>
       <div className="friend">
-        <div className="Filters">
-          <p>Bạn bè</p>
-          <span>Bộ lọc</span>
-          <div className="items">
-            <span>Trang chủ</span>
-          </div>
-          <div className="items">
-            <span>Tất cả bạn bè</span>
-          </div>
-          <div className="items">
-            <span>Lời mời kết bạn</span>
-          </div>
-          <div className="items">
-            <span>Gợi ý</span>
-          </div>
-        </div>
-
         <div className="friend_content">
           {fRequests?.length !==0 ? (
              <div className="f_request">
@@ -51,7 +39,7 @@ function Friend() {
             {fRequests?.map((user, index) => {
               return <RequestBox user={user} key={index}></RequestBox>;
             })}
-            <button>Xem tất cả</button>
+            {/* <button>Xem tất cả</button> */}
           </div>
           ):""}
          
@@ -63,12 +51,11 @@ function Friend() {
               <div className="f_request">
             <p>Danh sách bạn bè</p>
             {friendId?.map((friend, indexs) => {
-              return <FriendTag friend={friend} key={indexs}></FriendTag>;
+              return <FriendTag friend={friend} setResetFriend={setResetFriend} key={indexs}></FriendTag>;
             })}
-            <button>Xem tất cả</button>
+            {/* <button>Xem tất cả</button> */}
           </div>
-          ) :""}
-        
+          ) :""}         
         </div>
       </div>
     </div>

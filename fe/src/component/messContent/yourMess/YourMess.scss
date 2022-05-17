@@ -18,33 +18,48 @@
      }
 
      .your_mess {
-         min-width       : 100px;
-         max-width       : 75%;
-         height          : max-content;
-         float           : left;
-         background-color: #EAEAEA;
-         word-wrap       : break-word;
-         display         : grid;
-         border-radius   : 7px;
-         padding         : 7px 15px 7px 15px;
-
+        min-width       : 100px;
+        max-width       : 75%;
+        height          : max-content;
+        float           : right;
+        background-color: #eaeaea;
+        word-wrap       : break-word;
+        display         : grid;
+        border-radius   : 7px;
+        padding         : 5px;
+        &>span {
+            color         : black;
+            font-size     : 17px;
+            font-weight: 600;
+            text-transform: capitalize;
+            padding: 3px 0;
+        }
          .your_mess_detail {
-             width        : 100%;
-             max-width    : 100%;
-             float        : right;
-             width        : fit-content;
-             min-width    : 50px;
-             color        : black;
-             font-family  : "oswald";
-             font-size    : 17px;
-             margin-bottom: 5px;
-             margin-top   : 5px;
+            width      : 100%;
+            float      : right;
+            width      : fit-content;
+            min-width  : 50px;
+            color      : black;
+            font-family: 'Quicksand', sans-serif;
+            font-size  : 17px;
+            max-width: 400px;
+            padding: 0 5px;    
          }
-
          &>p {
-             color         : cadetblue;
-             font-size     : 14px;
-             text-transform: capitalize;
-         }
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 14px;
+        }         
      }
  }
+
+ @media all and(max-width: 800px) {
+    .your_mess_content {
+        .your_mess{
+            .your_mess_detail {
+                max-width: 250px;
+            }
+        }
+    }
+}

@@ -147,11 +147,12 @@ function CommentV1({ commentV1, setGetNewComment }) {
             }}
           >
             {/* <p>{commentV2.length}</p> */}
+            <GoComment style={iconStyles}></GoComment>
             <p>Trả lời</p>
           </div>
-          <div className="post-interaction-report-2">
+          {/* <div className="post-interaction-report-2">
             <p>Báo cáo</p>
-          </div>
+          </div> */}
         </div>
       </div>
 

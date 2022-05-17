@@ -85,7 +85,7 @@ function UserIntro({ setOpen }) {
       <div className="headder">
         <p>Chỉnh sửa thông tin cá nhân</p>
         <div className="buttonExit">
-          <button onClick={() => setOpen(false)}>X</button>
+          <button onClick={() => setOpen(false)}>x</button>
         </div>
       </div>
       <hr></hr>

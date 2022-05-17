@@ -102,7 +102,7 @@ function Hero() {
                     </Button>
 
                     <Button
-                        color="green"
+                        color="blue"
                         onClick={(e) => {
                           sendReports();
                           setReports("");

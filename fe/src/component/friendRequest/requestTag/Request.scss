@@ -1,81 +1,72 @@
 .friends_request_tag {
-    background-color: #EEF0F5;
-    width           : 98%;
-    height          : 60px;
-    border-radius   : 12px;
+    background-color: #e6e6e6;
+    border-radius   : 10px;
     display         : flex;
     margin          : auto;
     align-items     : center;
-    font-family     : "oswald";
-    padding         : 10px;
+    padding: 7px;
 
-    .avt_friend_request {
-        width           : 45px;
-        height          : 45px;
-        border-radius   : 50%;
-        // margin-left  : 10px;
-        margin-right    : 5px;
-        margin-top      : 4px;
-        object-fit      : cover;
+    &>a{
+        width: 20%;
+        .avt_friend_request {
+            width           : 40px;
+            height          : 40px;
+            border-radius   : 50%;
+            object-fit      : cover;
+        }
     }
 
     .friend_request_tag_info {
-        height    : 55px;
-        text-align: center;
-        flex      : 1;
-
-        p {
-            margin        : 0;
-            text-transform: capitalize;
-            font-size     : 17px;
-            font-weight   : bold;
-            text-align    : center;
-            font-family   : "oswald";
-            text-align    : center;
-            text-transform: capitalize;
-            text-overflow : ellipsis;
-            white-space   : nowrap;
-            overflow      : hidden;
-            padding-right : 10px;
+        width: 80%;
+        &>a{
+            max-height: 20px;
+            width: 100%;
+            &>p{
+                max-height: 20px;
+                text-transform: capitalize;
+                font-size     : 16px;
+                font-weight   : 700;
+                font-family: 'Quicksand', sans-serif;
+                text-align    : center;
+                text-transform: capitalize;
+            }
         }
 
         .friend_request_tag_button {
             display: flex;
-
             .button_accept {
-                width           : 80px;
-                height          : 23px;
+                font-weight     : 400;
+                width           : 100px;
+                height          : 25px;
                 border          : none;
                 border-radius   : 15px;
                 background-color: #0d47a1;
                 color           : white;
                 margin-right    : 10px;
                 font-size       : 15px;
-                font-family     : "oswald";
+                font-family: 'Quicksand', sans-serif;
                 cursor          : pointer;
-
             }
 
             .button_refuse {
-                width           : 80px;
-                height          : 23px;
+                font-weight     : 400;
+                width           : 100px;
+                height          : 25px;
                 border          : none;
                 border-radius   : 15px;
                 background-color: #c4c4c4;
-                font-weight     : bold;
                 font-size       : 15px;
-                margin-left     : 10px;
-                font-family     : "oswald";
+                margin-right     : 10px;
+                font-family: 'Quicksand', sans-serif;
                 cursor          : pointer;
-
+                padding: 0 3px;
             }
 
             .button_accept:hover {
-                background-color: #0b326d;
+                background-color: #1664d8;
             }
-
             .button_refuse:hover {
-                background-color: white;
+                background-color: #d1d0d0;
             }
         }
     }

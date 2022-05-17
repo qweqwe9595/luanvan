@@ -17,6 +17,7 @@ function JobContent() {
   const [numjoins, setNumjoins] = useState();
   const [join, setJoin] = useState();
   const socket = useContext(SocketContext);
+  const time = new Date(jobs.createdAt);
 
   useEffect(() => {
     axios
@@ -73,10 +74,13 @@ function JobContent() {
           src={`http://localhost:5000/images/${jobs.img}`}
           className="cover"
         ></img>
+         <div className="time">
+          <p>Ngày đăng: {new Date(time).toLocaleDateString("en-US")}</p>
+        </div>
         <div className="title">
           {jobs?.jobName ? <span>{jobs.jobName}</span> : ""}
         </div>
-        <div className="button-options">
+        {/* <div className="button-options">
           <button
             className="job-button"
             onClick={() => {
@@ -95,7 +99,7 @@ function JobContent() {
               Xóa
             </button>
           </Link>
-        </div>
+        </div> */}
       </div>
       {open ? <EditJob setOpen={setOpen} jobs={jobs}></EditJob> : ""}
       <div className="job_details">

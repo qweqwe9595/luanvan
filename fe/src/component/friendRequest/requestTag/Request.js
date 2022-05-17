@@ -66,8 +66,8 @@ function Request({ user }) {
             )}
           </Link>
           <div className="friend_request_tag_info">
-            <Link to={`/profile/${userInfo._id}`} className="link">
-              <p>{userInfo.userName ? userInfo.userName : ""}</p>
+            <Link to={`/profile/${userInfo._id}`}>
+              <p>{userInfo.userName?userInfo.userName : ""}</p>
             </Link>
             <div className="friend_request_tag_button">
               <button

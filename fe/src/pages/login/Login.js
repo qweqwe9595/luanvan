@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.scss";
 import { AiOutlineUser } from "react-icons/ai";
-import { FiKey, FiShare2, FiSmile } from "react-icons/fi";
+import { FiKey, FiShare2, FiBookOpen } from "react-icons/fi";
 import { BiMessage } from "react-icons/bi";
 import { BsPeople } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
@@ -42,14 +42,13 @@ function Login() {
     <div className="login_container">
       <div className="login_box">
         <div className="join_us">
-          <p>Join us</p>
+          <p>Tham gia ngay</p>
           <div className="join_us_tag">
             <div className="join_us_icon">
               <FiShare2></FiShare2>
             </div>
             <div>
-              <h3>Share your story</h3>
-              <h4>At vero eos et accusamus et.</h4>
+              <h3>Chia sẻ câu chuyện của bạn.</h3>
             </div>
           </div>
           <div className="join_us_tag">
@@ -57,8 +56,7 @@ function Login() {
               <BiMessage></BiMessage>
             </div>
             <div>
-              <h3>Comment</h3>
-              <h4>At vero eos et accusamus et.</h4>
+              <h3>Tương tác với mọi người.</h3>
             </div>
           </div>
           <div className="join_us_tag">
@@ -66,18 +64,16 @@ function Login() {
               <BsPeople></BsPeople>
             </div>
             <div>
-              <h3>Connect</h3>
-              <h4>At vero eos et accusamus et.</h4>
+              <h3>Kết bạn và trò chuyện.</h3>
             </div>
           </div>
 
           <div className="join_us_tag">
             <div className="join_us_icon">
-              <FiSmile></FiSmile>
+              <FiBookOpen></FiBookOpen>
             </div>
             <div>
-              <h3>Be better</h3>
-              <h4>At vero eos et accusamus et.</h4>
+              <h3>Hỗ trợ học tập</h3>
             </div>
           </div>
         </div>
@@ -88,7 +84,7 @@ function Login() {
               src="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png"
               alt="logo"
             ></img>
-            <p>Đăng Nhập</p>
+            <p>Đăng nhập</p>
           </div>
           <div className="input">
             <div className="icon">
@@ -96,7 +92,7 @@ function Login() {
             </div>
             <input
               type="email"
-              placeholder="Email or username"
+              placeholder="Tên đăng nhập"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -109,7 +105,7 @@ function Login() {
             </div>
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Mật khẩu"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -119,10 +115,10 @@ function Login() {
           <div className="Remember_forget_pass">
             <div className="Remember_pass">
               <input type="checkbox"></input>
-              <p>Remember</p>
+              <p>Nhớ tài khoản</p>
             </div>
             <div className="forget_pass">
-              <a href="#">Foget password?</a>
+              <a href="#">Quên mật khẩu?</a>
             </div>
           </div>
           <button
@@ -131,10 +127,10 @@ function Login() {
               login();
             }}
           >
-            Log in to your account
+            <p>Đăng nhập</p>
           </button>
           <Link to="/signup">
-            <p>Don't have a account?</p>
+            <p class="link-register">Bạn không có tài khoản?<b> Tạo ngay.</b></p>
           </Link>
         </div>
       </div>

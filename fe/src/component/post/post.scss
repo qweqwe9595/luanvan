@@ -1,11 +1,13 @@
 .post {
-  max-width: 600px;
+  width: 100%;
   background-color: #ffffff;
-  border-radius   : 12px;
-  box-shadow      : 0px 1px 4px 0px #333e50;
+  border-radius   : 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   margin-bottom   : 20px;
   position        : relative;
-  padding: 5px;
+  padding: 10px;
+  padding-bottom: 5px;
+
   .post-meta-right-show {
     position        : fixed;
     width           : 100vw;
@@ -41,7 +43,7 @@
 
   .post-meta {
     display: flex;
-    margin: 0 20px;
+    width: 100%;
     .post-meta-left {
       display: flex;
 
@@ -62,16 +64,14 @@
       }
 
       .post-meta-left-username-timepost {
-        margin: auto;
-
+        margin: 0 auto;
         .post-meta-left-username {
           width: max-content;
-
           .username {
             text-transform: capitalize;
-            font-family   : "Oswald", sans-serif;
-            font-size     : 18px;
-            font-weight   : 600;
+            font-family   : "Quicksand", sans-serif;
+            font-size     : 17px;
+            font-weight   : 700;
           }
 
           :hover {
@@ -84,7 +84,7 @@
           width: max-content;
           display: flex;
           &>p {
-            font-family: "Oswald", sans-serif;
+            font-family: 'Quicksand', sans-serif;
             font-size  : 14px;
             color      : #808080;
           }
@@ -102,13 +102,12 @@
 
     .post-meta-right {
       position: absolute;
-      right: 20px;
+      right: 15px;
       top: 15px;
       .post-meta-right-options {
         .post-meta-right-options-buttons {
           background-color: #0d47a1;
           border-radius   : 50px;
-          height          : 20px;
           width           : 30px;
           cursor          : pointer;
           &>span {
@@ -127,11 +126,12 @@
   }
 
   .post-desc {  
-    margin: 10px 20px;  
+    margin: 10px;  
     &>p {
       word-wrap: break-word;
       text-align: justify;
-      font-family: "Roboto";
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 500;
     }
   }
 
@@ -155,7 +155,7 @@
     .post-interaction-length-heart {
       &>p {
         font-size  : 16px;
-        font-family: "Oswald", sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     }
 
@@ -163,7 +163,7 @@
       &>p {
         margin     : 0 10px;
         font-size  : 16px;
-        font-family: "Oswald", sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     }
 
@@ -171,7 +171,7 @@
       &>p {
         padding-right: 10px;
         font-size    : 16px;
-        font-family  : "Oswald", sans-serif;
+        font-family: 'Quicksand', sans-serif;
       }
     }
   }
@@ -181,7 +181,7 @@
     display   : flex;
     width     : 95%;
     margin    : auto;
-
+    padding: 5px;
     .post-interaction-heart {
       width          : 100%;
       margin         : auto;
@@ -189,10 +189,9 @@
       justify-content: center;
 
       &>p {
-        padding    : 5px 0;
         font-size  : 17px;
-        font-family: "Oswald", sans-serif;
-        font-weight: 700;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
       }
     }
 
@@ -203,10 +202,9 @@
       justify-content: center;
 
       &>p {
-        padding    : 5px 0;
         font-size  : 17px;
-        font-family: "Oswald", sans-serif;
-        font-weight: 700;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
       }
     }
 
@@ -217,15 +215,13 @@
       justify-content: center;
 
       &>p {
-        padding    : 5px 0;
         font-size  : 17px;
-        font-family: "Oswald", sans-serif;
-        font-weight: 700;
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 600;
       }
     }
 
     :hover {
-      background-color: #9eb0cc;
       cursor          : pointer;
     }
   }
@@ -246,10 +242,11 @@
     margin    : auto;
 
     &>p {
-      font-family: "Oswald", sans-serif;
-      font-weight: 400;
-      font-size  : 18px;
-      margin     : 10px 10px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size  : 17px;
+      margin     : 5px;
+      text-align: center;
     }
 
     .post-comment-bar {
@@ -268,7 +265,7 @@
         align-items     : center;
 
         &>input {
-          font-family     : "Roboto", sans-serif;
+          font-family: "Quicksand", sans-serif;
           flex            : 2;
           border          : none;
           font-size       : 15px;
@@ -293,7 +290,7 @@
         margin          : auto;
 
         &>span {
-          font-family: "Oswald", sans-serif;
+          font-family: 'Quicksand', sans-serif;
           font-size  : 15px;
         }
       }
@@ -305,4 +302,9 @@
       }
     }
   }
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
 }

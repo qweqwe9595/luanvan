@@ -1,49 +1,44 @@
 .login_container {
-  background-color: gray;
-  width: 100vw;
+  background-color: #c2cad0;
+  min-width: 100vw;
   align-items: center;
   min-height: 100vh;
-  padding-top: 130px;
+  padding-top: 70px;
 
   .login_box {
-    width: 55%;
+    width: 60%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-width: 200px;
     background-color: #0d47a1;
     flex-direction: column;
-    height: 500px;
     margin: auto;
-    border-radius: 30px;
-
+    border-radius: 10px;
     .join_us {
-      margin-top: 50px;
+      padding: 20px 0;
       display: grid;
       width: 100%;
-      border-top-left-radius: 30px;
-      border-bottom-left-radius: 30px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
       color: #ffffff;
-      height: 70%;
       //@at-root                : 300px;
 
       p {
         text-align: center;
-        margin: auto;
-        margin-bottom: 20px;
-        font-size: 40px;
-        font-weight: bold;
-        padding-top: 10px;
+        margin: 0 auto;
+        font-size: 25px;
+        font-weight: 600;
+        font-family: 'Quicksand', sans-serif;
+        padding: 20px 0;
       }
 
       .join_us_tag {
-        margin: auto;
-        margin-bottom: 30px;
         display: flex;
-        padding: 1px 5px;
         align-items: center;
         gap: 10px;
-        height: fit-content;
         color: #ffffff;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 30px;  
 
         .join_us_icon {
           display: flex;
@@ -52,55 +47,57 @@
           height: 45px;
           width: 45px;
           border-radius: 20%;
-          color: #ffffff;
-          cursor: pointer;
-          border: 1px solid #ffffff;
+          color: #0d47a1;
+          background-color: #ffffff;
+        }
+        &>div{
+          &>h3{
+            font-size: 16px;
+            font-family: 'Quicksand', sans-serif;
+          }
         }
       }
     }
 
     .login_tag {
+      padding: 20px 0;
       width: 100%;
-      margin: auto;
-      display: grid;
-      padding-top: 60px;
-      padding-bottom: 50px;
+      margin: 0 auto;
       background-color: #ffffff;
-      height: 100%;
-      border-bottom-right-radius: 30px;
-      border-top-right-radius: 30px;
-
+      border-bottom-right-radius: 10px;
+      border-top-right-radius: 10px;
       .logo {
-        margin-top: 50px;
+        // margin-top: 50px;
         width: 80%;
         display: flex;
         margin: auto;
-
+        text-align: center;
         & > img {
-          width: 80px;
+          width: 60px;
+          display: none;
         }
 
         & > p {
-          font-size: 35px;
-          font-weight: bold;
-          margin: auto;
-          margin-left: 5px;
+          text-align: center;
+          margin: 0 auto;
+          font-size: 25px;
+          font-weight: 600;
+          font-family: 'Quicksand', sans-serif;
+          padding: 20px 0;
+          color:#0d47a1;
         }
       }
 
       .input {
-        margin: auto;
-        margin-top: 15px;
-        margin-bottom: 0;
+        margin: 0 auto;
+        margin-bottom: 30px;
         display: flex;
         background-color: #ececec;
-        padding: 1px 5px;
         border-radius: 2rem;
         align-items: center;
-        //gap             : 10px;
-        height: fit-content;
         width: 80%;
-
+        height: fit-content;
+        font-family: 'Quicksand', sans-serif;
         .icon {
           display: flex;
           justify-content: center;
@@ -109,17 +106,17 @@
           width: 45px;
           background-color: #ffffff;
           border-radius: 50%;
-          color: black;
+          color: #0d47a1;
           cursor: pointer;
           margin-left: -1%;
-          padding: 10px;
+          padding: 12px;
         }
 
         & > input {
           background-color: transparent;
           flex: 1;
           border: none;
-          font-size: 15px;
+          font-size: 16px;
           height: 45px;
           width: 90%;
           border-top-right-radius: 2rem;
@@ -127,7 +124,7 @@
           padding: 10px;
           margin-right: -1%;
           background-color: #ececec;
-
+          font-family: 'Quicksand', sans-serif;
           &:focus {
             outline: none;
           }
@@ -135,68 +132,81 @@
       }
 
       .Remember_forget_pass {
-        display: flex;
-        justify-content: space-between;
-        margin: auto;
-        margin-top: 30px;
+        margin: 0 auto;
+        margin-bottom: 20px;
         width: 80%;
-
+        color:black;
+        display: flex;
         .Remember_pass {
+          width: 50%;
           display: flex;
           align-items: center;
-
-          &:hover {
-            cursor: pointer;
-          }
-
+          input{
+            margin: 0;
+            padding: 0;
+          }        
+          
           p {
-            margin-left: 2px;
-            color: #0d47a1;
+            margin-left: 5px;
+            font-family: 'Quicksand', sans-serif;
           }
         }
 
         .forget_pass {
+          width: 50%;
           text-align: right;
+          margin: auto;
 
           & > a {
             text-decoration: none;
-            color: #0d47a1;
+            font-family: 'Quicksand', sans-serif;
+            &:hover {
+              cursor: pointer;
+              color: #0d47a1;
+            }
           }
-          &:hover {
-            cursor: pointer;
-            color: red;
-          }
+          
         }
       }
 
       & > button {
-        width: 80%;
-        margin: auto;
-        margin-top: 30px;
+        width: 70%;
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 20px;
         height: 45px;
         border-radius: 30px;
         background-color: #0d47a1;
         color: #ffffff;
-        font-size: 15px;
-        border: none;
+        font-size: 16px;
+        font-weight: 600;
         cursor: pointer;
-
+        font-family: 'Quicksand', sans-serif;
+        &>p{
+          width: 100%;
+          margin: auto;
+        }
         &:hover {
-          background-color: #0d47a1;
+          background-color: #145bc5;
           cursor: pointer;
-          color: red;
         }
       }
 
       & > a {
-        margin-top: 10px;
+        padding: 0;
+        margin: 0 auto;
         text-align: center;
         color: black;
         text-decoration: none;
-
-        &:hover {
-          color: #0d47a1;
-        }
+        font-family: 'Quicksand', sans-serif;
+        &>p{
+          & > b{
+            color: #0d47a1;
+            &:hover{
+              color:black;
+            }
+          }
+        }        
       }
     }
   }
@@ -251,14 +261,14 @@
           }
 
           & > p {
-            margin: auto;
-            margin-left: 10px;
+            margin: 0 auto;
+            text-align: center;
+            color:#0d47a1;
           }
         }
 
         .input {
           width: 100%;
-          padding: 0 10px 0 10px;
           display: flex;
           align-items: center;
 
@@ -271,11 +281,11 @@
         .Remember_forget_pass {
           width: 100%;
         }
+        
 
         & > button {
           width: 100%;
           height: 45px;
-          margin-top: 30px;
         }
       }
     }

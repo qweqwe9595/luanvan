@@ -5,10 +5,6 @@ import {
   RiCalendarEventLine,
   RiMessengerLine,
 } from "react-icons/ri";
-import { ImNewspaper } from "react-icons/im";
-import { FaUsers } from "react-icons/fa";
-import { FaUserPlus } from "react-icons/fa";
-import { BiNews } from "react-icons/bi";
 import "./SearchResults.scss";
 import { SearchResultContext } from "../../context/SearchContext";
 import SearchResultTag from "./button/btnSendRequest";
@@ -17,46 +13,12 @@ import { Link } from "react-router-dom";
 function SearchResults() {
   const [searchResult, setSearchResult] = useContext(SearchResultContext);
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
+  const [resetSearch, setResetSearch] = useState(false);
 
   return (
     <div>
       <Nav></Nav>
       <div className="Search-Results">
-        <div className="Filters">
-          <p>Kết quả tìm kiếm</p>
-          <span>Bộ lọc</span>
-          <div className="items">
-            <div className="icon">
-              <ImNewspaper />
-            </div>
-            <span>Tất cả</span>
-          </div>
-          <div className="items">
-            <div className="icon">
-              <BiNews />
-            </div>
-            <span>Bài viết</span>
-          </div>
-          <div className="items">
-            <div className="icon">
-              <FaUsers />
-            </div>
-            <span>Mọi người</span>
-          </div>
-          <div className="items">
-            <div className="icon">
-              <RiPagesLine />
-            </div>
-            <span>Trang</span>
-          </div>
-          <div className="items">
-            <div className="icon">
-              <RiCalendarEventLine />
-            </div>
-            <span>Tuyển dụng</span>
-          </div>
-        </div>
-
         <div className="Results">
           <div className="Peoples">
             <p>Mọi người</p>
@@ -82,20 +44,24 @@ function SearchResults() {
 
                     <div className="people_info">
                       <Link to={`/profile/${people._id}`} className="link">
-                        <p>{people.userName}</p>
-                      </Link>
-                      {people.friends.includes(userIdCurrent) ? (
-                        <span>bạn bè</span>
-                      ) : (
+                        <p>{people.userName}
+                        {people.friends.includes(userIdCurrent) ? (
+                        <span>--Bạn bè</span>
+                        
+                         ) : (
                         ""
-                      )}
-                      <span>
+                        )}
+                        </p>
+                       </Link>
+                      
+                     
+                      <p>
                         {people.friends
                           ? people.friends.length
-                          : "0 người theo dõi"}{" "}
-                        người theo dõi
-                      </span>
-                      <span> {people.address ? people.address.city : ""}</span>
+                          : "0 bạn bè"}{" "}
+                        bạn bè
+                      </p>
+                      <p>Quê quán: {people.address ? people.address.city : ""}</p>
                     </div>
                   </div>
                   {people._id === userIdCurrent ? (
@@ -105,32 +71,18 @@ function SearchResults() {
                       <RiMessengerLine></RiMessengerLine>
                     </button>
                   ) : people.friendsRequest.includes(userIdCurrent) ? (
-                    <button type="button" className="icon2">
-                      <FaUserPlus />
-                    </button>
+                    // <button type="button" className="icon2">
+                    //   <FaUserPlus />
+                    // </button>
+                    <p>Đã gửi lời mời kết bạn.</p>
                   ) : (
-                    <SearchResultTag id={people._id}></SearchResultTag>
+                    <SearchResultTag id={people._id} setResetSearch={setResetSearch}></SearchResultTag>
                   )}
                 </div>
               );
             })}
-            <button>Xem tất cả</button>
+            {/* <button>Xem tất cả</button> */}
           </div>
-
-          {/* <div className="Post">
-            <p>Bài viết</p>
-            <button>Xem tất cả</button>
-          </div>
-
-          <div className="Page">
-            <p>Trang</p>
-            <button>Xem tất cả</button>
-          </div>
-
-          <div className="Event">
-            <p>Thông tin việc làm</p>
-            <button>Xem tất cả</button>
-          </div> */}
         </div>
       </div>
     </div>

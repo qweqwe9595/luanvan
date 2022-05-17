@@ -47,60 +47,62 @@ function DocContent() {
   return (
     <div className="docTag">
       <Nav></Nav>
-      <div className="docTag_title">
-        <div className="doc_header">
-          <div className="doc_header_left">
-            <p>{doc?.docName}</p>
-            {/* <span>thời gian</span> */}
-          </div>
-          <div className="button">
-            {user ? (
-              <>
-                {save ? (
-                  <button className="save_doc">Đã lưu</button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      saveDoc(doc?._id);
-                    }}
-                    className="save_doc"
-                  >
-                    Lưu
-                  </button>
-                )}
-              </>
+      <div className="docContent">
+        <div className="docTag_title">
+          <div className="doc_header">
+            <div className="doc_header_left">
+              <p>{doc?.docName}</p>
+              {/* <span>thời gian</span> */}
+              <div className="button">
+              {user ? (
+                <>
+                  {save ? (
+                    <button className="save_doc">Đã lưu</button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        saveDoc(doc?._id);
+                      }}
+                      className="save_doc"
+                    >
+                      Lưu
+                    </button>
+                  )}
+                </>
+              ) : (
+                ""
+              )}
+              <button className="down_doc">Tải xuống</button>
+            </div>
+          </div>            
+        </div>
+          <div className="doc_author">
+            {doc?.userId?.photos?.avatar?.length === 0 ? (
+              <img
+                className="avt_friend_request"
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+              />
             ) : (
-              ""
+              <img
+                src={`http://localhost:5000/images/${
+                  doc?.userId?.photos?.avatar[
+                    doc.userId?.photos?.avatar?.length - 1
+                  ]
+                }`}
+              ></img>
             )}
-            <button className="down_doc">Tải xuống</button>
+            <span>{doc?.userId?.userName}</span>
           </div>
+          <iframe
+            src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://infolab.stanford.edu/pub/papers/google.pdf#toolbar=0&scrollbar=0"
+            title="description"
+            className="doc_content"
+          ></iframe>
         </div>
-        <div className="doc_author">
-          {doc?.userId?.photos?.avatar?.length === 0 ? (
-            <img
-              className="avt_friend_request"
-              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-            />
-          ) : (
-            <img
-              src={`http://localhost:5000/images/${
-                doc?.userId?.photos?.avatar[
-                  doc.userId?.photos?.avatar?.length - 1
-                ]
-              }`}
-            ></img>
-          )}
-          <span>{doc?.userId?.userName}</span>
+        <div className="doc_footer">
+          <p>Nội dung tài liệu</p>
+          <span>{doc?.desc}</span>
         </div>
-        <iframe
-          src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://infolab.stanford.edu/pub/papers/google.pdf#toolbar=0&scrollbar=0"
-          title="description"
-          className="doc_content"
-        ></iframe>
-      </div>
-      <div className="doc_footer">
-        <p>Nội dung tài liệu</p>
-        <span>{doc?.desc}</span>
       </div>
     </div>
   );

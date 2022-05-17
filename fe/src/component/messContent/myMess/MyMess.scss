@@ -31,20 +31,38 @@
 
         .my_mess_detail {
             width      : 100%;
-            max-width  : 100%;
             float      : right;
             width      : fit-content;
             min-width  : 50px;
             color      : #ffffff;
-            font-family: "oswald";
+            font-family: 'Quicksand', sans-serif;
             font-size  : 17px;
+            max-width: 400px;
+            padding: 0 5px;    
 
+            &>p{
+                width: 100%;
+                word-wrap: break-word;
+                text-align: justify;
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 400;
+            }
         }
 
         &>p {
-            color     : cadetblue;
-            font-size : 14px;
-            margin-top: 10px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 14px;
+        }
+    }
+}
+@media all and(max-width: 800px) {
+    .my_mess_content {
+        .my_mess{
+            .my_mess_detail {
+                max-width: 250px;
+            }
         }
     }
 }

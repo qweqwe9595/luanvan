@@ -69,6 +69,7 @@ function EventTag({ eventI, setEventId }) {
   };
   return (
     <div className="event_tag">
+      <Link to={`/eventContent/${eventI?._id}`}>
       <img
         src={`http://localhost:5000/images/${eventI?.img}`}
         className="cover"
@@ -80,7 +81,6 @@ function EventTag({ eventI, setEventId }) {
           ""
         )}
       </div>
-      <Link to={`/eventContent/${eventI?._id}`}>
         <div className="title">
           {eventI?.eventName ? <span>{eventI?.eventName}</span> : "eventName"}
         </div>

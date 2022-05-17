@@ -78,7 +78,7 @@ function Docurmen() {
           <div className="document_right_header_search">
             <div className="search">
               <BiSearch></BiSearch>
-              <input placeholder="tìm kiếm tài liệu" type="search"></input>
+              <input placeholder="Nhập tên tài liệu..." type="search"></input>
             </div>
             <div className="document_filter">
               <FiFilter className="icon_filter"></FiFilter>
@@ -100,19 +100,20 @@ function Docurmen() {
             }
             return (
               <div className="doc_tag" key={index}>
+                <Link to={`/docContent/${document._id}`}>
                 <img
                   src={`http://localhost:5000/images/${document?.img}`}
                   className="document_tag_cover"
                 />
                 <p>
-                  <Link to={`/docContent/${document._id}`}>
                     {document?.docName}
-                  </Link>
                 </p>
                 <div className="author">
                   <b>Tác giả:</b>
                   <span>{document?.userId?.userName}</span>
                 </div>
+                </Link>
+
               </div>
             );
           })}

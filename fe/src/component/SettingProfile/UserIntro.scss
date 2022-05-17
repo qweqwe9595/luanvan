@@ -10,8 +10,7 @@
     -webkit-transform: translate(-50%, -50%);
     transform        : translate(-50%, -50%);
     z-index          : 3;
-    font-size        : 18px;
-    font-family      : "oswald";
+    font-family: 'Quicksand', sans-serif;
     box-shadow       : 0px 1px 5px 0px #333e50;
     border-radius    : 10px;
 
@@ -20,38 +19,39 @@
         grid-template-columns: 1fr 1fr;
 
         &>p {
-            font-size  : 18px;
-            font-weight: bold;
-
+            font-size  : 20px;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
         }
 
         .buttonExit {
             text-align: right;
-
+            background-color: none;
             &>button {
-                width           : 40px;
-                height          : 40px;
+                width           : 30px;
+                height          : 30px;
                 border-radius   : 50%;
+                font-size: 15px;
+                font-weight: 600;
                 border          : none;
-                background-color: #0D47A1;
                 font-size       : 25px;
-                color           : #fff;
+                color           : #0D47A1;
                 cursor          : pointer;
-
-
+                margin: auto;
+                background-color: none;
             }
 
             &>button:hover {
                 color: red;
+                background-color: white;
             }
 
         }
     }
 
     &>hr {
-        margin-top   : 10px;
-        margin-bottom: 10px;
-        border       : 1px solid black;
+        margin  : 10px 0;
+        // border       : 1px solid black;
     }
 
     .intro {
@@ -61,18 +61,20 @@
         .userInfos {
             display              : grid;
             grid-template-columns: 1fr 3fr;
-            padding              : 15px;
+            padding              : 10px;    
             font-size            : 18px;
             align-items          : center;
-            font-family          : "oswald";
+            font-family: 'Quicksand', sans-serif;
 
             .left {
                 display     : flex;
                 margin-right: 10px;
                 align-items : center;
-
                 &>span {
                     padding-left: 10px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    font-family: 'Quicksand', sans-serif;
                 }
             }
 
@@ -81,6 +83,7 @@
                 display              : grid;
                 grid-template-columns: 1fr 1fr;
                 align-items          : center;
+                font-family: 'Quicksand', sans-serif;
 
 
                 &>input {
@@ -92,7 +95,7 @@
                     padding-left     : 20px;
                     font-size        : 15px;
                     text-transform   : capitalize;
-                    font-family      : "oswald";
+                    font-family: 'Quicksand', sans-serif;
                     background-color : #E5E5E5;
 
                     &:focus {
@@ -118,7 +121,7 @@
                         padding-left    : 20px;
                         font-size       : 15px;
                         text-transform  : capitalize;
-                        font-family     : "oswald";
+                        font-family: 'Quicksand', sans-serif;
 
                         &:focus {
                             outline: none;
@@ -138,7 +141,7 @@
                 padding-left    : 20px;
                 font-size       : 16px;
                 text-transform  : capitalize;
-                font-family     : "oswald";
+                font-family: 'Quicksand', sans-serif;
 
                 &:focus {
                     outline: none;
@@ -151,14 +154,16 @@
         width              : 50%;
         height             : 40px;
         text-align         : center;
-        margin             : auto;
+        margin             : 10px auto;
         border             : none;
-        border-radius      : 15px;
+        border-radius      : 10px;
         font-size          : 18px;
+        font-weight: 500;
         // font-weight     : bold;
-        background-color   : #0D47A1;
-        color              : #fff;
-        font-family        : "oswald";
+        background-color              : #0D47A1;
+        color: white;
+        font-family: 'Quicksand', sans-serif;
+
         cursor             : pointer;
 
     }

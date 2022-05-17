@@ -13,7 +13,10 @@ function Home({ onlineFriends }) {
   const userIdCurrent = JSON.parse(localStorage.getItem("userInfo"))._id;
   const [userPosts, setUserPosts] = useState([]);
   const [refreshPosts, setRefreshPosts] = useState(false);
+  console.log(userPosts);
+
   useEffect(() => {
+
     const getUserPost = () => {
       axios
         .get(`http://localhost:5000/api/posts/timeline/${userIdCurrent}`)

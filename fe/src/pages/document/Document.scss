@@ -2,31 +2,30 @@
     width      : 100%;
     height     : 100%;
     display    : flex;
-    padding-top: 100px;
+    padding-top: 80px;
     position   : relative;
-
     .document_left {
         width           : 250px;
         background-color: #ffffff;
         margin-left     : 50px;
         margin-right    : 50px;
-        box-shadow      : 0px 1px 5px 0px #333e50;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         border-radius   : 10px;
         padding         : 10px;
-        height          : 338px;
+        height          : max-content;
         min-width       : 200px;
 
         &>span {
             font-size  : 20px;
             font-weight: bold;
             color      : black;
-            font-family: "oswald";
+            font-family: 'Quicksand', sans-serif;
         }
 
         .document_tag {
             width           : 100%;
             height          : 40px;
-            border-radius   : 8px;
+            border-radius   : 7px;
             background-color: #EEF0F5;
             margin-top      : 10px;
             align-items     : center;
@@ -34,15 +33,14 @@
             padding-left    : 10px;
             font-size       : 18px;
             color           : black;
-            font-family     : "oswald";
+            font-family: 'Quicksand', sans-serif;
             cursor          : pointer;
         }
     }
 
     .document_right {
-        width             : 66%;
-        height            : 650px;
-        box-shadow        : 0px 1px 5px 0px #333e50;
+        width             : 70%;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         border-radius     : 10px;
         background-color  : #ffffff;
         //margin-right    : 50px;
@@ -52,7 +50,7 @@
             width                  : 100%;
             display                : flex;
             height                 : 60px;
-            box-shadow             : 0px 1px 5px 0px #333e50;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
             padding                : 10px;
             align-items            : center;
             border-top-left-radius : 10px;
@@ -71,7 +69,7 @@
                     height          : 40px;
                     align-items     : center;
                     font-size       : 22px;
-                    border-radius   : 12px;
+                    border-radius   : 30px;
                     padding-left    : 5px;
                     color           : #0D47A1;
 
@@ -83,7 +81,7 @@
                         border-top-right-radius   : 12px;
                         border-bottom-right-radius: 12px;
                         font-size                 : 18px;
-                        font-family               : "oswald";
+                        font-family: 'Quicksand', sans-serif;
                         padding-left              : 5px;
                         padding-right             : 5px;
                     }
@@ -112,15 +110,16 @@
 
 
             .button_create {
-                width           : 110px;
+                width           : 120px;
                 height          : 40px;
-                border-radius   : 12px;
+                border-radius   : 10px;
                 border          : none;
                 cursor          : pointer;
                 font-size       : 18px;
-                font-family     : 'oswald';
+                font-family: 'Quicksand', sans-serif;
                 color           : #ffffff;
                 background-color: #0D47A1;
+                font-weight: 500;
             }
 
             &>button:focus {
@@ -131,46 +130,38 @@
         }
 
         .document_right_body {
+            text-align: center;
             width      : 100%;
-            height     : 580px;
+            height     : max-content;
             display    : flex;
             flex-wrap  : wrap;
             padding    : 15px;
             padding-top: 30px;
+            padding-bottom: 30px;
             margin     : auto;
             overflow-y : auto;
-
-
             .doc_tag {
-                width        : 178px;
-                height       : 261px;
-                border-radius: 12px;
-                margin-right : 15px;
-                margin-left  : 15px;
-                margin-bottom: 25px;
+                width        : 200px;
+                height       : 280px;
+                border-radius: 10px;
+                margin: 10px;
                 box-shadow   : 0px 1px 5px 0px #333e50;
-
-                .document_tag_cover {
-                    width                  : 100%;
-                    height                 : 190px;
-                    object-fit             : cover;
-                    border-top-left-radius : 12px;
-                    border-top-right-radius: 12px;
-                }
-
-                &>p {
-                    padding-left  : 10px;
-                    padding-right : 10px;
-                    height        : 30px;
-                    font-size     : 18px;
-                    font-family   : "oswald";
-                    text-align    : center;
-                    text-transform: uppercase;
-                    font-weight   : bold;
-                    cursor        : pointer;
-                    text-overflow : ellipsis;
-                    white-space   : nowrap;
-                    overflow      : hidden;
+                &>a{
+                    .document_tag_cover {
+                        width                  : 100%;
+                        height: 180px;
+                        border-radius   : 10px;
+                        object-fit             : cover;
+                        padding: 7px;
+                    }
+    
+                    &>p {
+                        font-size     : 16px;
+                        font-family: 'Quicksand', sans-serif;
+                        text-transform: uppercase;
+                        font-weight   : 600;
+                        cursor        : pointer;
+                    }
                 }
 
                 .author {
@@ -182,19 +173,15 @@
 
                     &>b {
                         width      : fit-content;
-                        font-size  : 18px;
-                        font-family: "oswald";
+                        font-size  : 16px;
+                        font-family: 'Quicksand', sans-serif;
+                        font-weight: 600;
                     }
 
                     &>span {
-                        font-size     : 18px;
-                        font-family   : "oswald";
-                        text-align    : center;
-                        text-transform: capitalize;
-                        text-overflow : ellipsis;
-                        white-space   : nowrap;
-                        overflow      : hidden;
-                        font-family   : "oswald";
+                        font-size     : 16px;
+                        font-family: 'Quicksand', sans-serif;
+                        text-transform: capitalize;                        
                         padding-left  : 5px;
                     }
                 }
@@ -219,7 +206,7 @@
         .document_right {
             margin          : auto;
             width           : 100%;
-            height          : 100%;
+            height          : max-content;
             box-shadow      : none;
             background-color: #eef0f5;
 
@@ -245,7 +232,7 @@
 
             .document_right_body {
                 width      : 100%;
-                height     : 100%;
+                height     : max-content;
                 display    : grid;
                 padding    : 0;
                 padding-top: 100px;
@@ -253,19 +240,20 @@
 
                 .doc_tag {
                     width        : 90%;
-                    height       : 381px;
-                    border-radius: 12px;
+                    height     : max-content;
+                    border-radius: 10px;
                     margin       : auto;
                     margin-bottom: 25px;
                     box-shadow   : 0px 1px 5px 0px #333e50;
 
                     .document_tag_cover {
-                        height: 287px;
+                        height: 500px;
                     }
-
                     .author {
                         width : fit-content;
                         margin: auto;
+                        padding-bottom: 5px;
+            
                     }
                 }
             }

@@ -40,7 +40,8 @@ function UpdatePost({ setOpenUpdate, post }) {
   };
   return (
     <div className="update_post">
-      <Modal className="update-modal" size="lg" active={showModal} toggler={() => setShowModal(false)}>
+      <div className="modal-update-post">
+      <Modal className="modal" size="lg" active={showModal} toggler={() => setShowModal(false)}>
                 <ModalHeader toggler={() => setShowModal(false)}>
                     Chỉnh sửa bài viết
                 </ModalHeader>
@@ -86,7 +87,7 @@ function UpdatePost({ setOpenUpdate, post }) {
                     </Button>
 
                     <Button
-                        color="green"
+                        color="blue"
                         onClick={(e) => {
                           updatePosts();
                           setShowModal(false); 
@@ -97,6 +98,7 @@ function UpdatePost({ setOpenUpdate, post }) {
                     </Button>
                 </ModalFooter>
             </Modal>
+      </div>
       {/* <div className="title">Cập nhật bài viết</div>
       <div className="exit">
         <button

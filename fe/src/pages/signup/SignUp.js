@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./SignUp.scss";
 import { AiOutlineMail } from "react-icons/ai";
-import { FiKey, FiShare2, FiSmile, FiUser } from "react-icons/fi";
+import { FiKey, FiShare2, FiBookOpen, FiUser } from "react-icons/fi";
 import { BiMessage } from "react-icons/bi";
 import { BsPeople, BsGenderAmbiguous } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineCalendar} from "react-icons/ai";
 import axios from "axios";
 
 function SignUp() {
@@ -50,7 +51,7 @@ function SignUp() {
               src="https://yu.ctu.edu.vn/images/upload/article/2020/03/0305-logo-ctu.png"
               alt="logo"
             ></img>
-            <p>Đăng Ký</p>
+            <p>Đăng ký tài khoản mới</p>
           </div>
           <div className="input">
             <div className="icon">
@@ -58,7 +59,7 @@ function SignUp() {
             </div>
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Tên người dùng"
               value={username}
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -71,7 +72,7 @@ function SignUp() {
             </div>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Tên đăng nhập"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -84,7 +85,7 @@ function SignUp() {
             </div>
             <input
               type="password"
-              placeholder=" New password"
+              placeholder="Mật khẩu"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -97,7 +98,7 @@ function SignUp() {
             </div>
             <input
               type="password"
-              placeholder="Password Comfirm"
+              placeholder="Nhập lại mật khẩu"
               value={passwordConfirm}
               onChange={(e) => {
                 setPasswordConfirm(e.target.value);
@@ -117,9 +118,13 @@ function SignUp() {
               >
                 <option value="0">Nam</option>
                 <option value="1">Nữ</option>
+                <option value="2">Khác</option>
               </select>
             </div>
             <div className="input_dateOfbirth">
+              <div className="icon">
+                <AiOutlineCalendar></AiOutlineCalendar>
+              </div>  
               <input
                 type="date"
                 value={dateOfBirth}
@@ -135,50 +140,46 @@ function SignUp() {
               SignUp();
             }}
           >
-            Log in to your account
+            Đăng ký
           </button>
           <Link to="/login">
-            <p>Have an account?</p>
+            <p>Bạn đã có tài khoản? <b>Đăng nhập ngay.</b></p>
           </Link>
         </div>
 
         <div className="join_us">
-          <p>Join us</p>
+          <p>Tham gia ngay</p>
           <div className="join_us_tag">
             <div className="join_us_icon">
               <FiShare2></FiShare2>
             </div>
-            <div className="join_us_tag_right">
-              <h3>Share your story</h3>
-              <h4>At vero eos et accusamus et.</h4>
+            <div>
+              <h3>Chia sẻ câu chuyện của bạn.</h3>
             </div>
           </div>
           <div className="join_us_tag">
             <div className="join_us_icon">
               <BiMessage></BiMessage>
             </div>
-            <div className="join_us_tag_right">
-              <h3>Comment</h3>
-              <h4>At vero eos et accusamus et.</h4>
+            <div>
+              <h3>Tương tác với mọi người.</h3>
             </div>
           </div>
           <div className="join_us_tag">
             <div className="join_us_icon">
               <BsPeople></BsPeople>
             </div>
-            <div className="join_us_tag_right">
-              <h3>Connect</h3>
-              <h4>At vero eos et accusamus et.</h4>
+            <div>
+              <h3>Kết bạn và trò chuyện.</h3>
             </div>
           </div>
 
-          <div className="join_us_smile">
+          <div className="join_us_tag">
             <div className="join_us_icon">
-              <FiSmile></FiSmile>
+              <FiBookOpen></FiBookOpen>
             </div>
-            <div className="join_us_tag_right">
-              <h3>Be better</h3>
-              <h4>At vero eos et accusamus et.</h4>
+            <div>
+              <h3>Hỗ trợ học tập</h3>
             </div>
           </div>
         </div>

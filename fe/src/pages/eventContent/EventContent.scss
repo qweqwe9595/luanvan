@@ -1,84 +1,82 @@
 .eventcontent {
   width      : 100%;
   height     : auto;
-  font-family: "oswald";
+  font-family: 'Quicksand', sans-serif;
   min-width  : 300px;
   display    : grid;
-  margin-top : 70px;
+  margin: auto;
+  margin-top : 80px;
 
   .event_header {
-    width           : 70%;
+    width           : 60%;
     background-color: #ffff;
     margin          : auto;
-    border-radius   : 27px;
-    margin-bottom   : 30px;
-    box-shadow      : 0px 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius   : 10px;
+    margin-bottom   : 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     display         : block;
 
     .cover {
       width                  : 100%;
-      height                 : 420px;
-      border-top-left-radius : 27px;
-      border-top-right-radius: 27px;
+      height: 300px;
+      border-radius   : 10px;
       object-fit             : cover;
+      padding: 7px;
     }
 
     .time {
-      padding-left  : 40px;
-      padding-top   : 10px;
-      font-size     : 25px;
+      text-align: center;
+      font-size     : 20px;
       color         : #0d47a1;
-      text-transform: uppercase;
     }
 
     .title {
-      width         : 90%;
+      width         : 70%;
       display       : flex;
       border-bottom : 1px solid black;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
       margin        : auto;
 
       &>span {
         margin        : auto;
-        font-size     : 45px;
+        font-size     : 30px;
         color         : black;
         text-transform: uppercase;
-        font-weight   : bold;
+        font-weight   : 600;
       }
     }
 
     .button_event {
+      margin: auto;
       width        : fit-content;
       display      : flex;
-      margin-top   : 20px;
-      height       : 55px;
-      margin-bottom: 30px;
-      float        : right;
+      margin-top   : 10px;
+      height       : 50px;
       position     : relative;
 
       .join_event {
-        min-width       : 180px;
+        min-width       : 150px;
         background-color: #e7e7e7;
-        width           : 30%;
-        height          : 55px;
-        border-radius   : 11px;
+        height          : 40px;
+        border-radius   : 7px;
         cursor          : pointer;
         border          : none;
         display         : flex;
 
         .join {
-          font-size  : 40px;
-          font-family: "oswald";
+          font-size  : 30px;
+          font-family: 'Quicksand', sans-serif;
           margin     : auto;
           display    : flex;
           align-items: center;
           width      : auto;
-          font-weight: bold;
+          font-weight: 500;
           color      : #0d47a1;
+          padding: 2px 4px;
 
           &>span {
             padding-left: 5px;
-            font-size   : 25px;
+            font-size   : 20px;
             color       : black;
           }
         }
@@ -86,50 +84,48 @@
 
       .invite {
         background-color: #e7e7e7;
-        margin-right    : 10px;
-        min-width       : 80px;
+        height          : 40px;
+        min-width       : 150px;
+        margin-right    : 15px;
         border          : none;
         cursor          : pointer;
-        border-radius   : 11px;
-        font-size       : 25px;
-        font-family     : "oswald";
-        font-weight     : bold;
-        margin-left     : 30px;
+        border-radius   : 7px;
+        font-size       : 20px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight     : 500;
+        margin-left: 15px;
       }
 
       .delete_event {
-        min-width       : fit-content;
-        padding-left    : 10px;
-        padding-right   : 10px;
         background-color: #0d47a1;
-        color           : #ffff;
+        color: white;
+        height          : 40px;
+        min-width       : 150px;
         margin-right    : 10px;
-        width           : fit-content;
         border          : none;
         cursor          : pointer;
-        border-radius   : 11px;
-        font-size       : 25px;
-        font-family     : "oswald";
-        font-weight     : bold;
-        margin-left     : 20px;
+        border-radius   : 7px;
+        font-size       : 20px;
+        font-family: 'Quicksand', sans-serif;
+        font-weight     : 500;
       }
     }
   }
 
   .event_details {
-    width           : 70%;
+    width           : 60%;
     background-color: #ffff;
     margin          : auto;
-    border-radius   : 27px;
-    padding         : 20px;
+    border-radius   : 10px;
+    padding         : 20px 30px;
     font-family     : "oswald";
     margin-bottom   : 30px;
-    box-shadow      : 0px 2px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
     .details_header {
-      font-size  : 27px;
-      font-weight: bold;
-      font-family: "oswald";
+      font-size  : 24px;
+      font-weight: 600;
+      font-family: 'Quicksand', sans-serif;
     }
 
     .details_people {
@@ -139,19 +135,20 @@
       margin-bottom: 10px;
 
       .icon_event {
-        width : 60px;
-        height: 44px;
+        width : 30px;
+        height: 30px;
         color : #0d47a1;
       }
 
       &>span {
-        font-size: 25px;
+        font-size: 20px;
+        padding: 0 5px;
       }
     }
 
     .details {
-      font-size  : 22px;
-      font-family: "oswald";
+      font-size  : 18px;
+      font-family: 'Quicksand', sans-serif;
       display    : grid;
 
       &>span {
@@ -166,20 +163,18 @@
   }
 
   .invite_event {
-    width           : 70%;
+    width           : 60%;
     background-color: #ffff;
     margin          : auto;
-    border-radius   : 27px;
-    padding         : 20px;
-    font-family     : "oswald";
-    margin-bottom   : 30px;
-    box-shadow      : 0px 2px 10px rgba(0, 0, 0, 0.25);
+    border-radius   : 10px;
+    padding         : 20px 30px;
+    font-family: 'Quicksand', sans-serif;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     display         : grid;
 
     &>span {
-      font-size     : 25px;
-      text-transform: uppercase;
-      font-weight   : bold;
+      font-size     : 24px;
+      font-weight   : 600;
     }
 
     .search {
@@ -187,9 +182,9 @@
       height       : 50px;
       display      : flex;
       color        : #0d47a1;
-      font-size    : 30px;
+      font-size    : 18px;
       border       : 2px solid #0d47a1;
-      border-radius: 27px;
+      border-radius: 30px;
       align-items  : center;
       padding-left : 10px;
       cursor       : pointer;
@@ -204,7 +199,7 @@
         border                    : none;
         border-top-right-radius   : 27px;
         border-bottom-right-radius: 27px;
-        font-size                 : 25px;
+        font-size                 : 18px;
         padding-right             : 10px;
       }
 
@@ -218,10 +213,10 @@
       height       : auto;
       max-height   : 450px;
       margin       : auto;
-      margin-top   : 50px;
+      margin-top   : 20px;
       display      : grid;
       overflow-y   : scroll;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
 
       .peoples_event_tag {
         width           : 90%;
@@ -229,18 +224,17 @@
         align-items     : center;
         display         : flex;
         background-color: #eef0f5;
-        border-radius   : 11px;
-        box-shadow      : 0px 2px 10px rgba(0, 0, 0, 0.25);
+        border-radius   : 10px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
         margin          : auto;
         margin-bottom   : 20px;
-
 
         .peoples_avt {
           margin-left      : 15px;
           width            : 70px;
           //min-width    : 55px;
           //min-height     : 55px;
-          height           : 70px;
+          height           : 60px;
           border-radius    : 50%;
           object-fit       : cover;
           margin-right     : 20px;
@@ -248,17 +242,17 @@
 
         &>span {
           width           : 65%;
-          font-size       : 25px;
+          font-size       : 20px;
           //padding-left  : 15px;
-          font-weight     : bold;
+          font-weight     : 600;
           cursor          : pointer;
           text-transform  : capitalize;
         }
 
         &>button {
-          font-size       : 25px;
+          font-size       : 20px;
           background-color: #0d47a1;
-          width           : 150px;
+          width           : 100px;
           height          : 40px;
           border-radius   : 22px;
           border          : none;
@@ -306,7 +300,7 @@
     width: 100%;
 
     .event_header {
-      width           : 95%;
+      width           : 90%;
       background-color: #ffff;
       margin          : auto;
       border-radius   : 17px;
@@ -333,10 +327,9 @@
       }
 
       .button_event {
-        width              : 100%;
-        height             : 40px;
-        font-size          : 20px;
-        padding-left       : 10%;
+        height             : 60px;
+        text-align: center;
+        padding: 5px;
         // background-color: #0d47a1;
 
         .join_event {
@@ -347,7 +340,7 @@
 
           .join {
             font-size  : 20px;
-            font-family: "oswald";
+            font-family: 'Quicksand', sans-serif;
             margin     : auto;
             display    : flex;
             align-items: center;
@@ -387,23 +380,23 @@
 
       .details_people {
         .icon_event {
-          width : 40px;
-          height: 30px;
+          width : 30px;
+          height: 20px;
           color : #0d47a1;
         }
 
         &>span {
-          font-size: 20px;
+          font-size: 18px;
         }
       }
 
       .details {
-        font-size  : 17px;
-        font-family: "oswald";
+        font-size  : 16px;
+        font-family: 'Quicksand', sans-serif;
         display    : grid;
 
         &>span {
-          margin-top: 0;
+          margin-top: 5px;
         }
       }
     }
@@ -417,8 +410,7 @@
 
       &>span {
         font-size     : 20px;
-        text-transform: uppercase;
-        font-weight   : bold;
+        font-weight   : 600;
       }
 
       .search {

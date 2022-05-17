@@ -30,6 +30,8 @@ function Share({ setRefreshPosts }) {
       alert("Phải có ảnh hoặc text");
       return;
     }
+    desc.replace(/(?![^\n]{1,32}$)([^\n]{1,32})\s/g, '[$1]\n');
+    console.log(desc);
     formData.append("img", fileRef);
     formData.append("userId", userId);
     formData.append("desc", desc);
@@ -69,7 +71,8 @@ function Share({ setRefreshPosts }) {
 
   return (
     <div className="share">
-       <Modal className="share-modal" size="lg" active={showModal} toggler={() => setShowModal(false)}>
+      <div class="share-modal">
+      <Modal className="modal" size="lg" active={showModal} toggler={() => setShowModal(false)}>
                 <ModalHeader toggler={() => setShowModal(false)}>
                     Tạo bài viết mới
                 </ModalHeader>
@@ -79,13 +82,13 @@ function Share({ setRefreshPosts }) {
                       color="lightBlue"
                       size="lg"
                       outline={false}
-                      placeholder="Hãy đăng gì đó nào."
+                      placeholder="Hãy viết gì đó..."
                       value={desc}
                       onChange={(e) => {
                         setDesc(e.target.value);
                       }}
                   />
-                  <br></br>
+                  <span><b>Thêm ảnh:</b></span>
                   <input
                             type="file"
                             name="photo"
@@ -96,16 +99,18 @@ function Share({ setRefreshPosts }) {
                               }
                             }}
                           />
+                  <div className="preview-container">
+                      <img className="preview-img" src={previewURL} />
+                  </div>
+                  <span><b>Ai có thể xem: </b></span>
                   <select onChange={(e) => {
                         setScope(e.target.value);
                       }}>
-                    <option value="public" active>Công khai</option>
-                    <option value="friend">Bạn bè</option>
-                    <option value="private">Riêng tư</option>
+                    <option value="public" active>Tất cả mọi người</option>
+                    <option value="friend">Bạn bè của tôi</option>
+                    <option value="private">Chỉ mình tôi</option>
                   </select>                  
-                    <div className="preview-container">
-                      <img className="preview-img" src={previewURL} />
-                    </div>
+                    
                 </ModalBody>
                 <ModalFooter>
                     <Button 
@@ -118,7 +123,7 @@ function Share({ setRefreshPosts }) {
                     </Button>
 
                     <Button
-                        color="green"
+                        color="blue"
                         onClick={(e) => {
                           Share();
                           setDesc("");
@@ -131,6 +136,7 @@ function Share({ setRefreshPosts }) {
                     </Button>
                 </ModalFooter>
             </Modal>
+      </div>
       <div className="share-top">
         <div className="share-left">
           <Link to={`/profile/${userId}`}>
@@ -154,8 +160,8 @@ function Share({ setRefreshPosts }) {
           <div className="share-left-content">
             <input
               type="text"
-              placeholder="Hôm nay bạn thế nào?"
-              value={desc}
+              placeholder="Hôm nay của bạn thế nào?"
+              // value={desc}
               // onChange={(e) => {
               //   setDesc(e.target.value);
               // }}

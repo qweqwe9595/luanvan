@@ -12,7 +12,7 @@ import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
 import Post from "../../component/post/Post";
 
-function Notifications() {
+function Notifications({setReturnNoti}) {
   const socket = useContext(SocketContext);
   const [user, setUser] = useContext(UserContext);
   const [notifications, setNotifications] = useState([]);
@@ -52,6 +52,21 @@ function Notifications() {
     });
   }
 
+  const delNoti = (notifications) => {
+    axios
+      .delete(`http://localhost:5000/api/users/notification/${notifications._id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+      })
+      .then((res) => {
+        console.log("delete");
+        setReturnNoti((prev) => !prev);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      })
+  };
 
   return (
     <div className="notifications">
@@ -69,8 +84,8 @@ function Notifications() {
           const timepost = (a - b) / 1000;
           return (
             <div className="notifications-list">
-                <div className="notifications-items" onClick={() => {getPost(item?.post);setShowModal(!showModal);}}>
-                  <p>
+                <div className="notifications-items">
+                  <p onClick={() => {getPost(item?.post);setShowModal(!showModal);}}>
                     <Link to={`/profile/${item?.userId?._id}`}>
                       <span className="username">
                         {`${item?.userId?.userName}`}{" "}
@@ -117,13 +132,13 @@ function Notifications() {
                               <span>
                                 {Math.round(timepost / (60 * 60 * 24 * 7 * 4))}{" "}
                                 tháng trước
-                                {timepost}
                               </span>
                             );
                         }
                       })()}
                     </span>
                   </p>
+                  <button onClick={()=>delNoti(item)}>Xóa</button>
                 </div>
             </div>
           );

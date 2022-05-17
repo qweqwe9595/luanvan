@@ -2,142 +2,154 @@
     width      : 100%;
     height     : auto;
     padding-top: 80px;
-    font-family: "oswald";
-
-    .docTag_title {
-        width           : 60%;
-        margin          : auto;
-        background-color: #ffff;
-        padding         : 30px;
-        border-radius   : 12px;
-
-        .doc_header {
-            width  : 100%;
-            height : 65px;
-            display: flex;
-
-
-            .doc_header_left {
-                flex: 1;
-
-                &>p {
-                    font-size     : 22px;
-                    font-weight   : bold;
-                    font-family   : "oswald";
-                    text-transform: uppercase;
-                }
-
-                &>span {
-                    font-size  : 18px;
-                    font-family: "oswald";
-                }
-            }
-
-            .button {
-                width      : fit-content;
-                display    : block;
-                align-items: center;
-                text-align : right;
-                padding-top: 20px;
-
-                .save_doc {
-                    width           : 130px;
-                    height          : 40px;
-                    border-radius   : 12px;
-                    border          : none;
-                    box-shadow      : 0px 1px 5px 0px #333e50;
-                    background-color: #ffff !important;
-                    font-size       : 22px;
-                    font-weight     : bold;
-                    font-family     : "oswald";
-                    margin-right    : 20px;
-                    color           : #0D47A1;
-                    cursor          : pointer;
-                }
-
-                .down_doc {
-                    width           : 130px;
-                    height          : 40px;
-                    border-radius   : 12px;
-                    border          : none;
-                    box-shadow      : 0px 1px 5px 0px #333e50;
-                    background-color: #0D47A1;
-                    font-size       : 22px;
-                    font-weight     : bold;
-                    font-family     : "oswald";
-                    color           : #ffff;
-                    cursor          : pointer;
-                }
-            }
-        }
-
-        .doc_author {
-            width      : 100%;
-            height     : 50px;
-            display    : flex;
-            align-items: center;
-
-            &>img {
-                width        : 50px;
-                height       : 50px;
-                border-radius: 20%;
-                object-fit   : cover;
-                margin-right : 10px;
-            }
-
-            &>span {
-                font-size     : 20px;
-                font-family   : "oswald";
-                font-weight   : bold;
-                text-transform: capitalize;
-            }
-        }
-
-        .doc_content {
-            width     : 100%;
-            margin    : auto;
-            height    : auto;
-            min-height: 600px;
-            box-shadow: 0px 1px 5px 0px #333e50;
-            margin-top: 15px;
-            object-fit: cover;
-        }
-    }
-
-    .doc_footer {
-        width           : 60%;
-        margin          : auto;
-        background-color: #ffff;
-        padding         : 30px;
-        border-radius   : 12px;
-        margin-top      : 20px;
-        margin-bottom   : 100px;
-
-        &>p {
-            font-size  : 22px;
-            font-family: "oswald";
-            font-weight: bold;
-        }
-
-        &>span {
-            font-size: 18px;
-        }
-    }
-}
-
-@media all and(max-width: 600px) {
-    .docTag {
-        width      : 100%;
-        height     : auto;
-        padding-top: 80px;
-        font-family: "oswald";
-
+    font-family: 'Quicksand', sans-serif;
+    .docContent{
+        border-radius: 10px;
+        margin: auto;
+        width: 60%;
         .docTag_title {
-            width           : 95%;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            width           : 100%;
+            margin          : auto;
+            background-color: #ffff;
+            padding         : 30px;
+            border-radius   : 10px;    
+            .doc_header {
+                width  : 100%;
+                height : 65px;
+                display: flex;
+    
+    
+                .doc_header_left {
+                    display: flex;
+                    width: 100%;
+                    &>p {
+                        width: 100%;
+                        font-size     : 20px;
+                        font-weight   : 500;
+                        font-family: 'Quicksand', sans-serif;
+                        text-transform: uppercase;
+                        margin: auto 0;
+                    }
+    
+                    &>span {
+                        font-size  : 18px;
+                        font-family: 'Quicksand', sans-serif;
+                    }
+
+                    .button {
+                        margin: auto 0;
+                        width: 100%;
+                        .save_doc {
+                            float: right;
+                            width           : 120px;
+                            height          : 40px;
+                            border-radius   : 10px;
+                            background-color: #ffff !important;
+                            font-size       : 16px;
+                            font-weight     : 500;
+                            font-family: 'Quicksand', sans-serif;
+                            color           : #0D47A1;
+                            cursor          : pointer;
+                            border: 1px solid #0D47A1;
+                        }
+        
+                        .down_doc {
+                            float: right;
+                            width           : 120px;
+                            height          : 40px;
+                            border-radius   : 10px;
+                            background-color: #0D47A1;
+                            font-size       : 16px;
+                            font-weight     : 500;
+                            font-family: 'Quicksand', sans-serif;
+                            color           : #ffff;
+                            cursor          : pointer;
+                            border: 1px solid white;
+
+                        }
+                    }
+                }
+    
+                
+            }
+    
+            .doc_author {
+                width      : 100%;
+                height     : 50px;
+                display    : flex;
+                align-items: center;
+    
+                &>img {
+                    width        : 50px;
+                    height       : 50px;
+                    border-radius: 50%;
+                    object-fit   : cover;
+                    margin-right : 10px;
+                }
+    
+                &>span {
+                    font-size     : 20px;
+                    font-family: 'Quicksand', sans-serif;
+                    font-weight   : 600;
+                    text-transform: capitalize;
+                }
+            }
+    
+            .doc_content {
+                width     : 100%;
+                margin    : auto;
+                height    : auto;
+                min-height: 600px;
+                box-shadow: 0px 1px 5px 0px #333e50;
+                margin-top: 15px;
+                object-fit: cover;
+            }
+        }
+    
+        .doc_footer {
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            width           : 100%;
             margin          : auto;
             background-color: #ffff;
             padding         : 30px;
             border-radius   : 12px;
+            margin-top      : 20px;
+            margin-bottom   : 100px;
+    
+            &>p {
+                font-size  : 20px;
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 600;
+            }
+    
+            &>span {
+                font-size: 18px;
+                font-family: 'Quicksand', sans-serif;
+            }
+        }
+    }
+}
+
+@media all and(max-width: 800px) {
+    .docTag {
+        width      : 100%;
+        height     : auto;
+        padding-top: 80px;
+        font-family: 'Quicksand', sans-serif;
+        .docContent{
+            width: 100%;
+            .docTag_title {
+                width           : 95%;
+                margin          : auto;
+                background-color: #ffff;
+                padding         : 30px;
+                border-radius   : 10px;
+            }
+            .doc_footer{
+                width: 95%;
+                margin: 20px auto;
+            }
         }
     }
 }

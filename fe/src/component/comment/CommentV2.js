@@ -114,7 +114,10 @@ function CommentV2({ commentV2, commentLv1, setGetNewComment }) {
         </div>
         <div className="comment-tag-message">
           <p>
-            <span>{commentLv1?.userId?.userName}</span> {commentV2.message}
+          <Link to={`/profile/${commentLv1?.userId?._id}`}>
+            <span>{commentLv1?.userId?.userName}</span>
+          </Link>
+            {commentV2.message}
           </p>
         </div>
         <div className="post-interaction-length">
@@ -143,11 +146,12 @@ function CommentV2({ commentV2, commentLv1, setGetNewComment }) {
           >
             {/* <GoComment style={iconStyles} />
             <p> {commentV2?.length}</p> */}
+            <GoComment style={iconStyles}></GoComment>
             <p>Trả lời</p>
           </div>
-          <div className="post-interaction-report-3">
+          {/* <div className="post-interaction-report-3">
             <p>Báo cáo</p>
-          </div>
+          </div> */}
         </div>
       </div>
       {open ? (

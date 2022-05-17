@@ -2,10 +2,18 @@ import React, { useState, useEffect } from "react";
 import "./FriendTag.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
-function FriendTag({ friend }) {
+import Modal from "@material-tailwind/react/Modal";
+import ModalHeader from "@material-tailwind/react/ModalHeader";
+import ModalBody from "@material-tailwind/react/ModalBody";
+import ModalFooter from "@material-tailwind/react/ModalFooter";
+import Button from "@material-tailwind/react/Button";
+import Textarea from "@material-tailwind/react/Textarea";
+
+function FriendTag({ friend,setResetFriend }) {
   const [friendInfo, setFriendInfo] = useState([]);
   const [notFriend, setNotFriend] = useState(false);
   const [request, setRequested] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
   useEffect(() => {
     const getFRequests = () => {
       axios
@@ -26,7 +34,9 @@ function FriendTag({ friend }) {
       .patch(`http://localhost:5000/api/users/unfriend/${friend._id}`, {
         userId,
       })
-      .then((res) => {})
+      .then((res) => {
+
+      })
       .catch((err) => {});
   };
   const sendRequest = () => {
@@ -41,6 +51,35 @@ function FriendTag({ friend }) {
   };
   return (
     <div className="friend_tag">
+       <Modal size="lg" active={showModalDelete} toggler={() => setShowModalDelete(false)}>
+                
+                <ModalBody>
+                  <p>Bạn có chắc chắn muốn hủy kết bạn với người này?</p>               
+                </ModalBody>
+                <ModalFooter>
+                    <Button 
+                        color="red"
+                        buttonType="link"
+                        onClick={(e) => setShowModalDelete(false)}
+                        ripple="dark"
+                    >
+                        Đóng
+                    </Button>
+
+                    <Button
+                        color="blue"
+                        onClick={(e) => {
+                          unfriend();
+                          setResetFriend(true);
+                          setNotFriend(!notFriend);
+                          setShowModalDelete(false); 
+                        }}
+                        ripple="light"
+                    >
+                        Chắc chắn
+                    </Button>
+                </ModalFooter>
+        </Modal>
       {friendInfo?.photos?.avatar?.length !== 0 ? (
         <img
           src={`http://localhost:5000/images/${
@@ -67,8 +106,7 @@ function FriendTag({ friend }) {
           <button
             type="button"
             onClick={() => {
-              unfriend();
-              setNotFriend(!notFriend);
+              setShowModalDelete(true);
             }}
           >
             Xóa bạn
@@ -81,7 +119,7 @@ function FriendTag({ friend }) {
               setRequested(!request);
             }}
           >
-            {!request ? "kết bạn" : "Đã kết bạn"}
+            {!request ? "Kết bạn" : "Đã kết bạn"}
           </button>
         ) : (
           <p>Đã gửi yêu cầu kết bạn</p>

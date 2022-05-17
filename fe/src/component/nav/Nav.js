@@ -26,6 +26,8 @@ function Nav() {
   const [userInfo, setUserInfo] = useState({});
   const currentUserId = localStorage.getItem("userID");
   const [avt, setAvt] = useState([]);
+  const [returnNoti, setReturnNoti] = useState(false);
+
   useEffect(() => {
     const userId = localStorage.getItem("userID");
     const getUserInfo = () => {
@@ -65,7 +67,10 @@ function Nav() {
     <div className="nav">
       {openNoti ? (
         <div className="notification-icon">
-          <Notifications></Notifications>
+           <button class="close">
+              <span onClick={()=>setOpenNoti(!openNoti)}>&times;</span>
+            </button>
+          <Notifications setReturnNoti={setReturnNoti}></Notifications>
         </div>
       ) : (
         ""
@@ -96,7 +101,7 @@ function Nav() {
         </div>
         <input
           type="search"
-          placeholder="Tìm kiếm..."
+          placeholder="Tìm kiếm một ai đó..."
           onChange={(e) => {
             setSearchTerm(e.target.value);
           }}

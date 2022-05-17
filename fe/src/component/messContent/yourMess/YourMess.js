@@ -21,7 +21,7 @@ function YourMess({ sender }) {
         />
       )}
       <div className="your_mess">
-         <p>{sender.sender.userName}</p>
+         <span>{sender.sender.userName}</span>
         <div className="your_mess_detail">
           
           <span>{sender.text}</span>

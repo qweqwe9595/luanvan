@@ -4,17 +4,16 @@
      border          : 1px solid white;
      background-color: #ffffff;
      display         : grid;
-     border-radius   : 20px;
-     font-family     : "oswald";
+     border-radius   : 10px;
+     font-family: 'Quicksand', sans-serif;
      position        : relative;
-
+     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
      &>p {
-         font-size    : 25px;
-         font-weight  : bold;
-         margin-top   : 20px;
-         margin-bottom: 10px;
-         margin-left  : 20px;
+         font-size    : 22px;
+         font-weight  : 600;
+        margin: 10px auto;
          text-align   : center;
+         font-family: 'Quicksand', sans-serif;
      }
 
      .open_setting {
@@ -35,30 +34,38 @@
          height     : 40px;
          font-size  : 18px;
          align-items: center;
-
          &>p {
              margin-left: 10px;
-             font-weight: bold;
+             font-weight: 600;
+             font-family: 'Quicksand', sans-serif;
+             font-size: 17px;
          }
 
          &>span {
+             font-size: 17px;
              padding-left  : 10px;
              text-transform: capitalize;
+             font-family: 'Quicksand', sans-serif;
+             font-weight: 400;
          }
      }
 
      &>button {
-         width           : 50%;
+         width           : 70%;
          height          : 37px;
-         margin          : auto;
-         margin-top      : 20px;
-         margin-bottom   : 20px;
-         font-size       : 18px;
+         margin          : 10px auto;
+         font-size       : 17px;
+         font-weight: 500;
          background-color: #0D47A1;
          color           : white;
-         font-family     : "oswald";
+         font-family: 'Quicksand', sans-serif;
          cursor          : pointer;
          border          : none;
+         border-radius: 10px; 
+         margin-bottom: 20px;   
      }
+     button:hover{
+        background-color: #1158c2;
+    }
 
  }

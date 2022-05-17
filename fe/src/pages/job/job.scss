@@ -3,8 +3,7 @@
   min-width  : 300px;
   padding-top: 50px;
   display    : flex;
-  font-family: "oswald";
-
+  font-family: 'Quicksand', sans-serif;
   .left_job {
     display            : grid;
     margin-top         : 40px;
@@ -12,9 +11,8 @@
     background-color   : #ffff;
     border-radius      : 14px;
     height             : auto;
-    box-shadow         : 0px 2px 10px 0px #00000040;
     padding-top        : 10px;
-    box-shadow         : 0px 2px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;    
     padding-bottom     : 20px;
     // padding         : 10px;
 
@@ -37,30 +35,26 @@
         padding-top   : 15px;
         text-transform: uppercase;
         padding-left  : 15px;
-        font-family   : "oswald";
+        font-family: 'Quicksand', sans-serif;
       }
 
     }
 
     &>.item:hover {
-      border-left: 2px solid #0D47A1;
       font-size  : 18px;
     }
 
   }
 
   .center_job {
-    width     : 625px;
-    height    : auto;
+    width     : 500px;
+    height    : 300px;
     margin    : auto;
-    margin-top: 50px;
-    .job_tag{
-      height: max-content;
-    }
+    margin-top: 40px;
   }
 }
 
-@media all and(min-width:1300px) {
+@media all and(min-width:1100px) {
   .job_container {
     display: flex;
 
@@ -73,27 +67,29 @@
   }
 }
 
-@media all and(max-width:1050px) {
+@media all and(max-width:1100px) {
   .job_container {
     display: grid;
 
     .left_job {
       width        : 90%;
       margin       : auto;
-      border-radius: 10px;
+      border-radius: 0;
       margin-top   : 20px;
       display      : flex;
       height       : 50px;
       padding-top  : 0;
 
       .item {
+        width           : 100%;
         text-align      : center;
         margin-top      : 0;
-        background-color: #0D47A1;
+        background-color: #E5E5E5;
 
         &>span {
           border-bottom   : 0;
-          width           : 99.9%;
+          width           : 99%;
+          height          : 100%;
           background-color: #ffff;
         }
       }

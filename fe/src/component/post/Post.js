@@ -38,7 +38,18 @@ function Post({ postInfo, setRefreshPosts }) {
   const [user] = useContext(UserContext);
   const [showModalReports, setShowModalReports] = useState(false);
   const [reports, setReports] = useState([]);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showModalShare, setShowModalShare] = useState(false);
 
+  function replaceJSX(str, find, replace) {
+    const result = [];
+    let parts = str?.split(find);
+    for(let i = 0; i < parts?.length; i++) {
+        result.push(parts[i]);
+        result.push(replace);
+    }
+    return result;
+}
 
   const iconStyles = {
     color: "#0d47a1",
@@ -90,7 +101,6 @@ function Post({ postInfo, setRefreshPosts }) {
         userId: loginUser,
       })
       .then((res) => {
-        alert("đã like");
       })
       .catch((err) => {
         console.log(err);
@@ -107,7 +117,6 @@ function Post({ postInfo, setRefreshPosts }) {
     })
     .then((res) => {
       console.log(res.data);
-      alert("đã share");
     })
     .catch((err) => {
       console.log(err);
@@ -189,7 +198,7 @@ function Post({ postInfo, setRefreshPosts }) {
 
   return (
     <div className="post">
-      <Modal className="share-modal" size="lg" active={showModalReports} toggler={() => setShowModalReports(false)}>
+      <Modal size="lg" active={showModalReports} toggler={() => setShowModalReports(false)}>
                 <ModalHeader toggler={() => setShowModalReports(false)}>
                     Báo cáo bài viết
                 </ModalHeader>
@@ -199,7 +208,7 @@ function Post({ postInfo, setRefreshPosts }) {
                       color="lightBlue"
                       size="lg"
                       outline={false}
-                      placeholder="Nhập nội dung phản ánh."
+                      placeholder="Nhập nội dung phản ánh..."
                       value={reports}
                       onChange={(e) => {
                         setReports(e.target.value);
@@ -217,7 +226,7 @@ function Post({ postInfo, setRefreshPosts }) {
                     </Button>
 
                     <Button
-                        color="green"
+                        color="blue"
                         onClick={(e) => {
                           sendReports();
                           setReports("");
@@ -229,6 +238,60 @@ function Post({ postInfo, setRefreshPosts }) {
                     </Button>
                 </ModalFooter>
             </Modal>
+            <Modal size="lg" active={showModalDelete} toggler={() => setShowModalDelete(false)}>
+                
+                <ModalBody>
+                  <p>Bạn có chắc chắn muốn xóa bài viết này?</p>               
+                </ModalBody>
+                <ModalFooter>
+                    <Button 
+                        color="red"
+                        buttonType="link"
+                        onClick={(e) => setShowModalDelete(false)}
+                        ripple="dark"
+                    >
+                        Đóng
+                    </Button>
+
+                    <Button
+                        color="blue"
+                        onClick={(e) => {
+                          deletePost();
+                          setShowModalDelete(false); 
+                        }}
+                        ripple="light"
+                    >
+                        Chắc chắn
+                    </Button>
+                </ModalFooter>
+            </Modal>
+            <Modal size="lg" active={showModalShare} toggler={() => setShowModalShare(false)}>      
+                <ModalBody>
+                  <p>Bạn muốn chia sẻ bài viết này lên trang cá nhân của bạn?</p>               
+                </ModalBody>
+                <ModalFooter>
+                    <Button 
+                        color="red"
+                        buttonType="link"
+                        onClick={(e) => setShowModalShare(false)}
+                        ripple="dark"
+                    >
+                        Đóng
+                    </Button>
+
+                    <Button
+                        color="blue"
+                        onClick={(e) => {
+                          setShareCount(shareCount + 1);
+                          sharePost(postInfo._id);                          
+                          setShowModalShare(false); 
+                        }}
+                        ripple="light"
+                    >
+                        Đồng ý
+                    </Button>
+                </ModalFooter>
+            </Modal>
       {openOptions ? (
         <>
           <div
@@ -236,7 +299,7 @@ function Post({ postInfo, setRefreshPosts }) {
             onClick={() => setOpenOptions(!openOptions)}
           ></div>
           <ul className="post-meta-right-show-items">
-            {postInfo?.userId?._id.includes(loginUser) || user?.isAdmin ? (
+            {postInfo?.userId?._id.includes(loginUser)? (
               <li
                 onClick={() => {
                   setOpenUpdate(!openUpdate);
@@ -251,7 +314,7 @@ function Post({ postInfo, setRefreshPosts }) {
             {postInfo.userId._id.includes(loginUser) || user?.isAdmin ? (
               <li
                 onClick={() => {
-                  deletePost();
+                  setShowModalDelete(true);
                   setOpenOptions(!openOptions);
                 }}
               >
@@ -268,7 +331,8 @@ function Post({ postInfo, setRefreshPosts }) {
                 setShowModalReports(!showModalReports);
                 setOpenOptions(!openOptions);
               }}
-            >Báo cáo</li>            )}
+            >Báo cáo</li>            
+            )}
            
           </ul>
         </>
@@ -362,7 +426,7 @@ function Post({ postInfo, setRefreshPosts }) {
         </div>
       </div>
       <div className="post-desc">
-        <p>{postInfo.desc}</p>
+        <p>{replaceJSX(postInfo.desc, "\r\n", <br />)}</p>
       </div>
       {postInfo.img != "null" ? (
         <div className="post-img">
@@ -424,13 +488,13 @@ function Post({ postInfo, setRefreshPosts }) {
         </div>
         <div className="post-interaction-share">
           <FiShare2 style={iconStyles}></FiShare2>
-          <p onClick={() => sharePost(postInfo._id)}>Chia sẻ</p>
+          <p onClick={()=>setShowModalShare(true)}>Chia sẻ</p>
         </div>
       </div>
 
       {open ? (
         <div className="post-comment-list">
-          <p>Các bình luận trước đó</p>
+          <p>Tất cả bình luận</p>
           <div className="post-comment-list-item">
             {comment?.map((comment) => {
               return (

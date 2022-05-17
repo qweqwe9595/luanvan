@@ -92,7 +92,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 mb-4">
             <StatusCardDashBoard
               color="green"
-              icon="report"
+              icon="group"
               title="Người đăng nhập hôm nay"
               amount={newOnline[Object.keys(newOnline)[0]]}
             />
