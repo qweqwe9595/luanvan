@@ -64,7 +64,6 @@ function DocContent() {
           <div className="doc_header">
             <div className="doc_header_left">
               <p>{doc?.docName}</p>
-              {/* <span>thời gian</span> */}
               <div className="button">
                 {user ? (
                   <>

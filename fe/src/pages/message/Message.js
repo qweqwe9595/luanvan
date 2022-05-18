@@ -39,7 +39,6 @@ function Message() {
       });
   }, [openNewConver, loadAll, addGroupt]);
 
-
   return (
     <div className="message_container">
       <Nav></Nav>
@@ -114,27 +113,27 @@ function Message() {
                           }}
                         >
                           {people?.members?.length > 2 ? (
-                            <MessTagGroup
-                              people={people}
-                              SetMyConversations={SetMyConversations}
-                            ></MessTagGroup>
-                          ) : (
                             <>
+                              <MessTagGroup
+                                people={people}
+                                SetMyConversations={SetMyConversations}
+                              ></MessTagGroup>
                               {people?.members?.map((partners, index) =>
                                 partners === user?._id ? (
                                   ""
                                 ) : (
-                                  <div
-                                    key={index}>
+                                  <div key={index}>
                                     <Partner
-                                        partners={partners}
-                                        SetMyConversations={SetMyConversations}
-                                        people = {people}
+                                      partners={partners}
+                                      SetMyConversations={SetMyConversations}
+                                      people={people}
                                     ></Partner>
                                   </div>
                                 )
                               )}
                             </>
+                          ) : (
+                            ""
                           )}
                         </div>
                       ) : (
