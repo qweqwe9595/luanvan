@@ -11,7 +11,6 @@ function DocContent() {
   const [save, setSave] = useState(
     user?.saveDocs?.some((item) => item === param?.id)
   );
-  console.log(user);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/documents/getone/${param.id}`)
@@ -23,7 +22,6 @@ function DocContent() {
         console.log(err);
       });
   }, []);
-  console.log(save);
   const saveDoc = (docId) => {
     axios
       .patch(
@@ -44,6 +42,20 @@ function DocContent() {
         console.log(err.message);
       });
   };
+  function download(url, filename) {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+      })
+      .catch(console.error);
+  }
+  console.log(doc);
+  // download("https://get.geojs.io/v1/ip/geo.json","geoip.json")
+  // download("data:text/html,HelloWorld!", "helloWorld.txt");
   return (
     <div className="docTag">
       <Nav></Nav>
@@ -54,28 +66,35 @@ function DocContent() {
               <p>{doc?.docName}</p>
               {/* <span>thời gian</span> */}
               <div className="button">
-              {user ? (
-                <>
-                  {save ? (
-                    <button className="save_doc">Đã lưu</button>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        saveDoc(doc?._id);
-                      }}
-                      className="save_doc"
-                    >
-                      Lưu
-                    </button>
-                  )}
-                </>
-              ) : (
-                ""
-              )}
-              <button className="down_doc">Tải xuống</button>
+                {user ? (
+                  <>
+                    {save ? (
+                      <button className="save_doc">Đã lưu</button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          saveDoc(doc?._id);
+                        }}
+                        className="save_doc"
+                      >
+                        Lưu
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  ""
+                )}
+                <button
+                  className="down_doc"
+                  onClick={() => {
+                    download();
+                  }}
+                >
+                  Tải xuống
+                </button>
+              </div>
             </div>
-          </div>            
-        </div>
+          </div>
           <div className="doc_author">
             {doc?.userId?.photos?.avatar?.length === 0 ? (
               <img
@@ -93,11 +112,11 @@ function DocContent() {
             )}
             <span>{doc?.userId?.userName}</span>
           </div>
-          <iframe
-            src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://infolab.stanford.edu/pub/papers/google.pdf#toolbar=0&scrollbar=0"
+          <embed
+            src={`http://localhost:5000/images/${doc?.file}#toolbar=0`}
             title="description"
             className="doc_content"
-          ></iframe>
+          ></embed>
         </div>
         <div className="doc_footer">
           <p>Nội dung tài liệu</p>
