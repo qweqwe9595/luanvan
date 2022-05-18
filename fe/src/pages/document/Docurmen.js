@@ -14,21 +14,47 @@ function Docurmen() {
   const [openModelApprove, setModelApprove] = useState(false);
   const [alldocument, setAllDocument] = useState([]);
   const [openCreateDoc, setOpenCreateDoc] = useState(false);
-  useEffect(() => {
-    axios
-      .get(
-        `http://localhost:5000/api/documents/getall?token=Bearer ${localStorage.getItem(
-          "token"
-        )}`,
-        {}
-      )
-      .then((res) => {
-        setAllDocument(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  }, [openCreateDoc, openModelApprove]);
+  const [filter, setFilter] = useState("new");
+
+  console.log(alldocument);
+  useEffect(() => {}, [openCreateDoc, openModelApprove]);
+
+  useEffect(async () => {
+    switch (filter) {
+      case "new": {
+        return axios
+          .get(
+            `http://localhost:5000/api/documents/getall?token=Bearer ${localStorage.getItem(
+              "token"
+            )}`,
+            {}
+          )
+          .then((res) => {
+            setAllDocument(res.data);
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
+        break;
+      }
+      case "joined": {
+        return axios
+          .get("http://localhost:5000/api/documents/getuser", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((res) => {
+            setAllDocument(res.data);
+          })
+          .catch((err) => {});
+        break;
+      }
+      default: {
+        setAllDocument([]);
+      }
+    }
+  }, [openCreateDoc, openModelApprove, filter]);
   return (
     <div className="document_container">
       <Nav></Nav>
@@ -63,14 +89,22 @@ function Docurmen() {
         ) : (
           ""
         )}
-        <div className="document_tag">
-          <span>Công nghệ thông tin</span>
+        <div
+          className="document_tag"
+          onClick={() => {
+            setFilter("new");
+          }}
+        >
+          <span>Tất cả</span>
         </div>
         <div className="document_tag">
-          <span>Sư phạm</span>
-        </div>
-        <div className="document_tag">
-          <span>Kinh tế</span>
+          <span
+            onClick={() => {
+              setFilter("joined");
+            }}
+          >
+            Tài liệu của tôi
+          </span>
         </div>
       </div>
       <div className="document_right">
@@ -101,19 +135,16 @@ function Docurmen() {
             return (
               <div className="doc_tag" key={index}>
                 <Link to={`/docContent/${document._id}`}>
-                <img
-                  src={`http://localhost:5000/images/${document?.img}`}
-                  className="document_tag_cover"
-                />
-                <p>
-                    {document?.docName}
-                </p>
-                <div className="author">
-                  <b>Tác giả:</b>
-                  <span>{document?.userId?.userName}</span>
-                </div>
+                  <img
+                    src={`http://localhost:5000/images/${document?.img}`}
+                    className="document_tag_cover"
+                  />
+                  <p>{document?.docName}</p>
+                  <div className="author">
+                    <b>Tác giả:</b>
+                    <span>{document?.userId?.userName}</span>
+                  </div>
                 </Link>
-
               </div>
             );
           })}

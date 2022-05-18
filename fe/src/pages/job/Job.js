@@ -10,22 +10,46 @@ function Job() {
   const [open, setOpen] = useState(false);
   const [jobDetails, setJobDetails] = useState([]);
   const [user] = useContext(UserContext);
-  useEffect(() => {
-    axios
-      .get(
-        "http://localhost:5000/api/jobs/all",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) => {
-        setJobDetails(res.data.jobsQuery.reverse());
-      })
-      .catch((err) => {});
-  }, [open]);
+  const [filter, setFilter] = useState("new");
+
+  useEffect(async () => {
+    switch (filter) {
+      case "new": {
+        return axios
+          .get(
+            "http://localhost:5000/api/jobs/all",
+            {},
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
+          .then((res) => {
+            setJobDetails(res.data.jobsQuery.reverse());
+          })
+          .catch((err) => {});
+        break;
+      }
+      case "joined": {
+        return axios
+          .get("http://localhost:5000/api/events/getuser", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            // setEventDetails(res.data.eventsQuery.reverse());
+          })
+          .catch((err) => {});
+        break;
+      }
+      default: {
+        // setEventDetails([]);
+      }
+    }
+  }, [open, filter]);
   return (
     <div className="job_container">
       <Nav></Nav>

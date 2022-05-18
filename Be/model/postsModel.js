@@ -8,7 +8,7 @@ const postsSchema = new mongoose.Schema(
     },
     scope: {
       type: String,
-      default:"public"
+      default: "public",
     },
     groupId: {
       type: String,
@@ -17,9 +17,9 @@ const postsSchema = new mongoose.Schema(
     desc: {
       type: String,
       max: 350,
-      lowercase: true,
     },
-    likes: [{ type: String, ref: "usersModal" }], share:[{ type: String, ref: "usersModal" }],
+    likes: [{ type: String, ref: "usersModal" }],
+    share: [{ type: String, ref: "usersModal" }],
     img: {
       type: String,
     },
@@ -28,7 +28,6 @@ const postsSchema = new mongoose.Schema(
     },
     isJob: { type: Boolean, default: false },
     isDocument: { type: Boolean, default: false },
-   
   },
   { timestamps: true }
 );

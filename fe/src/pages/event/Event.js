@@ -10,22 +10,43 @@ function Event() {
   const [eventDetails, setEventDetails] = useState([]);
   const [user] = useContext(UserContext);
   const [eventId, setEventId] = useState(false);
-  useEffect(() => {
-    axios
-      .get(
-        "http://localhost:5000/api/events/all",
-        {},
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) => {
-        setEventDetails(res.data.eventsQuery.reverse());
-      })
-      .catch((err) => {});
-  }, [open, eventId]);
+  const [filter, setFilter] = useState("new");
+  useEffect(async () => {
+    console.log("alkjsd");
+    switch (filter) {
+      case "new": {
+        return axios
+          .get("http://localhost:5000/api/events/all", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            setEventDetails(res.data.eventsQuery.reverse());
+          })
+          .catch((err) => {});
+        break;
+      }
+      case "joined": {
+        return axios
+          .get("http://localhost:5000/api/events/getuser", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            setEventDetails(res.data.eventsQuery.reverse());
+          })
+          .catch((err) => {});
+        break;
+      }
+      default: {
+        setEventDetails([]);
+      }
+    }
+  }, [open, eventId, filter]);
   return (
     <div className="event_container">
       <Nav></Nav>
@@ -40,8 +61,21 @@ function Event() {
             <span>Tạo sự kiện mới</span>
           </div>
         )}
-        <div className="item">
+        <div
+          className="item"
+          onClick={() => {
+            setFilter("new");
+          }}
+        >
           <span>Sự kiện sắp diễn ra</span>
+        </div>
+        <div
+          className="item"
+          onClick={() => {
+            setFilter("joined");
+          }}
+        >
+          <span>Đã tham gia</span>
         </div>
       </div>
       <div className="center_event">

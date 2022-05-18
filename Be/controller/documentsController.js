@@ -32,7 +32,6 @@ const getAll = async (req, res) => {
 //get user docs
 const getOneUser = async (req, res) => {
   try {
-    console.log(req.user);
     const documentsQuery = await documentsModel
       .find({ userId: req.user._id })
       .populate("userId");
