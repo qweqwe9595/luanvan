@@ -11,7 +11,7 @@ function Event() {
   const [user] = useContext(UserContext);
   const [eventId, setEventId] = useState(false);
   const [filter, setFilter] = useState("new");
-  useEffect(() => {
+  useEffect(async () => {
     console.log("alkjsd");
     switch (filter) {
       case "new": {
