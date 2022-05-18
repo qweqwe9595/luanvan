@@ -1,11 +1,29 @@
 import React, { useState } from "react";
 import "./MessTag.scss";
 import { BsThreeDots } from "react-icons/bs";
+import axios from "axios";
 function MessTagGroup({ people, SetMyConversations }) {
   const [open, setOpen] = useState(false);
   const [option, setOption] = useState(false);
+  const [temp, setTemp] = useState(true);
+    const deleteConver = () => {
+    axios
+      .delete(`http://localhost:5000/api/conversations/delete/${people?._id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        setTemp(false);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
   return (
-    <div
+    <>
+      {temp ? (
+          <div
       className="messTag"
       onMouseOver={() => {
         setOpen(true);
@@ -53,13 +71,19 @@ function MessTagGroup({ people, SetMyConversations }) {
       )}
       {option ? (
         <div className="option_item">
-          <li>Xóa hội thoại</li>
-          <li>Báo cáo</li>
+          <li
+          onClick={() => {
+                  deleteConver();
+                }}>Xóa hội thoại</li>
         </div>
       ) : (
         ""
       )}
     </div>
+      ):""}
+  
+    </>
+  
   );
 }
 

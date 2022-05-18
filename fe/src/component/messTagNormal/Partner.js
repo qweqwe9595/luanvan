@@ -92,7 +92,7 @@ function Partner({ SetMyConversations, partners, people }) {
               >
                 Xóa hội thoại
               </li>
-              <li>Báo cáo</li>
+            
             </div>
           ) : (
             ""
