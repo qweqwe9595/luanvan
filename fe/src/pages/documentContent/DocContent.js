@@ -42,6 +42,20 @@ function DocContent() {
         console.log(err.message);
       });
   };
+  function download(url, filename) {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        link.click();
+      })
+      .catch(console.error);
+  }
+  console.log(doc);
+  // download("https://get.geojs.io/v1/ip/geo.json","geoip.json")
+  // download("data:text/html,HelloWorld!", "helloWorld.txt");
   return (
     <div className="docTag">
       <Nav></Nav>
@@ -51,28 +65,35 @@ function DocContent() {
             <div className="doc_header_left">
               <p>{doc?.docName}</p>
               <div className="button">
-              {user ? (
-                <>
-                  {save ? (
-                    <button className="save_doc">Đã lưu</button>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        saveDoc(doc?._id);
-                      }}
-                      className="save_doc"
-                    >
-                      Lưu
-                    </button>
-                  )}
-                </>
-              ) : (
-                ""
-              )}
-              <button className="down_doc">Tải xuống</button>
+                {user ? (
+                  <>
+                    {save ? (
+                      <button className="save_doc">Đã lưu</button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          saveDoc(doc?._id);
+                        }}
+                        className="save_doc"
+                      >
+                        Lưu
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  ""
+                )}
+                <button
+                  className="down_doc"
+                  onClick={() => {
+                    download();
+                  }}
+                >
+                  Tải xuống
+                </button>
+              </div>
             </div>
-          </div>            
-        </div>
+          </div>
           <div className="doc_author">
             {doc?.userId?.photos?.avatar?.length === 0 ? (
               <img
@@ -90,13 +111,11 @@ function DocContent() {
             )}
             <span>{doc?.userId?.userName}</span>
           </div>
-          <iframe
-            src={`http://localhost:5000/images/${
-                  doc?.userId?.photos?.file
-                }`}
+          <embed
+            src={`http://localhost:5000/images/${doc?.file}#toolbar=0`}
             title="description"
             className="doc_content"
-          ></iframe>
+          ></embed>
         </div>
         <div className="doc_footer">
           <p>Nội dung tài liệu</p>

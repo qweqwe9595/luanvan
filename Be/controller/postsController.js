@@ -88,7 +88,10 @@ const getAProfilePosts = async (req, res) => {
         .populate("likes");
     } else {
       postQuery = await postsModel
-        .find({ userId: req.params.id, $or: [{ scope: "public" }] })
+        .find({
+          userId: req.params.id,
+          $or: [{ scope: "public" }, { scope: "friends" }],
+        })
         .populate("userId")
         .populate("likes");
     }

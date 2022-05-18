@@ -30,13 +30,13 @@ function Share({ setRefreshPosts }) {
       alert("Phải có ảnh hoặc text");
       return;
     }
-    desc.replace(/(?![^\n]{1,32}$)([^\n]{1,32})\s/g, '[$1]\n');
+    desc.replace(/(?![^\n]{1,32}$)([^\n]{1,32})\s/g, "[$1]\n");
     console.log(desc);
     formData.append("img", fileRef);
     formData.append("userId", userId);
     formData.append("desc", desc);
-    if(scope === "") formData.append("scope", "public")
-    else formData.append("scope", scope);   
+    if (scope === "") formData.append("scope", "public");
+    else formData.append("scope", scope);
 
     axios
       .post("http://localhost:5000/api/posts", formData, {
@@ -47,7 +47,7 @@ function Share({ setRefreshPosts }) {
       .then((res) => {
         console.log(res.data);
         setRefreshPosts((prev) => !prev);
-        // window.location.reload(false);        
+        // window.location.reload(false);
       })
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);
@@ -72,70 +72,82 @@ function Share({ setRefreshPosts }) {
   return (
     <div className="share">
       <div class="share-modal">
-      <Modal className="modal" size="lg" active={showModal} toggler={() => setShowModal(false)}>
-                <ModalHeader toggler={() => setShowModal(false)}>
-                    Tạo bài viết mới
-                </ModalHeader>
-                <ModalBody>
-                  <Textarea
-                      className="modal-desc"
-                      color="lightBlue"
-                      size="lg"
-                      outline={false}
-                      placeholder="Hãy viết gì đó..."
-                      value={desc}
-                      onChange={(e) => {
-                        setDesc(e.target.value);
-                      }}
-                  />
-                  <span><b>Thêm ảnh:</b></span>
-                  <input
-                            type="file"
-                            name="photo"
-                            onChange={function (e) {
-                              if (e.target.files[0]) {
-                                setPreviewUrl(URL.createObjectURL(e.target.files[0]));
-                                setFileRef(e.target.files[0]);
-                              }
-                            }}
-                          />
-                  <div className="preview-container">
-                      <img className="preview-img" src={previewURL} />
-                  </div>
-                  <span><b>Ai có thể xem: </b></span>
-                  <select onChange={(e) => {
-                        setScope(e.target.value);
-                      }}>
-                    <option value="public" active>Tất cả mọi người</option>
-                    <option value="friend">Bạn bè của tôi</option>
-                    <option value="private">Chỉ mình tôi</option>
-                  </select>                  
-                    
-                </ModalBody>
-                <ModalFooter>
-                    <Button 
-                        color="red"
-                        buttonType="link"
-                        onClick={(e) => setShowModal(false)}
-                        ripple="dark"
-                    >
-                        Đóng
-                    </Button>
+        <Modal
+          className="modal"
+          size="lg"
+          active={showModal}
+          toggler={() => setShowModal(false)}
+        >
+          <ModalHeader toggler={() => setShowModal(false)}>
+            Tạo bài viết mới
+          </ModalHeader>
+          <ModalBody>
+            <Textarea
+              className="modal-desc"
+              color="lightBlue"
+              size="lg"
+              outline={false}
+              placeholder="Hãy viết gì đó..."
+              value={desc}
+              onChange={(e) => {
+                setDesc(e.target.value);
+              }}
+            />
+            <span>
+              <b>Thêm ảnh:</b>
+            </span>
+            <input
+              type="file"
+              name="photo"
+              onChange={function (e) {
+                if (e.target.files[0]) {
+                  setPreviewUrl(URL.createObjectURL(e.target.files[0]));
+                  setFileRef(e.target.files[0]);
+                }
+              }}
+            />
+            <div className="preview-container">
+              <img className="preview-img" src={previewURL} />
+            </div>
+            <span>
+              <b>Ai có thể xem: </b>
+            </span>
+            <select
+              onChange={(e) => {
+                setScope(e.target.value);
+              }}
+            >
+              <option value="public" active>
+                Tất cả mọi người
+              </option>
+              <option value="friends">Bạn bè của tôi</option>
+              <option value="private">Chỉ mình tôi</option>
+            </select>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color="red"
+              buttonType="link"
+              onClick={(e) => setShowModal(false)}
+              ripple="dark"
+            >
+              Đóng
+            </Button>
 
-                    <Button
-                        color="blue"
-                        onClick={(e) => {
-                          Share();
-                          setDesc("");
-                          setPreviewUrl(null);
-                          setShowModal(false); 
-                        }}
-                        ripple="light"
-                    >
-                        Đăng
-                    </Button>
-                </ModalFooter>
-            </Modal>
+            <Button
+              color="blue"
+              onClick={(e) => {
+                Share();
+                setDesc("");
+                setPreviewUrl(null);
+                setShowModal(false);
+              }}
+              ripple="light"
+            >
+              Đăng
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
       <div className="share-top">
         <div className="share-left">
@@ -171,11 +183,14 @@ function Share({ setRefreshPosts }) {
         </div>
 
         <div className="share-right">
-          <FaPhotoVideo className="share-img" onClick={() => setShowModal(true)} />
+          <FaPhotoVideo
+            className="share-img"
+            onClick={() => setShowModal(true)}
+          />
           <div
             className="share-btn"
             onClick={() => {
-              setShowModal(true);  
+              setShowModal(true);
             }}
           >
             <FaRegPaperPlane />

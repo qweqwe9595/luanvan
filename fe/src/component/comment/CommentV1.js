@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./comment.scss";
 import CommentV2 from "../comment/CommentV2";
 import { Link } from "react-router-dom";
 import { GoComment } from "react-icons/go";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import axios from "axios";
+import { SocketContext } from "../../context/SocketContext";
 
 function CommentV1({ commentV1, setGetNewComment }) {
+  const socket = useContext(SocketContext);
   const [liking, setLiking] = useState(false);
   const [likes, setLikes] = useState(commentV1.comment.like.length);
   const [open, setOpen] = useState(false);
@@ -19,6 +21,7 @@ function CommentV1({ commentV1, setGetNewComment }) {
   const commentDate = (a - b) / 1000;
   const iconStyles = { color: "#0d47a1", fontSize: "15px", margin: "auto 2px" };
   const [cmtV2, setCmtV2] = useState("");
+  console.log(commentV1);
   useEffect(() => {
     const Id = localStorage.getItem("userID");
     if (commentV1.comment.like.includes(Id)) return setLiking(true);
@@ -39,6 +42,30 @@ function CommentV1({ commentV1, setGetNewComment }) {
       .catch((err) => {
         console.log("Loi roi", err.response.data.message);
       });
+  };
+
+  const sendNotification = (type) => {
+    try {
+      if (userId === commentV1.comment.userId._id) return;
+      axios
+        .post(
+          `http://localhost:5000/api/users/notification/${commentV1.comment.userId._id}`,
+          {
+            userId: userId,
+            message: "like",
+            post: commentV1.postId,
+          }
+        )
+        .then((res) => {
+          socket?.emit("sendNotification", {
+            receiverUserId: commentV1.comment.userId._id,
+            type,
+          });
+        })
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const like = () => {
@@ -173,6 +200,7 @@ function CommentV1({ commentV1, setGetNewComment }) {
             onClick={() => {
               writeCommentV2();
               setOpen(false);
+              sendNotification("COMMENT");
             }}
           >
             <span>ĐĂNG</span>
