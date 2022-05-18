@@ -11,7 +11,6 @@ function DocContent() {
   const [save, setSave] = useState(
     user?.saveDocs?.some((item) => item === param?.id)
   );
-  console.log(user);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/documents/getone/${param.id}`)
@@ -23,7 +22,6 @@ function DocContent() {
         console.log(err);
       });
   }, []);
-  console.log(save);
   const saveDoc = (docId) => {
     axios
       .patch(
@@ -52,7 +50,6 @@ function DocContent() {
           <div className="doc_header">
             <div className="doc_header_left">
               <p>{doc?.docName}</p>
-              {/* <span>thời gian</span> */}
               <div className="button">
               {user ? (
                 <>
@@ -94,7 +91,9 @@ function DocContent() {
             <span>{doc?.userId?.userName}</span>
           </div>
           <iframe
-            src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://infolab.stanford.edu/pub/papers/google.pdf#toolbar=0&scrollbar=0"
+            src={`http://localhost:5000/images/${
+                  doc?.userId?.photos?.file
+                }`}
             title="description"
             className="doc_content"
           ></iframe>

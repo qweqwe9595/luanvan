@@ -1,5 +1,6 @@
 .Groupt_box {
     width            : 40%;
+    min-width        : 400px;
     background-color : #ffff;
     border-radius    : 15px;
     position         : absolute;
@@ -11,19 +12,20 @@
     padding          : 10px;
     box-shadow       : 0px 1px 5px 0px #333e50;
     display          : grid;
-    height: max-content;
+    height           : max-content;
 
     .exit {
         width  : 100%;
         height : 30px;
         display: flex;
+
         &>p {
-            width: 95%;
+            width      : 95%;
             color      : black;
             font-size  : 20px;
             font-weight: 600;
             font-family: 'Quicksand', sans-serif;
-            text-align: center;
+            text-align : center;
         }
 
         &>button {
@@ -84,8 +86,8 @@
             border       : none;
             border-bottom: 1px solid #ead8d8;
             font-size    : 16px;
-            font-family: 'Quicksand', sans-serif;
-            padding: 0 5px;
+            font-family  : 'Quicksand', sans-serif;
+            padding      : 0 5px;
         }
 
         &>input:focus {
@@ -100,12 +102,12 @@
         display    : grid;
         padding-top: 10px;
 
-        &>span{
+        &>span {
             color      : black;
             font-size  : 17px;
             font-family: 'Quicksand', sans-serif;
-            padding: 5px 0;
-            text-align: center;
+            padding    : 5px 0;
+            text-align : center;
         }
 
         .search {
@@ -130,7 +132,7 @@
                 background-color          : #EAEAEA;
                 font-size                 : 17px;
                 padding-left              : 5px;
-                font-family: 'Quicksand', sans-serif;
+                font-family               : 'Quicksand', sans-serif;
                 color                     : black;
 
             }
@@ -147,20 +149,22 @@
         height     : 40px;
         margin-top : 20px;
         padding-top: 5px;
-        &>p{
+
+        &>p {
             font-size  : 18px;
             font-family: 'Quicksand', sans-serif;
             color      : black;
             font-weight: 600;
-            padding: 10px 0;
+            padding    : 10px 0;
         }
     }
 
     .friendss {
         width     : 100%;
-        min-height    : 200px;
+        min-height: 200px;
         border-top: 1px solid #9c9595;
         display   : flex;
+
         .my_friend {
             width        : 50%;
             height       : 100%;
@@ -168,7 +172,7 @@
             padding-top  : 10px;
             padding-right: 10px;
             font-size    : 18px;
-            font-family: 'Quicksand', sans-serif;
+            font-family  : 'Quicksand', sans-serif;
 
             .friend_values {
                 width           : 100%;
@@ -185,7 +189,7 @@
                     width        : 40px;
                     height       : 40px;
                     border-radius: 50%;
-                    object-fit: cover;
+                    object-fit   : cover;
                     margin-right : 5px;
                 }
 
@@ -193,8 +197,8 @@
                     flex          : 1;
                     padding-left  : 5px;
                     text-transform: capitalize;
-                    font-size: 17px;
-                    font-weight: 500;                    
+                    font-size     : 17px;
+                    font-weight   : 500;
                 }
             }
 
@@ -214,23 +218,24 @@
             flex              : 1;
             padding           : 10px;
             border-left       : 1px solid #9c9595;
-            font-family: 'Quicksand', sans-serif;
+            font-family       : 'Quicksand', sans-serif;
             display           : grid;
             grid-template-rows: 10% 90%;
 
             &>span {
                 text-decoration: underline;
-                font-size         : 18px;
-                height            : 100%;
-                font-weight: 500;
-                padding-bottom: 10px;
+                font-size      : 18px;
+                height         : 100%;
+                font-weight    : 500;
+                padding-bottom : 10px;
             }
 
             .choosed {
-                width        : 100%;
-                height       : 100%;
-                margin: 10px 0;
-                overflow-y   : auto;
+                width     : 100%;
+                height    : 100%;
+                margin    : 10px 0;
+                overflow-y: auto;
+
                 .info_fr {
                     width           : 100%;
                     height          : 45px;
@@ -247,7 +252,7 @@
                         height       : 35px;
                         border-radius: 50%;
                         margin-right : 5px;
-                        object-fit: cover;
+                        object-fit   : cover;
 
                     }
 
@@ -255,13 +260,13 @@
                         flex          : 1;
                         font-size     : 17px;
                         text-transform: capitalize;
-                        font-weight: 500; 
+                        font-weight   : 500;
                         text-transform: capitalize;
                         text-overflow : ellipsis;
                         white-space   : nowrap;
                         overflow      : hidden;
                         color         : #0D47A1;
-                        margin-left: 4px;
+                        margin-left   : 4px;
                     }
                 }
             }
@@ -282,7 +287,7 @@
             background-color: #0D47A1;
             color           : #ffff;
             font-size       : 19px;
-            font-family: 'Quicksand', sans-serif;
+            font-family     : 'Quicksand', sans-serif;
             border          : none;
             border-radius   : 10px;
             cursor          : pointer;

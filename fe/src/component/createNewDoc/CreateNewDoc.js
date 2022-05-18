@@ -73,12 +73,18 @@ function CreateNewDoc({ setOpenCreateDoc }) {
             className="create-new_doc_body_item_docName"
             type="text"
             placeholder="Tiêu đề tài liệu"
+             onChange={(e) => {
+                setDocName(e.target.value);
+              }}
           ></input>
 
           <textarea
             className="create-new_doc_body_item_desc"
             type="text"
             placeholder="Nội dung"
+            onChange={(e) => {
+                setDesc(e.target.value);
+              }}
           ></textarea>
 
           <div className="create-new_doc_body_item_file">

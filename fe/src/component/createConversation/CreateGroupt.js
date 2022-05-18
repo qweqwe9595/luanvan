@@ -8,6 +8,7 @@ import { UserContext } from "../../context/userContext";
 function CreateGroupt({ setAddGroupt, SetMyConversations }) {
   const [user] = useContext(UserContext);
   const [number, setNumber] = useState([user]);
+  const [numberID, setNumberID] = useState([user._id])
   const [name, setName] = useState("");
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
@@ -15,10 +16,11 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
 
   const sendCreateGroupt = () => {
     if (name === "") {
+      alert("tên nhóm không được để trống")
       return;
     }
     var formData = new FormData();
-    formData.append("members", number);
+    formData.append("members", numberID);
     formData.append("conversationName", name);
     formData.append("img", fileRef);
     axios
@@ -31,14 +33,14 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
 
       .then((res) => {
         // setAddGroupt(false);
-        // SetMyConversations(res.data);
+        SetMyConversations(res.data); 
          console.log(res.data);
       })
       .catch((err) => {
         console.log(err.response);
       });
   };
-  // console.log(fileRef);
+  console.log(fileRef);
   return (
     <div className="Groupt_box">
       <div className="exit">
@@ -89,10 +91,19 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
                     if (pre.includes(values) === true) {
                       return pre;
                     } else {
+                      setNumberID((item) => {
+                        if (item.includes(values._id) === true) {
+                          return item;
+                        } else {
+                           return [...item, values._id];
+                        }
+                      });
                       return [...pre, values];
+                      
                     }
                   });
-                }}
+                }
+              }
               >
                 {values?.photos?.avatar?.length === 0 ? (
                   <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" />
@@ -121,6 +132,10 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
                   if (item._id === user._id) return;
                   setNumber((prev) => {
                     const temp = prev.filter((p) => p._id !== item._id);
+                    setNumberID((ite) => {
+                      const testex = ite.filter((t) => t !== item._id);
+                      return testex;
+                    })
                     return temp;
                   });
                 }}
