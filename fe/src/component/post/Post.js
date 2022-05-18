@@ -44,12 +44,12 @@ function Post({ postInfo, setRefreshPosts }) {
   function replaceJSX(str, find, replace) {
     const result = [];
     let parts = str?.split(find);
-    for(let i = 0; i < parts?.length; i++) {
-        result.push(parts[i]);
-        result.push(replace);
+    for (let i = 0; i < parts?.length; i++) {
+      result.push(parts[i]);
+      result.push(replace);
     }
     return result;
-}
+  }
 
   const iconStyles = {
     color: "#0d47a1",
@@ -100,8 +100,7 @@ function Post({ postInfo, setRefreshPosts }) {
       .post(`http://localhost:5000/api/posts/like/${postId}`, {
         userId: loginUser,
       })
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -109,18 +108,21 @@ function Post({ postInfo, setRefreshPosts }) {
 
   const sharePost = (shareId) => {
     axios
-    .patch(`http://localhost:5000/api/posts/share/${shareId}`, {},
-    {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .patch(
+        `http://localhost:5000/api/posts/share/${shareId}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const deletePost = () => {
     axios
@@ -158,28 +160,28 @@ function Post({ postInfo, setRefreshPosts }) {
   };
 
   const sendReports = () => {
-    console.log(reports, postInfo._id)
+    console.log(reports, postInfo._id);
     axios
-      .post(`http://localhost:5000/api/reports/createone`,
-      {
-        reportMessage: reports,
-        link: postInfo._id,
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+      .post(
+        `http://localhost:5000/api/reports/createone`,
+        {
+          reportMessage: reports,
+          link: postInfo._id,
         },
-      }
-    )
-    .then((res) => {
-      console.log("repost thanh cong");
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err.response.data.message);
-    });
-  }
-  
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => {
+        console.log("repost thanh cong");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  };
 
   const writeCommentV1 = () => {
     axios
@@ -198,100 +200,111 @@ function Post({ postInfo, setRefreshPosts }) {
 
   return (
     <div className="post">
-      <Modal size="lg" active={showModalReports} toggler={() => setShowModalReports(false)}>
-                <ModalHeader toggler={() => setShowModalReports(false)}>
-                    Báo cáo bài viết
-                </ModalHeader>
-                <ModalBody>
-                  <Textarea
-                      className="modal-desc"
-                      color="lightBlue"
-                      size="lg"
-                      outline={false}
-                      placeholder="Nhập nội dung phản ánh..."
-                      value={reports}
-                      onChange={(e) => {
-                        setReports(e.target.value);
-                      }}
-                  />                  
-                </ModalBody>
-                <ModalFooter>
-                    <Button 
-                        color="red"
-                        buttonType="link"
-                        onClick={(e) => setShowModalReports(false)}
-                        ripple="dark"
-                    >
-                        Đóng
-                    </Button>
+      <Modal
+        size="lg"
+        active={showModalReports}
+        toggler={() => setShowModalReports(false)}
+      >
+        <ModalHeader toggler={() => setShowModalReports(false)}>
+          Báo cáo bài viết
+        </ModalHeader>
+        <ModalBody>
+          <Textarea
+            className="modal-desc"
+            color="lightBlue"
+            size="lg"
+            outline={false}
+            placeholder="Nhập nội dung phản ánh..."
+            value={reports}
+            onChange={(e) => {
+              setReports(e.target.value);
+            }}
+          />
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color="red"
+            buttonType="link"
+            onClick={(e) => setShowModalReports(false)}
+            ripple="dark"
+          >
+            Đóng
+          </Button>
 
-                    <Button
-                        color="blue"
-                        onClick={(e) => {
-                          sendReports();
-                          setReports("");
-                          setShowModalReports(false); 
-                        }}
-                        ripple="light"
-                    >
-                        Gửi
-                    </Button>
-                </ModalFooter>
-            </Modal>
-            <Modal size="lg" active={showModalDelete} toggler={() => setShowModalDelete(false)}>
-                
-                <ModalBody>
-                  <p>Bạn có chắc chắn muốn xóa bài viết này?</p>               
-                </ModalBody>
-                <ModalFooter>
-                    <Button 
-                        color="red"
-                        buttonType="link"
-                        onClick={(e) => setShowModalDelete(false)}
-                        ripple="dark"
-                    >
-                        Đóng
-                    </Button>
+          <Button
+            color="blue"
+            onClick={(e) => {
+              sendReports();
+              setReports("");
+              setShowModalReports(false);
+            }}
+            ripple="light"
+          >
+            Gửi
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        size="lg"
+        active={showModalDelete}
+        toggler={() => setShowModalDelete(false)}
+      >
+        <ModalBody>
+          <p>Bạn có chắc chắn muốn xóa bài viết này?</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color="red"
+            buttonType="link"
+            onClick={(e) => setShowModalDelete(false)}
+            ripple="dark"
+          >
+            Đóng
+          </Button>
 
-                    <Button
-                        color="blue"
-                        onClick={(e) => {
-                          deletePost();
-                          setShowModalDelete(false); 
-                        }}
-                        ripple="light"
-                    >
-                        Chắc chắn
-                    </Button>
-                </ModalFooter>
-            </Modal>
-            <Modal size="lg" active={showModalShare} toggler={() => setShowModalShare(false)}>      
-                <ModalBody>
-                  <p>Bạn muốn chia sẻ bài viết này lên trang cá nhân của bạn?</p>               
-                </ModalBody>
-                <ModalFooter>
-                    <Button 
-                        color="red"
-                        buttonType="link"
-                        onClick={(e) => setShowModalShare(false)}
-                        ripple="dark"
-                    >
-                        Đóng
-                    </Button>
+          <Button
+            color="blue"
+            onClick={(e) => {
+              deletePost();
+              setShowModalDelete(false);
+            }}
+            ripple="light"
+          >
+            Chắc chắn
+          </Button>
+        </ModalFooter>
+      </Modal>
+      <Modal
+        size="lg"
+        active={showModalShare}
+        toggler={() => setShowModalShare(false)}
+      >
+        <ModalBody>
+          <p>Bạn muốn chia sẻ bài viết này lên trang cá nhân của bạn?</p>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color="red"
+            buttonType="link"
+            onClick={(e) => setShowModalShare(false)}
+            ripple="dark"
+          >
+            Đóng
+          </Button>
 
-                    <Button
-                        color="blue"
-                        onClick={(e) => {
-                          setShareCount(shareCount + 1);
-                          sharePost(postInfo._id);                          
-                          setShowModalShare(false); 
-                        }}
-                        ripple="light"
-                    >
-                        Đồng ý
-                    </Button>
-                </ModalFooter>
-            </Modal>
+          <Button
+            color="blue"
+            onClick={(e) => {
+              setShareCount(shareCount + 1);
+              sharePost(postInfo._id);
+              setShowModalShare(false);
+            }}
+            ripple="light"
+          >
+            Đồng ý
+          </Button>
+        </ModalFooter>
+      </Modal>
       {openOptions ? (
         <>
           <div
@@ -299,7 +312,7 @@ function Post({ postInfo, setRefreshPosts }) {
             onClick={() => setOpenOptions(!openOptions)}
           ></div>
           <ul className="post-meta-right-show-items">
-            {postInfo?.userId?._id.includes(loginUser)? (
+            {postInfo?.userId?._id.includes(loginUser) ? (
               <li
                 onClick={() => {
                   setOpenUpdate(!openUpdate);
@@ -323,17 +336,18 @@ function Post({ postInfo, setRefreshPosts }) {
             ) : (
               ""
             )}
-             {postInfo.userId._id.includes(loginUser)? (
+            {postInfo.userId._id.includes(loginUser) ? (
               ""
             ) : (
               <li
-              onClick={() => {            
-                setShowModalReports(!showModalReports);
-                setOpenOptions(!openOptions);
-              }}
-            >Báo cáo</li>            
+                onClick={() => {
+                  setShowModalReports(!showModalReports);
+                  setOpenOptions(!openOptions);
+                }}
+              >
+                Báo cáo
+              </li>
             )}
-           
           </ul>
         </>
       ) : (
@@ -402,10 +416,11 @@ function Post({ postInfo, setRefreshPosts }) {
                     );
                 }
               })()}
-              <p className="scope"><IoMdContact></IoMdContact>
-              {postInfo?.scope === "public"?(" Công khai"):""}
-              {postInfo?.scope === "friend"?(" Bạn bè"):""}
-              {postInfo?.scope === "private"?(" Riêng tư"):""}
+              <p className="scope">
+                <IoMdContact></IoMdContact>
+                {postInfo?.scope === "public" ? " Công khai" : ""}
+                {postInfo?.scope === "friends" ? " Bạn bè" : ""}
+                {postInfo?.scope === "private" ? " Riêng tư" : ""}
               </p>
             </div>
           </div>
@@ -419,7 +434,9 @@ function Post({ postInfo, setRefreshPosts }) {
               }}
             >
               <span>
-                <p><BsThreeDots></BsThreeDots></p>
+                <p>
+                  <BsThreeDots></BsThreeDots>
+                </p>
               </span>
             </div>
           </div>
@@ -488,7 +505,7 @@ function Post({ postInfo, setRefreshPosts }) {
         </div>
         <div className="post-interaction-share">
           <FiShare2 style={iconStyles}></FiShare2>
-          <p onClick={()=>setShowModalShare(true)}>Chia sẻ</p>
+          <p onClick={() => setShowModalShare(true)}>Chia sẻ</p>
         </div>
       </div>
 
