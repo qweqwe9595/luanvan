@@ -13,16 +13,17 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
   const [fileRef, setFileRef] = useState(null);
   const [previewURL, setPreviewUrl] = useState(null);
   const [openImg, setOpenImg] = useState(false);
-
   const sendCreateGroupt = () => {
     if (name === "") {
       alert("tên nhóm không được để trống")
       return;
     }
     var formData = new FormData();
-    formData.append("members", numberID);
+    for (let i = 0; i <= numberID.length; i++){
+       formData.append("members",numberID[i]);
+    }  
     formData.append("conversationName", name);
-    formData.append("img", fileRef);
+    formData.append("conversationImg", fileRef);
     axios
       .post(`http://localhost:5000/api/conversations/createone`, formData, {
         headers: {
@@ -33,14 +34,12 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
 
       .then((res) => {
          setAddGroupt(false);
-        // SetMyConversations(res.data); 
-         console.log(res.data);
+         SetMyConversations(res.data); 
       })
       .catch((err) => {
         console.log(err.response);
       });
   };
-  console.log(fileRef);
   return (
     <div className="Groupt_box">
       <div className="exit">
@@ -68,13 +67,6 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
             setName(e.target.value);
           }}
         ></input>
-      </div>
-      <div className="search_friend">
-        <span>Thêm thành viên vào nhóm</span>
-        <div className="search">
-          <BiSearch></BiSearch>
-          <input placeholder="Nhập tên " type="search"></input>
-        </div>
       </div>
       <div className="result">
         <p>Bạn bè của bạn</p>

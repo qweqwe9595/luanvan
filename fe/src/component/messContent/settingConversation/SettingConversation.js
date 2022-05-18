@@ -52,13 +52,12 @@ function SettingConversation({myConversation}) {
               </div>
             </div>
           ) : (
-            <div>
+            <div >
                 {myConversation?.members?.map((partners, index) => (
                   partners === me?._id ? "" : (
                     <div key={index}>
                     <PartnerInfo partners={partners}></PartnerInfo>
                     </div>
-                   
                 )))}            
             </div>
           )}
@@ -71,10 +70,10 @@ function SettingConversation({myConversation}) {
           <span>{myConversation?.members?.length} thàn viên</span>
           </div>
           {more ? (
-            <div className="partner_box">
+            <div className="partnr">
             {myConversation?.members?.map((partners, index) => (
                   partners === me?._id ? "" : (
-                    <div className="partner_goupt" key={index}>
+                    <div className="partnr-member" key={index}>
                    <PartnerGroupt partners={partners}></PartnerGroupt>
                     </div>  
                 )))}        
@@ -82,22 +81,7 @@ function SettingConversation({myConversation}) {
           ):""}
           
         </>
-           
-        
         ) : ""}
-        <div className="add">
-              <BiUserPlus></BiUserPlus>
-              <span>Thêm bạn vào hội thoại này</span>
-          </div>
-          
-        <div className="add">
-          <AiOutlineUsergroupAdd></AiOutlineUsergroupAdd>
-              <span>Tạo nhóm với người này</span>
-        </div>
-        <div className="add">
-         <MdOutlineGroups></MdOutlineGroups>
-              <span>Thêm vào nhóm</span>
-          </div>
           <div className="add"
           onClick={() =>deleteConver()}>
           <AiOutlineDelete></AiOutlineDelete>

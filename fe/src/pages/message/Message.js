@@ -22,7 +22,6 @@ function Message() {
   const [openNewConver, setOpenNewConver] = useState(false);
   const [loadAll, setLoadAll] = useState(false);
   const [addGroupt, setAddGroupt] = useState(false);
-
   useEffect(() => {
     axios
       .get(
@@ -38,7 +37,6 @@ function Message() {
         console.log(err.response);
       });
   }, [openNewConver, loadAll, addGroupt]);
-
   return (
     <div className="message_container">
       <Nav></Nav>
@@ -82,8 +80,9 @@ function Message() {
         <div className="mess_left">
           <div className="mess_left_header">
             <div className="mess_left_search">
-              <BiSearch></BiSearch>
-              <input placeholder="Tìm kiếm hội thoại" type="search"></input>
+              {/* <BiSearch></BiSearch>
+              <input placeholder="Tìm kiếm hội thoại" type="search"></input> */}
+              <span>Bạn bè</span>
             </div>
             <div
               className="icon_mess_left"

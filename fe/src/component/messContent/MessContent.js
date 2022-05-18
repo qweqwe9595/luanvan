@@ -112,7 +112,7 @@ function MessContent({ myConversation, setLoadAll, loadAll }) {
         )}
 
         <div className="mess_cent_search">
-          <BiSearch></BiSearch>
+          {/* <BiSearch></BiSearch> */}
         </div>
         <div className="mess_cent_setting" onClick={() => setLoadAll(!loadAll)}>
           <BsThreeDots></BsThreeDots>
