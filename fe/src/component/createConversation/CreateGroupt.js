@@ -32,8 +32,8 @@ function CreateGroupt({ setAddGroupt, SetMyConversations }) {
       })
 
       .then((res) => {
-        // setAddGroupt(false);
-        SetMyConversations(res.data); 
+         setAddGroupt(false);
+        // SetMyConversations(res.data); 
          console.log(res.data);
       })
       .catch((err) => {

@@ -112,12 +112,8 @@ function Message() {
                             setLoadAll(false);
                           }}
                         >
-                          {people?.members?.length > 2 ? (
+                          {people?.members?.length === 2 ? (
                             <>
-                              <MessTagGroup
-                                people={people}
-                                SetMyConversations={SetMyConversations}
-                              ></MessTagGroup>
                               {people?.members?.map((partners, index) =>
                                 partners === user?._id ? (
                                   ""
@@ -133,7 +129,16 @@ function Message() {
                               )}
                             </>
                           ) : (
-                            ""
+                            <>
+                              {people?.members?.length > 2 ? (
+                                <MessTagGroup
+                                  people={people}
+                                  SetMyConversations={SetMyConversations}
+                                ></MessTagGroup>
+                              ) : (
+                                ""
+                              )}
+                            </>
                           )}
                         </div>
                       ) : (
